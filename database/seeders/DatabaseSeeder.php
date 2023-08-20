@@ -53,8 +53,8 @@ class DatabaseSeeder extends Seeder
         $this->call(DefPhotoSeeder::class);
 
 
-//        $this->call(CategorySeeder::class);
-//        $this->call(CategoryTranslationSeeder::class);
+       $this->call(CategorySeeder::class);
+       $this->call(CategoryTranslationSeeder::class);
 //        $this->call(LocationSeeder::class);
 //        $this->call(LocationTranslationSeeder::class);
 //

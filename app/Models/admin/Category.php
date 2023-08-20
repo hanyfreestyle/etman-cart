@@ -19,8 +19,8 @@ class Category extends Model implements TranslatableContract
     use Translatable;
     use HasRecursiveRelationships;
 
-    public $translatedAttributes = ['name','g_title','g_des','body_h1','breadcrumb'];
-    protected $fillable = ['slug','photo','photo_thum_1','is_active'];
+    public $translatedAttributes = ['name','slug','des','g_title','g_des','body_h1','breadcrumb'];
+    protected $fillable = ['parent_id','photo','photo_thum_1','is_active'];
     protected $table = "categories";
     protected $primaryKey = 'id';
 

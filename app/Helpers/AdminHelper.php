@@ -108,7 +108,7 @@ class AdminHelper{
 
         $newpath = $path.'/'.$filename;
         $newname = $filename;
-        $counter = 0;
+        $counter = 1;
         while (file_exists($newpath)) {
             $newname = $name .'_'. $counter . $ext;
             $newpath = $path.'/'.$newname;

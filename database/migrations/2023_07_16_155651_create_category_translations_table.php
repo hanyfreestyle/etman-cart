@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('locale')->index();
             $table->string('slug');
             $table->string('name')->nullable();
-            $table->string('des')->nullable();
+            $table->longText('des')->nullable();
 
             $table->string('g_title')->nullable();
             $table->text('g_des')->nullable();
