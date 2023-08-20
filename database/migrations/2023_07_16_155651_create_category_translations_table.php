@@ -15,7 +15,10 @@ return new class extends Migration
             $table->increments('id');
             $table->integer('category_id')->unsigned();
             $table->string('locale')->index();
+            $table->string('slug');
             $table->string('name')->nullable();
+            $table->string('des')->nullable();
+
             $table->string('g_title')->nullable();
             $table->text('g_des')->nullable();
             $table->string('body_h1')->nullable();
@@ -23,6 +26,7 @@ return new class extends Migration
             $table->softDeletes();
 
             $table->unique(['category_id','locale']);
+            $table->unique(['locale','slug']);
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
 
         });

@@ -20,11 +20,27 @@
 
 
     <x-breadcrumb-def :pageData="$pageData"/>
+
+
+
     <section class="div_data">
         <div class="container-fluid">
+            @if($pageData['SubView'])
+                <div class="row">
+                    <div class="col-lg-12 text-right">
+                        <ol class="breadcrumb  text-md">
+                            <li class="breadcrumb-item"><a href="{{route('category.index')}}">{{__('admin/def.main_category')}}</a></li>
+                            @foreach($trees as $tree)
+                                <li class="breadcrumb-item"><a href="{{route('category.SubCategory',$tree->id)}}">{{ $tree->name }}</a></li>
+                            @endforeach
+                        </ol>
+                    </div>
+                </div>
+
+            @endif
+
             <div class="row">
                 <div class="col-lg-12">
-
                     <x-ui-card  :page-data="$pageData" >
                         <x-mass.confirm-massage/>
 
@@ -43,13 +59,12 @@
                                             <th></th>
                                             <th></th>
                                         @else
-                                            <th class="tbutaction TD_150">{{__('admin/def.status')}}</th>
 
                                             @can('category_edit')
-                                                <th class="tbutaction TD_100"></th>
+                                                <th class="tbutaction TD_50"></th>
                                             @endcan
                                             @can('category_delete')
-                                                <th class="tbutaction TD_100"></th>
+                                                <th class="tbutaction TD_50"></th>
                                             @endcan
                                         @endif
 
@@ -62,9 +77,9 @@
                                         <tr>
                                             <td>{{$row->id}}</td>
                                             <td class="tc">{!! AdminHelper::printTableImage($row,'photo') !!} </td>
-                                            <td>{{$row->translate('ar')->name}}</td>
-                                            <td>{{$row->translate('en')->name}}</td>
                                             <td>{!! ProCategory::print_count_name('ar',$row,"category.SubCategory") !!}</td>
+                                            <td>{!! ProCategory::print_count_name('en',$row,"category.SubCategory") !!}</td>
+
 
                                             @if($pageData['ViewType'] == 'deleteList')
                                                 <td>{{$row->deleted_at}}</td>
@@ -74,10 +89,10 @@
 
 
                                                 @can('category_edit')
-                                                    <td class="tc"><x-action-button url="{{route('category.edit',$row->id)}}" type="edit" :tip="false" /></td>
+                                                    <td class="tc"><x-action-button url="{{route('category.edit',$row->id)}}" type="edit" :tip="true" /></td>
                                                 @endcan
                                                 @can('category_delete')
-                                                    <td class="tc"><x-action-button url="#" id="{{route('category.destroy',$row->id)}}" type="deleteSweet"/></td>
+                                                    <td class="tc"><x-action-button url="#" id="{{route('category.destroy',$row->id)}}" type="deleteSweet" :tip="true" /></td>
                                                 @endcan
                                             @endif
 

@@ -6,7 +6,7 @@
             @endif
         </label>
     @endif
-    <input type="text" class="form-control dir_{{$dir}} @error($reqname) is-invalid is_invalid_{{$dir}} @enderror"
+    <input type="text" id="{{$inputid}}" class="form-control dir_{{$dir}} @error($reqname) is-invalid is_invalid_{{$dir}} @enderror"
            name="{{$name}}"
            placeholder="{{$placeholderPrint}}"
            value="{{$value}}">

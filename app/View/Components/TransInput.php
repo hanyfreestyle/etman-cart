@@ -17,20 +17,26 @@ class TransInput extends Component
     public $reqspan ;
     public $placeholder ;
     public $placeholderPrint ;
+    public $inputid ;
+
     public function __construct(
-        $label=null,
+
         $name,
         $reqname,
         $value,
         $dir="null",
+        $label=null,
         $newreqname = "",
         $placeholderPrint = "",
         $placeholder = false,
         $reqspan = true,
+        $inputid=null,
     )
     {
         $this->label = $label;
+
         $this->name = $name;
+        $this->inputid = $inputid;
         $this->value = $value;
         $this->reqname = $reqname;
         $this->dir = $dir;

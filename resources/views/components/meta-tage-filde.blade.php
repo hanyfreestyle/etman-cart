@@ -21,6 +21,17 @@
                 value="{{old($key.'.g_des',$oldData->translateOrNew($key)->g_des)}}"
             />
 
+
+            <x-trans-input
+                :placeholder="$placeholder"
+                label="Slug ({{ ($key) }})"
+                inputid="slug_{{ $key }}"
+                name="{{ $key }}[slug]"
+                dir="{{ $key }}"
+                reqname="{{ $key }}.slug"
+                value="{{old($key.'.slug',$oldData->translateOrNew($key)->slug)}}"
+                :reqspan="false"
+            />
             @if($bodyH1 == true)
                 <x-trans-input
                     :placeholder="$placeholder"

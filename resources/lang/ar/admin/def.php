@@ -12,8 +12,9 @@ return
 	'form_selectFilterLable' => 'برجاء تحديد الفتر المستخدم',
 	'icon' => 'Icon',
 	'photo' => 'صورة',
+	'post' => 'مقال',
 	'status' => 'الحالة',
 	'status_active' => 'فعال',
 	'status_unactive' => 'غير فعال',
-	'post' => 'مقال',
+	'main_category' => 'المجموعات الرئيسية',
 ];

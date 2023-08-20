@@ -17,39 +17,39 @@ class CategoryRequest extends FormRequest
 
     protected function prepareForValidation()
     {
-        $this->merge([
-            'slug'=> AdminHelper::Url_Slug($this->get('slug')),
-        ]);
+        $data = $this->toArray();
+        foreach(config('app.lang_file') as $key=>$lang){
+            data_set($data, $key.'.slug',  AdminHelper::Url_Slug($data[$key]['slug']) );
+        }
+        $this->merge($data);
+
     }
 
 
     public function rules(Request $request): array
     {
-       $request->merge(['slug' => AdminHelper::Url_Slug($request->slug)]);
 
-       $id = $this->route('id');
-
-        if($id == '0'){
-            $rules =[
-                'slug'=> "required|unique:categories",
-            ];
-        }else{
-            $rules =[
-                'slug'=> "required|unique:categories,slug,$id",
-            ];
+        foreach(config('app.lang_file') as $key=>$lang){
+          $request->merge([$key.'.slug' => AdminHelper::Url_Slug($request[$key]['slug'])]);
         }
 
+        $id = $this->route('id');
 
-        $rules +=[
+        $rules =[
             'parent_id'=> "required",
-
         ];
 
-//        foreach(config('app.lang_file') as $key=>$lang){
-//            $rules[$key.".name"] =   'required';
-//            $rules[$key.".g_title"] =   'required';
-//            $rules[$key.".g_des"] =   'required';
-//        }
+        foreach(config('app.lang_file') as $key=>$lang){
+            $rules[$key.".name"] =   'required';
+            $rules[$key.".des"] =   'required';
+            $rules[$key.".g_title"] =   'required';
+            $rules[$key.".g_des"] =   'required';
+            if($id == '0'){
+                $rules[$key.".slug"] = 'required|unique:category_translations,slug';
+            }else{
+                $rules[$key.".slug"] = "required|unique:category_translations,slug,$id,category_id,locale,$key";
+            }
+        }
 
         return $rules;
     }

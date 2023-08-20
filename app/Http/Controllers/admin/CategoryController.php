@@ -11,6 +11,7 @@ use App\Models\admin\CategoryTranslation;
 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use function Ramsey\Collection\add;
 
 
 class CategoryController extends AdminMainController
@@ -36,21 +37,46 @@ class CategoryController extends AdminMainController
         $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
         $pageData['ViewType'] = "List";
         $pageData['Trashed'] = Category::onlyTrashed()->count();
+        $pageData['SubView'] = false;
 
-
-        $Categories = Category::root()
-        ->get();
-        //$Categories = Category::tree()->get()->toTree();
-
-//       // dd($Categories);
-//
-//        //return view('admin.post.category_index_test',compact('pageData','Categories'));
-//
-//        $Category = Category::findOrNew(1);
-
-
-        return view('admin.post.category_index',compact('pageData','Categories'));
+        $Categories = Category::query()
+            ->with('translation')
+            ->withCount('children')
+            ->limit('10')
+            ->orderBy('id','asc')
+            ->get();
+        return view('admin.product.category_index',compact('pageData','Categories'));
     }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     index
+    public function SubCategory($id) :View
+    {
+        $sendArr = ['TitlePage' => __('admin/menu.category'),'restore'=> 0 ];
+        $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
+        $pageData['ViewType'] = "List";
+        $pageData['SubView'] = true;
+
+        $Categories = Category::query()
+            ->with('translation')
+            ->withCount('children')
+            ->where('parent_id',$id)
+            ->limit('10')
+            ->get();
+
+
+
+            $trees = Category::find($id)->ancestorsAndSelf()->orderBy('depth','asc')->get() ;
+
+
+
+         return view('admin.product.category_index',compact('pageData','Categories','trees'));
+    }
+
+
+
+
+
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     SoftDeletes
@@ -73,13 +99,8 @@ class CategoryController extends AdminMainController
         $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
         $pageData['ViewType'] = "Add";
         $Categories = Category::tree()->with('translation')->get()->toTree();
-//        $Categories = Category::root()
-//            ->with('children')
-//            ->with('translations')
-//            ->get();
         $Category = Category::findOrNew(0);
-
-        return view('admin.post.category_form',compact('pageData','Category','Categories'));
+        return view('admin.product.category_form',compact('pageData','Category','Categories'));
     }
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     edit
@@ -90,7 +111,7 @@ class CategoryController extends AdminMainController
         $pageData['ViewType'] = "Edit";
         $Categories = Category::tree()->get()->toTree();
         $Category = Category::findOrFail($id);
-        return view('admin.post.category_form',compact('Category','pageData','Categories'));
+        return view('admin.product.category_form',compact('Category','pageData','Categories'));
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -105,16 +126,12 @@ class CategoryController extends AdminMainController
         $saveImgData->UploadOne($request);
 
         $saveData =  Category::findOrNew($id);
-        $saveData->slug = AdminHelper::Url_Slug($request->slug);
+       // $saveData->slug = AdminHelper::Url_Slug($request->slug);
         if($request->input('parent_id') != 0){
             $saveData->parent_id = $request->input('parent_id');
         }
-
-
         $saveData->setActive((bool) request('is_active', false));
         $saveData = AdminHelper::saveAndDeletePhoto($saveData,$saveImgData);
-
-
         $saveData->save();
 
         foreach ( config('app.lang_file') as $key=>$lang) {
@@ -122,10 +139,12 @@ class CategoryController extends AdminMainController
             $saveTranslation->category_id = $saveData->id;
             $saveTranslation->locale = $key;
             $saveTranslation->name = $request->input($key.'.name');
+            $saveTranslation->slug = $request->input($key.'.slug');
+            $saveTranslation->des = $request->input($key.'.des');
             $saveTranslation->g_title = $request->input($key.'.g_title');
             $saveTranslation->g_des = $request->input($key.'.g_des');
-            $saveTranslation->body_h1 = $request->input($key.'.body_h1');
-            $saveTranslation->breadcrumb = $request->input($key.'.breadcrumb');
+//            $saveTranslation->body_h1 = $request->input($key.'.body_h1');
+//            $saveTranslation->breadcrumb = $request->input($key.'.breadcrumb');
             $saveTranslation->save();
         }
 
@@ -192,8 +211,16 @@ class CategoryController extends AdminMainController
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     text
+#|||||||||||||||||||||||||||||||||||||| #  print_count_name
+    static function print_count_name($lang,$row,$url)
+    {
 
+        if($row->children_count > 0){
+             return '<a href="'.route($url,$row->id).'">'.$row->translate('ar')->name.' ('.$row->children_count.')</a>' ;
+        }else{
+            return $row->translate($lang)->name ;
+        }
+    }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     text
@@ -206,3 +233,6 @@ class CategoryController extends AdminMainController
 
 
 }
+
+
+

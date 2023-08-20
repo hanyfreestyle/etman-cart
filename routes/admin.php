@@ -22,15 +22,10 @@ Route::get('/Home/Update',[AdminMainController::class,'Update'])->name('admin.Da
 Route::get('/UpdateData',[UpdateDataController::class,'index'])->name('updateData');
 Route::get('/UpdateListing',[UpdateListingDataController::class,'update'])->name('update.UpdateListing');
 
-Route::get('/amenity',[AmenityController::class,'index'])->name('amenity.index');
-Route::get('/amenity/create',[AmenityController::class,'create'])->name('amenity.create');
-Route::post('/amenity/store/{id}',[AmenityController::class,'storeUpdate'])->name('amenity.store');
-Route::get('/amenity/edit/{id}',[AmenityController::class,'edit'])->name('amenity.edit');
-Route::post('/amenity/update/{id}',[AmenityController::class,'storeUpdate'])->name('amenity.update');
-Route::delete('/amenity/destroy/{id}',[AmenityController::class,'destroy'])->name('amenity.destroy');
-Route::get('/amenity/emptyPhoto/{id}', [AmenityController::class,'emptyPhoto'])->name('amenity.emptyPhoto');
+
 
 Route::get('/Category',[CategoryController::class,'index'])->name('category.index');
+Route::get('/Category/SubCategory/{id}',[CategoryController::class,'SubCategory'])->name('category.SubCategory');
 Route::get('/Category/create',[CategoryController::class,'create'])->name('category.create');
 Route::post('/Category/store/{id}',[CategoryController::class,'storeUpdate'])->name('category.store');
 Route::get('/Category/edit/{id}',[CategoryController::class,'edit'])->name('category.edit');

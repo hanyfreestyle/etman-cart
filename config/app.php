@@ -203,6 +203,9 @@ return [
         // or
         'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
         'Agent' => Phattarachai\LaravelMobileDetect\Facades\Agent::class,
+
+        'ProCategory' => App\Http\Controllers\admin\CategoryController::class,
+
     ])->toArray(),
 
 

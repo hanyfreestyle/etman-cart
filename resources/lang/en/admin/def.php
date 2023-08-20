@@ -12,8 +12,9 @@ return
 	'form_selectFilterLable' => 'Please select Filter',
 	'icon' => 'Icon',
 	'photo' => 'Photo',
+	'post' => 'Post',
 	'status' => 'Status',
 	'status_active' => 'Active',
 	'status_unactive' => 'UnActive',
-	'post' => 'Post',
+	'main_category' => 'Main Category',
 ];
