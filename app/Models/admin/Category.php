@@ -10,12 +10,14 @@ use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 class Category extends Model implements TranslatableContract
 {
     use HasFactory;
     use SoftDeletes;
     use Translatable;
+    use HasRecursiveRelationships;
 
     public $translatedAttributes = ['name','g_title','g_des','body_h1','breadcrumb'];
     protected $fillable = ['slug','photo','photo_thum_1','is_active'];
@@ -29,16 +31,15 @@ class Category extends Model implements TranslatableContract
     }
 
 
-    public function post_count() :HasMany
+    public function scopeRoot(Builder $query): Builder
     {
-      return $this->hasMany(Post::class,'category_id','id')->where('is_published', true)
-
-
-
-          ;
+        return $query->whereNull('parent_id');
     }
 
-
+    public function children()
+    {
+       return $this->hasMany(Category::class , 'parent_id', 'id' );
+    }
 
 
 }

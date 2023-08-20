@@ -34,6 +34,7 @@
                                     <thead>
                                     <tr>
                                         <th class="TD_20">#</th>
+                                        <th class="TD_20"></th>
                                         <th>{{__('admin/def.form_name_ar')}}</th>
                                         <th>{{__('admin/def.form_name_en')}}</th>
 
@@ -42,13 +43,13 @@
                                             <th></th>
                                             <th></th>
                                         @else
-                                            <th>{{__('admin/def.status')}}</th>
-                                            <th>{{__('admin/def.photo')}}</th>
+                                            <th class="tbutaction TD_150">{{__('admin/def.status')}}</th>
+
                                             @can('category_edit')
-                                                <th class="tbutaction"></th>
+                                                <th class="tbutaction TD_100"></th>
                                             @endcan
                                             @can('category_delete')
-                                                <th class="tbutaction"></th>
+                                                <th class="tbutaction TD_100"></th>
                                             @endcan
                                         @endif
 
@@ -58,6 +59,7 @@
                                     @foreach($Categories as $row)
                                         <tr>
                                             <td>{{$row->id}}</td>
+                                            <td class="tc">{!! AdminHelper::printTableImage($row,'photo') !!} </td>
                                             <td>{{$row->translate('ar')->name}}</td>
                                             <td>{{$row->translate('en')->name}}</td>
 
@@ -67,7 +69,7 @@
                                                 <td class="tc"><x-action-button url="#" id="{{route('category.force',$row->id)}}" type="deleteSweet"/></td>
                                             @else
                                                 <td class="tc" > <x-ajax-update-status-but :row="$row" role="category_edit" /> </td>
-                                                <td class="tc">{!! AdminHelper::printTableImage($row,'photo') !!} </td>
+
                                                 @can('category_edit')
                                                     <td class="tc"><x-action-button url="{{route('category.edit',$row->id)}}" type="edit" :tip="false" /></td>
                                                 @endcan

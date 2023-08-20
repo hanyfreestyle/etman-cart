@@ -9,12 +9,29 @@
 
         <form  class="mainForm" action="{{route('category.update',intval($Category->id))}}" method="post"  enctype="multipart/form-data">
             @csrf
+            <x-form-select-category
+                name="parent_id"
+                label="المجموعات"
+                :sendvalue="old('parent_id',$Category->parent_id)"
+                :required-span="true"
+                print-val-name="name"
+                colrow="col-lg-3 "
+                :send-arr="$Categories"
+            />
+
+            @foreach($Categories as $CategoryList)
+                <x-category-item :Category="$CategoryList" />
+            @endforeach
+
 
 
             <div class="row">
                 <x-form-input label="Slug" name="slug" :requiredSpan="true" colrow="col-lg-12 {{getColDir('en')}}"
                               value="{{old('slug',$Category->slug)}}"  dir="en" inputclass="dir_en"/>
             </div>
+
+
+
 
             <div class="row">
                 @foreach ( config('app.lang_file') as $key=>$lang )
@@ -30,13 +47,13 @@
                 @endforeach
             </div>
 
-            <x-meta-tage-filde :body-h1="true" :breadcrumb="true"  :old-data="$Category" :placeholder="false" />
+{{--            <x-meta-tage-filde :body-h1="true" :breadcrumb="true"  :old-data="$Category" :placeholder="false" />--}}
 
-            <hr>
+{{--            <hr>--}}
 
-            <div class="row">
-                <x-form-check-active :row="$Category" name="is_active" page-view="{{$pageData['ViewType']}}"/>
-            </div>
+{{--            <div class="row">--}}
+{{--                <x-form-check-active :row="$Category" name="is_active" page-view="{{$pageData['ViewType']}}"/>--}}
+{{--            </div>--}}
 
             <hr>
 

@@ -37,7 +37,18 @@ class CategoryController extends AdminMainController
         $pageData['ViewType'] = "List";
         $pageData['Trashed'] = Category::onlyTrashed()->count();
 
-        $Categories = self::getSelectQuery(Category::query());
+
+        $Categories = Category::root()
+        ->get();
+        //$Categories = Category::tree()->get()->toTree();
+
+//       // dd($Categories);
+//
+//        //return view('admin.post.category_index_test',compact('pageData','Categories'));
+//
+//        $Category = Category::findOrNew(1);
+
+
         return view('admin.post.category_index',compact('pageData','Categories'));
     }
 
@@ -61,9 +72,14 @@ class CategoryController extends AdminMainController
         $sendArr = ['TitlePage' => __('admin/menu.category') ];
         $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
         $pageData['ViewType'] = "Add";
-
+        $Categories = Category::tree()->with('translation')->get()->toTree();
+//        $Categories = Category::root()
+//            ->with('children')
+//            ->with('translations')
+//            ->get();
         $Category = Category::findOrNew(0);
-        return view('admin.post.category_form',compact('pageData','Category'));
+
+        return view('admin.post.category_form',compact('pageData','Category','Categories'));
     }
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     edit
@@ -72,9 +88,9 @@ class CategoryController extends AdminMainController
         $sendArr = ['TitlePage' => __('admin/menu.category') ];
         $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
         $pageData['ViewType'] = "Edit";
-
+        $Categories = Category::tree()->get()->toTree();
         $Category = Category::findOrFail($id);
-        return view('admin.post.category_form',compact('Category','pageData'));
+        return view('admin.post.category_form',compact('Category','pageData','Categories'));
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -90,6 +106,11 @@ class CategoryController extends AdminMainController
 
         $saveData =  Category::findOrNew($id);
         $saveData->slug = AdminHelper::Url_Slug($request->slug);
+        if($request->input('parent_id') != 0){
+            $saveData->parent_id = $request->input('parent_id');
+        }
+
+
         $saveData->setActive((bool) request('is_active', false));
         $saveData = AdminHelper::saveAndDeletePhoto($saveData,$saveImgData);
 

@@ -39,11 +39,17 @@ class CategoryRequest extends FormRequest
             ];
         }
 
-        foreach(config('app.lang_file') as $key=>$lang){
-            $rules[$key.".name"] =   'required';
-            $rules[$key.".g_title"] =   'required';
-            $rules[$key.".g_des"] =   'required';
-        }
+
+        $rules +=[
+            'parent_id'=> "required",
+
+        ];
+
+//        foreach(config('app.lang_file') as $key=>$lang){
+//            $rules[$key.".name"] =   'required';
+//            $rules[$key.".g_title"] =   'required';
+//            $rules[$key.".g_des"] =   'required';
+//        }
 
         return $rules;
     }
