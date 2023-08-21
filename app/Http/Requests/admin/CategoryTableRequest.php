@@ -15,8 +15,12 @@ class CategoryTableRequest extends FormRequest
 
     public function rules(): array
     {
+
+        $rules =[
+            'attribute_id'=> "required",
+        ];
+
         foreach(config('app.lang_file') as $key=>$lang){
-            $rules[$key.".name"] =   'required';
             $rules[$key.".des"] =   'required';
         }
 

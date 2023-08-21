@@ -6,6 +6,8 @@ namespace Database\Seeders;
 
 
 use App\Models\admin\Category;
+use Database\Seeders\admin\AttributeTableSeeder;
+use Database\Seeders\admin\AttributeTableTranslationSeeder;
 use Database\Seeders\admin\CategorySeeder;
 use Database\Seeders\admin\CategoryTableSeeder;
 use Database\Seeders\admin\CategoryTableTranslationSeeder;
@@ -58,8 +60,12 @@ class DatabaseSeeder extends Seeder
 
        $this->call(CategorySeeder::class);
        $this->call(CategoryTranslationSeeder::class);
-//       $this->call(CategoryTableSeeder::class);
-//       $this->call(CategoryTableTranslationSeeder::class);
+       $this->call(AttributeTableSeeder::class);
+       $this->call(AttributeTableTranslationSeeder::class);
+
+
+       $this->call(CategoryTableSeeder::class);
+       $this->call(CategoryTableTranslationSeeder::class);
 
 
     }

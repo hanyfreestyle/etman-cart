@@ -8,24 +8,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class CategoryTable extends Model implements TranslatableContract
+class AttributeTable extends Model implements TranslatableContract
 {
     use HasFactory;
+    use SoftDeletes;
     use Translatable;
 
-    protected $table = "category_tables";
-    public $translatedAttributes = ['name','des'];
-    protected $fillable = ['category_id'];
+    protected $table = "attribute_tables";
+    public $translatedAttributes = ['name'];
+    protected $fillable = ['id'];
     protected $primaryKey = 'id';
+    protected $translationForeignKey = 'attribute_id';
 
 
-
-    public function attributeName()
+    public function setActive(bool $status = true): self
     {
-        return $this->belongsTo(AttributeTable::class,'attribute_id','id');
-
+        return $this->setAttribute('is_active', $status);
     }
-
-
 
 }

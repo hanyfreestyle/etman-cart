@@ -21,23 +21,16 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <x-ui-card :page-data="$pageData"  >
+                    <x-ui-card :page-data="$pageData" title="{{$CategoryTable->attributeName->name}}" >
 
 
                         <form  class="mainForm" action="{{route('category.Table_update',intval($CategoryTable->id))}}" method="post" >
                             @csrf
                             <input type="hidden" name="category_id" value="{{ $Category->id }}">
+                            <input type="hidden" name="attribute_id" value="{{ $CategoryTable->attribute_id }}">
                             <div class="row">
                                 @foreach ( config('app.lang_file') as $key=>$lang )
                                     <div class="col-lg-6 {{getColDir($key)}}">
-                                        <x-trans-input
-
-                                            label="{{__('admin/form.title_'.$key)}} ({{ $key}})"
-                                            name="{{ $key }}[name]"
-                                            dir="{{ $key }}"
-                                            reqname="{{ $key }}.name"
-                                            value="{{old($key.'.name',$CategoryTable->translateOrNew($key)->name)}}"
-                                        />
                                         <x-trans-text-area
                                             label="{{ __('admin/form.des_'.$key)}} ({{ ($key) }})"
                                             name="{{ $key }}[des]"

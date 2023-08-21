@@ -12,9 +12,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('category_table_id')->unsigned();
             $table->string('locale')->index();
-            $table->string('name')->nullable();
             $table->text('des')->nullable();
-
             $table->unique(['category_table_id','locale']);
             $table->foreign('category_table_id')->references('id')->on('category_tables')->onDelete('cascade');
         });
