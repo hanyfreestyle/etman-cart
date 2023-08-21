@@ -10,6 +10,7 @@ use App\Models\admin\CategoryTable;
 use App\Models\admin\CategoryTableTranslation;
 use App\Models\admin\config\DefPhoto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class CategoryTableController extends AdminMainController
@@ -92,6 +93,46 @@ class CategoryTableController extends AdminMainController
 
         $Category = Category::findOrFail($id) ;
         $CategoryTable = CategoryTable::findOrNew(0);
+
+//        $CategoryTableData = CategoryTable::query()
+////            ->with(['transName' => function($query){
+////                $query->groupBy('name');
+////            }])
+//           ->with('transName')
+//           //->groupBy('transName.name')
+//           ->get()
+//        ;
+
+
+//        $CategoryTableData = CategoryTableTranslation::query()
+//
+//            ->groupBy('name')
+//            ->all()
+//        ;
+
+//        $CategoryTableData = CategoryTableTranslation::groupBy('name')
+//            ->select('name', DB::raw('count(*) as total'))
+//            ->orderBy('total')
+//            ->get();
+
+
+//       // $CategoryTableData =  CategoryTable::with('transName')->get()->groupBy('transName.*.name');
+//        $CategoryTableData =  CategoryTable::with('transName')
+//            ->get()
+//            ->groupBy('transName.*.name')
+//            ->toArray()
+//        ;
+//
+//
+//        foreach ($CategoryTableData as $key => $value){
+//            echobr($key);
+//        }
+//         //$CategoryTableData =  CategoryTable::with('transName');
+//
+//
+//
+//        dd($CategoryTableData);
+
         return view('admin.product.category_table_form',compact('CategoryTable','pageData','Category'));
 
     }

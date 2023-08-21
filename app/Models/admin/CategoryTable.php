@@ -19,4 +19,12 @@ class CategoryTable extends Model implements TranslatableContract
     protected $fillable = ['category_id'];
     protected $primaryKey = 'id';
 
+
+    public function transName()
+    {
+        return $this->hasMany(CategoryTableTranslation::class,'category_table_id', 'id')
+            ->where('locale','ar');
+
+    }
+
 }
