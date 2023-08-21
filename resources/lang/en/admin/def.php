@@ -11,10 +11,11 @@ return
 	'form_name_en' => 'Name',
 	'form_selectFilterLable' => 'Please select Filter',
 	'icon' => 'Icon',
+	'main_category' => 'Main Category',
 	'photo' => 'Photo',
 	'post' => 'Post',
 	'status' => 'Status',
 	'status_active' => 'Active',
 	'status_unactive' => 'UnActive',
-	'main_category' => 'Main Category',
+	'table_info' => 'Information Table',
 ];

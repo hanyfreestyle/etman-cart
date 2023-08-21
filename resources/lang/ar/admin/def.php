@@ -11,10 +11,11 @@ return
 	'form_name_en' => 'Name',
 	'form_selectFilterLable' => 'برجاء تحديد الفتر المستخدم',
 	'icon' => 'Icon',
+	'main_category' => 'المجموعات الرئيسية',
 	'photo' => 'صورة',
 	'post' => 'مقال',
 	'status' => 'الحالة',
 	'status_active' => 'فعال',
 	'status_unactive' => 'غير فعال',
-	'main_category' => 'المجموعات الرئيسية',
+	'table_info' => 'جدول البيانات',
 ];

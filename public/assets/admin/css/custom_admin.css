@@ -109,3 +109,8 @@ div.dataTables_wrapper div.dataTables_filter input {
 
 
 
+.card-body.p-0 .table thead > tr > th:last-of-type, .card-body.p-0 .table thead > tr > td:last-of-type, .card-body.p-0 .table tfoot > tr > th:last-of-type, .card-body.p-0 .table tfoot > tr > td:last-of-type, .card-body.p-0 .table tbody > tr > th:last-of-type, .card-body.p-0 .table tbody > tr > td:last-of-type {
+  padding-right:.75rem
+}
+
+

@@ -76,15 +76,15 @@
             'roleView'=>'category_view',
         ],
 
-        [
-            'view'=>true,
-            'sel_routs'=>'post',
-            'type'=>'one',
-            'text'=> 'admin/menu.post',
-            'url'=> 'post.index',
-            'icon'=>'fab fa-blogger',
-            'roleView'=>'post_view',
-        ],
+//        [
+//            'view'=>true,
+//            'sel_routs'=>'post',
+//            'type'=>'one',
+//            'text'=> 'admin/menu.post',
+//            'url'=> 'post.index',
+//            'icon'=>'fab fa-blogger',
+//            'roleView'=>'post_view',
+//        ],
 
 
 

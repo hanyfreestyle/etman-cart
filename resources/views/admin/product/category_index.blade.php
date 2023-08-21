@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-lg-12 text-right">
                         <ol class="breadcrumb  text-md">
-                            <li class="breadcrumb-item"><a href="{{route('category.index')}}">{{__('admin/def.main_category')}}</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('category.index_Main')}}">{{__('admin/def.main_category')}}</a></li>
                             @foreach($trees as $tree)
                                 <li class="breadcrumb-item"><a href="{{route('category.SubCategory',$tree->id)}}">{{ $tree->name }}</a></li>
                             @endforeach
@@ -37,6 +37,14 @@
                     </div>
                 </div>
 
+            @else
+                <div class="row">
+                    <div class="col-lg-12 text-right">
+                        <ol class="breadcrumb  text-md">
+                            <li class="breadcrumb-item"><a href="{{route('category.index_Main')}}">{{__('admin/def.main_category')}}</a></li>
+                        </ol>
+                    </div>
+                </div>
             @endif
 
             <div class="row">
@@ -61,6 +69,7 @@
                                         @else
 
                                             @can('category_edit')
+                                                <th class="tbutaction TD_50"></th>
                                                 <th class="tbutaction TD_50"></th>
                                             @endcan
                                             @can('category_delete')
@@ -89,10 +98,11 @@
 
 
                                                 @can('category_edit')
+                                                    <td class="tc"><x-action-button url="{{route('category.Table_list',$row->id)}}"  bg="p"  print-lable="{{__('admin/def.table_info')}}"  icon="fas fa-info-circle" :tip="true" /></td>
                                                     <td class="tc"><x-action-button url="{{route('category.edit',$row->id)}}" type="edit" :tip="true" /></td>
                                                 @endcan
                                                 @can('category_delete')
-                                                    <td class="tc"><x-action-button url="#" id="{{route('category.destroy',$row->id)}}" type="deleteSweet" :tip="true" /></td>
+                                                    <td class=""><x-action-button url="#" id="{{route('category.destroy',$row->id)}}" type="deleteSweet" :tip="true" /></td>
                                                 @endcan
                                             @endif
 

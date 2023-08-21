@@ -11,6 +11,7 @@ use App\Models\admin\CategoryTranslation;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Route;
 use Illuminate\View\View;
 use Intervention\Image\Facades\Image;
 use function Ramsey\Collection\add;
@@ -42,13 +43,21 @@ class CategoryController extends AdminMainController
         $pageData['Trashed'] = Category::onlyTrashed()->count();
         $pageData['SubView'] = false;
 
-        $Categories = Category::query()
-            ->with('translation')
-            ->withCount('children')
-            ->orderBy('id','asc')
-            ->paginate(10);
-        return view('admin.product.category_index',compact('pageData','Categories'));
 
+        if( Route::currentRouteName()== 'category.index_Main'){
+            $Categories = Category::where('parent_id',null)
+                ->with('translation')
+                ->withCount('children')
+                ->orderBy('id','asc')
+                ->paginate(10);
+        }else{
+            $Categories = Category::query()
+                ->with('translation')
+                ->withCount('children')
+                ->orderBy('id','asc')
+                ->paginate(10);
+        }
+        return view('admin.product.category_index',compact('pageData','Categories'));
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
