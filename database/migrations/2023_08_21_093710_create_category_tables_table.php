@@ -12,6 +12,7 @@ return new class extends Migration
         Schema::create('category_tables', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('category_id')->unsigned();
+            $table->integer('postion')->default(0);
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();

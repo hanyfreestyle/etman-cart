@@ -36,10 +36,14 @@ class Category extends Model implements TranslatableContract
         return $query->whereNull('parent_id');
     }
 
-    public function children()
+    public function children():hasMany
     {
        return $this->hasMany(Category::class , 'parent_id', 'id' );
     }
 
+    public function table_data():hasMany
+    {
+        return $this->hasMany(CategoryTable::class , 'category_id', 'id' );
+    }
 
 }

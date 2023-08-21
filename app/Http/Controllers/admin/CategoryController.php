@@ -7,6 +7,8 @@ use App\Helpers\PuzzleUploadProcess;
 use App\Http\Controllers\AdminMainController;
 use App\Http\Requests\admin\CategoryRequest;
 use App\Models\admin\Category;
+use App\Models\admin\CategoryTable;
+use App\Models\admin\CategoryTableTranslation;
 use App\Models\admin\CategoryTranslation;
 
 use Illuminate\Http\Request;
@@ -14,7 +16,6 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\View\View;
 use Intervention\Image\Facades\Image;
-use function Ramsey\Collection\add;
 use DB ;
 
 
@@ -48,12 +49,14 @@ class CategoryController extends AdminMainController
             $Categories = Category::where('parent_id',null)
                 ->with('translation')
                 ->withCount('children')
+                ->withCount('table_data')
                 ->orderBy('id','asc')
                 ->paginate(10);
         }else{
             $Categories = Category::query()
-                ->with('translation')
+                ->with('translations')
                 ->withCount('children')
+                ->withCount('table_data')
                 ->orderBy('id','asc')
                 ->paginate(10);
         }
@@ -94,7 +97,7 @@ class CategoryController extends AdminMainController
         //$Categories  = Category::onlyTrashed()->orderBy('id','desc')->paginate(20);
         $Categories = self::getSelectQuery(Category::onlyTrashed());
 
-        return view('admin.post.category_index',compact('pageData','Categories'));
+        return view('admin.product.category_index',compact('pageData','Categories'));
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -314,7 +317,49 @@ class CategoryController extends AdminMainController
     }
 
 
+    public function get_CategoryTableTranslation()
+    {
+        $old_Category = DB::connection('mysql2')->table('product_cat_data')->get();
+        foreach ($old_Category as $oneCategory)
+        {
+            $data = [
+                'category_table_id'=>$oneCategory->id ,
+                'locale'=>'ar' ,
+                'name'=>$oneCategory->name ,
+                'des'=>$oneCategory->des ,
+            ];
 
+            CategoryTableTranslation::unguard();
+            CategoryTableTranslation::create($data);
+
+            $data = [
+                'category_table_id'=>$oneCategory->id ,
+                'locale'=>'en' ,
+                'name'=>$oneCategory->name_en ,
+                'des'=>$oneCategory->des_en ,
+
+            ];
+            CategoryTableTranslation::unguard();
+            CategoryTableTranslation::create($data);
+
+        }
+    }
+    public function get_CategoryTable()
+    {
+
+        $old_Category = DB::connection('mysql2')->table('product_cat_data')->get();
+        foreach ($old_Category as $oneCategory)
+        {
+            $data = [
+                'id'=>$oneCategory->id ,
+                'category_id'=>$oneCategory->cat_id ,
+            ];
+
+            CategoryTable::unguard();
+            CategoryTable::create($data);
+
+        }
+    }
 
 
 }

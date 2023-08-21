@@ -4,6 +4,22 @@
 
     <x-breadcrumb-def :pageData="$pageData"/>
 
+    @if($pageData['ViewType'] == 'Edit')
+        <div class="content mb-3">
+            <div class="container-fluid">
+
+                <div class="row col-12">
+                    <div class="col-9">
+                        <h1 class="def_h1">{{ $Category->name }}</h1>
+                    </div>
+                    <div class="col-3 text-left">
+                        <x-action-button url="{{route('category.Table_list',$Category->id)}}"  bg="p"  print-lable="{{__('admin/def.table_info')}}"  icon="fas fa-info-circle"  />
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
     <x-ui-card :page-data="$pageData">
         <x-mass.confirm-massage />
 

@@ -8,6 +8,7 @@ use App\Http\Requests\admin\CategoryTableRequest;
 use App\Models\admin\Category;
 use App\Models\admin\CategoryTable;
 use App\Models\admin\CategoryTableTranslation;
+use App\Models\admin\config\DefPhoto;
 use Illuminate\Http\Request;
 
 
@@ -37,7 +38,7 @@ class CategoryTableController extends AdminMainController
         $pageData['ViewType'] = "List";
 
         $Trashed = CategoryTable::onlyTrashed()->where('category_id','=',$id)->count();
-        $CategoryTable = CategoryTable::where('category_id','=',$id)->paginate(10);
+        $CategoryTable = CategoryTable::where('category_id','=',$id)->orderBy('postion')->paginate(10);
         $Category = Category::findOrFail($id) ;
 
         return view('admin.product.category_table_index',compact('CategoryTable','pageData','Category','Trashed'));
@@ -136,7 +137,36 @@ class CategoryTableController extends AdminMainController
         }
     }
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     TableSort
+    public  function TableSort($id){
+
+        $sendArr = ['TitlePage' => __('admin/def.table_info') ];
+        $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
+        $pageData['ViewType'] = "List";
+
+
+        $CategoryTable = CategoryTable::where('category_id','=',$id)
+            ->orderBy('postion')
+            ->paginate(10);
+        $Category = Category::findOrFail($id) ;
+
+        return view('admin.product.category_table_sort',compact('CategoryTable','pageData','Category'));
+    }
 
 
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     TableSortSave
+    public function TableSortSave(Request $request){
+        $positions = $request->positions;
+        foreach($positions as $position) {
+            $id = $position[0];
+            $newPosition = $position[1];
+            $saveData =  CategoryTable::findOrFail($id) ;
+            $saveData->postion = $newPosition;
+            $saveData->save();
+        }
+        return response()->json(['success'=>$positions]);
+    }
 }

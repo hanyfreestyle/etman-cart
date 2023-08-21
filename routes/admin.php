@@ -37,3 +37,6 @@ Route::get('/category/Table/edit/{id}',[CategoryTableController::class,'TableEdi
 Route::post('/category/Table/update/{id}',[CategoryTableController::class,'TableStoreUpdate'])->name('category.Table_update');
 Route::get('/category/Table/destroy/{id}',[CategoryTableController::class,'TableDestroy'])->name('category.Table_destroy');
 
+
+Route::get('/category/Table/Sort/{project_id}',[CategoryTableController::class,'TableSort'])->name('category.Table_Sort');
+Route::post('/category/Table/SaveSort', [CategoryTableController::class,'TableSortSave'])->name('category.TableSortSave');

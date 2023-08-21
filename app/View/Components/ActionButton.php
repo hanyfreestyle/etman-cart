@@ -18,6 +18,7 @@ class ActionButton extends Component
     public $id;
     public $sweetDelClass;
     public $printLable;
+    public $count;
 
     public function __construct(
         $url = "#",
@@ -29,7 +30,8 @@ class ActionButton extends Component
         $type = null,
         $id = null,
         $sweetDelClass = '',
-        $printLable = ''
+        $printLable = '',
+        $count = null,
 
     )
     {
@@ -44,6 +46,7 @@ class ActionButton extends Component
         $this->bg = getBgColor($bg);
         $this->id = $id;
         $this->sweetDelClass = $sweetDelClass;
+        $this->count = $count;
 
         if($type){
             switch ($type) {
@@ -102,6 +105,15 @@ class ActionButton extends Component
            // $this->lable = $lable;
         }
 
+
+        if(isset($this->count)){
+            if($this->count == '0'){
+                $this->bg = getBgColor('dark');
+            }else{
+                $this->bg = getBgColor('p');
+            }
+
+        }
 
 
 

@@ -17,6 +17,7 @@
                 @if($pageData['ViewType'] == 'List')
                     <div class="col-3 text-left">
                         <x-action-button  url="{{route('category.Table_create', $Category->id)}}"  type="add"  size="s"  />
+                        <x-action-button  url="{{route('category.Table_Sort', $Category->id)}}"  print-lable="{{__('admin/form.button_sort')}}" size="s"  bg="i" icon="fas fa-sort-amount-up"  />
                         <x-action-button  url="{{route('category.edit', $Category->id)}}" print-lable="{{__('admin/form.button_back')}}" size="s"  bg="dark" icon="fas fa-hand-point-left"  />
                     </div>
                 @endif
@@ -80,26 +81,26 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($CategoryTable as $Question)
+                                    @foreach($CategoryTable as $TableItem)
                                         <tr>
-                                            <td>{{$Question->id}}</td>
-                                            <td>{{optional($Question->translate('ar'))->name}}</td>
-                                            <td>{{optional($Question->translate('ar'))->des}}</td>
-                                            <td>{{optional($Question->translate('en'))->name}}</td>
-                                            <td>{{optional($Question->translate('en'))->des}}</td>
+                                            <td>{{$TableItem->id}}</td>
+                                            <td>{{optional($TableItem->translate('ar'))->name}}</td>
+                                            <td>{{optional($TableItem->translate('ar'))->des}}</td>
+                                            <td>{{optional($TableItem->translate('en'))->name}}</td>
+                                            <td>{{optional($TableItem->translate('en'))->des}}</td>
 
                                             @if($pageData['ViewType'] == 'deleteList')
-                                                <td>{{$Question->deleted_at}}</td>
-                                                <td class="tc"><x-action-button url="{{route('category.Table_restore',$Question->id)}}" type="restor" :tip="true" /></td>
-                                                <td class="tc"><x-action-button url="#" id="{{route('category.Table_force',$Question->id)}}" type="deleteSweet" :tip="true"/></td>
+                                                <td>{{$TableItem->deleted_at}}</td>
+                                                <td class="tc"><x-action-button url="{{route('category.Table_restore',$TableItem->id)}}" type="restor" :tip="true" /></td>
+                                                <td class="tc"><x-action-button url="#" id="{{route('category.Table_force',$TableItem->id)}}" type="deleteSweet" :tip="true"/></td>
 
                                             @else
 
                                                 @can('category_edit')
-                                                    <td class="tc"><x-action-button url="{{route('category.Table_edit',$Question->id)}}" type="edit" :tip="true" /></td>
+                                                    <td class="tc"><x-action-button url="{{route('category.Table_edit',$TableItem->id)}}" type="edit" :tip="true" /></td>
                                                 @endcan
                                                 @can('category_delete')
-                                                    <td class="tc"><x-action-button url="#" id="{{route('category.Table_destroy',$Question->id)}}" :tip="true" type="deleteSweet"/></td>
+                                                    <td class="tc"><x-action-button url="#" id="{{route('category.Table_destroy',$TableItem->id)}}" :tip="true" type="deleteSweet"/></td>
                                                 @endcan
                                             @endif
 

@@ -5,7 +5,10 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 
+use App\Models\admin\Category;
 use Database\Seeders\admin\CategorySeeder;
+use Database\Seeders\admin\CategoryTableSeeder;
+use Database\Seeders\admin\CategoryTableTranslationSeeder;
 use Database\Seeders\admin\CategoryTranslationSeeder;
 use Database\Seeders\admin\DeveloperPhotoSeeder;
 use Database\Seeders\admin\DeveloperSeeder;
@@ -55,22 +58,9 @@ class DatabaseSeeder extends Seeder
 
        $this->call(CategorySeeder::class);
        $this->call(CategoryTranslationSeeder::class);
-//        $this->call(LocationSeeder::class);
-//        $this->call(LocationTranslationSeeder::class);
-//
-//        $this->call(DeveloperSeeder::class);
-//        $this->call(DeveloperTranslationSeeder::class);
-//        $this->call(DeveloperPhotoSeeder::class);
-//
-//
-//        $this->call(PostSeeder::class);
-//        $this->call(PostTranslationSeeder::class);
-//        $this->call(PostPhotoSeeder::class);
-//
-//        $this->call(ListingSeeder::class);
-//        $this->call(ListingTranslationSeeder::class);
-//        $this->call(QuestionSeeder::class);
-//        $this->call(QuestionTranslationSeeder::class);
+       $this->call(CategoryTableSeeder::class);
+       $this->call(CategoryTableTranslationSeeder::class);
+
 
     }
 }

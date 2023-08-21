@@ -98,7 +98,7 @@
 
 
                                                 @can('category_edit')
-                                                    <td class="tc"><x-action-button url="{{route('category.Table_list',$row->id)}}"  bg="p"  print-lable="{{__('admin/def.table_info')}}"  icon="fas fa-info-circle" :tip="true" /></td>
+                                                    <td class="tc"><x-action-button url="{{route('category.Table_list',$row->id)}}" count="{{$row->table_data_count}}"  print-lable="{{__('admin/def.table_info')}}"  icon="fas fa-info-circle" :tip="true" /></td>
                                                     <td class="tc"><x-action-button url="{{route('category.edit',$row->id)}}" type="edit" :tip="true" /></td>
                                                 @endcan
                                                 @can('category_delete')
