@@ -13,7 +13,10 @@ class DataTablePlugins extends Component
     public $tablename;
     public $viewbut;
     public $butlist;
+    public $isActive;
+
     public function __construct(
+        $isActive = false,
         $style = false,
         $jscode = false,
         $tablename = "MainDataTable",
@@ -21,6 +24,7 @@ class DataTablePlugins extends Component
         $butlist = ' "print", "colvis" ', #"copy", "csv", "excel", "pdf", "print", "colvis"
     )
     {
+        $this->isActive = $isActive ;
         $this->style = $style ;
         $this->jscode = $jscode;
         $this->tablename = $tablename;

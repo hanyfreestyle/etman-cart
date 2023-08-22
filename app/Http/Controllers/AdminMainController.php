@@ -124,49 +124,11 @@ class AdminMainController extends Controller
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     text
-
-    public function Home()
+   public function Home()
     {
       return view('admin.dashbord');
 
     }
-
-
-
-/*
-
-
-
-
-
-
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     unActive
-    public function unActive()
-    {
-
-
-        $sendArr = ['TitlePage' => __('admin/menu.post'),'restore'=> 1 ];
-        $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
-        $pageData['ViewType'] = "List";
-        $pageData['Trashed'] = Post::onlyTrashed()->count();
-
-        $Posts = self::getSelectQuery( Post::where('id',"!=","0")->->with('getMorePhoto'));
-
-        return view('admin.post.post_index',compact('pageData','Posts'));
-
-
-
-    }
-
- */
-
-
-
-
-
-
 
 
 }

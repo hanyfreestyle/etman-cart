@@ -493,4 +493,33 @@ class AdminHelper{
         return $sendImg ;
     }
 
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #  print_count_name
+    static function print_count_name($lang,$row,$url)
+    {
+        if($row->children_count > 0){
+            return '<a href="'.route($url,$row->id).'">'.optional($row->translate($lang))->name.' ('.$row->children_count.')</a>' ;
+        }else{
+            return $row->translate($lang)->name ?? '';
+        }
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #  Table_Header_Style
+    static function Table_Style($viewDataTable)
+    {
+        if($viewDataTable){
+            $tableHeader = ' id="MainDataTable" class="table table-bordered table-hover" ';
+        }else{
+            $tableHeader = ' class="table table-hover" ';
+        }
+        return $tableHeader ;
+    }
+
+
+
+
+
 }

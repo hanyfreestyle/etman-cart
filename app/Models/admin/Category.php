@@ -23,27 +23,41 @@ class Category extends Model implements TranslatableContract
     protected $fillable = ['parent_id','photo','photo_thum_1','is_active'];
     protected $table = "categories";
     protected $primaryKey = 'id';
+    protected $translationForeignKey = 'category_id';
 
-
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     setActive
     public function setActive(bool $status = true): self
     {
         return $this->setAttribute('is_active', $status);
     }
 
-
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     scopeRoot
     public function scopeRoot(Builder $query): Builder
     {
         return $query->whereNull('parent_id');
     }
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     children
     public function children():hasMany
     {
        return $this->hasMany(Category::class , 'parent_id', 'id' );
     }
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     table_data
     public function table_data():hasMany
     {
         return $this->hasMany(CategoryTable::class , 'category_id', 'id' );
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #
+    public function scopeDefquery(Builder $query): Builder
+    {
+        return $query->with('translations')->withCount('children')->withCount('table_data');
     }
 
 }

@@ -292,6 +292,21 @@ if (!function_exists('printProjectIconX')) {
     }
 }
 
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     Text
+if (!function_exists('is_active')) {
+    function is_active($is_active){
+        if($is_active ==  1 ){
+            $icon = '<img width="25" src="'.defAdminAssets('img/active.webp').'">';
+        }else{
+            $icon = '<img width="25" src="'.defAdminAssets('img/active_un.webp').'">';
+        }
+        return $icon ;
+    }
+}
+
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     Text
 
