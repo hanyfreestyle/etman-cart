@@ -15,7 +15,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 class Category extends Model implements TranslatableContract
 {
     use HasFactory;
-    use SoftDeletes;
+    //use SoftDeletes;
     use Translatable;
     use HasRecursiveRelationships;
 

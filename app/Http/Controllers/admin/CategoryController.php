@@ -41,12 +41,10 @@ class CategoryController extends AdminMainController
 #|||||||||||||||||||||||||||||||||||||| #     index
     public function index()
     {
-        $sendArr = ['TitlePage' => $this->PageTitle ,'restore'=> 1 ];
+        $sendArr = ['TitlePage' => $this->PageTitle ];
         $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
         $pageData['ViewType'] = "List";
-        $pageData['Trashed'] = Category::onlyTrashed()->count();
         $pageData['SubView'] = false;
-
         if( Route::currentRouteName()== 'category.index_Main'){
             $Categories = self::getSelectQuery(Category::defquery()->where('parent_id',null));
         }else{
@@ -69,18 +67,6 @@ class CategoryController extends AdminMainController
     }
 
 
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     SoftDeletes
-    public function SoftDeletes()
-    {
-        $sendArr = ['TitlePage' => $this->PageTitle ];
-        $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
-        $pageData['ViewType'] = "deleteList";
-        $pageData['SubView'] = false;
-        $Categories = self::getSelectQuery(Category::onlyTrashed());
-        return view('admin.product.category_index',compact('pageData','Categories'));
-    }
-
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     create
@@ -98,7 +84,7 @@ class CategoryController extends AdminMainController
 #|||||||||||||||||||||||||||||||||||||| #     edit
     public function edit($id)
     {
-        $sendArr = ['TitlePage' => __('admin/menu.category') ];
+        $sendArr = ['TitlePage' => $this->PageTitle ];
         $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
         $pageData['ViewType'] = "Edit";
         $Categories = Category::tree()->get()->toTree();
@@ -138,11 +124,22 @@ class CategoryController extends AdminMainController
             $saveTranslation->save();
         }
 
+
+        if($saveData->is_active == false){
+            $trees = Category::find($id)->descendants()->pluck('id')->toArray()  ;
+            if(count($trees) > 0 ){
+                Category::whereIn("id", $trees)
+                    ->update([
+                        'is_active' => 0,
+                    ]);
+            }
+        }
+
         if($id == '0'){
             return redirect(route('category.index'))->with('Add.Done',"");
         }else{
-            return back();
-            ////return redirect(route('category.index'))->with('Edit.Done',"");
+            //return back();
+            return redirect(route('category.index'))->with('Edit.Done',"");
         }
     }
 
@@ -151,53 +148,24 @@ class CategoryController extends AdminMainController
     public function destroy($id)
     {
         $deleteRow = Category::findOrFail($id);
-        $deleteRow->delete();
-        return redirect(route('category.index'))->with('confirmDelete',"");
-    }
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     Restore
-    public function Restore($id)
-    {
-        Category::onlyTrashed()->where('id',$id)->restore();
-        return back()->with('restore',"");
-    }
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     ForceDeletes
-    public function ForceDeletes($id)
-    {
-        $deleteRow =  Category::onlyTrashed()->where('id',$id)->firstOrFail();
         $deleteRow = AdminHelper::DeleteAllPhotos($deleteRow);
-        $deleteRow->forceDelete();
+        $deleteRow->delete();
         return back()->with('confirmDelete',"");
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     EmptyPhoto
-    public function emptyPhoto($id){
-        $rowData = Category::findOrFail($id);
-        $rowData = AdminHelper::DeleteAllPhotos($rowData,true);
-        $rowData->save();
-        return back();
+#|||||||||||||||||||||||||||||||||||||| #  updateStatus
+    public function updateStatus(Request $request ){
+        $thisId  = $request->send_id;
+        $updateData = Category::findOrFail($thisId);
+        if($updateData->is_active == '1'){
+            $updateData->is_active = '0';
+        }else{
+            $updateData->is_active = '1';
+        }
+        $updateData->save();
+        return response()->json(['success'=>$thisId]);
     }
-
-
-//#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//#|||||||||||||||||||||||||||||||||||||| #  updateStatus
-//    public function updateStatus(Request $request ){
-//        $thisId  = $request->send_id;
-//        $updateData = Category::findOrFail($thisId);
-//        if($updateData->is_active == '1'){
-//            $updateData->is_active = '0';
-//        }else{
-//            $updateData->is_active = '1';
-//        }
-//        $updateData->save();
-//        return response()->json(['success'=>$thisId]);
-//    }
-
-
 
 }
 

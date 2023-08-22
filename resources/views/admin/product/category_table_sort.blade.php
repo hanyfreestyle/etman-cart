@@ -3,49 +3,38 @@
 @section('content')
 
     <x-breadcrumb-def :pageData="$pageData"/>
-    <div class="content mb-3">
-        <div class="container-fluid">
-            <div class="row col-12">
-                <div class="col-9">
-                    <h1 class="def_h1">{{ $Category->name }}</h1>
+
+    <x-html-section>
+        <div class="row mb-3">
+            <div class="col-9">
+                <h1 class="def_h1">{{ $Category->name }}</h1>
+            </div>
+
+            <div class="col-3 text-left">
+                <x-action-button  url="{{route('category.Table_list', $Category->id)}}" print-lable="{{__('admin/form.button_back')}}" size="s"  bg="dark" icon="fas fa-hand-point-left"  />
+            </div>
+
+        </div>
+    </x-html-section>
+
+    <x-html-section>
+
+        <div class="row mt-3">
+            @if(count($CategoryTable)>0)
+                <div class="row col-lg-12 hanySort">
+                    @foreach($CategoryTable as $row)
+                        <div class="col-lg-12"  data-index="{{$row->id}}" data-position="{{$row->postion}}" >
+                            <p class="ListItem-12">{{$row->attributeName->name}}</p>
+                        </div>
+                    @endforeach
                 </div>
-                @if($pageData['ViewType'] == 'List')
-                    <div class="col-3 text-left">
-                        <x-action-button  url="{{route('category.Table_list', $Category->id)}}" print-lable="{{__('admin/form.button_back')}}" size="s"  bg="dark" icon="fas fa-hand-point-left"  />
-                    </div>
-                @endif
-
-            </div>
+            @else
+                <div class="col-lg-12">
+                    <x-alert-massage type="nodata" />
+                </div>
+            @endif
         </div>
-    </div>
-
-
-
-    <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                @if(count($CategoryTable)>0)
-                    <div class="row col-lg-12 hanySort">
-                        @foreach($CategoryTable as $row)
-                            <div class="col-lg-12"  data-index="{{$row->id}}" data-position="{{$row->postion}}" >
-                                <p class="ListItem-12">{{$row->attributeName->name}}</p>
-                            </div>
-                        @endforeach
-                    </div>
-                @else
-                    <div class="col-lg-12">
-                        <x-alert-massage type="nodata" />
-                    </div>
-                @endif
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-
+    </x-html-section>
 
 @endsection
 

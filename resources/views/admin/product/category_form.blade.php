@@ -65,6 +65,7 @@
 
                 <div class="row">
                     <x-form-check-active :row="$Category" name="is_active" page-view="{{$pageData['ViewType']}}"/>
+{{--                    <x-form-check-active :row="$Category"  lable="تفعيل المحتوى المرتبط" name="active_all" page-view="Add"/>--}}
                 </div>
 
                 <hr>
