@@ -12,10 +12,12 @@ return
 	'form_selectFilterLable' => 'برجاء تحديد الفتر المستخدم',
 	'icon' => 'Icon',
 	'main_category' => 'المجموعات الرئيسية',
+	'main_category_form' => 'مجموعة رائيسية',
 	'photo' => 'صورة',
 	'post' => 'مقال',
 	'status' => 'الحالة',
 	'status_active' => 'فعال',
 	'status_unactive' => 'غير فعال',
 	'table_info' => 'جدول البيانات',
+	'form_Categories' => 'المجموعات',
 ];

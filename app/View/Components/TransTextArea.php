@@ -17,6 +17,10 @@ class TransTextArea extends Component
     public $reqspan ;
     public $placeholder ;
     public $placeholderPrint ;
+    public $inputid ;
+    public $googlespan ;
+    public $googlespan_tip ;
+    public $newstyle ;
 
     public function __construct(
         $label=null,
@@ -28,10 +32,19 @@ class TransTextArea extends Component
         $reqspan = true,
         $placeholderPrint = "",
         $placeholder = false,
+        $inputid=null,
+        $googlespan=false,
+        $googlespan_tip=false,
+        $newstyle = null,
     )
     {
         $this->label = $label;
         $this->name = $name;
+        $this->inputid = $inputid;
+        $this->googlespan = $googlespan;
+        $this->googlespan_tip = $googlespan_tip;
+        $this->newstyle = $newstyle;
+
         $this->value = $value;
         $this->reqname = $reqname;
         $this->dir = $dir;

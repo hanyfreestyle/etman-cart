@@ -1,4 +1,8 @@
 <div class="row">
+    <input value="{{env('MIN_G_T')}}" id="minT"  type="hidden" >
+    <input value="{{env('MAX_G_T')}}" id="maxT"  type="hidden" >
+    <input value="{{env('MIN_G_D')}}" id="minD"  type="hidden" >
+    <input value="{{env('MAX_G_D')}}" id="maxD"  type="hidden" >
 
     @foreach ( config('app.lang_file') as $key=>$lang )
         <div class="col-lg-6 {{getColDir($key)}}">
@@ -9,15 +13,17 @@
                 name="{{ $key }}[g_title]"
                 dir="{{ $key }}"
                 reqname="{{ $key }}.g_title"
+                googlespan="true"
+                inputid="g_title_{{ $key }}"
                 value="{{old($key.'.g_title',$oldData->translateOrNew($key)->g_title)}}"
-
             />
-
             <x-trans-text-area :placeholder="$placeholder"
                 label="{{__('admin/form.meta_g_des_'.$key)}} ({{ ($key) }})"
                 name="{{ $key }}[g_des]"
                 dir="{{ $key }}"
                 reqname="{{ $key }}.g_des"
+                googlespan="true"
+                inputid="g_des_{{ $key }}"
                 value="{{old($key.'.g_des',$oldData->translateOrNew($key)->g_des)}}"
             />
 
@@ -32,6 +38,7 @@
                 value="{{old($key.'.slug',$oldData->translateOrNew($key)->slug)}}"
                 :reqspan="false"
             />
+
             @if($bodyH1 == true)
                 <x-trans-input
                     :placeholder="$placeholder"

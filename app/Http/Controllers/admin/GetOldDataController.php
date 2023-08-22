@@ -145,4 +145,10 @@ class GetOldDataController extends AdminMainController
     }
 
 
+
+//@foreach($Categories as $CategoryList)
+//<x-category-item :Category="$CategoryList" />
+//@endforeach
+
+
 }

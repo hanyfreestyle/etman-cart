@@ -12,10 +12,12 @@ return
 	'form_selectFilterLable' => 'Please select Filter',
 	'icon' => 'Icon',
 	'main_category' => 'Main Category',
+	'main_category_form' => 'Main Category',
 	'photo' => 'Photo',
 	'post' => 'Post',
 	'status' => 'Status',
 	'status_active' => 'Active',
 	'status_unactive' => 'UnActive',
 	'table_info' => 'Information Table',
+	'form_Categories' => 'Categories',
 ];

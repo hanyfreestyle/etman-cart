@@ -8,35 +8,13 @@
         </label>
 
         <select class="form-control select2 custom-select is-invalid " id="{{$name}}" name="{{$name}}" style="width: 100%;" >
-            <option value="0"  @if ( $sendvalue == '0' or $sendvalue == null ) selected @endif >مجموعة رائيسية</option>
-
-{{--            @foreach ($sendArr as  $key => $value)--}}
-{{--                <option value="{{ $value['id'] }}" @if ($value['id'] == $sendvalue) selected @endif>{{ $value[$printValName] }}</option>--}}
-{{--              --}}
-{{--              --}}
-{{--              --}}
-{{--                @foreach ($value->children as  $key_child => $value_child)--}}
-{{--                    <option value="{{ $value_child['id'] }}" @if ($value_child['id'] == $sendvalue) selected @endif>-- {{ $value_child[$printValName] }}</option>--}}
-{{--                @endforeach--}}
-
-{{--            @endforeach--}}
-
-
+            <option value="0"  @if ( $sendvalue == '0' or $sendvalue == null ) selected @endif >{{__('admin/def.main_category_form')}}</option>
             @foreach ($sendArr as  $category)
                 <option value="{{ $category->id }}" @if ($category->id == $sendvalue) selected @endif>{{ $category->$printValName }}</option>
-
                 @if (count($category->children) > 0)
-                    @include('subcategories', ['subcategories' => $category->children, 'parent' => $category->name])
+                    @include('admin.form_loop.subcategories', ['subcategories' => $category->children, 'parent' => $category->name])
                 @endif
-
-
-{{--                @foreach ($value->children as  $key_child => $value_child)--}}
-{{--                    <option value="{{ $value_child['id'] }}" @if ($value_child['id'] == $sendvalue) selected @endif>-- {{ $value_child[$printValName] }}</option>--}}
-{{--                @endforeach--}}
-
             @endforeach
-
-
        </select>
         @error($name)
         <span class="invalid-feedback" role="alert">

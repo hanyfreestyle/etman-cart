@@ -18,6 +18,8 @@ class TransInput extends Component
     public $placeholder ;
     public $placeholderPrint ;
     public $inputid ;
+    public $googlespan ;
+    public $googlespan_tip ;
 
     public function __construct(
 
@@ -31,12 +33,17 @@ class TransInput extends Component
         $placeholder = false,
         $reqspan = true,
         $inputid=null,
+        $googlespan=false,
+        $googlespan_tip=false,
+
     )
     {
         $this->label = $label;
 
         $this->name = $name;
         $this->inputid = $inputid;
+        $this->googlespan = $googlespan;
+        $this->googlespan_tip = $googlespan_tip;
         $this->value = $value;
         $this->reqname = $reqname;
         $this->dir = $dir;
