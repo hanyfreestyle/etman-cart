@@ -10,6 +10,7 @@ use App\Models\admin\CategoryTable;
 use App\Models\admin\CategoryTableTranslation;
 use App\Models\admin\CategoryTranslation;
 use App\Models\admin\Product;
+use App\Models\admin\ProductPhoto;
 use App\Models\admin\ProductTranslation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -246,4 +247,22 @@ class GetOldDataController extends AdminMainController
         }
     }
 
+
+    public function get_pro_more_photo()
+    {
+        $old_Product = DB::connection('mysql2')->table('product_file')->get();
+        foreach ($old_Product as $oneProduct)
+        {
+            $data = [
+                'id' => $oneProduct->id,
+                'product_id' => $oneProduct->cat_id,
+                'photo' => $oneProduct->photo,
+                'photo_thum_1' => $oneProduct->photo_t,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+            ProductPhoto::unguard();
+            ProductPhoto::create($data);
+        }
+    }
 }

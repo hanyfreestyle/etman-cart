@@ -8,7 +8,12 @@
         </label>
 
         <select class="form-control select2 custom-select is-invalid " id="{{$name}}" name="{{$name}}" style="width: 100%;" >
-            <option value="0"  @if ( $sendvalue == '0' or $sendvalue == null ) selected @endif >{{__('admin/def.main_category_form')}}</option>
+            @if($forcategory == 'true')
+                <option value="0"  @if ( $sendvalue == '0' or $sendvalue == null ) selected @endif >{{__('admin/def.main_category_form')}}</option>
+            @else
+                <option value=""> {{ $label }}</option>
+            @endif
+
             @foreach ($sendArr as  $category)
                 <option value="{{ $category->id }}" @if ($category->id == $sendvalue) selected @endif>{{ $category->$printValName }}</option>
                 @if (count($category->children) > 0)

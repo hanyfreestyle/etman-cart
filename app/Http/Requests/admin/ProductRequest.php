@@ -2,27 +2,51 @@
 
 namespace App\Http\Requests\admin;
 
+use App\Helpers\AdminHelper;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
 class ProductRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
+
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
-     */
-    public function rules(): array
+    protected function prepareForValidation()
     {
-        return [
-            //
+        $data = $this->toArray();
+        foreach(config('app.lang_file') as $key=>$lang){
+            data_set($data, $key.'.slug',  AdminHelper::Url_Slug($data[$key]['slug']) );
+        }
+        $this->merge($data);
+    }
+
+    public function rules(Request $request): array
+    {
+        foreach(config('app.lang_file') as $key=>$lang){
+            $request->merge([$key.'.slug' => AdminHelper::Url_Slug($request[$key]['slug'])]);
+        }
+
+        $id = $this->route('id');
+
+        $rules =[
+            'category_id'=> "required",
         ];
+
+        foreach(config('app.lang_file') as $key=>$lang){
+            $rules[$key.".name"] =   'required';
+            $rules[$key.".des"] =   'required';
+            $rules[$key.".g_title"] =   'required';
+            $rules[$key.".g_des"] =   'required';
+            if($id == '0'){
+                $rules[$key.".slug"] = 'required|unique:product_translations,slug';
+            }else{
+                $rules[$key.".slug"] = "required|unique:product_translations,slug,$id,product_id,locale,$key";
+            }
+        }
+
+        return $rules;
     }
 }

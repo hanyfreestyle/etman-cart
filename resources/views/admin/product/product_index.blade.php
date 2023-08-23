@@ -48,18 +48,22 @@
                             <tr>
                                 <td>{{$Product->id}}</td>
                                 <td class="tc">{!!  \App\Helpers\AdminHelper::printTableImage($Product,'photo') !!} </td>
-                                <td>{!! \App\Helpers\AdminHelper::print_count_name('ar',$Product,"category.SubCategory") !!}</td>
-                                <td>{!!  \App\Helpers\AdminHelper::print_count_name('en',$Product,"category.SubCategory") !!}</td>
-                                <td>{{ $Product->categoryName->name }}</td>
+                                <td>{!! \App\Helpers\AdminHelper::print_count_name('ar',$Product,"product.SubCategory") !!}</td>
+                                <td>{!!  \App\Helpers\AdminHelper::print_count_name('en',$Product,"product.SubCategory") !!}</td>
+                                <td><a href="{{route('product.ListCategory',$Product->categoryName->id)}}">{{ $Product->categoryName->name }}</a></td>
+
+
                                 <td class="tc" >{!! is_active($Product->is_active) !!}</td>
                                 @can('category_edit')
-                                    <td class="tc"><x-action-button url="{{route('category.Table_list',$Product->id)}}" count="{{$Product->table_data_count}}"  print-lable="{{__('admin/def.table_info')}}"  icon="fas fa-info-circle" :tip="true" /></td>
-                                    <td class="tc"><x-action-button url="{{route('category.edit',$Product->id)}}" type="edit" :tip="true" /></td>
+{{--                                    <td class="tc"><x-action-button url="{{route('product.Table_list',$Product->id)}}" count="{{$Product->table_data_count}}"  print-lable="{{__('admin/def.table_info')}}"  icon="fas fa-info-circle" :tip="true" /></td>--}}
+                                    <td class="tc"><x-action-button url="{{route('product.More_Photos',$Product->id)}}"  count="{{$Product->more_photos_count}}" type="morePhoto" :tip="true" /></td>
+
+                                    <td class="tc"><x-action-button url="{{route('product.edit',$Product->id)}}" type="edit" :tip="true" /></td>
                                 @endcan
 
                                 @can('category_delete')
                                     @if($Product->children_count == 0)
-                                        <td class=""><x-action-button url="#" id="{{route('category.destroy',$Product->id)}}" type="deleteSweet" :tip="true" /></td>
+                                        <td class=""><x-action-button url="#" id="{{route('product.destroy',$Product->id)}}" type="deleteSweet" :tip="true" /></td>
                                     @else
                                         <td class=""><x-action-button url="#" id="sometext" type="deleteSweet_err" :tip="true" /></td>
                                     @endif
@@ -85,6 +89,6 @@
 @push('JsCode')
     <x-sweet-delete-err/>
     <x-sweet-delete-js-no-form/>
-    {{--    <x-ajax-update-status-js-code url="{{ route('category.updateStatus') }}"/>--}}
+    {{--    <x-ajax-update-status-js-code url="{{ route('product.updateStatus') }}"/>--}}
     <x-data-table-plugins :jscode="true" :is-active="$viewDataTable" />
 @endpush

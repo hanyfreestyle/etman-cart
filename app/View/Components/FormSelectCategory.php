@@ -16,6 +16,7 @@ class FormSelectCategory extends Component
     public $sendArr ;
     public $selectType ;
     public $printValName ;
+    public $forcategory ;
 
     public function __construct(
         $name ="",
@@ -26,6 +27,7 @@ class FormSelectCategory extends Component
         $sendArr = array(),
         $selectType = 'normal',
         $printValName = 'name',
+        $forcategory = true,
 
     )
     {
@@ -37,6 +39,7 @@ class FormSelectCategory extends Component
         $this->sendArr = $sendArr;
         $this->selectType = $selectType;
         $this->printValName = $printValName;
+        $this->forcategory = $forcategory;
     }
 
     public function render(): View|Closure|string

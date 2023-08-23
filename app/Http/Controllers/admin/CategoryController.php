@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\admin;
+use App\Models\admin\Developer;
 use Illuminate\Support\Facades\View;
 use App\Helpers\AdminHelper;
 use App\Helpers\PuzzleUploadProcess;
@@ -151,6 +152,15 @@ class CategoryController extends AdminMainController
         $deleteRow = AdminHelper::DeleteAllPhotos($deleteRow);
         $deleteRow->delete();
         return back()->with('confirmDelete',"");
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     EmptyPhoto
+    public function emptyPhoto($id){
+        $rowData = Category::findOrFail($id);
+        $rowData = AdminHelper::DeleteAllPhotos($rowData,true);
+        $rowData->save();
+        return back();
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

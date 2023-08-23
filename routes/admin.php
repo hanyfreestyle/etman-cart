@@ -45,10 +45,17 @@ Route::get('/AttributeTables/force/{id}',[AttributeTableController::class,'Force
 
 
 Route::get('/Product',[ProductController::class,'index'])->name('product.index');
-Route::get('/Product/Main',[ProductController::class,'index'])->name('product.index_Main');
-Route::get('/Product/SubCategory/{id}',[ProductController::class,'SubCategory'])->name('product.SubCategory');
+//Route::get('/Product/Main',[ProductController::class,'index'])->name('product.index_Main');
+Route::get('/Product/ListCategory/{Categoryid}',[ProductController::class,'ListCategory'])->name('product.ListCategory');
 Route::get('/Product/create',[ProductController::class,'create'])->name('product.create');
 Route::get('/Product/edit/{id}',[ProductController::class,'edit'])->name('product.edit');
 Route::get('/Product/destroy/{id}',[ProductController::class,'destroy'])->name('product.destroy');
 Route::post('/Product/update/{id}',[ProductController::class,'storeUpdate'])->name('product.update');
 Route::get('/Product/emptyPhoto/{id}', [ProductController::class,'emptyPhoto'])->name('product.emptyPhoto');
+
+Route::get('/Product/photos/{id}',[ProductController::class,'ListMorePhoto'])->name('product.More_Photos');
+Route::post('/Product/saveSort', [ProductController::class,'sortPhotoSave'])->name('product.sortPhotoSave');
+Route::post('/Product/AddMore',[ProductController::class,'AddMorePhotos'])->name('product.More_PhotosAdd');
+Route::get('/Product/PhotoDel/{id}',[ProductController::class,'More_PhotosDestroy'])->name('product.More_PhotosDestroy');
+
+Route::get('/product/TableList/{id}',[ProductController::class,'TableList'])->name('product.Table_list');

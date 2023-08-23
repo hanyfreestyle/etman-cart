@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model implements TranslatableContract
 {
@@ -38,5 +39,11 @@ class Product extends Model implements TranslatableContract
     public function scopeDefquery(Builder $query): Builder
     {
         return $query->with('translations')->with('categoryName');
+    }
+
+
+    public function more_photos(): HasMany
+    {
+        return $this->hasMany(ProductPhoto::class,'product_id','id');
     }
 }
