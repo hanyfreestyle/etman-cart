@@ -4,7 +4,7 @@ return
 [
 	'model_1' => 'Manage Users',
 	'model_10' => 'Manage Category',
-	'model_11' => 'Manage Blog',
+	'model_11' => 'Manage Product',
 	'model_12' => 'Manage Location',
 	'model_13' => 'Manage Developer',
 	'model_14' => 'Manage',

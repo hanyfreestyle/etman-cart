@@ -83,7 +83,7 @@
             'text'=> 'admin/menu.Attribute_Table',
             'url'=> 'AttributeTables.index',
             'icon'=>'fab fa-blogger',
-            'roleView'=>'post_view',
+            'roleView'=>'category_view',
         ],
 
 
