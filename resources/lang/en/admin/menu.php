@@ -2,6 +2,7 @@
 
 return
 [
+	'Attribute_Table' => 'Attribute Table',
 	'category' => 'Categories',
 	'dashboard' => 'Home Pgae',
 	'lang_file_admin' => 'Admin Lang File',
@@ -18,5 +19,5 @@ return
 	'setting_photo' => 'Photo Settings',
 	'setting_web' => 'Web Settings',
 	'uploadFilter' => 'Upload Filters',
-	'Attribute_Table' => 'Attribute Table',
+	'product' => 'Product',
 ];

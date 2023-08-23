@@ -22,6 +22,8 @@ use Database\Seeders\admin\LocationTranslationSeeder;
 use Database\Seeders\admin\PostPhotoSeeder;
 use Database\Seeders\admin\PostSeeder;
 use Database\Seeders\admin\PostTranslationSeeder;
+use Database\Seeders\admin\ProductSeeder;
+use Database\Seeders\admin\ProductTranslationSeeder;
 use Database\Seeders\admin\QuestionSeeder;
 use Database\Seeders\admin\QuestionTranslationSeeder;
 use Database\Seeders\roles\AdminUserSeeder;
@@ -66,6 +68,8 @@ class DatabaseSeeder extends Seeder
         $this->call(CategoryTableSeeder::class);
         $this->call(CategoryTableTranslationSeeder::class);
 
+        $this->call(ProductSeeder::class);
+        $this->call(ProductTranslationSeeder::class);
 
     }
 }

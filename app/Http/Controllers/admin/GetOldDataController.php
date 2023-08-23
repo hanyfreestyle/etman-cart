@@ -9,6 +9,8 @@ use App\Models\admin\Category;
 use App\Models\admin\CategoryTable;
 use App\Models\admin\CategoryTableTranslation;
 use App\Models\admin\CategoryTranslation;
+use App\Models\admin\Product;
+use App\Models\admin\ProductTranslation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
@@ -150,5 +152,98 @@ class GetOldDataController extends AdminMainController
 //<x-category-item :Category="$CategoryList" />
 //@endforeach
 
+    public function get_old_Product()
+    {
+        $old_Product = DB::connection('mysql2')->table('product')->get();
+        foreach ($old_Product as $oneProduct)
+        {
+            $data = [
+                'id' => $oneProduct->id,
+                'category_id' => $oneProduct->cat_id,
+                'photo' => $oneProduct->photo,
+                'photo_thum_1' => $oneProduct->photo_t,
+                'is_active' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+            Product::unguard();
+            Product::create($data);
+        }
+    }
+    public function get_old_ProductTranslation()
+    {
+        $old_Category = DB::connection('mysql2')->table('product')->get();
+        foreach ($old_Category as $oneCategory)
+        {
+            $data = [
+                'product_id' => $oneCategory->id,
+                'locale' => 'ar',
+                'slug' => $oneCategory->name_m,
+                'name' => $oneCategory->name,
+                'des' => $oneCategory->des,
+                'g_title' => $oneCategory->g_name,
+                'g_des' => $oneCategory->g_des,
+            ];
+
+            ProductTranslation::unguard();
+            ProductTranslation::create($data);
+
+            $data = [
+                'product_id' => $oneCategory->id,
+                'locale' => 'en',
+                'slug' => $oneCategory->name_m_en,
+                'name' => $oneCategory->name_en,
+                'des' => $oneCategory->des_en,
+                'g_title' => $oneCategory->g_name_en,
+                'g_des' => $oneCategory->g_des_en,
+            ];
+            ProductTranslation::unguard();
+            ProductTranslation::create($data);
+
+        }
+    }
+    public function get_pro_Product_Image()
+    {
+        $Categories = Product::query()
+            ->with('translation')
+            ->get()
+        ;
+
+        // dd($Categories);
+
+        foreach ($Categories as $Category){
+            $file = public_path($Category->photo);
+            $saveImage =  Image::make($file);
+            $saveDir = 'images/product/'.$Category->id ;
+            $uploadPath  = public_path($saveDir);
+            if(!File::isDirectory($uploadPath)){
+                File::makeDirectory($uploadPath, 0777, true, true);
+            }
+            $getName = AdminHelper::Url_Slug($Category->translate('en')->slug) ;
+            $newName =  AdminHelper::file_newname($uploadPath,$getName.'.webp') ;
+            $saveImage->save($uploadPath.'/'.$newName, 65, 'webp');
+
+            $SaveDb = $saveDir."/".$saveImage->basename ;
+            $Category->photo = $SaveDb ;
+            $Category->save() ;
+
+
+            $file = public_path($Category->photo_thum_1);
+            $saveImage =  Image::make($file);
+            $uploadPath  = public_path('images/product/'.$Category->id);
+            if(!File::isDirectory($uploadPath)){
+                File::makeDirectory($uploadPath, 0777, true, true);
+            }
+            $getName = AdminHelper::Url_Slug($Category->translate('en')->slug) ;
+            $newName =  AdminHelper::file_newname($uploadPath,$getName.'.webp') ;
+            $saveImage->save($uploadPath.'/'.$newName, 65, 'webp');
+
+            $SaveDb = $saveDir."/".$saveImage->basename ;
+            $Category->photo_thum_1 = $SaveDb ;
+            // $Category->webp = 1 ;
+            $Category->save() ;
+
+        }
+    }
 
 }

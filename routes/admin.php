@@ -5,6 +5,7 @@ use App\Helpers\AdminHelper;
 use App\Http\Controllers\admin\AttributeTableController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\CategoryTableController;
+use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\AdminMainController;
 
 
@@ -40,3 +41,14 @@ Route::get('/AttributeTables/destroy/{id}',[AttributeTableController::class,'des
 Route::get('/AttributeTables/SoftDelete/',[AttributeTableController::class,'SoftDeletes'])->name('AttributeTables.SoftDelete');
 Route::get('/AttributeTables/restore/{id}',[AttributeTableController::class,'restored'])->name('AttributeTables.restore');
 Route::get('/AttributeTables/force/{id}',[AttributeTableController::class,'ForceDeletes'])->name('AttributeTables.force');
+
+
+
+Route::get('/Product',[ProductController::class,'index'])->name('product.index');
+Route::get('/Product/Main',[ProductController::class,'index'])->name('product.index_Main');
+Route::get('/Product/SubCategory/{id}',[ProductController::class,'SubCategory'])->name('product.SubCategory');
+Route::get('/Product/create',[ProductController::class,'create'])->name('product.create');
+Route::get('/Product/edit/{id}',[ProductController::class,'edit'])->name('product.edit');
+Route::get('/Product/destroy/{id}',[ProductController::class,'destroy'])->name('product.destroy');
+Route::post('/Product/update/{id}',[ProductController::class,'storeUpdate'])->name('product.update');
+Route::get('/Product/emptyPhoto/{id}', [ProductController::class,'emptyPhoto'])->name('product.emptyPhoto');

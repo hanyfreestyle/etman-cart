@@ -2,6 +2,7 @@
 
 return
 [
+	'Attribute_Table' => 'جدول البيانات',
 	'category' => 'المجموعات',
 	'dashboard' => 'الصفحة الرئيسية',
 	'lang_file_admin' => 'ملفات اللغة لوحة التحكم',
@@ -18,5 +19,5 @@ return
 	'setting_photo' => 'اعدادات الصور',
 	'setting_web' => 'الاعدادات العامة',
 	'uploadFilter' => 'فلاتر الصور',
-	'Attribute_Table' => 'جدول البيانات',
+	'product' => 'المنتجات',
 ];

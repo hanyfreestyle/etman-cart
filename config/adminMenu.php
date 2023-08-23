@@ -86,6 +86,15 @@
             'roleView'=>'category_view',
         ],
 
+        [
+            'view'=>true,
+            'sel_routs'=>'product',
+            'type'=>'one',
+            'text'=> 'admin/menu.product',
+            'url'=> 'product.index',
+            'icon'=>'fab fa-blogger',
+            'roleView'=>'product_view',
+        ],
 
 
 
