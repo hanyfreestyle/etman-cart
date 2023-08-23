@@ -33,10 +33,10 @@ Route::post('/category/Table/SaveSort', [CategoryTableController::class,'TableSo
 
 
 Route::get('/AttributeTables',[AttributeTableController::class,'index'])->name('AttributeTables.index');
-//Route::get('/AttributeTables/create',[AttributeTableController::class,'create'])->name('AttributeTables.create');
-//Route::get('/AttributeTables/edit/{id}',[AttributeTableController::class,'edit'])->name('AttributeTables.edit');
-//Route::post('/AttributeTables/update/{id}',[AttributeTableController::class,'storeUpdate'])->name('AttributeTables.update');
-//Route::get('/AttributeTables/destroy/{id}',[AttributeTableController::class,'destroy'])->name('AttributeTables.destroy');
-//Route::get('/AttributeTables/SoftDelete/',[AttributeTableController::class,'SoftDeletes'])->name('AttributeTables.SoftDelete');
-//Route::get('/AttributeTables/restore/{id}',[AttributeTableController::class,'Restore'])->name('AttributeTables.restore');
-//Route::get('/AttributeTables/force/{id}',[AttributeTableController::class,'ForceDeletes'])->name('AttributeTables.force');
+Route::get('/AttributeTables/create',[AttributeTableController::class,'create'])->name('AttributeTables.create');
+Route::get('/AttributeTables/edit/{id}',[AttributeTableController::class,'edit'])->name('AttributeTables.edit');
+Route::post('/AttributeTables/update/{id}',[AttributeTableController::class,'storeUpdate'])->name('AttributeTables.update');
+Route::get('/AttributeTables/destroy/{id}',[AttributeTableController::class,'destroy'])->name('AttributeTables.destroy');
+Route::get('/AttributeTables/SoftDelete/',[AttributeTableController::class,'SoftDeletes'])->name('AttributeTables.SoftDelete');
+Route::get('/AttributeTables/restore/{id}',[AttributeTableController::class,'restored'])->name('AttributeTables.restore');
+Route::get('/AttributeTables/force/{id}',[AttributeTableController::class,'ForceDeletes'])->name('AttributeTables.force');

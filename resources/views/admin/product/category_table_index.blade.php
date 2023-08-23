@@ -28,6 +28,7 @@
                             <th class="TD_350">{{__('admin/form.des_ar')}}</th>
                             <th class="TD_350">{{__('admin/form.title_en')}}</th>
                             <th class="TD_350">{{__('admin/form.des_en')}}</th>
+                            <th></th>
                             @can('category_edit')
                                 <th class="tbutaction"></th>
                             @endcan
@@ -44,6 +45,7 @@
                                 <td>{{optional($TableItem->translate('ar'))->des}}</td>
                                 <td>{{optional($TableItem->attributeName->translate('en'))->name}}</td>
                                 <td>{{optional($TableItem->translate('en'))->des}}</td>
+                                <td class="tc" >{!! is_active($TableItem->is_active) !!}</td>
                                 @can('category_edit')
                                     <td class="tc"><x-action-button url="{{route('category.Table_edit',$TableItem->id)}}" type="edit" :tip="true" /></td>
                                 @endcan

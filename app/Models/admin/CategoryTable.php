@@ -11,13 +11,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class CategoryTable extends Model implements TranslatableContract
 {
     use HasFactory;
+    use SoftDeletes;
     use Translatable;
 
     protected $table = "category_tables";
     public $translatedAttributes = ['name','des'];
     protected $fillable = ['category_id'];
     protected $primaryKey = 'id';
-
+    protected $dates = ['deleted_at'];
 
 
     public function attributeName()

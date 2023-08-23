@@ -48,7 +48,7 @@ class CategoryTableController extends AdminMainController
         $CategoryTableAdd = CategoryTable::where('category_id',$Category->id)
             ->pluck('attribute_id')
             ->toArray();
-        $AttributeList = AttributeTable::query()->whereNotIn('id',$CategoryTableAdd)->get();
+        $AttributeList = AttributeTable::where('is_active',1)->whereNotIn('id',$CategoryTableAdd)->get();
 
         return view('admin.product.category_table_index',compact('CategoryTable','pageData','Category','AttributeList'));
     }
