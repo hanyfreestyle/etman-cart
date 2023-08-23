@@ -6,16 +6,16 @@
 @section('content')
     <x-breadcrumb-def :pageData="$pageData"/>
 
-{{--    <x-html-section>--}}
-{{--        <ol class="breadcrumb breadcrumb_menutree">--}}
-{{--            <li class="breadcrumb-item"><a href="{{route('category.index_Main')}}">{{__('admin/def.main_category')}}</a></li>--}}
-{{--            @if($pageData['SubView'])--}}
-{{--                @foreach($trees as $tree)--}}
-{{--                    <li class="breadcrumb-item"><a href="{{route('category.SubCategory',$tree->id)}}">{{ $tree->name }}</a></li>--}}
-{{--                @endforeach--}}
-{{--            @endif--}}
-{{--        </ol>--}}
-{{--    </x-html-section>--}}
+    {{--    <x-html-section>--}}
+    {{--        <ol class="breadcrumb breadcrumb_menutree">--}}
+    {{--            <li class="breadcrumb-item"><a href="{{route('category.index_Main')}}">{{__('admin/def.main_category')}}</a></li>--}}
+    {{--            @if($pageData['SubView'])--}}
+    {{--                @foreach($trees as $tree)--}}
+    {{--                    <li class="breadcrumb-item"><a href="{{route('category.SubCategory',$tree->id)}}">{{ $tree->name }}</a></li>--}}
+    {{--                @endforeach--}}
+    {{--            @endif--}}
+    {{--        </ol>--}}
+    {{--    </x-html-section>--}}
 
     <x-html-section>
         <x-ui-card  :page-data="$pageData" >
@@ -48,25 +48,18 @@
                             <tr>
                                 <td>{{$Product->id}}</td>
                                 <td class="tc">{!!  \App\Helpers\AdminHelper::printTableImage($Product,'photo') !!} </td>
-                                <td>{!! \App\Helpers\AdminHelper::print_count_name('ar',$Product,"product.SubCategory") !!}</td>
-                                <td>{!!  \App\Helpers\AdminHelper::print_count_name('en',$Product,"product.SubCategory") !!}</td>
+                                <td>{{ $Product->translate('ar')->name}}</td>
+                                <td>{{ $Product->translate('en')->name}}</td>
                                 <td><a href="{{route('product.ListCategory',$Product->categoryName->id)}}">{{ $Product->categoryName->name }}</a></td>
-
 
                                 <td class="tc" >{!! is_active($Product->is_active) !!}</td>
                                 @can('category_edit')
-{{--                                    <td class="tc"><x-action-button url="{{route('product.Table_list',$Product->id)}}" count="{{$Product->table_data_count}}"  print-lable="{{__('admin/def.table_info')}}"  icon="fas fa-info-circle" :tip="true" /></td>--}}
                                     <td class="tc"><x-action-button url="{{route('product.More_Photos',$Product->id)}}"  count="{{$Product->more_photos_count}}" type="morePhoto" :tip="true" /></td>
-
                                     <td class="tc"><x-action-button url="{{route('product.edit',$Product->id)}}" type="edit" :tip="true" /></td>
                                 @endcan
 
                                 @can('category_delete')
-                                    @if($Product->children_count == 0)
-                                        <td class=""><x-action-button url="#" id="{{route('product.destroy',$Product->id)}}" type="deleteSweet" :tip="true" /></td>
-                                    @else
-                                        <td class=""><x-action-button url="#" id="sometext" type="deleteSweet_err" :tip="true" /></td>
-                                    @endif
+                                    <td class=""><x-action-button url="#" id="{{route('product.destroy',$Product->id)}}" type="deleteSweet" :tip="true" /></td>
                                 @endcan
                             </tr>
                         @endforeach
