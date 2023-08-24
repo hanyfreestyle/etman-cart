@@ -7,7 +7,7 @@
 /public/db
 /public/ckfinder
 /storage/*.key
-#/storage/
+/storage/
 /vendor
 .env
 .env.backup
