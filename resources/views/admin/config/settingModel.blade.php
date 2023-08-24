@@ -30,6 +30,13 @@
 
 
 
+                    <div class="col-lg-12 pt-3">
+                        <div class="alert alert-dark alert-dismissible">
+                            {{ __('admin/menu.webPrivacy') }}
+                        </div>
+                        <x-def-settings modelname="webPrivacy">
+                        </x-def-settings>
+                    </div>
 
 
 

@@ -67,6 +67,7 @@ class AdminMainController extends Controller
             "2"=> ['id'=>'2','name'=> __('admin/config/settings.sort_id_ASC')],
             "3"=> ['id'=>'3','name'=> __('admin/config/settings.sort_name_DESC')],
             "4"=> ['id'=>'4','name'=> __('admin/config/settings.sort_name_ASC')],
+            "5"=> ['id'=>'5','name'=>'الترتيب'],
         ];
         View::share('OrderByArr', $OrderByArr);
 
@@ -96,9 +97,6 @@ class AdminMainController extends Controller
         $perPage = self::getDefSetting($controllerName,'_perpage','5');
         $dataTable =  self::getDefSetting($controllerName,'_datatable','0');
         $orderBy =  self::getDefSetting($controllerName,'_orderby','1');
-
-
-
         switch ($orderBy){
             case 1:
                 $query->orderBy('id','DESC');
@@ -112,6 +110,10 @@ class AdminMainController extends Controller
             case 4:
                 $query->orderByTranslation('name','ASC');
                 break;
+            case 5:
+                $query->orderBy('postion','ASC');
+                break;
+
             default:
         }
         if($dataTable == '1'){

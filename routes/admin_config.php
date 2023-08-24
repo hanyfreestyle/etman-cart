@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\config\MetaTagController;
 use App\Http\Controllers\admin\config\SettingsController;
 use App\Http\Controllers\admin\config\UploadFilterController;
 use App\Http\Controllers\admin\config\UploadFilterSizeController;
+use App\Http\Controllers\admin\config\WebPrivacyController;
 
 Route::get('/clearCash/',[SettingsController::class,'clearCash'])->name('cash.index');
 
@@ -29,6 +30,15 @@ Route::get('/metaTags/create', [MetaTagController::class,'create'])->name('confi
 Route::get('/metaTags/edit/{id}', [MetaTagController::class,'edit'])->name('config.meta.edit');
 Route::post('/metaTags/Update/{id}', [MetaTagController::class,'storeUpdate'])->name('config.meta.update');
 Route::delete('/metaTags/delete/{id}', [MetaTagController::class,'delete'])->name('config.meta.destroy');
+
+Route::get('/webPrivacy', [WebPrivacyController::class,'index'])->name('config.webPrivacy.index');
+Route::get('/webPrivacy/create', [WebPrivacyController::class,'create'])->name('config.webPrivacy.create');
+Route::get('/webPrivacy/edit/{id}', [WebPrivacyController::class,'edit'])->name('config.webPrivacy.edit');
+Route::post('/webPrivacy/Update/{id}', [WebPrivacyController::class,'storeUpdate'])->name('config.webPrivacy.update');
+Route::get('/webPrivacy/delete/{id}', [WebPrivacyController::class,'delete'])->name('config.webPrivacy.destroy');
+Route::get('/webPrivacy/Sort',[WebPrivacyController::class,'Sort'])->name('config.webPrivacy.Sort');
+Route::post('/webPrivacy/SaveSort', [WebPrivacyController::class,'SaveSort'])->name('config.webPrivacy.SaveSort');
+
 
 
 Route::get('/defPhotos', [DefPhotoController::class,'index'])->name('config.defPhoto.index');

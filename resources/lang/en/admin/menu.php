@@ -7,6 +7,7 @@ return
 	'dashboard' => 'Home Pgae',
 	'lang_file_admin' => 'Admin Lang File',
 	'lang_file_web' => 'Web Lang File',
+	'product' => 'Product',
 	'roles' => 'Users &amp; Permissions',
 	'roles_permissions' => 'Permissions',
 	'roles_role' => 'Roles',
@@ -19,5 +20,5 @@ return
 	'setting_photo' => 'Photo Settings',
 	'setting_web' => 'Web Settings',
 	'uploadFilter' => 'Upload Filters',
-	'product' => 'Product',
+	'webPrivacy' => 'Privacy',
 ];

@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 
 use App\Models\admin\Category;
+use App\Models\admin\config\WebPrivacy;
 use Database\Seeders\admin\AttributeTableSeeder;
 use Database\Seeders\admin\AttributeTableTranslationSeeder;
 use Database\Seeders\admin\CategorySeeder;
@@ -27,6 +28,8 @@ use Database\Seeders\admin\ProductSeeder;
 use Database\Seeders\admin\ProductTranslationSeeder;
 use Database\Seeders\admin\QuestionSeeder;
 use Database\Seeders\admin\QuestionTranslationSeeder;
+use Database\Seeders\config\WebPrivacySeeder;
+use Database\Seeders\config\WebPrivacyTranslationSeeder;
 use Database\Seeders\roles\AdminUserSeeder;
 use Database\Seeders\roles\PermissionSeeder;
 use Database\Seeders\roles\RoleSeeder;
@@ -59,6 +62,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UploadFilterSeeder::class);
         $this->call(UploadFilterSizeSeeder::class);
         $this->call(DefPhotoSeeder::class);
+        $this->call(WebPrivacySeeder::class);
+        $this->call(WebPrivacyTranslationSeeder::class);
 
 
         $this->call(CategorySeeder::class);

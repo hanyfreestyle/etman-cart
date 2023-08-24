@@ -9,6 +9,8 @@ use App\Models\admin\Category;
 use App\Models\admin\CategoryTable;
 use App\Models\admin\CategoryTableTranslation;
 use App\Models\admin\CategoryTranslation;
+use App\Models\admin\config\WebPrivacy;
+use App\Models\admin\config\WebPrivacyTranslation;
 use App\Models\admin\Product;
 use App\Models\admin\ProductPhoto;
 use App\Models\admin\ProductTranslation;
@@ -265,4 +267,65 @@ class GetOldDataController extends AdminMainController
             ProductPhoto::create($data);
         }
     }
+
+
+
+
+
+
+
+
+
+    public function index_WebPrivacy()
+    {
+        $old_Category = DB::connection('mysql2')->table('web_privacy')->get();
+        foreach ($old_Category as $oneCategory)
+        {
+            $data = [
+                'id' => $oneCategory->id,
+                'name' =>  $oneCategory->h1,
+                'postion' => $oneCategory->postion,
+                'is_active' =>1,
+                'created_at' =>now(),
+                'updated_at' =>now(),
+            ];
+
+            WebPrivacy::unguard();
+            WebPrivacy::create($data);
+        }
+    }
+    public function index_WebPrivacyTranslation()
+    {
+        $old_Category = DB::connection('mysql2')->table('web_privacy')->get();
+        foreach ($old_Category as $oneCategory)
+        {
+            $data = [
+                'privacy_id' => $oneCategory->id,
+                'locale' => 'ar',
+                'h1' => $oneCategory->h1,
+                'h2' => $oneCategory->h2,
+                'des' => $oneCategory->des,
+                'lists' => $oneCategory->lists,
+            ];
+
+            WebPrivacyTranslation::unguard();
+            WebPrivacyTranslation::create($data);
+
+            $data = [
+                'privacy_id' => $oneCategory->id,
+                'locale' => 'en',
+                'h1' => $oneCategory->h1_en,
+                'h2' => $oneCategory->h2_en,
+                'des' => $oneCategory->des_en,
+                'lists' => $oneCategory->lists_en,
+            ];
+
+            WebPrivacyTranslation::unguard();
+            WebPrivacyTranslation::create($data);
+
+        }
+    }
+
+
+
 }

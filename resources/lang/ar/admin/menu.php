@@ -7,6 +7,7 @@ return
 	'dashboard' => 'الصفحة الرئيسية',
 	'lang_file_admin' => 'ملفات اللغة لوحة التحكم',
 	'lang_file_web' => 'ملفات اللغة للموقع',
+	'product' => 'المنتجات',
 	'roles' => 'الاعضاء والصلاحيات',
 	'roles_permissions' => 'الاصلاحيات',
 	'roles_role' => 'مجموعات الصلاحيات',
@@ -19,5 +20,5 @@ return
 	'setting_photo' => 'اعدادات الصور',
 	'setting_web' => 'الاعدادات العامة',
 	'uploadFilter' => 'فلاتر الصور',
-	'product' => 'المنتجات',
+	'webPrivacy' => 'سياسية الاستخدام',
 ];

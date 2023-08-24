@@ -28,10 +28,10 @@ class PermissionSeeder extends Seeder
             ['cat_id'=> '3', 'name' => 'permissions_edit','name_ar'=>'تعديل','name_en'=>'Edit'],
             ['cat_id'=> '3', 'name' => 'permissions_delete','name_ar'=>'حذف','name_en'=>'Delete'],
 
-            ['cat_id'=> '4', 'name' => 'amenity_view','name_ar'=>'عرض','name_en'=>'View'],
-            ['cat_id'=> '4', 'name' => 'amenity_add','name_ar'=>'اضافة','name_en'=>'Add'],
-            ['cat_id'=> '4', 'name' => 'amenity_edit','name_ar'=>'تعديل','name_en'=>'Edit'],
-            ['cat_id'=> '4', 'name' => 'amenity_delete','name_ar'=>'حذف','name_en'=>'Delete'],
+            ['cat_id'=> '4', 'name' => 'webPrivacy_view','name_ar'=>'عرض','name_en'=>'View'],
+            ['cat_id'=> '4', 'name' => 'webPrivacy_add','name_ar'=>'اضافة','name_en'=>'Add'],
+            ['cat_id'=> '4', 'name' => 'webPrivacy_edit','name_ar'=>'تعديل','name_en'=>'Edit'],
+            ['cat_id'=> '4', 'name' => 'webPrivacy_delete','name_ar'=>'حذف','name_en'=>'Delete'],
 
             ['cat_id'=> '5', 'name' => 'adminlang_view','name_ar'=>'عرض ملفات لغة التحكم','name_en'=>'View Admin Lang'],
             ['cat_id'=> '5', 'name' => 'adminlang_edit','name_ar'=>'تعديل ملفات لغة التحكم','name_en'=>'Edit Admin Lang'],
