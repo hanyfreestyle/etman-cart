@@ -94,6 +94,19 @@ class ActionButton extends Component
                     $this->printLable =__('admin/page.del_restor');
                     break;
 
+                case 'sort':
+                    $this->icon = 'fas fa-sort-amount-up';
+                    $this->bg = getBgColor('i');
+                    $this->printLable = __('admin/form.button_sort');
+                    break;
+
+                case 'back':
+                    $this->icon = 'fas fa-hand-point-left';
+                    $this->bg = getBgColor('dark');
+                    $this->printLable =  __('admin/form.button_back');
+                    break;
+
+
                 case 'morePhoto':
                     $this->icon = 'fas fa-images';
                     if(isset($bg)){

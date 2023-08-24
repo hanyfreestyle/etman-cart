@@ -4,14 +4,7 @@ namespace App\Http\Controllers\admin\config;
 
 use App\Helpers\AdminHelper;
 use App\Http\Controllers\AdminMainController;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\admin\config\MetaTagRequest;
 use App\Http\Requests\config\WebPrivacyRequest;
-use App\Models\admin\Category;
-use App\Models\admin\CategoryTable;
-use App\Models\admin\CategoryTranslation;
-use App\Models\admin\config\MetaTag;
-use App\Models\admin\config\MetaTagTranslation;
 use App\Models\admin\config\WebPrivacy;
 use App\Models\admin\config\WebPrivacyTranslation;
 use Illuminate\Http\Request;
@@ -40,10 +33,6 @@ class WebPrivacyController extends AdminMainController
         View::share('viewDataTable', $viewDataTable);
         View::share('tableHeader', AdminHelper::Table_Style($viewDataTable));
     }
-
-
-
-
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     index

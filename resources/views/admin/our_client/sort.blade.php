@@ -6,14 +6,9 @@
 
     <x-html-section>
         <div class="row mb-3">
-            <div class="col-9">
-
+            <div class="col-12 text-left">
+                <x-action-button  url="{{route('OurClient.index')}}"  type="back" />
             </div>
-
-            <div class="col-3 text-left">
-                <x-action-button  url="{{route('OurClient.index')}}" print-lable="{{__('admin/form.button_back')}}" size="s"  bg="dark" icon="fas fa-hand-point-left"  />
-            </div>
-
         </div>
     </x-html-section>
 
@@ -41,41 +36,6 @@
 
 @push('JsCode')
     <script src="{{defAdminAssets('plugins/bootstrap/js/jquery-ui.min.js')}}"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-            $('.hanySort').sortable({
-
-                update: function (event, ui) {
-                    $(this).children().each(function (index) {
-                        if ($(this).attr('data-position') != (index+1)) {
-                            $(this).attr('data-position', (index+1)).addClass('updated');
-                        }
-                    });
-
-                    var positions = [];
-                    $('.updated').each(function () {
-                        positions.push([$(this).attr('data-index'), $(this).attr('data-position')]);
-                        $(this).removeClass('updated');
-                    });
-
-                    $.ajax({
-                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                        url: '{{ route('OurClient.SaveSort') }}',
-                        type: 'POST',
-                        dataType: 'text',
-                        data: {
-                            update: 1,
-                            positions: positions
-                        },
-                        success: function (response) {
-                            console.log(response);
-                        }
-                    });
-                }
-            });
-        });
-    </script>
+    <x-sort-ajax-code url="{{ route('OurClient.SaveSort') }}"/>
 @endpush
 

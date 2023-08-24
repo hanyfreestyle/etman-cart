@@ -8,11 +8,8 @@
 
     <x-html-section>
         <div class="row mb-3">
-            <div class="col-9">
-
-            </div>
-            <div class="col-3 text-left">
-                <x-action-button  url="{{route('OurClient.Sort')}}"  print-lable="{{__('admin/form.button_sort')}}" size="s"  bg="i" icon="fas fa-sort-amount-up"  />
+            <div class="col-12 text-left">
+                <x-action-button  url="{{route('OurClient.Sort')}}" type="sort" />
             </div>
         </div>
     </x-html-section>
