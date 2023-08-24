@@ -11,6 +11,8 @@ use App\Models\admin\CategoryTableTranslation;
 use App\Models\admin\CategoryTranslation;
 use App\Models\admin\config\WebPrivacy;
 use App\Models\admin\config\WebPrivacyTranslation;
+use App\Models\admin\OurClient;
+use App\Models\admin\OurClientTranslation;
 use App\Models\admin\Product;
 use App\Models\admin\ProductPhoto;
 use App\Models\admin\ProductTranslation;
@@ -327,5 +329,100 @@ class GetOldDataController extends AdminMainController
     }
 
 
+    public function index_OurClient()
+    {
+        $old_Category = DB::connection('mysql2')->table('web_data_list')->where('cat_name','OurClient')->get();
+        foreach ($old_Category as $oneCategory)
+        {
+            $data = [
+                'id' => $oneCategory->id,
+                'photo' => $oneCategory->photo,
+                'photo_thum_1' => $oneCategory->photo_t,
+                'is_active' =>1,
+                'created_at' =>now(),
+                'updated_at' =>now(),
+            ];
+            OurClient::unguard();
+            OurClient::create($data);
+        }
+    }
 
+
+    public function index_OurClientTranslation()
+    {
+        $old_Category = DB::connection('mysql2')->table('web_data_list')->where('cat_name','OurClient')->get();
+        foreach ($old_Category as $oneCategory)
+        {
+            $data = [
+                'client_id' => $oneCategory->id,
+                'locale' => 'ar',
+                'name' => $oneCategory->name,
+                'slug' => null,
+                'des' => null,
+                'g_title' => null,
+                'g_des' => null,
+            ];
+
+            OurClientTranslation::unguard();
+            OurClientTranslation::create($data);
+
+            $data = [
+                'client_id' => $oneCategory->id,
+                'locale' => 'en',
+                'name' => $oneCategory->name_en,
+                'slug' => null,
+                'des' => null,
+                'g_title' => null,
+                'g_des' => null,
+            ];
+
+            OurClientTranslation::unguard();
+            OurClientTranslation::create($data);
+
+        }
+    }
+
+    public function index_OurClient_photo()
+    {
+        $Categories = OurClient::query()
+            ->with('translation')
+            ->get()
+        ;
+
+        // dd($Categories);
+
+        foreach ($Categories as $Category){
+            $file = public_path($Category->photo);
+            $saveImage =  Image::make($file);
+            $saveDir = 'images/client/'.$Category->id ;
+            $uploadPath  = public_path($saveDir);
+            if(!File::isDirectory($uploadPath)){
+                File::makeDirectory($uploadPath, 0777, true, true);
+            }
+            $getName = AdminHelper::Url_Slug($Category->translate('en')->name) ;
+            $newName =  AdminHelper::file_newname($uploadPath,$getName.'.webp') ;
+            $saveImage->save($uploadPath.'/'.$newName, 65, 'webp');
+
+            $SaveDb = $saveDir."/".$saveImage->basename ;
+            $Category->photo = $SaveDb ;
+            $Category->save() ;
+
+
+            $file = public_path($Category->photo_thum_1);
+            $saveImage =  Image::make($file);
+            $uploadPath  = public_path('images/client/'.$Category->id);
+            if(!File::isDirectory($uploadPath)){
+                File::makeDirectory($uploadPath, 0777, true, true);
+            }
+            $getName = AdminHelper::Url_Slug($Category->translate('en')->name) ;
+            $newName =  AdminHelper::file_newname($uploadPath,$getName.'.webp') ;
+            $saveImage->save($uploadPath.'/'.$newName, 65, 'webp');
+
+            $SaveDb = $saveDir."/".$saveImage->basename ;
+            $Category->photo_thum_1 = $SaveDb ;
+
+            $Category->save() ;
+
+        }
+    }
 }

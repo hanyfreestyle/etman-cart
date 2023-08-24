@@ -21,4 +21,5 @@ return
 	'setting_web' => 'Web Settings',
 	'uploadFilter' => 'Upload Filters',
 	'webPrivacy' => 'Privacy',
+	'OurClient' => 'Our Client',
 ];

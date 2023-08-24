@@ -5,6 +5,7 @@ use App\Helpers\AdminHelper;
 use App\Http\Controllers\admin\AttributeTableController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\CategoryTableController;
+use App\Http\Controllers\admin\OurClientController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\AdminMainController;
 
@@ -12,6 +13,16 @@ use App\Http\Controllers\AdminMainController;
 
 Route::get('/Home',[AdminMainController::class,'Home'])->name('admin.Dashboard');
 Route::get('/Home/Update',[AdminMainController::class,'Update'])->name('admin.Dashboard.Update');
+
+
+Route::get('/OurClient',[OurClientController::class,'index'])->name('OurClient.index');
+Route::get('/OurClient/create',[OurClientController::class,'create'])->name('OurClient.create');
+Route::get('/OurClient/edit/{id}',[OurClientController::class,'edit'])->name('OurClient.edit');
+Route::get('/OurClient/destroy/{id}',[OurClientController::class,'destroy'])->name('OurClient.destroy');
+Route::post('/OurClient/update/{id}',[OurClientController::class,'storeUpdate'])->name('OurClient.update');
+Route::get('/OurClient/emptyPhoto/{id}', [OurClientController::class,'emptyPhoto'])->name('OurClient.emptyPhoto');
+Route::get('/OurClient/Sort',[OurClientController::class,'Sort'])->name('OurClient.Sort');
+Route::post('/OurClient/SaveSort', [OurClientController::class,'SaveSort'])->name('OurClient.SaveSort');
 
 
 Route::get('/Category',[CategoryController::class,'index'])->name('category.index');

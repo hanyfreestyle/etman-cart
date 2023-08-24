@@ -21,4 +21,5 @@ return
 	'setting_web' => 'الاعدادات العامة',
 	'uploadFilter' => 'فلاتر الصور',
 	'webPrivacy' => 'سياسية الاستخدام',
+	'OurClient' => 'عملائنا',
 ];
