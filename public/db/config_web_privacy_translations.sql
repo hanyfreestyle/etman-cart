@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 24, 2023 at 05:56 PM
+-- Generation Time: Aug 24, 2023 at 08:12 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -26,8 +26,8 @@ SET time_zone = "+00:00";
 --
 
 INSERT INTO `config_web_privacy_translations` (`id`, `privacy_id`, `locale`, `h1`, `h2`, `des`, `lists`) VALUES
-(1, 1, 'ar', '', '', '', ''),
-(2, 1, 'en', '', '', '', ''),
+(1, 1, 'ar', 'Header', NULL, NULL, NULL),
+(2, 1, 'en', 'Header', NULL, NULL, NULL),
 (3, 2, 'ar', 'شروط وسياسة الخصوصية', '', 'تقوم شركة [CompanyName] (\"نحن\" أو \"نحن\" أو \"موقعنا\") بتشغيل [WebSiteName]  (\"الموقع الالكترونى\").\r\nتُعرفك هذه الصفحة بسياساتنا المتعلقة بجمع البيانات الشخصية واستخدامها والكشف عنها عند استخدامك للخدمة والأختيارات المرتبطة بهذه البيانات. \r\nسياسة الخصوصية لشركة [CompanyName]\r\nنستخدم بياناتك لتوفير الخدمة وتحسينها. باستخدام الخدمة، فإنك توافق على جمع واستخدام المعلومات وفقًا لهذه السياسة. ما لم يتم تحديد خلاف ذلك في سياسة الخصوصية، فإن المصطلحات المستخدمة في سياسة الخصوصية لها نفس المعاني كما في الشروط والأحكام الخاصة بنا، والتي يمكن الوصول إليها من [WebSiteName]', ''),
 (4, 2, 'en', 'Privacy Policy', '', ' [CompanyName] (\"us\", \"we\", or \"our\") operates the [WebSiteName] website (the \"Service\").\r\nThis page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data. Our Privacy Policy for [CompanyName]\r\nWe use your data to provide and improve the Service. By using the Service, you agree to the collection and use of information in accordance with this policy. Unless otherwise defined in this Privacy Policy, terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, accessible from  [WebSiteName]', ''),
 (5, 3, 'ar', 'جمع المعلومات واستخدامها', '', 'نقوم بتجميع أنواع مختلفة من المعلومات لأغراض متنوعة لتوفير وتحسين خدماتنا لك.', ''),
