@@ -16,33 +16,55 @@ use App\Models\admin\ProductPhoto;
 use App\Models\admin\ProductTranslation;
 use Illuminate\Http\Request;
 use DB ;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
-use Intervention\Image\Facades\Image;
+
 
 class ProductController extends AdminMainController
 {
     public $controllerName ;
     public $PageTitle ;
+    public $selMenu ;
+    public $PrefixRole ;
+    public $PrefixRoute ;
+    public $pageData ;
 
     function __construct(
-        $controllerName = 'product',
+        $selMenu = 'webPro.',
+        $controllerName = 'Product',
+        $PrefixRole = 'product',
+        $PrefixRoute = '#',
+        $pageData = array(),
     )
     {
         parent::__construct();
         $this->controllerName = $controllerName;
-        $this->PageTitle = __('admin/menu.product');
+        $this->selMenu = $selMenu;
+        $this->PrefixRole = $PrefixRole;
+        $this->PrefixRoute = $this->selMenu.$this->controllerName ;
 
-        $this->middleware('permission:'.$controllerName.'_view', ['only' => ['index']]);
-        $this->middleware('permission:'.$controllerName.'_add', ['only' => ['create']]);
-        $this->middleware('permission:'.$controllerName.'_edit', ['only' => ['edit']]);
-        $this->middleware('permission:'.$controllerName.'_delete', ['only' => ['destroy']]);
-        $this->middleware('permission:'.$controllerName.'_restore', ['only' => ['SoftDeletes','Restore','ForceDeletes']]);
+        $this->PageTitle = __('admin/menu.web_product');
+
+        $this->middleware('permission:'.$PrefixRole.'_view', ['only' => ['index']]);
+        $this->middleware('permission:'.$PrefixRole.'_add', ['only' => ['create']]);
+        $this->middleware('permission:'.$PrefixRole.'_edit', ['only' => ['edit']]);
+        $this->middleware('permission:'.$PrefixRole.'_delete', ['only' => ['destroy']]);
+        $this->middleware('permission:'.$PrefixRole.'_restore', ['only' => ['SoftDeletes','Restore','ForceDeletes']]);
 
         $viewDataTable = AdminHelper::arrIsset($this->modelSettings,$controllerName.'_datatable',0) ;
         View::share('viewDataTable', $viewDataTable);
         View::share('tableHeader', AdminHelper::Table_Style($viewDataTable));
+        View::share('PrefixRoute', $this->PrefixRoute);
+        View::share('PrefixRole', $PrefixRole);
+        View::share('controllerName', $controllerName);
+
+        $sendArr = [
+            'TitlePage' =>  $this->PageTitle ,
+            'selMenu'=> $this->selMenu,
+            'prefix_Role'=> $this->PrefixRole ,
+            'restore'=> 0 ,
+        ];
+        $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
+        $this->pageData = $pageData ;
 
     }
 
@@ -51,13 +73,10 @@ class ProductController extends AdminMainController
 #|||||||||||||||||||||||||||||||||||||| #     index
     public function index()
     {
-        $sendArr = ['TitlePage' => $this->PageTitle ];
-        $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
+        $pageData = $this->pageData;
         $pageData['ViewType'] = "List";
         $pageData['SubView'] = false;
-
         $Products = self::getSelectQuery(Product::defquery()->withCount('more_photos'));
-
         return view('admin.product.product_index',compact('pageData','Products'));
     }
 
@@ -65,8 +84,7 @@ class ProductController extends AdminMainController
 #|||||||||||||||||||||||||||||||||||||| #     SubCategory
     public function ListCategory($id)
     {
-        $sendArr = ['TitlePage' => $this->PageTitle ,'restore'=> 0 ];
-        $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
+        $pageData = $this->pageData;
         $pageData['ViewType'] = "List";
         $pageData['SubView'] = true;
         $Category = Category::findOrFail($id);
@@ -78,8 +96,7 @@ class ProductController extends AdminMainController
 #|||||||||||||||||||||||||||||||||||||| #     create
     public function create()
     {
-        $sendArr = ['TitlePage' => $this->PageTitle ];
-        $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
+        $pageData = $this->pageData;
         $pageData['ViewType'] = "Add";
         $Categories = Category::tree()->with('translation')->get()->toTree();
         $Product = Product::findOrNew(0);
@@ -90,8 +107,7 @@ class ProductController extends AdminMainController
 #|||||||||||||||||||||||||||||||||||||| #     edit
     public function edit($id)
     {
-        $sendArr = ['TitlePage' => $this->PageTitle ];
-        $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
+        $pageData = $this->pageData;
         $pageData['ViewType'] = "Edit";
         $Categories = Category::tree()->get()->toTree();
         $Product = Product::findOrFail($id);
@@ -130,10 +146,9 @@ class ProductController extends AdminMainController
         }
 
         if($id == '0'){
-            return redirect(route('product.index'))->with('Add.Done',"");
+            return redirect(route($this->PrefixRoute.'.index'))->with('Add.Done',"");
         }else{
-            //return back();
-            return redirect(route('product.index'))->with('Edit.Done',"");
+            return redirect(route($this->PrefixRoute.'.index'))->with('Edit.Done',"");
         }
     }
 
@@ -153,22 +168,6 @@ class ProductController extends AdminMainController
         return back()->with('confirmDelete',"");
     }
 
-
-//    public function destroy($id)
-//    {
-//        $deleteRow = Product::where('id',$id)->with('more_photos')->firstOrFail();
-//        if(count($deleteRow->more_photos) > 0){
-//            $delMorePhoto = ProductPhoto::where('product_id',$id)->get();
-//            foreach ($delMorePhoto as $del_photo ){
-//                $del_photo = AdminHelper::DeleteAllPhotos($del_photo);
-//                $del_photo->delete();
-//            }
-//        }
-//        $deleteRow = AdminHelper::DeleteAllPhotos($deleteRow);
-//        $deleteRow->delete();
-//        return back()->with('confirmDelete',"");
-//    }
-
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     EmptyPhoto
     public function emptyPhoto($id){
@@ -182,13 +181,11 @@ class ProductController extends AdminMainController
 #|||||||||||||||||||||||||||||||||||||| #     ListMorePhoto
     public function ListMorePhoto($id)
     {
-        $sendArr = ['TitlePage' => $this->PageTitle ];
-        $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
+        $pageData = $this->pageData;
         $pageData['ViewType'] = "Edit";
 
         $Product = Product::findOrFail($id) ;
         $ProductPhotos = ProductPhoto::where('product_id','=',$id)->orderBy('position')->get();
-
         return view('admin.product.product_photos',compact('ProductPhotos','pageData','Product'));
     }
 

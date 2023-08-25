@@ -13,7 +13,7 @@
                         <h1 class="def_h1">{{ $Category->name }}</h1>
                     </div>
                     <div class="col-3 text-left">
-                        <x-action-button url="{{route('category.Table_list',$Category->id)}}"  bg="p"  print-lable="{{__('admin/def.table_info')}}"  icon="fas fa-info-circle"  />
+                        <x-action-button url="{{route($PrefixRoute.'.Table_list',$Category->id)}}"  bg="p"  print-lable="{{__('admin/def.table_info')}}"  icon="fas fa-info-circle"  />
                     </div>
                 </div>
             </div>
@@ -23,7 +23,7 @@
         <x-ui-card :page-data="$pageData">
             <x-mass.confirm-massage />
 
-            <form  class="mainForm" action="{{route('category.update',intval($Category->id))}}" method="post"  enctype="multipart/form-data">
+            <form  class="mainForm" action="{{route($PrefixRoute.'.update',intval($Category->id))}}" method="post"  enctype="multipart/form-data">
                 @csrf
                 <x-form-select-category
                     name="parent_id"
@@ -65,15 +65,14 @@
 
                 <div class="row">
                     <x-form-check-active :row="$Category" name="is_active" page-view="{{$pageData['ViewType']}}"/>
-{{--                    <x-form-check-active :row="$Category"  lable="تفعيل المحتوى المرتبط" name="active_all" page-view="Add"/>--}}
                 </div>
 
                 <hr>
 
                 <x-form-upload-file view-type="{{$pageData['ViewType']}}" :row-data="$Category"
                                     :multiple="false"
-                                    thisfilterid="{{ \App\Helpers\AdminHelper::arrIsset($modelSettings,'category_filterid',0) }}"
-                                    emptyphotourl="category.emptyPhoto"  />
+                                    thisfilterid="{{ \App\Helpers\AdminHelper::arrIsset($modelSettings,$controllerName.'_filterid',0) }}"
+                                    :emptyphotourl="$PrefixRoute.'.emptyPhoto'"  />
 
                 <div class="container-fluid">
                     <x-form-submit text="{{$pageData['ViewType']}}" />

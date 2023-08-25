@@ -21,18 +21,9 @@
             ],
         ],
 
-//        [
-//            'view'=>true,
-//            'sel_routs'=>'amenity',
-//            'type'=>'one',
-//            'text'=> 'admin/menu.amenity',
-//            'url'=> 'amenity.index',
-//            'icon'=>'fas fa-swimming-pool',
-//            'roleView'=>'amenity_view',
-//        ],
 
         [
-            'view'=>true,
+            'view'=>false,
             'sel_routs'=>'weblang',
             'type'=>'one',
             'text'=> 'admin/menu.lang_file_web',
@@ -52,7 +43,7 @@
         ],
 
         [
-            'view'=>true,
+            'view'=>false,
             'sel_routs'=>'users',
             'type'=>'many',
             'text'=> 'admin/menu.roles',
@@ -69,45 +60,53 @@
 
         [
             'view'=>true,
-            'sel_routs'=>'category',
-            'type'=>'one',
-            'text'=> 'admin/menu.category',
-            'url'=> 'category.index',
-            'icon'=>'fas fa-sitemap',
-            'roleView'=>'category_view',
-        ],
-
-        [
-            'view'=>true,
-            'sel_routs'=>'AttributeTables',
-            'type'=>'one',
-            'text'=> 'admin/menu.Attribute_Table',
-            'url'=> 'AttributeTables.index',
-            'icon'=>'fab fa-blogger',
-            'roleView'=>'category_view',
-        ],
-
-        [
-            'view'=>true,
-            'sel_routs'=>'product',
-            'type'=>'one',
-            'text'=> 'admin/menu.product',
-            'url'=> 'product.index',
-            'icon'=>'fab fa-blogger',
-            'roleView'=>'product_view',
-        ],
-
-        [
-            'view'=>true,
             'sel_routs'=>'OurClient',
             'type'=>'one',
             'text'=> 'admin/menu.OurClient',
             'url'=> 'OurClient.index',
-            'icon'=>'fab fa-blogger',
+            'icon'=>'fas fa-users',
             'roleView'=>'OurClient_view',
         ],
 
+        [
+            'view'=>true,
+            'sel_routs'=>'webPro',
+            'type'=>'many',
+            'text'=> 'admin/menu.web_product_menu',
+            'icon'=>'fas fa-warehouse',
+            'roleView'=>'product_view',
+            'submenu'=>[
+                [
+                    'sel_routs'=> 'category',
+                    'url'=> 'webPro.category.index',
+                    'roleView'=>'category_view',
+                    'text'=> 'admin/menu.web_category',
+                    'icon'=>'fas fa-sitemap'
+                ],
+                [
+                    'sel_routs'=> 'Product',
+                    'url'=> 'webPro.Product.index',
+                    'roleView'=>'category_view',
+                    'text'=> 'admin/menu.web_product',
+                    'icon'=>'fas fa-shopping-cart'
+                ],
+                [
+                    'sel_routs'=> 'AttributeTables',
+                    'url'=> 'webPro.AttributeTables.index',
+                    'roleView'=>'category_view',
+                    'text'=> 'admin/menu.web_attribute_Table',
+                    'icon'=>'fas fa-table'
+                ],
+                [
+                    'sel_routs'=> 'categoryConfig',
+                    'url'=> 'webPro.categoryConfig.Config',
+                    'roleView'=>'category_edit',
+                    'text'=> 'admin/menu.setting',
+                    'icon'=>'fas fa-cogs'
+                ],
 
+            ],
+        ],
 
 
 

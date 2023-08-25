@@ -10,18 +10,30 @@ use App\Models\admin\Category;
 use App\Models\admin\CategoryTable;
 use App\Models\admin\CategoryTableTranslation;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
 
 
 class CategoryTableController extends AdminMainController
 {
     public $controllerName ;
     public $PageTitle ;
+    public $selMenu ;
+    public $PrefixRole ;
+    public $PrefixRoute ;
 
-    function __construct($controllerName = 'category')
+    function __construct(
+        $selMenu = 'webPro.',
+        $controllerName = 'category',
+        $PrefixRole = 'category',
+        $PrefixRoute = '#',
+    )
     {
         parent::__construct();
         $this->controllerName = $controllerName;
+        $this->selMenu = $selMenu;
+        $this->PrefixRole = $PrefixRole;
+        $this->PrefixRoute = $this->selMenu.$this->controllerName ;
+
         $this->PageTitle = __('admin/def.table_info');
 
         $this->middleware('permission:'.$controllerName.'_view', ['only' => ['index']]);
@@ -29,15 +41,22 @@ class CategoryTableController extends AdminMainController
         $this->middleware('permission:'.$controllerName.'_edit', ['only' => ['edit']]);
         $this->middleware('permission:'.$controllerName.'_delete', ['only' => ['destroy']]);
         $this->middleware('permission:'.$controllerName.'_restore', ['only' => ['SoftDeletes','Restore','ForceDeletes']]);
+
+        $viewDataTable = AdminHelper::arrIsset($this->modelSettings,$controllerName.'_datatable',0) ;
+        View::share('viewDataTable', $viewDataTable);
+        View::share('tableHeader', AdminHelper::Table_Style($viewDataTable));
+        View::share('PrefixRoute', $this->selMenu.$this->controllerName);
+        View::share('PrefixRole', $PrefixRole);
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     TableList
     public  function TableList($id){
 
-        $sendArr = ['TitlePage' => $this->PageTitle ];
+        $sendArr = ['TitlePage' => $this->PageTitle ,'selMenu'=> $this->selMenu ];
         $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
         $pageData['ViewType'] = "List";
+
 
         $Category = Category::findOrFail($id) ;
         $CategoryTable = CategoryTable::where('category_id','=',$id)
@@ -59,14 +78,14 @@ class CategoryTableController extends AdminMainController
     {
         $deleteRow = CategoryTable::findOrFail($id);
         $deleteRow->delete();
-        return redirect(route('category.Table_list',$deleteRow->category_id))->with('confirmDelete',"");
+        return redirect(route($this->PrefixRoute.'.Table_list',$deleteRow->category_id))->with('confirmDelete',"");
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     TableEdit
     public function TableEdit($id)
     {
-        $sendArr = ['TitlePage' => $this->PageTitle ];
+        $sendArr = ['TitlePage' => $this->PageTitle,'selMenu'=> $this->selMenu  ];
         $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
         $pageData['ViewType'] = "Edit";
 
@@ -97,16 +116,17 @@ class CategoryTableController extends AdminMainController
         }
 
         if($id == '0'){
-            return redirect(route('category.Table_list',$request->input('category_id')))->with('Add.Done',"");
+            return redirect(route($this->PrefixRoute.'.Table_list',$request->input('category_id')))->with('Add.Done',"");
         }else{
-            return redirect(route('category.Table_list',$request->input('category_id')))->with('Edit.Done',"");
+            return redirect(route($this->PrefixRoute.'.Table_list',$request->input('category_id')))->with('Edit.Done',"");
         }
     }
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     TableSort
     public  function TableSort($id){
 
-        $sendArr = ['TitlePage' => $this->PageTitle ];
+        $sendArr = ['TitlePage' => $this->PageTitle ,'selMenu'=> $this->selMenu  ];
         $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
         $pageData['ViewType'] = "List";
 

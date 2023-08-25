@@ -2,12 +2,10 @@
 
 return
 [
-	'Attribute_Table' => 'Attribute Table',
-	'category' => 'Categories',
+	'OurClient' => 'Our Client',
 	'dashboard' => 'Home Pgae',
 	'lang_file_admin' => 'Admin Lang File',
 	'lang_file_web' => 'Web Lang File',
-	'product' => 'Product',
 	'roles' => 'Users &amp; Permissions',
 	'roles_permissions' => 'Permissions',
 	'roles_role' => 'Roles',
@@ -21,5 +19,8 @@ return
 	'setting_web' => 'Web Settings',
 	'uploadFilter' => 'Upload Filters',
 	'webPrivacy' => 'Privacy',
-	'OurClient' => 'Our Client',
+	'web_attribute_Table' => 'Attribute Table',
+	'web_category' => 'Categories',
+	'web_product' => 'Product',
+	'web_product_menu' => 'Web Product',
 ];

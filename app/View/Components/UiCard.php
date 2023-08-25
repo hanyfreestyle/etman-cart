@@ -99,7 +99,11 @@ class UiCard extends Component
             }elseif($pageData['ViewType'] == 'Edit'){
                 $this->title = __('admin/page.page_edit');
             }elseif($pageData['ViewType'] == 'List'){
-                $this->title = __('admin/page.page_list');
+                if(isset($pageData['TitlePage'])){
+                    $this->title = __('admin/page.page_list') . " ".$pageData['TitlePage'];
+                }else{
+                    $this->title = __('admin/page.page_list');
+                }
             }
         }
 

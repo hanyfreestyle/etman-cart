@@ -9,7 +9,7 @@
     @if ($cardHeaderView)
 
         <div class="card-header def_card_header" data-card-widget="{{$collapsedStyle}}">
-                        <h3 class="card-title {{$titleColor}} font-weight-normal ">{{$title}}</h3>
+            <h3 class="card-title {{$titleColor}} font-weight-normal ">{{$title}}</h3>
             <div class="card-tools">
                 @if($collapsed)
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
@@ -32,15 +32,17 @@
                         @endif
                     @endif
 
-                    @if( isset($pageData['Trashed']) and  $pageData['Trashed'] > 0)
-                        @can($pageData['RestoreRole'])
-                            <a href="{{$pageData['RestoreUrl']}}" class="btn btn-sm btn-danger">{{ __('admin/page.del_restor_but') }}</a>
-                        @endcan
-                    @endif
+                        @if( isset($pageData['Trashed']) and  $pageData['Trashed'] > 0)
+                            @can($pageData['RestoreRole'])
+                                <a href="{{$pageData['RestoreUrl']}}" class="btn btn-sm btn-danger">{{ __('admin/page.del_restor_but') }}</a>
+                            @endcan
+                        @endif
 
-
-
-
+                        @if( isset($pageData['ViewType']) and $pageData['ViewType'] == 'List' and isset($pageData['ConfigUrl']) )
+                            @can($pageData['EditRole'])
+                                <a href="{{$pageData['ConfigUrl']}}" class="btn btn-sm btn-dark"><i class="fas fa-cogs"></i></a>
+                            @endcan
+                        @endif
 
                     @if($showIcon)
                         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>

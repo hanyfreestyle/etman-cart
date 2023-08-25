@@ -44,7 +44,9 @@ class AdminHelper{
         $AddPage = AdminHelper::arrIsset($sendArr,'AddPage',__('admin/page.page_add'));
         $EditPage = AdminHelper::arrIsset($sendArr,'EditPage',__('admin/page.page_edit'));
         $restore = AdminHelper::arrIsset($sendArr,'restore','0');
+        $ConfigView = AdminHelper::arrIsset($sendArr,'ConfigView','0');
         $more_photo = AdminHelper::arrIsset($sendArr,'more_photo','0');
+        $prefix_Role = AdminHelper::arrIsset($sendArr,'prefix_Role',$controllerName);
 
         $data = [];
         $data['ControllerName'] = $controllerName;
@@ -59,13 +61,13 @@ class AdminHelper{
 
 
         $data['EditPageName'] = $EditPage;
-        $data['AddRole'] = $controllerName."_add" ;
+        $data['AddRole'] = $prefix_Role."_add" ;
+        $data['EditRole'] = $prefix_Role."_edit" ;
 
         if($restore == 1){
-            $data['RestoreRole'] = $controllerName."_restore" ;
+            $data['RestoreRole'] = $prefix_Role."_restore" ;
             $data['RestoreUrl'] = route($selMenu.($controllerName) . '.SoftDelete');
         }
-
 
         return $data;
     }

@@ -5,25 +5,23 @@
     <x-breadcrumb-def :pageData="$pageData"/>
 
     @if($pageData['ViewType'] == 'Edit')
-        <div class="content mb-3">
-            <div class="container-fluid">
-
-                <div class="row col-12">
-                    <div class="col-9">
-                        <h1 class="def_h1">{{ $Product->name }}</h1>
-                    </div>
-                    <div class="col-3 text-left">
-                        <x-action-button url="{{route('product.Table_list',$Product->id)}}"  bg="p"  print-lable="{{__('admin/def.table_info')}}"  icon="fas fa-info-circle"  />
-                    </div>
+        <x-html-section>
+            <div class="row col-12 mb-3">
+                <div class="col-9">
+                    <h1 class="def_h1">{{ $Product->name }}</h1>
+                </div>
+                <div class="col-3 text-left">
+                    <x-action-button url="{{route($PrefixRoute.'.Table_list',$Product->id)}}"  bg="p"  print-lable="{{__('admin/def.table_info')}}"  icon="fas fa-info-circle"  />
                 </div>
             </div>
-        </div>
+        </x-html-section>
     @endif
+
     <x-html-section>
         <x-ui-card :page-data="$pageData">
             <x-mass.confirm-massage />
 
-            <form  class="mainForm" action="{{route('product.update',intval($Product->id))}}" method="post"  enctype="multipart/form-data">
+            <form  class="mainForm" action="{{route($PrefixRoute.'.update',intval($Product->id))}}" method="post"  enctype="multipart/form-data">
                 @csrf
                 <x-form-select-category
                     name="category_id"
@@ -74,8 +72,8 @@
 
                 <x-form-upload-file view-type="{{$pageData['ViewType']}}" :row-data="$Product"
                                     :multiple="false"
-                                    thisfilterid="{{ \App\Helpers\AdminHelper::arrIsset($modelSettings,'category_filterid',0) }}"
-                                    emptyphotourl="product.emptyPhoto"  />
+                                    thisfilterid="{{ \App\Helpers\AdminHelper::arrIsset($modelSettings,$controllerName.'_filterid',0) }}"
+                                    :emptyphotourl="$PrefixRoute.'.emptyPhoto'"  />
 
                 <div class="container-fluid">
                     <x-form-submit text="{{$pageData['ViewType']}}" />

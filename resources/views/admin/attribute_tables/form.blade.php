@@ -10,7 +10,7 @@
 
                 <x-ui-card :page-data="$pageData">
                     <x-mass.confirm-massage />
-                    <form  class="mainForm" action="{{route('AttributeTables.update',intval($Attribute->id))}}" method="post"  enctype="multipart/form-data">
+                    <form  class="mainForm" action="{{route($PrefixRoute.'.update',intval($Attribute->id))}}" method="post"  enctype="multipart/form-data">
                         @csrf
 
                         <div class="row">

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-use App\Models\admin\Developer;
 use Illuminate\Support\Facades\View;
 use App\Helpers\AdminHelper;
 use App\Helpers\PuzzleUploadProcess;
@@ -17,24 +16,50 @@ class CategoryController extends AdminMainController
 {
     public $controllerName ;
     public $PageTitle ;
+    public $selMenu ;
+    public $PrefixRole ;
+    public $PrefixRoute ;
+    public $pageData ;
 
     function __construct(
+        $selMenu = 'webPro.',
         $controllerName = 'category',
+        $PrefixRole = 'category',
+        $PrefixRoute = '#',
+        $pageData = array(),
+
     )
     {
         parent::__construct();
         $this->controllerName = $controllerName;
-        $this->PageTitle = __('admin/menu.category');
+        $this->selMenu = $selMenu;
+        $this->PrefixRole = $PrefixRole;
+        $this->PrefixRoute = $this->selMenu.$this->controllerName ;
 
-        $this->middleware('permission:'.$controllerName.'_view', ['only' => ['index']]);
-        $this->middleware('permission:'.$controllerName.'_add', ['only' => ['create']]);
-        $this->middleware('permission:'.$controllerName.'_edit', ['only' => ['edit']]);
-        $this->middleware('permission:'.$controllerName.'_delete', ['only' => ['destroy']]);
-        $this->middleware('permission:'.$controllerName.'_restore', ['only' => ['SoftDeletes','Restore','ForceDeletes']]);
+
+        $this->PageTitle = __('admin/menu.web_category');
+
+        $this->middleware('permission:'.$PrefixRole.'_view', ['only' => ['index']]);
+        $this->middleware('permission:'.$PrefixRole.'_add', ['only' => ['create']]);
+        $this->middleware('permission:'.$PrefixRole.'_edit', ['only' => ['edit']]);
+        $this->middleware('permission:'.$PrefixRole.'_delete', ['only' => ['destroy']]);
+
 
         $viewDataTable = AdminHelper::arrIsset($this->modelSettings,$controllerName.'_datatable',0) ;
         View::share('viewDataTable', $viewDataTable);
         View::share('tableHeader', AdminHelper::Table_Style($viewDataTable));
+        View::share('PrefixRoute', $this->PrefixRoute);
+        View::share('PrefixRole', $PrefixRole);
+        View::share('controllerName', $controllerName);
+
+        $sendArr = [
+            'TitlePage' =>  $this->PageTitle ,
+            'selMenu'=> $this->selMenu,
+            'prefix_Role'=> $this->PrefixRole ,
+            'restore'=> 0 ,
+        ];
+        $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
+        $this->pageData = $pageData ;
 
     }
 
@@ -42,8 +67,7 @@ class CategoryController extends AdminMainController
 #|||||||||||||||||||||||||||||||||||||| #     index
     public function index()
     {
-        $sendArr = ['TitlePage' => $this->PageTitle ];
-        $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
+        $pageData = $this->pageData;
         $pageData['ViewType'] = "List";
         $pageData['SubView'] = false;
         if( Route::currentRouteName()== 'category.index_Main'){
@@ -58,8 +82,7 @@ class CategoryController extends AdminMainController
 #|||||||||||||||||||||||||||||||||||||| #     SubCategory
     public function SubCategory($id)
     {
-        $sendArr = ['TitlePage' => $this->PageTitle ,'restore'=> 0 ];
-        $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
+        $pageData = $this->pageData;
         $pageData['ViewType'] = "List";
         $pageData['SubView'] = true;
         $Categories = self::getSelectQuery(Category::defquery()->where('parent_id',$id));
@@ -68,13 +91,11 @@ class CategoryController extends AdminMainController
     }
 
 
-
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     create
     public function create()
     {
-        $sendArr = ['TitlePage' => $this->PageTitle ];
-        $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
+        $pageData = $this->pageData;
         $pageData['ViewType'] = "Add";
         $Categories = Category::tree()->with('translation')->get()->toTree();
         $Category = Category::findOrNew(0);
@@ -85,8 +106,7 @@ class CategoryController extends AdminMainController
 #|||||||||||||||||||||||||||||||||||||| #     edit
     public function edit($id)
     {
-        $sendArr = ['TitlePage' => $this->PageTitle ];
-        $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
+        $pageData = $this->pageData;
         $pageData['ViewType'] = "Edit";
         $Categories = Category::tree()->get()->toTree();
         $Category = Category::findOrFail($id);
@@ -125,7 +145,6 @@ class CategoryController extends AdminMainController
             $saveTranslation->save();
         }
 
-
         if($saveData->is_active == false){
             $trees = Category::find($id)->descendants()->pluck('id')->toArray()  ;
             if(count($trees) > 0 ){
@@ -137,10 +156,9 @@ class CategoryController extends AdminMainController
         }
 
         if($id == '0'){
-            return redirect(route('category.index'))->with('Add.Done',"");
+            return redirect(route($this->PrefixRoute.'.index'))->with('Add.Done',"");
         }else{
-            //return back();
-            return redirect(route('category.index'))->with('Edit.Done',"");
+            return redirect(route($this->PrefixRoute.'.index'))->with('Edit.Done',"");
         }
     }
 
@@ -164,18 +182,18 @@ class CategoryController extends AdminMainController
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #  updateStatus
-    public function updateStatus(Request $request ){
-        $thisId  = $request->send_id;
-        $updateData = Category::findOrFail($thisId);
-        if($updateData->is_active == '1'){
-            $updateData->is_active = '0';
-        }else{
-            $updateData->is_active = '1';
-        }
-        $updateData->save();
-        return response()->json(['success'=>$thisId]);
+#|||||||||||||||||||||||||||||||||||||| #     EmptyPhoto
+    public function config()
+    {
+        $pageData = $this->pageData;
+        $pageData['TitlePage'] = "اعدادات القسم";
+        $pageData['ViewType'] = "List";
+        $pageData['SubView'] = false;
+
+        return view('admin.product.config',compact('pageData'));
     }
+
+
 
 }
 

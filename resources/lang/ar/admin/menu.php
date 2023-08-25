@@ -2,12 +2,10 @@
 
 return
 [
-	'Attribute_Table' => 'جدول البيانات',
-	'category' => 'المجموعات',
+	'OurClient' => 'عملائنا',
 	'dashboard' => 'الصفحة الرئيسية',
 	'lang_file_admin' => 'ملفات اللغة لوحة التحكم',
 	'lang_file_web' => 'ملفات اللغة للموقع',
-	'product' => 'المنتجات',
 	'roles' => 'الاعضاء والصلاحيات',
 	'roles_permissions' => 'الاصلاحيات',
 	'roles_role' => 'مجموعات الصلاحيات',
@@ -21,5 +19,8 @@ return
 	'setting_web' => 'الاعدادات العامة',
 	'uploadFilter' => 'فلاتر الصور',
 	'webPrivacy' => 'سياسية الاستخدام',
-	'OurClient' => 'عملائنا',
+	'web_attribute_Table' => 'جدول البيانات',
+	'web_category' => 'المجموعات',
+	'web_product' => 'المنتجات',
+	'web_product_menu' => 'منتجات الموقع',
 ];

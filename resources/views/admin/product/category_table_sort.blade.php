@@ -9,11 +9,9 @@
             <div class="col-9">
                 <h1 class="def_h1">{{ $Category->name }}</h1>
             </div>
-
             <div class="col-3 text-left">
-                <x-action-button  url="{{route('category.Table_list', $Category->id)}}" print-lable="{{__('admin/form.button_back')}}" size="s"  bg="dark" icon="fas fa-hand-point-left"  />
+                <x-action-button  url="{{route($PrefixRoute.'.Table_list', $Category->id)}}" type="back" />
             </div>
-
         </div>
     </x-html-section>
 
@@ -41,41 +39,6 @@
 
 @push('JsCode')
     <script src="{{defAdminAssets('plugins/bootstrap/js/jquery-ui.min.js')}}"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-            $('.hanySort').sortable({
-
-                update: function (event, ui) {
-                    $(this).children().each(function (index) {
-                        if ($(this).attr('data-position') != (index+1)) {
-                            $(this).attr('data-position', (index+1)).addClass('updated');
-                        }
-                    });
-
-                    var positions = [];
-                    $('.updated').each(function () {
-                        positions.push([$(this).attr('data-index'), $(this).attr('data-position')]);
-                        $(this).removeClass('updated');
-                    });
-
-                    $.ajax({
-                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                        url: '{{ route('category.TableSortSave') }}',
-                        type: 'POST',
-                        dataType: 'text',
-                        data: {
-                            update: 1,
-                            positions: positions
-                        },
-                        success: function (response) {
-                            console.log(response);
-                        }
-                    });
-                }
-            });
-        });
-    </script>
+    <x-sort-ajax-code url="{{ route($PrefixRoute.'.TableSortSave') }}"/>
 @endpush
 

@@ -7,7 +7,6 @@ use App\Http\Controllers\AdminMainController;
 use App\Http\Requests\admin\AttributeTableRequest;
 use App\Models\admin\AttributeTable;
 use App\Models\admin\AttributeTableTranslation;
-use App\Models\admin\Category;
 use App\Models\admin\CategoryTable;
 use Illuminate\Support\Facades\View;
 
@@ -15,21 +14,50 @@ class AttributeTableController extends AdminMainController
 {
     public $controllerName ;
     public $PageTitle ;
+    public $selMenu ;
+    public $PrefixRole ;
+    public $PrefixRoute ;
+    public $pageData ;
 
-    function __construct($controllerName = 'category')
+    function __construct(
+        $selMenu = 'webPro.',
+        $controllerName = 'AttributeTables',
+        $PrefixRole = 'category',
+        $PrefixRoute = '#',
+        $pageData = array(),
+    )
     {
         parent::__construct();
+
         $this->controllerName = $controllerName;
-        $this->PageTitle = __('admin/menu.Attribute_Table');
-        $this->middleware('permission:'.$controllerName.'_view', ['only' => ['index']]);
-        $this->middleware('permission:'.$controllerName.'_add', ['only' => ['create']]);
-        $this->middleware('permission:'.$controllerName.'_edit', ['only' => ['edit']]);
-        $this->middleware('permission:'.$controllerName.'_delete', ['only' => ['destroy']]);
-        $this->middleware('permission:'.$controllerName.'_restore', ['only' => ['SoftDeletes','Restore','ForceDeletes']]);
+        $this->selMenu = $selMenu;
+        $this->PrefixRole = $PrefixRole;
+        $this->PrefixRoute = $this->selMenu.$this->controllerName ;
+
+        $this->PageTitle = __('admin/menu.web_attribute_Table');
+
+        $this->middleware('permission:'.$PrefixRole.'_view', ['only' => ['index']]);
+        $this->middleware('permission:'.$PrefixRole.'_add', ['only' => ['create']]);
+        $this->middleware('permission:'.$PrefixRole.'_edit', ['only' => ['edit']]);
+        $this->middleware('permission:'.$PrefixRole.'_delete', ['only' => ['destroy']]);
+        $this->middleware('permission:'.$PrefixRole.'_restore', ['only' => ['SoftDeletes','Restore','ForceDeletes']]);
 
         $viewDataTable = AdminHelper::arrIsset($this->modelSettings,$controllerName.'_datatable',0) ;
-        \Illuminate\Support\Facades\View::share('viewDataTable', $viewDataTable);
+        View::share('viewDataTable', $viewDataTable);
         View::share('tableHeader', AdminHelper::Table_Style($viewDataTable));
+        View::share('PrefixRoute', $this->PrefixRoute);
+        View::share('PrefixRole', $PrefixRole);
+
+
+        $sendArr = [
+            'TitlePage' =>  $this->PageTitle ,
+            'selMenu'=> $this->selMenu,
+            'prefix_Role'=> $this->PrefixRole ,
+            'restore'=> 1 ,
+            ];
+        $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
+        $this->pageData = $pageData ;
+
     }
 
 
@@ -37,12 +65,9 @@ class AttributeTableController extends AdminMainController
 #|||||||||||||||||||||||||||||||||||||| #     index
     public function index()
     {
-        $sendArr = ['TitlePage' =>  $this->PageTitle ,'restore'=> 0];
-        $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
+        $pageData = $this->pageData ;
         $pageData['ViewType'] = "List";
-        $pageData['AddPageUrl'] = route('AttributeTables.create');
-        $pageData['RestoreUrl'] = route('AttributeTables.SoftDelete');
-        $pageData['RestoreRole'] = 'category_restore';
+        $pageData['ConfigUrl'] =#;
 
         $pageData['Trashed'] = AttributeTable::onlyTrashed()->count();
         $Attributes = self::getSelectQuery(AttributeTable::query()->withCount('get_category_table'));
@@ -54,8 +79,7 @@ class AttributeTableController extends AdminMainController
 #|||||||||||||||||||||||||||||||||||||| #     SoftDeletes
     public function SoftDeletes()
     {
-        $sendArr = ['TitlePage' =>  $this->PageTitle ];
-        $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
+        $pageData = $this->pageData ;
         $pageData['ViewType'] = "deleteList";
         $Attributes = self::getSelectQuery(AttributeTable::onlyTrashed());
         return view('admin.attribute_tables.index',compact('pageData','Attributes'));
@@ -65,10 +89,9 @@ class AttributeTableController extends AdminMainController
 #|||||||||||||||||||||||||||||||||||||| #     create
     public function create()
     {
-        $sendArr = ['TitlePage' =>  $this->PageTitle ];
-        $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
+        $pageData = $this->pageData ;
         $pageData['ViewType'] = "Add";
-        $pageData['ListPageUrl'] =  route('AttributeTables.index');
+        $pageData['ListPageUrl'] =  route($this->PrefixRoute.'.index');
         $Attribute = AttributeTable::findOrNew(0);
         return view('admin.attribute_tables.form',compact('pageData','Attribute'));
     }
@@ -77,8 +100,7 @@ class AttributeTableController extends AdminMainController
 #|||||||||||||||||||||||||||||||||||||| #     edit
     public function edit($id)
     {
-        $sendArr = ['TitlePage' => $this->PageTitle ];
-        $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
+        $pageData = $this->pageData ;
         $pageData['ViewType'] = "Edit";
         $Attribute = AttributeTable::findOrFail($id);
         return view('admin.attribute_tables.form',compact('pageData','Attribute'));
@@ -108,10 +130,9 @@ class AttributeTableController extends AdminMainController
         }
 
         if($id == '0'){
-            return redirect(route('AttributeTables.index'))->with('Add.Done',"");
+            return redirect(route($this->PrefixRoute.'.index'))->with('Add.Done',"");
         }else{
-            // return back();
-            return redirect(route('AttributeTables.index'))->with('Edit.Done',"");
+            return redirect(route($this->PrefixRoute.'.index'))->with('Edit.Done',"");
         }
     }
 
@@ -121,7 +142,7 @@ class AttributeTableController extends AdminMainController
     {
         $deleteRow = AttributeTable::findOrFail($id);
         $deleteRow->delete();
-        return redirect(route('AttributeTables.index'))->with('confirmDelete',"");
+        return redirect(route($this->PrefixRoute.'.index'))->with('confirmDelete',"");
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

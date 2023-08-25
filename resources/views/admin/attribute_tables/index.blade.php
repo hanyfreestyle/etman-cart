@@ -7,6 +7,8 @@
 @section('content')
     <x-breadcrumb-def :pageData="$pageData"/>
     <x-html-section>
+
+
         <x-ui-card  :page-data="$pageData" >
             <x-mass.confirm-massage/>
 
@@ -27,10 +29,10 @@
                             @else
                                 <th class="tbutaction TD_50"></th>
                                 <th class="tbutaction TD_50"></th>
-                                @can('category_edit')
+                                @can($PrefixRole.'_edit')
                                     <th class="tbutaction TD_50"></th>
                                 @endcan
-                                @can('category_delete')
+                                @can($PrefixRole.'_delete')
                                     <th class="tbutaction TD_50"></th>
                                 @endcan
                             @endif
@@ -47,16 +49,16 @@
                                 <td>{{$row->translate('en')->name}}</td>
                                 @if($pageData['ViewType'] == 'deleteList')
                                     <td>{{$row->deleted_at}}</td>
-                                    <td class="tc"><x-action-button url="{{route('AttributeTables.restore',$row->id)}}" type="restor" /></td>
-                                    <td class="tc"><x-action-button url="#" id="{{route('AttributeTables.force',$row->id)}}" type="deleteSweet"/></td>
+                                    <td class="tc"><x-action-button url="{{route($PrefixRoute.'.restore',$row->id)}}" type="restor" /></td>
+                                    <td class="tc"><x-action-button url="#" id="{{route($PrefixRoute.'.force',$row->id)}}" type="deleteSweet"/></td>
                                 @else
                                     <td class="tc">{{$row->get_category_table_count}}</td>
                                     <td class="tc">{!! is_active($row->is_active) !!}</td>
-                                    @can('category_edit')
-                                        <td class="tc"><x-action-button url="{{route('AttributeTables.edit',$row->id)}}" type="edit" :tip="true" /></td>
+                                    @can($PrefixRole.'_edit')
+                                        <td class="tc"><x-action-button url="{{route($PrefixRoute.'.edit',$row->id)}}" type="edit" :tip="true" /></td>
                                     @endcan
-                                    @can('category_delete')
-                                        <td class=""><x-action-button url="#" id="{{route('AttributeTables.destroy',$row->id)}}" type="deleteSweet" :tip="true" /></td>
+                                    @can($PrefixRole.'_delete')
+                                        <td class=""><x-action-button url="#" id="{{route($PrefixRoute.'.destroy',$row->id)}}" type="deleteSweet" :tip="true" /></td>
                                     @endcan
                                 @endif
                             </tr>

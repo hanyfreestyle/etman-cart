@@ -1,7 +1,6 @@
 @extends('admin.layouts.app')
 
 @section('content')
-
     <x-breadcrumb-def :pageData="$pageData"/>
     <x-html-section>
         <div class="row mb-2">
@@ -9,13 +8,13 @@
                 <h1 class="def_h1">{{ $Category->name }}</h1>
             </div>
             <div class="col-3 text-left">
-                <x-action-button  url="{{route('category.Table_list', $Category->id)}}" print-lable="{{__('admin/form.button_back')}}" size="s"  bg="dark" icon="fas fa-hand-point-left"  />
+                <x-action-button  url="{{route($PrefixRoute.'.Table_list', $Category->id)}}" type="back" />
             </div>
         </div>
     </x-html-section>
     <x-html-section>
         <x-ui-card :page-data="$pageData" title="{{$CategoryTable->attributeName->name}}" >
-            <form  class="mainForm" action="{{route('category.Table_update',intval($CategoryTable->id))}}" method="post" >
+            <form  class="mainForm" action="{{route($PrefixRoute.'.Table_update',intval($CategoryTable->id))}}" method="post" >
                 @csrf
                 <input type="hidden" name="category_id" value="{{ $Category->id }}">
                 <input type="hidden" name="attribute_id" value="{{ $CategoryTable->attribute_id }}">

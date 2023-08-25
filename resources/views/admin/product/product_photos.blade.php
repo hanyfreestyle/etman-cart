@@ -10,7 +10,7 @@
                 <h1 class="def_h1">{{ $Product->translate()->name ?? "" }}</h1>
             </div>
             <div class="col-3 text-left">
-                <x-action-button  url="{{route('product.edit', $Product->id)}}" print-lable="{{__('admin/form.button_back')}}" size="s"  bg="dark" icon="fas fa-hand-point-left"  />
+                <x-action-button  url="{{route($PrefixRoute.'.edit', $Product->id)}}"  type="back" />
             </div>
         </div>
     </x-html-section>
@@ -24,7 +24,7 @@
                             <p class="PhotoImageCard"><img src="{{ defImagesDir($Photo->photo) }}"></p>
                             <div class="buttons mb-3" >
                                 @can('product_delete')
-                                    <td class="tc"><x-action-button url="#" id="{{route('product.More_PhotosDestroy',$Photo->id)}}"  type="deleteSweet"/></td>
+                                    <td class="tc"><x-action-button url="#" id="{{route($PrefixRoute.'.More_PhotosDestroy',$Photo->id)}}"  type="deleteSweet"/></td>
                                 @endcan
                             </div>
                         </div>
@@ -42,7 +42,7 @@
         <div class="row">
             <div class="col-lg-12">
 
-                <form  class="mainForm" action="{{route('product.More_PhotosAdd')}}" method="post"  enctype="multipart/form-data">
+                <form  class="mainForm" action="{{route($PrefixRoute.'.More_PhotosAdd')}}" method="post"  enctype="multipart/form-data">
                     @csrf
 
                     <input type="hidden" name="product_id" value="{{intval($Product->id)}}">
@@ -84,7 +84,7 @@
                     });
                     $.ajax({
                         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                        url: '{{ route('product.sortPhotoSave') }}',
+                        url: '{{ route($PrefixRoute.'.sortPhotoSave') }}',
                         type: 'POST',
                         dataType: 'text',
                         data: {

@@ -9,12 +9,29 @@ use Illuminate\View\Component;
 class DefSettings extends Component
 {
     public $modelname;
+    public $datatable;
+    public $orderby;
+    public $filterid;
+    public $orderbyDef;
+    public $orderbyPostion;
 
     public function __construct(
         $modelname = "",
+        $datatable = true,
+        $orderby = true,
+        $orderbyDef = "1",
+        $orderbyPostion = false,
+        $filterid = true,
+
     )
     {
         $this->modelname = $modelname;
+        $this->datatable = $datatable;
+        $this->orderby = $orderby;
+        $this->orderbyDef = $orderbyDef;
+        $this->orderbyPostion = $orderbyPostion;
+        $this->filterid = $filterid;
+
     }
 
     /**

@@ -6,17 +6,6 @@
 @section('content')
     <x-breadcrumb-def :pageData="$pageData"/>
 
-    {{--    <x-html-section>--}}
-    {{--        <ol class="breadcrumb breadcrumb_menutree">--}}
-    {{--            <li class="breadcrumb-item"><a href="{{route('category.index_Main')}}">{{__('admin/def.main_category')}}</a></li>--}}
-    {{--            @if($pageData['SubView'])--}}
-    {{--                @foreach($trees as $tree)--}}
-    {{--                    <li class="breadcrumb-item"><a href="{{route('category.SubCategory',$tree->id)}}">{{ $tree->name }}</a></li>--}}
-    {{--                @endforeach--}}
-    {{--            @endif--}}
-    {{--        </ol>--}}
-    {{--    </x-html-section>--}}
-
     <x-html-section>
         <x-ui-card  :page-data="$pageData" >
             <x-mass.confirm-massage/>
@@ -35,31 +24,32 @@
                             <th class="tbutaction TD_50"></th>
                             <th class="tbutaction TD_50"></th>
 
-                            @can('category_edit')
+                            @can($PrefixRole.'_edit')
                                 <th class="tbutaction TD_50"></th>
                             @endcan
-                            @can('category_delete')
+                            @can($PrefixRole.'_delete')
                                 <th class="tbutaction TD_50"></th>
                             @endcan
                         </tr>
                         </thead>
                         <tbody>
+
                         @foreach($Products as $Product)
                             <tr>
                                 <td>{{$Product->id}}</td>
                                 <td class="tc">{!!  \App\Helpers\AdminHelper::printTableImage($Product,'photo') !!} </td>
                                 <td>{{ $Product->translate('ar')->name}}</td>
                                 <td>{{ $Product->translate('en')->name}}</td>
-                                <td><a href="{{route('product.ListCategory',$Product->categoryName->id)}}">{{ $Product->categoryName->name }}</a></td>
+                                <td><a href="{{route($PrefixRoute.'.ListCategory',$Product->categoryName->id)}}">{{ $Product->categoryName->name }}</a></td>
 
                                 <td class="tc" >{!! is_active($Product->is_active) !!}</td>
-                                @can('category_edit')
-                                    <td class="tc"><x-action-button url="{{route('product.More_Photos',$Product->id)}}"  count="{{$Product->more_photos_count}}" type="morePhoto" :tip="true" /></td>
-                                    <td class="tc"><x-action-button url="{{route('product.edit',$Product->id)}}" type="edit" :tip="true" /></td>
+                                @can($PrefixRole.'_edit')
+                                    <td class="tc"><x-action-button url="{{route($PrefixRoute.'.More_Photos',$Product->id)}}"  count="{{$Product->more_photos_count}}" type="morePhoto" :tip="true" /></td>
+                                    <td class="tc"><x-action-button url="{{route($PrefixRoute.'.edit',$Product->id)}}" type="edit" :tip="true" /></td>
                                 @endcan
 
-                                @can('category_delete')
-                                    <td class=""><x-action-button url="#" id="{{route('product.destroy',$Product->id)}}" type="deleteSweet" :tip="true" /></td>
+                                @can($PrefixRole.'_delete')
+                                    <td class=""><x-action-button url="#" id="{{route($PrefixRoute.'.destroy',$Product->id)}}" type="deleteSweet" :tip="true" /></td>
                                 @endcan
                             </tr>
                         @endforeach
@@ -82,6 +72,5 @@
 @push('JsCode')
     <x-sweet-delete-err/>
     <x-sweet-delete-js-no-form/>
-    {{--    <x-ajax-update-status-js-code url="{{ route('product.updateStatus') }}"/>--}}
     <x-data-table-plugins :jscode="true" :is-active="$viewDataTable" />
 @endpush
