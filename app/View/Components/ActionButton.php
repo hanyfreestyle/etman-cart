@@ -106,6 +106,12 @@ class ActionButton extends Component
                     $this->printLable =  __('admin/form.button_back');
                     break;
 
+                case 'data_table':
+                    $this->icon = 'fas fa-info-circle';
+                    $this->bg = getBgColor('dark');
+                    $this->printLable =  __('admin/def.table_info');
+                    break;
+
 
                 case 'morePhoto':
                     $this->icon = 'fas fa-images';

@@ -12,6 +12,7 @@ class DefSettings extends Component
     public $datatable;
     public $orderby;
     public $filterid;
+    public $morePhotoFilterid;
     public $orderbyDef;
     public $orderbyPostion;
 
@@ -22,6 +23,7 @@ class DefSettings extends Component
         $orderbyDef = "1",
         $orderbyPostion = false,
         $filterid = true,
+        $morePhotoFilterid = false,
 
     )
     {
@@ -31,6 +33,7 @@ class DefSettings extends Component
         $this->orderbyDef = $orderbyDef;
         $this->orderbyPostion = $orderbyPostion;
         $this->filterid = $filterid;
+        $this->morePhotoFilterid = $morePhotoFilterid;
 
     }
 

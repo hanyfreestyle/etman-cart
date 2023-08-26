@@ -42,18 +42,6 @@ Route::get('/category/Table/Sort/{project_id}',[CategoryTableController::class,'
 Route::post('/category/Table/SaveSort', [CategoryTableController::class,'TableSortSave'])->name('webPro.category.TableSortSave');
 
 
-Route::get('/AttributeTables',[AttributeTableController::class,'index'])->name('webPro.AttributeTables.index');
-Route::get('/AttributeTables/create',[AttributeTableController::class,'create'])->name('webPro.AttributeTables.create');
-Route::get('/AttributeTables/edit/{id}',[AttributeTableController::class,'edit'])->name('webPro.AttributeTables.edit');
-Route::post('/AttributeTables/update/{id}',[AttributeTableController::class,'storeUpdate'])->name('webPro.AttributeTables.update');
-Route::get('/AttributeTables/destroy/{id}',[AttributeTableController::class,'destroy'])->name('webPro.AttributeTables.destroy');
-Route::get('/AttributeTables/SoftDelete/',[AttributeTableController::class,'SoftDeletes'])->name('webPro.AttributeTables.SoftDelete');
-Route::get('/AttributeTables/restore/{id}',[AttributeTableController::class,'restored'])->name('webPro.AttributeTables.restore');
-Route::get('/AttributeTables/force/{id}',[AttributeTableController::class,'ForceDeletes'])->name('webPro.AttributeTables.force');
-
-
-
-
 Route::get('/Product',[ProductController::class,'index'])->name('webPro.Product.index');
 Route::get('/Product/ListCategory/{Categoryid}',[ProductController::class,'ListCategory'])->name('webPro.Product.ListCategory');
 Route::get('/Product/create',[ProductController::class,'create'])->name('webPro.Product.create');
@@ -62,9 +50,21 @@ Route::get('/Product/destroy/{id}',[ProductController::class,'destroy'])->name('
 Route::post('/Product/update/{id}',[ProductController::class,'storeUpdate'])->name('webPro.Product.update');
 Route::get('/Product/emptyPhoto/{id}', [ProductController::class,'emptyPhoto'])->name('webPro.Product.emptyPhoto');
 
+Route::get('/product/TableList/{id}',[ProductController::class,'TableList'])->name('webPro.Product.Table_list');
+
 Route::get('/Product/photos/{id}',[ProductController::class,'ListMorePhoto'])->name('webPro.Product.More_Photos');
 Route::post('/Product/saveSort', [ProductController::class,'sortPhotoSave'])->name('webPro.Product.sortPhotoSave');
 Route::post('/Product/AddMore',[ProductController::class,'AddMorePhotos'])->name('webPro.Product.More_PhotosAdd');
 Route::get('/Product/PhotoDel/{id}',[ProductController::class,'More_PhotosDestroy'])->name('webPro.Product.More_PhotosDestroy');
 
-Route::get('/product/TableList/{id}',[ProductController::class,'TableList'])->name('webPro.Product.Table_list');
+
+
+
+Route::get('/AttributeTables',[AttributeTableController::class,'index'])->name('webPro.AttributeTables.index');
+Route::get('/AttributeTables/create',[AttributeTableController::class,'create'])->name('webPro.AttributeTables.create');
+Route::get('/AttributeTables/edit/{id}',[AttributeTableController::class,'edit'])->name('webPro.AttributeTables.edit');
+Route::post('/AttributeTables/update/{id}',[AttributeTableController::class,'storeUpdate'])->name('webPro.AttributeTables.update');
+Route::get('/AttributeTables/destroy/{id}',[AttributeTableController::class,'destroy'])->name('webPro.AttributeTables.destroy');
+Route::get('/AttributeTables/SoftDelete/',[AttributeTableController::class,'SoftDeletes'])->name('webPro.AttributeTables.SoftDelete');
+Route::get('/AttributeTables/restore/{id}',[AttributeTableController::class,'restored'])->name('webPro.AttributeTables.restore');
+Route::get('/AttributeTables/force/{id}',[AttributeTableController::class,'ForceDeletes'])->name('webPro.AttributeTables.force');

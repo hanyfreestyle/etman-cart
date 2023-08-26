@@ -13,8 +13,6 @@
             <input type="hidden" value="0" name="{{$modelname}}_datatable">
         @endif
 
-
-
         @php
             if($orderbyPostion == false){
                     unset($OrderByArr[5]);
@@ -27,11 +25,14 @@
             <input type="hidden" value="{{$orderbyDef}}" name="{{$modelname}}_orderby">
         @endif
 
-
-
         @if($filterid)
             <x-form-select-arr  label="{{__('admin/def.form_selectFilterLable')}}" name="{{$modelname}}_filterid" colrow="col-lg-3"
                                 sendvalue="{{old($modelname.'_filterid',\App\Helpers\AdminHelper::arrIsset($modelSettings,$modelname.'_filterid',0))}}" :send-arr="$filterTypes"/>
+        @endif
+
+        @if($morePhotoFilterid)
+            <x-form-select-arr  label="{{__('admin/def.form_selectFilterMorePhoto')}}" name="{{$modelname}}_morephoto_filterid" colrow="col-lg-3"
+                                sendvalue="{{old($modelname.'_morephoto_filterid',\App\Helpers\AdminHelper::arrIsset($modelSettings,$modelname.'_morephoto_filterid',0))}}" :send-arr="$filterTypes"/>
         @endif
 
 

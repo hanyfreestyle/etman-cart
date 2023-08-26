@@ -43,21 +43,21 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($Categories as $row)
+                        @foreach($Categories as $Category)
                             <tr>
-                                <td>{{$row->id}}</td>
-                                <td class="tc">{!!  \App\Helpers\AdminHelper::printTableImage($row,'photo') !!} </td>
-                                <td>{!! \App\Helpers\AdminHelper::print_count_name('ar',$row,$PrefixRoute.".SubCategory") !!}</td>
-                                <td>{!!  \App\Helpers\AdminHelper::print_count_name('en',$row,$PrefixRoute.".SubCategory") !!}</td>
-                                <td class="tc" >{!! is_active($row->is_active) !!}</td>
+                                <td>{{$Category->id}}</td>
+                                <td class="tc">{!!  \App\Helpers\AdminHelper::printTableImage($Category,'photo') !!} </td>
+                                <td>{!! \App\Helpers\AdminHelper::print_count_name('ar',$Category,$PrefixRoute.".SubCategory") !!}</td>
+                                <td>{!!  \App\Helpers\AdminHelper::print_count_name('en',$Category,$PrefixRoute.".SubCategory") !!}</td>
+                                <td class="tc" >{!! is_active($Category->is_active) !!}</td>
                                 @can($PrefixRole.'_edit')
-                                    <td class="tc"><x-action-button url="{{route($PrefixRoute.'.Table_list',$row->id)}}" count="{{$row->table_data_count}}"  print-lable="{{__('admin/def.table_info')}}"  icon="fas fa-info-circle" :tip="true" /></td>
-                                    <td class="tc"><x-action-button url="{{route($PrefixRoute.'.edit',$row->id)}}" type="edit" :tip="true" /></td>
+                                    <td class="tc"><x-action-button url="{{route($PrefixRoute.'.Table_list',$Category->id)}}" count="{{$Category->table_data_count}}"  print-lable="{{__('admin/def.table_info')}}"  icon="fas fa-info-circle" :tip="true" /></td>
+                                    <td class="tc"><x-action-button url="{{route($PrefixRoute.'.edit',$Category->id)}}" type="edit" :tip="true" /></td>
                                 @endcan
 
                                 @can($PrefixRole.'_delete')
-                                    @if($row->children_count == 0)
-                                        <td class=""><x-action-button url="#" id="{{route($PrefixRoute.'.destroy',$row->id)}}" type="deleteSweet" :tip="true" /></td>
+                                    @if($Category->children_count == 0)
+                                        <td class=""><x-action-button url="#" id="{{route($PrefixRoute.'.destroy',$Category->id)}}" type="deleteSweet" :tip="true" /></td>
                                     @else
                                         <td class=""><x-action-button url="#" id="sometext" type="deleteSweet_err" :tip="true" /></td>
                                     @endif

@@ -44,12 +44,11 @@
 
                 <form  class="mainForm" action="{{route($PrefixRoute.'.More_PhotosAdd')}}" method="post"  enctype="multipart/form-data">
                     @csrf
-
                     <input type="hidden" name="product_id" value="{{intval($Product->id)}}">
                     <input type="hidden" name="name" value="{{ $Product->translate('en')->slug }}">
                     <x-form-upload-file view-type="Add" :row-data="$Product"
                                         :multiple="true"
-                                        thisfilterid="4"
+                                        thisfilterid="{{ \App\Helpers\AdminHelper::arrIsset($modelSettings,$controllerName.'_morephoto_filterid',0) }}"
                     />
                     <div class="container-fluid">
                         <x-form-submit text="Add" />
@@ -65,39 +64,7 @@
 
 @push('JsCode')
     <x-sweet-delete-js-no-form/>
-
     <script src="{{defAdminAssets('plugins/bootstrap/js/jquery-ui.min.js')}}"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('.hanySort').sortable({
-                update: function (event, ui) {
-                    $(this).children().each(function (index) {
-                        if ($(this).attr('data-position') != (index+1)) {
-                            $(this).attr('data-position', (index+1)).addClass('updated');
-                        }
-                    });
-                    var positions = [];
-                    $('.updated').each(function () {
-                        positions.push([$(this).attr('data-index'), $(this).attr('data-position')]);
-                        $(this).removeClass('updated');
-                    });
-                    $.ajax({
-                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                        url: '{{ route($PrefixRoute.'.sortPhotoSave') }}',
-                        type: 'POST',
-                        dataType: 'text',
-                        data: {
-                            update: 1,
-                            positions: positions
-                        },
-                        success: function (response) {
-                            console.log(response);
-                        }
-                    });
-                }
-            });
-        });
-    </script>
+    <x-sort-ajax-code url="{{ route($PrefixRoute.'.sortPhotoSave') }}" />
 @endpush
 

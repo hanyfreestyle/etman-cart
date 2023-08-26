@@ -19,12 +19,12 @@
                             <th class="TD_20"></th>
                             <th>{{__('admin/def.form_name_ar')}}</th>
                             <th>{{__('admin/def.form_name_en')}}</th>
-                            <th>{{__('admin/def.form_name_en')}}</th>
+                            <th>{{__('admin/def.Category')}}</th>
 
                             <th class="tbutaction TD_50"></th>
-                            <th class="tbutaction TD_50"></th>
-
                             @can($PrefixRole.'_edit')
+                                <th class="tbutaction TD_50"></th>
+                                <th class="tbutaction TD_50"></th>
                                 <th class="tbutaction TD_50"></th>
                             @endcan
                             @can($PrefixRole.'_delete')
@@ -44,6 +44,7 @@
 
                                 <td class="tc" >{!! is_active($Product->is_active) !!}</td>
                                 @can($PrefixRole.'_edit')
+                                    <td class="tc"><x-action-button url="{{route($PrefixRoute.'.Table_list',$Product->id)}}" count="{{$Product->table_data_count}}"  print-lable="{{__('admin/def.table_info')}}"  icon="fas fa-info-circle" :tip="true" /></td>
                                     <td class="tc"><x-action-button url="{{route($PrefixRoute.'.More_Photos',$Product->id)}}"  count="{{$Product->more_photos_count}}" type="morePhoto" :tip="true" /></td>
                                     <td class="tc"><x-action-button url="{{route($PrefixRoute.'.edit',$Product->id)}}" type="edit" :tip="true" /></td>
                                 @endcan

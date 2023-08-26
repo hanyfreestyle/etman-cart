@@ -6,12 +6,13 @@
 
     @if($pageData['ViewType'] == 'Edit')
         <x-html-section>
-            <div class="row col-12 mb-3">
+            <div class="row mb-3">
                 <div class="col-9">
                     <h1 class="def_h1">{{ $Product->name }}</h1>
                 </div>
                 <div class="col-3 text-left">
-                    <x-action-button url="{{route($PrefixRoute.'.Table_list',$Product->id)}}"  bg="p"  print-lable="{{__('admin/def.table_info')}}"  icon="fas fa-info-circle"  />
+                    <x-action-button url="{{route($PrefixRoute.'.More_Photos',$Product->id)}}" type="morePhoto"/>
+                    <x-action-button url="{{route($PrefixRoute.'.Table_list',$Product->id)}}" type="data_table"/>
                 </div>
             </div>
         </x-html-section>
@@ -32,7 +33,6 @@
                     colrow="col-lg-6 "
                     :send-arr="$Categories"
                     forcategory="false"
-
                 />
 
                 <div class="row">
@@ -65,7 +65,6 @@
 
                 <div class="row">
                     <x-form-check-active :row="$Product" name="is_active" page-view="{{$pageData['ViewType']}}"/>
-                    {{--                    <x-form-check-active :row="$Product"  lable="تفعيل المحتوى المرتبط" name="active_all" page-view="Add"/>--}}
                 </div>
 
                 <hr>
