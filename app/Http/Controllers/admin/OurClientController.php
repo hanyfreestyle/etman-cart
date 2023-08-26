@@ -17,24 +17,50 @@ class OurClientController extends AdminMainController
 {
     public $controllerName ;
     public $PageTitle ;
+    public $selMenu ;
+    public $PrefixRole ;
+    public $PrefixRoute ;
+    public $pageData ;
 
     function __construct(
+
+        $selMenu = '',
         $controllerName = 'OurClient',
+        $PrefixRole = 'OurClient',
+        $PrefixRoute = '#',
+        $pageData = array(),
+
     )
     {
         parent::__construct();
+
         $this->controllerName = $controllerName;
+        $this->selMenu = $selMenu;
+        $this->PrefixRole = $PrefixRole;
+        $this->PrefixRoute = $this->selMenu.$this->controllerName ;
         $this->PageTitle = __('admin/menu.OurClient');
 
-        $this->middleware('permission:'.$controllerName.'_view', ['only' => ['index']]);
-        $this->middleware('permission:'.$controllerName.'_add', ['only' => ['create']]);
-        $this->middleware('permission:'.$controllerName.'_edit', ['only' => ['edit']]);
-        $this->middleware('permission:'.$controllerName.'_delete', ['only' => ['destroy']]);
-        $this->middleware('permission:'.$controllerName.'_restore', ['only' => ['SoftDeletes','Restore','ForceDeletes']]);
+        $this->middleware('permission:'.$PrefixRole.'_view', ['only' => ['index']]);
+        $this->middleware('permission:'.$PrefixRole.'_add', ['only' => ['create']]);
+        $this->middleware('permission:'.$PrefixRole.'_edit', ['only' => ['edit','config']]);
+        $this->middleware('permission:'.$PrefixRole.'_delete', ['only' => ['destroy']]);
+        $this->middleware('permission:'.$PrefixRole.'_restore', ['only' => ['SoftDeletes','Restore','ForceDeletes']]);
 
         $viewDataTable = AdminHelper::arrIsset($this->modelSettings,$controllerName.'_datatable',0) ;
         View::share('viewDataTable', $viewDataTable);
         View::share('tableHeader', AdminHelper::Table_Style($viewDataTable));
+        View::share('PrefixRoute', $this->PrefixRoute);
+        View::share('PrefixRole', $PrefixRole);
+        View::share('controllerName', $controllerName);
+        $sendArr = [
+            'TitlePage' =>  $this->PageTitle ,
+            'selMenu'=> $this->selMenu,
+            'prefix_Role'=> $this->PrefixRole ,
+            'restore'=> 0 ,
+        ];
+        $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
+        $this->pageData = $pageData ;
+
 
     }
 
@@ -43,22 +69,19 @@ class OurClientController extends AdminMainController
 #|||||||||||||||||||||||||||||||||||||| #     index
     public function index()
     {
-        $sendArr = ['TitlePage' => $this->PageTitle ];
-        $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
+        $pageData = $this->pageData;
         $pageData['ViewType'] = "List";
-        $pageData['SubView'] = false;
+        $pageData['ConfigUrl'] = route('OurClient.Config');
         $OurClients = self::getSelectQuery(OurClient::defquery());
         return view('admin.our_client.index',compact('pageData','OurClients'));
     }
-
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     create
     public function create()
     {
-        $sendArr = ['TitlePage' => $this->PageTitle ];
-        $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
+        $pageData = $this->pageData;
         $pageData['ViewType'] = "Add";
         $Client = OurClient::findOrNew(0);
         return view('admin.our_client.form',compact('pageData','Client'));
@@ -68,10 +91,8 @@ class OurClientController extends AdminMainController
 #|||||||||||||||||||||||||||||||||||||| #     edit
     public function edit($id)
     {
-        $sendArr = ['TitlePage' => $this->PageTitle ];
-        $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
+        $pageData = $this->pageData;
         $pageData['ViewType'] = "Edit";
-
         $Client = OurClient::findOrFail($id);
         return view('admin.our_client.form',compact('pageData','Client'));
     }
@@ -80,7 +101,6 @@ class OurClientController extends AdminMainController
 #|||||||||||||||||||||||||||||||||||||| #     storeUpdate
     public function storeUpdate(OurClientRequest $request, $id=0)
     {
-
         $saveData =  OurClient::findOrNew($id);
         $saveData->setActive((bool) request('is_active', false));
         $saveData->save();
@@ -106,13 +126,11 @@ class OurClientController extends AdminMainController
         }
 
        if($id == '0'){
-            return redirect(route('OurClient.index'))->with('Add.Done',"");
+            return redirect(route($this->PrefixRoute.'.index'))->with('Add.Done',"");
         }else{
-            return redirect(route('OurClient.index'))->with('Edit.Done',"");
+            return redirect(route($this->PrefixRoute.'.index'))->with('Edit.Done',"");
         }
     }
-
-
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     destroy
@@ -123,6 +141,7 @@ class OurClientController extends AdminMainController
         $deleteRow->delete();
         return back()->with('confirmDelete',"");
     }
+
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     EmptyPhoto
@@ -137,8 +156,7 @@ class OurClientController extends AdminMainController
 #|||||||||||||||||||||||||||||||||||||| #     Sort
     public  function Sort(){
 
-        $sendArr = ['TitlePage' => $this->PageTitle  ];
-        $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
+        $pageData = $this->pageData;
         $pageData['ViewType'] = "List";
 
         $OurClient = OurClient::with('translation')
@@ -159,6 +177,17 @@ class OurClientController extends AdminMainController
             $saveData->save();
         }
         return response()->json(['success'=>$positions]);
+    }
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     config
+    public function config()
+    {
+        $pageData = $this->pageData;
+        $pageData['TitlePage'] = __('admin/def.model_config');
+        $pageData['ViewType'] = "List";
+        return view('admin.our_client.config',compact('pageData'));
     }
 
 }

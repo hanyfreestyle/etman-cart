@@ -7,7 +7,7 @@
     <x-html-section>
         <div class="row mb-3">
             <div class="col-12 text-left">
-                <x-action-button  url="{{route('OurClient.index')}}"  type="back" />
+                <x-action-button  url="{{route($PrefixRoute.'.index')}}"  type="back" />
             </div>
         </div>
     </x-html-section>
@@ -36,6 +36,6 @@
 
 @push('JsCode')
     <script src="{{defAdminAssets('plugins/bootstrap/js/jquery-ui.min.js')}}"></script>
-    <x-sort-ajax-code url="{{ route('OurClient.SaveSort') }}"/>
+    <x-sort-ajax-code url="{{ route($PrefixRoute.'.SaveSort') }}"/>
 @endpush
 

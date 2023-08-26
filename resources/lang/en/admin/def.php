@@ -22,4 +22,5 @@ return
 	'status_active' => 'Active',
 	'status_unactive' => 'UnActive',
 	'table_info' => 'Information Table',
+	'model_config' => 'Model Settings',
 ];

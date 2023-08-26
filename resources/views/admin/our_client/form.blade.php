@@ -8,11 +8,8 @@
         <x-ui-card :page-data="$pageData">
             <x-mass.confirm-massage />
 
-            <form  class="mainForm" action="{{route('OurClient.update',intval($Client->id))}}" method="post"  enctype="multipart/form-data">
+            <form  class="mainForm" action="{{route($PrefixRoute.'.update',intval($Client->id))}}" method="post"  enctype="multipart/form-data">
                 @csrf
-
-
-
                 <div class="row">
                     @foreach ( config('app.lang_file') as $key=>$lang )
                         <div class="col-lg-6 {{getColDir($key)}}">
@@ -37,21 +34,17 @@
                     @endforeach
                 </div>
 
-{{--                <x-meta-tage-filde :old-data="$Client" :placeholder="false" />--}}
-
-                <hr>
 
                 <div class="row">
                     <x-form-check-active :row="$Client" name="is_active" page-view="{{$pageData['ViewType']}}"/>
-                    {{--                    <x-form-check-active :row="$Client"  lable="تفعيل المحتوى المرتبط" name="active_all" page-view="Add"/>--}}
                 </div>
 
                 <hr>
 
                 <x-form-upload-file view-type="{{$pageData['ViewType']}}" :row-data="$Client"
                                     :multiple="false"
-                                    thisfilterid="{{ \App\Helpers\AdminHelper::arrIsset($modelSettings,'OurClient_filterid',0) }}"
-                                    emptyphotourl="OurClient.emptyPhoto"  />
+                                    thisfilterid="{{ \App\Helpers\AdminHelper::arrIsset($modelSettings,$controllerName.'_filterid',0) }}"
+                                    :emptyphotourl="$PrefixRoute.'.emptyPhoto'"  />
 
                 <div class="container-fluid">
                     <x-form-submit text="{{$pageData['ViewType']}}" />

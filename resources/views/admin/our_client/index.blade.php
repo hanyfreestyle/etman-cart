@@ -9,7 +9,7 @@
     <x-html-section>
         <div class="row mb-3">
             <div class="col-12 text-left">
-                <x-action-button  url="{{route('OurClient.Sort')}}" type="sort" />
+                <x-action-button  url="{{route($PrefixRoute.'.Sort')}}" type="sort" />
             </div>
         </div>
     </x-html-section>
@@ -31,11 +31,10 @@
 
                             <th class="tbutaction TD_50"></th>
 
-
-                            @can('OurClient_edit')
+                            @can($PrefixRole.'_edit')
                                 <th class="tbutaction TD_50"></th>
                             @endcan
-                            @can('OurClient_delete')
+                            @can($PrefixRole.'_delete')
                                 <th class="tbutaction TD_50"></th>
                             @endcan
                         </tr>
@@ -48,12 +47,12 @@
                                 <td>{{ $row->translate('ar')->name}}</td>
                                 <td>{{ $row->translate('en')->name}}</td>
                                 <td class="tc" >{!! is_active($row->is_active) !!}</td>
-                                @can('OurClient_edit')
-                                    <td class="tc"><x-action-button url="{{route('OurClient.edit',$row->id)}}" type="edit" :tip="true" /></td>
+                                @can($PrefixRole.'_edit')
+                                    <td class="tc"><x-action-button url="{{route($PrefixRoute.'.edit',$row->id)}}" type="edit" :tip="true" /></td>
                                 @endcan
 
-                                @can('OurClient_delete')
-                                    <td class=""><x-action-button url="#" id="{{route('OurClient.destroy',$row->id)}}" type="deleteSweet" :tip="true" /></td>
+                                @can($PrefixRole.'_delete')
+                                    <td class=""><x-action-button url="#" id="{{route($PrefixRoute.'.destroy',$row->id)}}" type="deleteSweet" :tip="true" /></td>
                                 @endcan
                             </tr>
                         @endforeach

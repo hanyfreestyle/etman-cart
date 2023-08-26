@@ -23,7 +23,7 @@ Route::post('/OurClient/update/{id}',[OurClientController::class,'storeUpdate'])
 Route::get('/OurClient/emptyPhoto/{id}', [OurClientController::class,'emptyPhoto'])->name('OurClient.emptyPhoto');
 Route::get('/OurClient/Sort',[OurClientController::class,'Sort'])->name('OurClient.Sort');
 Route::post('/OurClient/SaveSort', [OurClientController::class,'SaveSort'])->name('OurClient.SaveSort');
-
+Route::get('/OurClient/Config',[OurClientController::class,'config'])->name('OurClient.Config');
 
 Route::get('/Category',[CategoryController::class,'index'])->name('webPro.category.index');
 Route::get('/Category/Main',[CategoryController::class,'index'])->name('webPro.category.index_Main');
@@ -63,11 +63,6 @@ Route::post('/Product/Table/update/{id}',[ProductTableController::class,'TableSt
 Route::get('/Product/Table/destroy/{id}',[ProductTableController::class,'TableDestroy'])->name('webPro.Product.Table_destroy');
 Route::get('/Product/Table/Sort/{project_id}',[ProductTableController::class,'TableSort'])->name('webPro.Product.Table_Sort');
 Route::post('/Product/Table/SaveSort', [ProductTableController::class,'TableSortSave'])->name('webPro.Product.TableSortSave');
-
-
-
-
-
 
 
 

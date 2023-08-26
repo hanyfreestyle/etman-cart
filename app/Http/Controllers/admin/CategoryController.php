@@ -182,7 +182,7 @@ class CategoryController extends AdminMainController
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     EmptyPhoto
+#|||||||||||||||||||||||||||||||||||||| #     config
     public function config()
     {
         $pageData = $this->pageData;

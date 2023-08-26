@@ -22,4 +22,5 @@ return
 	'status_active' => 'فعال',
 	'status_unactive' => 'غير فعال',
 	'table_info' => 'جدول البيانات',
+	'model_config' => 'اعدادات القسم',
 ];

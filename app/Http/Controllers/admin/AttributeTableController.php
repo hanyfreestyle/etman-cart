@@ -68,7 +68,7 @@ class AttributeTableController extends AdminMainController
     {
         $pageData = $this->pageData ;
         $pageData['ViewType'] = "List";
-        $pageData['ConfigUrl'] =#;
+        $pageData['ConfigUrl'] = '#';
 
         $pageData['Trashed'] = AttributeTable::onlyTrashed()->count();
         $Attributes = self::getSelectQuery(AttributeTable::query()
