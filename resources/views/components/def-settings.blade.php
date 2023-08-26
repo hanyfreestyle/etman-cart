@@ -13,6 +13,17 @@
             <input type="hidden" value="0" name="{{$modelname}}_datatable">
         @endif
 
+
+        @if($editor)
+            <x-form-select-arr  label="{{ __('admin/config/settings.set_editor') }}" name="{{$modelname}}_editor" colrow="col-lg-3"
+                                sendvalue="{{old($modelname.'_editor',\App\Helpers\AdminHelper::arrIsset($modelSettings,$modelname.'_editor',0))}}" select-type="selActive"/>
+        @else
+            <input type="hidden" value="0" name="{{$modelname}}_editor">
+        @endif
+
+
+
+
         @php
             if($orderbyPostion == false){
                     unset($OrderByArr[5]);

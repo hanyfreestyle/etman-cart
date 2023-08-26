@@ -52,7 +52,9 @@ class BlogPostController extends AdminMainController
         $this->middleware('permission:'.$PrefixRole.'_restore', ['only' => ['SoftDeletes','Restore','ForceDeletes']]);
 
         $viewDataTable = AdminHelper::arrIsset($this->modelSettings,$controllerName.'_datatable',0) ;
+        $viewEditor = AdminHelper::arrIsset($this->modelSettings,$controllerName.'_editor',0) ;
         View::share('viewDataTable', $viewDataTable);
+        View::share('viewEditor', $viewEditor);
         View::share('tableHeader', AdminHelper::Table_Style($viewDataTable));
         View::share('PrefixRoute', $this->PrefixRoute);
         View::share('PrefixRole', $PrefixRole);

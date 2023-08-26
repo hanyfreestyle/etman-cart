@@ -74,15 +74,18 @@
 
 
 @push('JsCode')
-{{--    <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>--}}
-{{--    <script>--}}
-{{--        CKEDITOR.config.height = 450;--}}
-{{--        //  CKEDITOR.config.contentsCss = "https://realestate.eg/css/bootstrap.min.css";--}}
-{{--        CKEDITOR.replace('en[des]');--}}
-{{--        CKEDITOR.replace('ar[des]', {--}}
-{{--            contentsLangDirection: 'rtl',--}}
-{{--        });--}}
-{{--    </script>--}}
-{{--    <x-google-seo-script/>--}}
+    @if($viewEditor)
+        <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
+        <script>
+            CKEDITOR.config.height = 450;
+            //  CKEDITOR.config.contentsCss = "https://realestate.eg/css/bootstrap.min.css";
+            CKEDITOR.replace('en[des]');
+            CKEDITOR.replace('ar[des]', {
+                contentsLangDirection: 'rtl',
+            });
+        </script>
+
+    @endif
+    <x-google-seo-script/>
     <x-slug-name-script :pagetype="$pageData['ViewType']" />
 @endpush

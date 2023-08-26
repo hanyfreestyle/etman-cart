@@ -9,7 +9,7 @@
             <div class="alert alert-dark alert-dismissible">
                 {{ __('admin/menu.blog') }}
             </div>
-            <x-def-settings :modelname="$controllerName" :more-photo-filterid="true" :orderby-date="true"  >
+            <x-def-settings :modelname="$controllerName" :more-photo-filterid="true" :orderby-date="true" :editor="true"  >
 
             </x-def-settings>
 
