@@ -3,6 +3,7 @@
 return
 [
 	'OurClient' => 'Our Client',
+	'blog' => 'News',
 	'dashboard' => 'Home Pgae',
 	'lang_file_admin' => 'Admin Lang File',
 	'lang_file_web' => 'Web Lang File',
@@ -23,5 +24,5 @@ return
 	'web_category' => 'Categories',
 	'web_product' => 'Product',
 	'web_product_menu' => 'Web Product',
-	'blog' => 'News',
+	'web_banner' => 'Banner',
 ];

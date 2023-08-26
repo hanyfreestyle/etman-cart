@@ -9,7 +9,7 @@
             <div class="alert alert-dark alert-dismissible">
                 {{ __('admin/menu.OurClient') }}
             </div>
-            <x-def-settings :modelname="$controllerName"  :orderby-postion="t">
+            <x-def-settings :modelname="$controllerName"  :orderby-postion="true">
 
             </x-def-settings>
 

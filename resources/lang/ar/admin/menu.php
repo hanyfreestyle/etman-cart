@@ -3,6 +3,7 @@
 return
 [
 	'OurClient' => 'عملائنا',
+	'blog' => 'الاخبار',
 	'dashboard' => 'الصفحة الرئيسية',
 	'lang_file_admin' => 'ملفات اللغة لوحة التحكم',
 	'lang_file_web' => 'ملفات اللغة للموقع',
@@ -23,5 +24,5 @@ return
 	'web_category' => 'المجموعات',
 	'web_product' => 'المنتجات',
 	'web_product_menu' => 'منتجات الموقع',
-	'blog' => 'الاخبار',
+	'web_banner' => 'البانر',
 ];

@@ -10,6 +10,10 @@ use App\Models\admin\Category;
 use App\Models\admin\config\WebPrivacy;
 use Database\Seeders\admin\AttributeTableSeeder;
 use Database\Seeders\admin\AttributeTableTranslationSeeder;
+use Database\Seeders\admin\BannerCategorySeeder;
+use Database\Seeders\admin\BannerCategoryTranslationSeeder;
+use Database\Seeders\admin\BannerSeeder;
+use Database\Seeders\admin\BannerTranslationSeeder;
 use Database\Seeders\admin\BlogPostSeeder;
 use Database\Seeders\admin\BlogPostTranslationSeeder;
 use Database\Seeders\admin\CategorySeeder;
@@ -92,5 +96,11 @@ class DatabaseSeeder extends Seeder
 
         $this->call(BlogPostSeeder::class);
         $this->call(BlogPostTranslationSeeder::class);
+
+        $this->call(BannerCategorySeeder::class);
+        $this->call(BannerCategoryTranslationSeeder::class);
+        $this->call(BannerSeeder::class);
+        $this->call(BannerTranslationSeeder::class);
+
     }
 }

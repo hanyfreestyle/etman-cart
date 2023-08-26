@@ -119,6 +119,36 @@
         ],
 
 
+
+
+        [
+            'view'=>true,
+            'sel_routs'=>'Banners',
+            'type'=>'many',
+            'text'=> 'admin/menu.web_banner',
+            'icon'=>'fas fa-images',
+            'roleView'=>'Banner_view',
+            'submenu'=>[
+                [
+                    'sel_routs'=> 'BannerCat',
+                    'url'=> 'Banners.BannerCat.index',
+                    'roleView'=>'Banner_view',
+                    'text'=> 'admin/menu.web_category',
+                    'icon'=>'fas fa-sitemap'
+                ],
+                [
+                    'sel_routs'=> 'Banner',
+                    'url'=> 'Banners.Banner.index',
+                    'roleView'=>'Banner_view',
+                    'text'=> 'admin/menu.web_banner',
+                    'icon'=>'fas fa-images'
+                ],
+
+
+            ],
+        ],
+
+
     ],
 
 ];

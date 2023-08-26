@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Helpers\AdminHelper;
 use App\Http\Controllers\AdminMainController;
 
+use App\Models\admin\Banner;
+use App\Models\admin\BannerTranslation;
 use App\Models\admin\BlogPost;
 use App\Models\admin\BlogPostTranslation;
 use App\Models\admin\Category;
@@ -523,4 +525,94 @@ class GetOldDataController extends AdminMainController
     }
 
 
+    public function index_Banner()
+    {
+        $old_Category = DB::connection('mysql2')->table('banner')->get();
+        foreach ($old_Category as $oneCategory)
+        {
+            $data = [
+                'id' => $oneCategory->id,
+                'category_id' => $oneCategory->cat_id,
+                'photo' => $oneCategory->photo,
+                'photo_thum_1' => $oneCategory->photo_t,
+                'is_active' =>1,
+                'created_at' =>now(),
+                'updated_at' =>now(),
+            ];
+            Banner::unguard();
+            Banner::create($data);
+        }
+    }
+    public function index_BannerTranslation()
+    {
+        $old_Category = DB::connection('mysql2')->table('banner')->get();
+        foreach ($old_Category as $oneCategory)
+        {
+            $data = [
+                'banner_id' => $oneCategory->id,
+                'locale' => 'ar',
+                'name' => $oneCategory->name,
+                'des' => $oneCategory->des,
+                'other' => $oneCategory->other,
+                'url' => $oneCategory->url,
+            ];
+
+            BannerTranslation::unguard();
+            BannerTranslation::create($data);
+
+            $data = [
+                'banner_id' => $oneCategory->id,
+                'locale' => 'en',
+                'name' => $oneCategory->name_en,
+                'des' => $oneCategory->des_en,
+                'other' => $oneCategory->other_en,
+                'url' => $oneCategory->url_en,
+            ];
+            BannerTranslation::unguard();
+            BannerTranslation::create($data);
+        }
+    }
+    public function index_BannerPhoto()
+    {
+        $Categories = Banner::query()
+            ->with('translation')
+            ->get()
+        ;
+
+        // dd($Categories);
+
+        foreach ($Categories as $Category){
+            $file = public_path($Category->photo);
+            $saveImage =  Image::make($file);
+            $saveDir = 'images/banner/'.$Category->id ;
+            $uploadPath  = public_path($saveDir);
+            if(!File::isDirectory($uploadPath)){
+                File::makeDirectory($uploadPath, 0777, true, true);
+            }
+            $getName = AdminHelper::Url_Slug($Category->translate('en')->name) ;
+            $newName =  AdminHelper::file_newname($uploadPath,$getName.'.webp') ;
+            $saveImage->save($uploadPath.'/'.$newName, 65, 'webp');
+
+            $SaveDb = $saveDir."/".$saveImage->basename ;
+            $Category->photo = $SaveDb ;
+            $Category->save() ;
+
+
+            $file = public_path($Category->photo_thum_1);
+            $saveImage =  Image::make($file);
+            $uploadPath  = public_path('images/banner/'.$Category->id);
+            if(!File::isDirectory($uploadPath)){
+                File::makeDirectory($uploadPath, 0777, true, true);
+            }
+            $getName = AdminHelper::Url_Slug($Category->translate('en')->name) ;
+            $newName =  AdminHelper::file_newname($uploadPath,$getName.'.webp') ;
+            $saveImage->save($uploadPath.'/'.$newName, 65, 'webp');
+
+            $SaveDb = $saveDir."/".$saveImage->basename ;
+            $Category->photo_thum_1 = $SaveDb ;
+
+            $Category->save() ;
+
+        }
+    }
 }
