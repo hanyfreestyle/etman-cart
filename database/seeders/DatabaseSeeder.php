@@ -5,10 +5,13 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 
+use App\Models\admin\BlogPost;
 use App\Models\admin\Category;
 use App\Models\admin\config\WebPrivacy;
 use Database\Seeders\admin\AttributeTableSeeder;
 use Database\Seeders\admin\AttributeTableTranslationSeeder;
+use Database\Seeders\admin\BlogPostSeeder;
+use Database\Seeders\admin\BlogPostTranslationSeeder;
 use Database\Seeders\admin\CategorySeeder;
 use Database\Seeders\admin\CategoryTableSeeder;
 use Database\Seeders\admin\CategoryTableTranslationSeeder;
@@ -87,6 +90,7 @@ class DatabaseSeeder extends Seeder
         $this->call(OurClientSeeder::class);
         $this->call(OurClientTranslationSeeder::class);
 
-
+        $this->call(BlogPostSeeder::class);
+        $this->call(BlogPostTranslationSeeder::class);
     }
 }

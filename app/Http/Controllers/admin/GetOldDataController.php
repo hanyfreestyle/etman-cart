@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Helpers\AdminHelper;
 use App\Http\Controllers\AdminMainController;
 
+use App\Models\admin\BlogPost;
+use App\Models\admin\BlogPostTranslation;
 use App\Models\admin\Category;
 use App\Models\admin\CategoryTable;
 use App\Models\admin\CategoryTableTranslation;
@@ -425,4 +427,100 @@ class GetOldDataController extends AdminMainController
 
         }
     }
+
+
+    public function index_LastNews()
+    {
+        $old_Category = DB::connection('mysql2')->table('lastnews')->get();
+        foreach ($old_Category as $oneCategory)
+        {
+            $data = [
+                'id' => $oneCategory->id,
+                'photo' => $oneCategory->photo,
+                'photo_thum_1' => $oneCategory->photo_t,
+                'is_active' =>1,
+                'created_at' =>now(),
+                'updated_at' =>now(),
+                'published_at' =>now(),
+            ];
+            BlogPost::unguard();
+            BlogPost::create($data);
+        }
+    }
+    public function index_BlogPostTranslation()
+    {
+        $old_Category = DB::connection('mysql2')->table('lastnews')->get();
+        foreach ($old_Category as $oneCategory)
+        {
+            $data = [
+                'blog_id' => $oneCategory->id,
+                'locale' => 'ar',
+                'name' => $oneCategory->name,
+                'slug' => $oneCategory->name_m,
+                'des' => $oneCategory->des,
+                'g_title' => $oneCategory->g_name,
+                'g_des' => $oneCategory->g_des,
+            ];
+
+            BlogPostTranslation::unguard();
+            BlogPostTranslation::create($data);
+
+            $data = [
+                'blog_id' => $oneCategory->id,
+                'locale' => 'en',
+                'name' => $oneCategory->name_en,
+                'slug' => $oneCategory->name_m_en,
+                'des' => $oneCategory->des_en,
+                'g_title' => $oneCategory->g_name_en,
+                'g_des' => $oneCategory->g_des_en,
+            ];
+            BlogPostTranslation::unguard();
+            BlogPostTranslation::create($data);
+        }
+    }
+    public function index_BlogPost_Photo()
+    {
+        $Categories = BlogPost::query()
+            ->with('translation')
+            ->get()
+        ;
+
+        // dd($Categories);
+
+        foreach ($Categories as $Category){
+            $file = public_path($Category->photo);
+            $saveImage =  Image::make($file);
+            $saveDir = 'images/blog/'.$Category->id ;
+            $uploadPath  = public_path($saveDir);
+            if(!File::isDirectory($uploadPath)){
+                File::makeDirectory($uploadPath, 0777, true, true);
+            }
+            $getName = AdminHelper::Url_Slug($Category->translate('en')->name) ;
+            $newName =  AdminHelper::file_newname($uploadPath,$getName.'.webp') ;
+            $saveImage->save($uploadPath.'/'.$newName, 65, 'webp');
+
+            $SaveDb = $saveDir."/".$saveImage->basename ;
+            $Category->photo = $SaveDb ;
+            $Category->save() ;
+
+
+            $file = public_path($Category->photo_thum_1);
+            $saveImage =  Image::make($file);
+            $uploadPath  = public_path('images/blog/'.$Category->id);
+            if(!File::isDirectory($uploadPath)){
+                File::makeDirectory($uploadPath, 0777, true, true);
+            }
+            $getName = AdminHelper::Url_Slug($Category->translate('en')->name) ;
+            $newName =  AdminHelper::file_newname($uploadPath,$getName.'.webp') ;
+            $saveImage->save($uploadPath.'/'.$newName, 65, 'webp');
+
+            $SaveDb = $saveDir."/".$saveImage->basename ;
+            $Category->photo_thum_1 = $SaveDb ;
+
+            $Category->save() ;
+
+        }
+    }
+
+
 }

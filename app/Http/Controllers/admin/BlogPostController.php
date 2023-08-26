@@ -5,23 +5,18 @@ namespace App\Http\Controllers\admin;
 use App\Helpers\AdminHelper;
 use App\Helpers\PuzzleUploadProcess;
 use App\Http\Controllers\AdminMainController;
-
-use App\Http\Requests\admin\AttributeTableRequest;
 use App\Http\Requests\admin\BlogPostRequest;
 use App\Http\Requests\admin\ProductPhotoRequest;
-use App\Http\Requests\admin\ProductRequest;
-use App\Models\admin\AttributeTable;
-use App\Models\admin\AttributeTableTranslation;
 use App\Models\admin\BlogPost;
 use App\Models\admin\BlogPostPhoto;
 use App\Models\admin\BlogPostTranslation;
-use App\Models\admin\CategoryTable;
-use App\Models\admin\Product;
-use App\Models\admin\ProductPhoto;
-use App\Models\admin\ProductTable;
-use App\Models\admin\ProductTranslation;
+use App\Models\admin\OurClient;
+use App\Models\admin\OurClientTranslation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\View;
+use DB;
+use Intervention\Image\Facades\Image;
 
 class BlogPostController extends AdminMainController
 {
@@ -72,6 +67,8 @@ class BlogPostController extends AdminMainController
         $this->pageData = $pageData ;
     }
 
+
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     index
     public function index()
@@ -81,10 +78,7 @@ class BlogPostController extends AdminMainController
         $pageData['ConfigUrl'] = route('BlogPost.Config');
 
         $pageData['Trashed'] = BlogPost::onlyTrashed()->count();
-        $BlogPosts = self::getSelectQuery(BlogPost::defquery()
-//            ->withCount('get_category_table')
-//            ->withCount('get_product_table')
-        );
+        $BlogPosts = self::getSelectQuery(BlogPost::defquery());
         return view('admin.blog.blog_index',compact('pageData','BlogPosts'));
     }
 
