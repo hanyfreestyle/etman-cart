@@ -17,6 +17,11 @@
             if($orderbyPostion == false){
                     unset($OrderByArr[5]);
             }
+
+            if($orderbyDate == false){
+                  unset($OrderByArr[6]);
+                  unset($OrderByArr[7]);
+            }
         @endphp
         @if($orderby)
             <x-form-select-arr  label="{{__('admin/config/settings.set_orderBy')}}" name="{{$modelname}}_orderby" colrow="col-lg-3" :send-arr="$OrderByArr"

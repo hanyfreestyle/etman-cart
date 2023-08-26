@@ -73,12 +73,12 @@ class PermissionSeeder extends Seeder
             ['cat_id'=> '12', 'name' => 'OurClient_edit','name_ar'=>'تعديل','name_en'=>'Edit'],
             ['cat_id'=> '12', 'name' => 'OurClient_delete','name_ar'=>'حذف','name_en'=>'Delete'],
 
-//
-//            ['cat_id'=> '13', 'name' => 'developer_view','name_ar'=>'عرض','name_en'=>'View'],
-//            ['cat_id'=> '13', 'name' => 'developer_add','name_ar'=>'اضافة','name_en'=>'Add'],
-//            ['cat_id'=> '13', 'name' => 'developer_edit','name_ar'=>'تعديل','name_en'=>'Edit'],
-//            ['cat_id'=> '13', 'name' => 'developer_delete','name_ar'=>'حذف','name_en'=>'Delete'],
-//            ['cat_id'=> '13', 'name' => 'developer_restore','name_ar'=>'استعادة المحذوف','name_en'=>'Restore'],
+
+            ['cat_id'=> '13', 'name' => 'BlogPost_view','name_ar'=>'عرض','name_en'=>'View'],
+            ['cat_id'=> '13', 'name' => 'BlogPost_add','name_ar'=>'اضافة','name_en'=>'Add'],
+            ['cat_id'=> '13', 'name' => 'BlogPost_edit','name_ar'=>'تعديل','name_en'=>'Edit'],
+            ['cat_id'=> '13', 'name' => 'BlogPost_delete','name_ar'=>'حذف','name_en'=>'Delete'],
+            ['cat_id'=> '13', 'name' => 'BlogPost_restore','name_ar'=>'استعادة المحذوف','name_en'=>'Restore'],
 //
 //            ['cat_id'=> '14', 'name' => 'project_view','name_ar'=>'عرض','name_en'=>'View'],
 //            ['cat_id'=> '14', 'name' => 'project_add','name_ar'=>'اضافة','name_en'=>'Add'],

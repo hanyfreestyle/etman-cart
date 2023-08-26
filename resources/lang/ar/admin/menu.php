@@ -23,4 +23,5 @@ return
 	'web_category' => 'المجموعات',
 	'web_product' => 'المنتجات',
 	'web_product_menu' => 'منتجات الموقع',
+	'blog' => 'الاخبار',
 ];

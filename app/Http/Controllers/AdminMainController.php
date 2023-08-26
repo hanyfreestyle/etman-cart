@@ -67,7 +67,10 @@ class AdminMainController extends Controller
             "2"=> ['id'=>'2','name'=> __('admin/config/settings.sort_id_ASC')],
             "3"=> ['id'=>'3','name'=> __('admin/config/settings.sort_name_DESC')],
             "4"=> ['id'=>'4','name'=> __('admin/config/settings.sort_name_ASC')],
-            "5"=> ['id'=>'5','name'=>'الترتيب'],
+            "5"=> ['id'=>'5','name'=> __('admin/config/settings.sort_postion')],
+            "6"=> ['id'=>'6','name'=> __('admin/config/settings.sort_date_ASC')],
+            "7"=> ['id'=>'7','name'=> __('admin/config/settings.sort_date_DESC')],
+
         ];
         View::share('OrderByArr', $OrderByArr);
 
@@ -113,7 +116,12 @@ class AdminMainController extends Controller
             case 5:
                 $query->orderBy('postion','ASC');
                 break;
-
+            case 6:
+                $query->orderBy('published_at','ASC');
+                break;
+            case 7:
+                $query->orderBy('published_at','DESC');
+                break;
             default:
         }
         if($dataTable == '1'){

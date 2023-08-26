@@ -23,4 +23,5 @@ return
 	'web_category' => 'Categories',
 	'web_product' => 'Product',
 	'web_product_menu' => 'Web Product',
+	'blog' => 'News',
 ];

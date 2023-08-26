@@ -7,9 +7,9 @@
     <x-html-section-with-card>
         <div class="col-lg-12 pt-3">
             <div class="alert alert-dark alert-dismissible">
-                {{ __('admin/menu.OurClient') }}
+                {{ __('admin/menu.blog') }}
             </div>
-            <x-def-settings :modelname="$controllerName"  :orderby-postion="t">
+            <x-def-settings :modelname="$controllerName" :more-photo-filterid="true" :orderby-date="true"  >
 
             </x-def-settings>
 

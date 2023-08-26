@@ -15,6 +15,7 @@ class DefSettings extends Component
     public $morePhotoFilterid;
     public $orderbyDef;
     public $orderbyPostion;
+    public $orderbyDate;
 
     public function __construct(
         $modelname = "",
@@ -22,6 +23,7 @@ class DefSettings extends Component
         $orderby = true,
         $orderbyDef = "1",
         $orderbyPostion = false,
+        $orderbyDate = false,
         $filterid = true,
         $morePhotoFilterid = false,
 
@@ -34,6 +36,7 @@ class DefSettings extends Component
         $this->orderbyPostion = $orderbyPostion;
         $this->filterid = $filterid;
         $this->morePhotoFilterid = $morePhotoFilterid;
+        $this->orderbyDate = $orderbyDate;
 
     }
 
