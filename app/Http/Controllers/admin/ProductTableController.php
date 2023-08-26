@@ -4,16 +4,20 @@ namespace App\Http\Controllers\admin;
 
 use App\Helpers\AdminHelper;
 use App\Http\Controllers\AdminMainController;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\admin\CategoryTableRequest;
+use App\Http\Requests\admin\ProductTableRequest;
 use App\Models\admin\AttributeTable;
 use App\Models\admin\Category;
 use App\Models\admin\CategoryTable;
 use App\Models\admin\CategoryTableTranslation;
+use App\Models\admin\Product;
+use App\Models\admin\ProductTable;
+use App\Models\admin\ProductTableTranslation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
-
-class CategoryTableController extends AdminMainController
+class ProductTableController extends AdminMainController
 {
     public $controllerName ;
     public $PageTitle ;
@@ -23,8 +27,8 @@ class CategoryTableController extends AdminMainController
 
     function __construct(
         $selMenu = 'webPro.',
-        $controllerName = 'category',
-        $PrefixRole = 'category',
+        $controllerName = 'Product',
+        $PrefixRole = 'product',
         $PrefixRoute = '#',
     )
     {
@@ -49,6 +53,8 @@ class CategoryTableController extends AdminMainController
         View::share('PrefixRole', $PrefixRole);
     }
 
+
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     TableList
     public  function TableList($id){
@@ -58,28 +64,29 @@ class CategoryTableController extends AdminMainController
         $pageData['ViewType'] = "List";
 
 
-        $Category = Category::findOrFail($id) ;
-        $CategoryTable = CategoryTable::where('category_id','=',$id)
+        $Product = Product::findOrFail($id) ;
+        $ProductTable = ProductTable::where('product_id','=',$id)
             ->with('attributeName')
             ->orderBy('postion')
             ->paginate(15);
 
-        $CategoryTableAdd = CategoryTable::where('category_id',$Category->id)
+        $ProductTableAdd = ProductTable::where('product_id',$Product->id)
             ->pluck('attribute_id')
             ->toArray();
-        $AttributeList = AttributeTable::where('is_active',1)->whereNotIn('id',$CategoryTableAdd)->get();
+        $AttributeList = AttributeTable::where('is_active',1)->whereNotIn('id',$ProductTableAdd)->get();
 
-        return view('admin.product.category_table_index',compact('CategoryTable','pageData','Category','AttributeList'));
+        return view('admin.product.product_table_index',compact('ProductTable','pageData','Product','AttributeList'));
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     TableDestroy
     public function TableDestroy($id)
     {
-        $deleteRow = CategoryTable::findOrFail($id);
+        $deleteRow = ProductTable::findOrFail($id);
         $deleteRow->forceDelete();
-        return redirect(route($this->PrefixRoute.'.Table_list',$deleteRow->category_id))->with('confirmDelete',"");
+        return redirect(route($this->PrefixRoute.'.Table_list',$deleteRow->product_id))->with('confirmDelete',"");
     }
+
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     TableEdit
@@ -89,36 +96,36 @@ class CategoryTableController extends AdminMainController
         $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
         $pageData['ViewType'] = "Edit";
 
-        $CategoryTable = CategoryTable::findOrFail($id);
-        $Category = Category::findOrFail($CategoryTable->category_id) ;
+        $ProductTable = ProductTable::findOrFail($id);
+        $Product = Product::findOrFail($ProductTable->product_id) ;
 
-        return view('admin.product.category_table_form',compact('CategoryTable','pageData','Category'));
+        return view('admin.product.product_table_form',compact('ProductTable','pageData','Product'));
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     TableStoreUpdate
-    public function TableStoreUpdate(CategoryTableRequest $request, $id=0)
+    public function TableStoreUpdate(ProductTableRequest $request, $id=0)
     {
 
-        $saveData =  CategoryTable::findOrNew($id);
-        $saveData->category_id = $request->input('category_id');
+        $saveData =  ProductTable::findOrNew($id);
+        $saveData->product_id = $request->input('product_id');
         $saveData->attribute_id = $request->input('attribute_id');
         $saveData->save();
 
         foreach ( config('app.lang_file') as $key=>$lang) {
-            $saveTranslation = CategoryTableTranslation::where('category_table_id',$saveData->id)
+            $saveTranslation = ProductTableTranslation::where('product_table_id',$saveData->id)
                 ->where('locale',$key)
                 ->firstOrNew();
-            $saveTranslation->category_table_id = $saveData->id;
+            $saveTranslation->product_table_id = $saveData->id;
             $saveTranslation->locale = $key;
             $saveTranslation->des = $request->input($key.'.des');
             $saveTranslation->save();
         }
 
         if($id == '0'){
-            return redirect(route($this->PrefixRoute.'.Table_list',$request->input('category_id')))->with('Add.Done',"");
+            return redirect(route($this->PrefixRoute.'.Table_list',$request->input('product_id')))->with('Add.Done',"");
         }else{
-            return redirect(route($this->PrefixRoute.'.Table_list',$request->input('category_id')))->with('Edit.Done',"");
+            return redirect(route($this->PrefixRoute.'.Table_list',$request->input('product_id')))->with('Edit.Done',"");
         }
     }
 
@@ -130,13 +137,13 @@ class CategoryTableController extends AdminMainController
         $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
         $pageData['ViewType'] = "List";
 
-        $CategoryTable = CategoryTable::where('category_id','=',$id)
+        $ProductTable = ProductTable::where('product_id','=',$id)
             ->with('attributeName')
             ->orderBy('postion')
             ->paginate(10);
-        $Category = Category::findOrFail($id) ;
+        $Product = Product::findOrFail($id) ;
 
-        return view('admin.product.category_table_sort',compact('CategoryTable','pageData','Category'));
+        return view('admin.product.product_table_sort',compact('ProductTable','pageData','Product'));
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -146,11 +153,14 @@ class CategoryTableController extends AdminMainController
         foreach($positions as $position) {
             $id = $position[0];
             $newPosition = $position[1];
-            $saveData =  CategoryTable::findOrFail($id) ;
+            $saveData =  ProductTable::findOrFail($id) ;
             $saveData->postion = $newPosition;
             $saveData->save();
         }
         return response()->json(['success'=>$positions]);
     }
+
+
+
 
 }

@@ -29,45 +29,15 @@ class AttributeTable extends Model implements TranslatableContract
     {
         parent::boot();
 
-//        static::restored(function($accountsNew) {
-//            dd('dddd');
-//            $accountsNew->onlyTrashed()->get_category_table()->restore();
-//        });
         static::deleted(function($account) {
             $account->get_category_table()->delete();
+
+        });
+        static::deleted(function($account) {
+            $account->get_product_table()->delete();
         });
 
    }
-
-
-
-
-//    protected static function booted()
-//    {
-
-//
-
-//    }
-
-
-//    protected static function boot()
-//    {
-//        parent::boot();
-//
-//        static::deleting(function ($attribute) {
-//            foreach ($attribute->get_category_table()->get() as $parent) {
-//                $parent->delete();
-//            }
-//        });
-//
-//        static::restoring(function ($attribute) {
-//            foreach ($attribute->get_category_table()->get() as $parent) {
-//                $parent->restore();
-//            }
-//        });
-//
-//    }
-
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #    setActive
@@ -83,5 +53,11 @@ class AttributeTable extends Model implements TranslatableContract
         return $this->hasMany(CategoryTable::class,'attribute_id','id')->withTrashed();
     }
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #
+    public function get_product_table(): HasMany
+    {
+        return $this->hasMany(ProductTable::class,'attribute_id','id')->withTrashed();
+    }
 
 }

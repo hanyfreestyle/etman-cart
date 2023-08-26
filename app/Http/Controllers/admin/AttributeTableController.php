@@ -8,6 +8,7 @@ use App\Http\Requests\admin\AttributeTableRequest;
 use App\Models\admin\AttributeTable;
 use App\Models\admin\AttributeTableTranslation;
 use App\Models\admin\CategoryTable;
+use App\Models\admin\ProductTable;
 use Illuminate\Support\Facades\View;
 
 class AttributeTableController extends AdminMainController
@@ -70,7 +71,10 @@ class AttributeTableController extends AdminMainController
         $pageData['ConfigUrl'] =#;
 
         $pageData['Trashed'] = AttributeTable::onlyTrashed()->count();
-        $Attributes = self::getSelectQuery(AttributeTable::query()->withCount('get_category_table'));
+        $Attributes = self::getSelectQuery(AttributeTable::query()
+            ->withCount('get_category_table')
+            ->withCount('get_product_table')
+        );
         return view('admin.attribute_tables.index',compact('pageData','Attributes'));
     }
 
@@ -149,10 +153,23 @@ class AttributeTableController extends AdminMainController
 #|||||||||||||||||||||||||||||||||||||| #     Restore
     public function restored($id)
     {
-        $subList = AttributeTable::where('id',$id)->with('get_category_table')->withTrashed()->firstOrFail();
-        foreach ($subList->get_category_table as $list ){
-            CategoryTable::onlyTrashed()->where('id',$list->id)->restore();
+        $subList = AttributeTable::where('id',$id)
+            ->with('get_category_table')
+            ->with('get_product_table')
+            ->withTrashed()->firstOrFail();
+
+        if(count($subList->get_category_table) > 0){
+            foreach ($subList->get_category_table as $list ){
+                CategoryTable::onlyTrashed()->where('id',$list->id)->restore();
+            }
         }
+
+        if(count($subList->get_product_table) > 0){
+            foreach ($subList->get_product_table as $list ){
+                ProductTable::onlyTrashed()->where('id',$list->id)->restore();
+            }
+        }
+
         AttributeTable::onlyTrashed()->where('id',$id)->restore();
         return back()->with('restore',"");
     }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2023 at 10:37 PM
+-- Generation Time: Aug 26, 2023 at 01:50 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -45,7 +45,13 @@ INSERT INTO `attribute_table_translations` (`id`, `attribute_id`, `locale`, `nam
 (17, 9, 'ar', 'السطح'),
 (18, 9, 'en', 'Surface Finishing'),
 (19, 10, 'ar', 'وحدة البيع'),
-(20, 10, 'en', 'Sale Unit');
+(20, 10, 'en', 'Sale Unit'),
+(21, 11, 'ar', 'المادة الخام'),
+(22, 11, 'en', 'Materials'),
+(23, 12, 'ar', 'الالوان المتاحة'),
+(24, 12, 'en', 'Color'),
+(25, 13, 'ar', 'الوزن'),
+(26, 13, 'en', 'Weight');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

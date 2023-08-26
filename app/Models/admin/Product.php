@@ -34,11 +34,24 @@ class Product extends Model implements TranslatableContract
         return $this->belongsTo(Category::class,'category_id','id')->with('translation');
     }
 
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     table_data
+    public function table_data(): HasMany
+    {
+        return $this->hasMany(ProductTable::class , 'product_id', 'id' );
+    }
+
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #
     public function scopeDefquery(Builder $query): Builder
     {
-        return $query->with('translations')->with('categoryName');
+        return $query->with('translations')
+            ->with('categoryName')
+            ->withCount('table_data')
+            ->withCount('more_photos')
+            ;
     }
 
 
@@ -46,4 +59,8 @@ class Product extends Model implements TranslatableContract
     {
         return $this->hasMany(ProductPhoto::class,'product_id','id');
     }
+
+
+
+
 }

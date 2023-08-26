@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\CategoryTableController;
 use App\Http\Controllers\admin\OurClientController;
 use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\admin\ProductTableController;
 use App\Http\Controllers\AdminMainController;
 
 
@@ -34,12 +35,12 @@ Route::post('/Category/update/{id}',[CategoryController::class,'storeUpdate'])->
 Route::get('/Category/emptyPhoto/{id}', [CategoryController::class,'emptyPhoto'])->name('webPro.category.emptyPhoto');
 Route::get('/Category/Config',[CategoryController::class,'config'])->name('webPro.categoryConfig.Config');
 
-Route::get('/category/TableList/{id}',[CategoryTableController::class,'TableList'])->name('webPro.category.Table_list');
-Route::get('/category/Table/edit/{id}',[CategoryTableController::class,'TableEdit'])->name('webPro.category.Table_edit');
-Route::post('/category/Table/update/{id}',[CategoryTableController::class,'TableStoreUpdate'])->name('webPro.category.Table_update');
-Route::get('/category/Table/destroy/{id}',[CategoryTableController::class,'TableDestroy'])->name('webPro.category.Table_destroy');
-Route::get('/category/Table/Sort/{project_id}',[CategoryTableController::class,'TableSort'])->name('webPro.category.Table_Sort');
-Route::post('/category/Table/SaveSort', [CategoryTableController::class,'TableSortSave'])->name('webPro.category.TableSortSave');
+Route::get('/Category/TableList/{id}',[CategoryTableController::class,'TableList'])->name('webPro.category.Table_list');
+Route::get('/Category/Table/edit/{id}',[CategoryTableController::class,'TableEdit'])->name('webPro.category.Table_edit');
+Route::post('/Category/Table/update/{id}',[CategoryTableController::class,'TableStoreUpdate'])->name('webPro.category.Table_update');
+Route::get('/Category/Table/destroy/{id}',[CategoryTableController::class,'TableDestroy'])->name('webPro.category.Table_destroy');
+Route::get('/Category/Table/Sort/{project_id}',[CategoryTableController::class,'TableSort'])->name('webPro.category.Table_Sort');
+Route::post('/Category/Table/SaveSort', [CategoryTableController::class,'TableSortSave'])->name('webPro.category.TableSortSave');
 
 
 Route::get('/Product',[ProductController::class,'index'])->name('webPro.Product.index');
@@ -50,12 +51,22 @@ Route::get('/Product/destroy/{id}',[ProductController::class,'destroy'])->name('
 Route::post('/Product/update/{id}',[ProductController::class,'storeUpdate'])->name('webPro.Product.update');
 Route::get('/Product/emptyPhoto/{id}', [ProductController::class,'emptyPhoto'])->name('webPro.Product.emptyPhoto');
 
-Route::get('/product/TableList/{id}',[ProductController::class,'TableList'])->name('webPro.Product.Table_list');
-
 Route::get('/Product/photos/{id}',[ProductController::class,'ListMorePhoto'])->name('webPro.Product.More_Photos');
 Route::post('/Product/saveSort', [ProductController::class,'sortPhotoSave'])->name('webPro.Product.sortPhotoSave');
 Route::post('/Product/AddMore',[ProductController::class,'AddMorePhotos'])->name('webPro.Product.More_PhotosAdd');
 Route::get('/Product/PhotoDel/{id}',[ProductController::class,'More_PhotosDestroy'])->name('webPro.Product.More_PhotosDestroy');
+
+
+Route::get('/Product/TableList/{id}',[ProductTableController::class,'TableList'])->name('webPro.Product.Table_list');
+Route::get('/Product/Table/edit/{id}',[ProductTableController::class,'TableEdit'])->name('webPro.Product.Table_edit');
+Route::post('/Product/Table/update/{id}',[ProductTableController::class,'TableStoreUpdate'])->name('webPro.Product.Table_update');
+Route::get('/Product/Table/destroy/{id}',[ProductTableController::class,'TableDestroy'])->name('webPro.Product.Table_destroy');
+Route::get('/Product/Table/Sort/{project_id}',[ProductTableController::class,'TableSort'])->name('webPro.Product.Table_Sort');
+Route::post('/Product/Table/SaveSort', [ProductTableController::class,'TableSortSave'])->name('webPro.Product.TableSortSave');
+
+
+
+
 
 
 

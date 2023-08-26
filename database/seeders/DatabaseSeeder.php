@@ -27,6 +27,8 @@ use Database\Seeders\admin\PostSeeder;
 use Database\Seeders\admin\PostTranslationSeeder;
 use Database\Seeders\admin\ProductPhotoSeeder;
 use Database\Seeders\admin\ProductSeeder;
+use Database\Seeders\admin\ProductTableSeeder;
+use Database\Seeders\admin\ProductTableTranslationSeeder;
 use Database\Seeders\admin\ProductTranslationSeeder;
 use Database\Seeders\admin\QuestionSeeder;
 use Database\Seeders\admin\QuestionTranslationSeeder;
@@ -78,6 +80,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call(ProductSeeder::class);
         $this->call(ProductTranslationSeeder::class);
+        $this->call(ProductTableSeeder::class);
+        $this->call(ProductTableTranslationSeeder::class);
         $this->call(ProductPhotoSeeder::class);
 
         $this->call(OurClientSeeder::class);

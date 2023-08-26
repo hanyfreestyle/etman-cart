@@ -29,6 +29,7 @@
                             @else
                                 <th class="tbutaction TD_50"></th>
                                 <th class="tbutaction TD_50"></th>
+                                <th class="tbutaction TD_50"></th>
                                 @can($PrefixRole.'_edit')
                                     <th class="tbutaction TD_50"></th>
                                 @endcan
@@ -53,6 +54,7 @@
                                     <td class="tc"><x-action-button url="#" id="{{route($PrefixRoute.'.force',$row->id)}}" type="deleteSweet"/></td>
                                 @else
                                     <td class="tc">{{$row->get_category_table_count}}</td>
+                                    <td class="tc">{{$row->get_product_table_count}}</td>
                                     <td class="tc">{!! is_active($row->is_active) !!}</td>
                                     @can($PrefixRole.'_edit')
                                         <td class="tc"><x-action-button url="{{route($PrefixRoute.'.edit',$row->id)}}" type="edit" :tip="true" /></td>
