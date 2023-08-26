@@ -27,8 +27,8 @@ class CategoryController extends AdminMainController
         $PrefixRole = 'category',
         $PrefixRoute = '#',
         $pageData = array(),
-
     )
+
     {
         parent::__construct();
         $this->controllerName = $controllerName;
