@@ -3,6 +3,8 @@
 return
 [
 	'banner_text_view' => 'اضافة النص للبانر',
+	'banner_url' => 'الرابط',
+	'banner_url_but' => 'اسم الرابط',
 	'banner_url_type' => 'عرض الرابط فى صفحة جديدة',
 	'button_add' => 'اضافة',
 	'button_back' => 'للخلف',
@@ -20,6 +22,7 @@ return
 	'developer' => 'المطورين',
 	'faq_answer_ar' => 'الاجابة',
 	'faq_answer_en' => 'Answer',
+	'faq_answer_full_ar' => 'اجابة اضافية',
 	'faq_question_ar' => 'السؤال',
 	'faq_question_en' => 'Question',
 	'is_published' => 'منشور',
@@ -35,6 +38,5 @@ return
 	'password_confirm' => 'تاكيد كلمة المرور',
 	'title_ar' => 'العنوان',
 	'title_en' => 'Title',
-	'banner_url' => 'الرابط',
-	'banner_url_but' => 'اسم الرابط',
+	'faq_answer_full_en' => 'Additional Answer',
 ];

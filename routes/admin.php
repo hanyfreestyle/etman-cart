@@ -8,6 +8,8 @@ use App\Http\Controllers\admin\BannerController;
 use App\Http\Controllers\admin\BlogPostController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\CategoryTableController;
+use App\Http\Controllers\admin\FaqCategoryController;
+use App\Http\Controllers\admin\FaqController;
 use App\Http\Controllers\admin\OurClientController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ProductTableController;
@@ -119,14 +121,26 @@ Route::post('/Banner/SaveSort', [BannerController::class,'SaveSort'])->name('Ban
 
 
 
-Route::get('/Faq',[BannerController::class,'index'])->name('FAQ.FaqList.index');
-Route::get('/Banner/ListCategory/{Categoryid}',[BannerController::class,'ListCategory'])->name('Banners.Banner.ListCategory');
-Route::get('/Banner/create',[BannerController::class,'create'])->name('Banners.Banner.create');
-Route::get('/Banner/edit/{id}',[BannerController::class,'edit'])->name('Banners.Banner.edit');
-Route::get('/Banner/destroy/{id}',[BannerController::class,'destroy'])->name('Banners.Banner.destroy');
-Route::post('/Banner/update/{id}',[BannerController::class,'storeUpdate'])->name('Banners.Banner.update');
-Route::get('/Banner/Sort/{Categoryid}',[BannerController::class,'Sort'])->name('Banners.Banner.Sort');
-Route::post('/Banner/SaveSort', [BannerController::class,'SaveSort'])->name('Banners.Banner.SaveSort');
+Route::get('/Faq/Config',[FaqCategoryController::class,'config'])->name('FAQ.Config');
+Route::get('/Faq/Category',[FaqCategoryController::class,'index'])->name('FAQ.FaqCat.index');
+Route::get('/Faq/Category/create',[FaqCategoryController::class,'create'])->name('FAQ.FaqCat.create');
+Route::get('/Faq/Category/edit/{id}',[FaqCategoryController::class,'edit'])->name('FAQ.FaqCat.edit');
+Route::get('/Faq/Category/destroy/{id}',[FaqCategoryController::class,'destroy'])->name('FAQ.FaqCat.destroy');
+Route::post('/Faq/Category/update/{id}',[FaqCategoryController::class,'storeUpdate'])->name('FAQ.FaqCat.update');
+Route::get('/Faq/Category/SoftDelete/',[FaqCategoryController::class,'SoftDeletes'])->name('FAQ.FaqCat.SoftDelete');
+Route::get('/Faq/Category/restore/{id}',[FaqCategoryController::class,'restored'])->name('FAQ.FaqCat.restore');
+Route::get('/Faq/Category/force/{id}',[FaqCategoryController::class,'ForceDeletes'])->name('FAQ.FaqCat.force');
+Route::get('/Faq/emptyPhoto/{id}', [FaqCategoryController::class,'emptyPhoto'])->name('FAQ.FaqCat.emptyPhoto');
+
+
+Route::get('/Faq',[FaqController::class,'index'])->name('FAQ.FaqList.index');
+Route::get('/Faq/ListCategory/{Categoryid}',[FaqController::class,'ListCategory'])->name('FAQ.FaqList.ListCategory');
+Route::get('/Faq/create',[FaqController::class,'create'])->name('FAQ.FaqList.create');
+Route::get('/Faq/edit/{id}',[FaqController::class,'edit'])->name('FAQ.FaqList.edit');
+Route::get('/Faq/destroy/{id}',[FaqController::class,'destroy'])->name('FAQ.FaqList.destroy');
+Route::post('/Faq/update/{id}',[FaqController::class,'storeUpdate'])->name('FAQ.FaqList.update');
+Route::get('/Faq/Sort/{Categoryid}',[FaqController::class,'Sort'])->name('FAQ.FaqList.Sort');
+Route::post('/Faq/SaveSort', [FaqController::class,'SaveSort'])->name('FAQ.FaqList.SaveSort');
 
 
 

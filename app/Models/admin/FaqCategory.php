@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class BannerCategory extends Model implements TranslatableContract
+class FaqCategory extends Model implements TranslatableContract
 {
     use HasFactory;
     use Translatable;
@@ -18,7 +18,7 @@ class BannerCategory extends Model implements TranslatableContract
 
     public $translatedAttributes = ['name'];
     protected $fillable = [''];
-    protected $table = "banner_categories";
+    protected $table = "faq_categories";
     protected $primaryKey = 'id';
     protected $translationForeignKey = 'category_id';
 
@@ -42,6 +42,7 @@ class BannerCategory extends Model implements TranslatableContract
 
     public function get_trashed_list(): HasMany
     {
-        return $this->hasMany(Banner::class,'category_id','id')->withTrashed();
+        return $this->hasMany(Faq::class,'category_id','id')->withTrashed();
     }
+
 }

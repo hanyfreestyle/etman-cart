@@ -7,30 +7,21 @@ use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class BannerCategory extends Model implements TranslatableContract
+class Faq extends Model implements TranslatableContract
 {
     use HasFactory;
     use Translatable;
     use SoftDeletes;
 
-    public $translatedAttributes = ['name'];
-    protected $fillable = [''];
-    protected $table = "banner_categories";
+    public $translatedAttributes = ['name','des','other','url'];
+    protected $fillable = ['category_id','photo','photo_thum_1','is_active','postion','text_view','url_type'];
+    protected $table = "faqs";
     protected $primaryKey = 'id';
-    protected $translationForeignKey = 'category_id';
+    protected $translationForeignKey = 'faq_id';
 
-
-
-    protected static function boot()
-    {
-        parent::boot();
-        static::deleted(function($account) {
-            $account->get_trashed_list()->delete();
-        });
-    }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #
@@ -39,9 +30,8 @@ class BannerCategory extends Model implements TranslatableContract
         return $query->with('translations');
     }
 
-
-    public function get_trashed_list(): HasMany
+    public function categoryName(): BelongsTo
     {
-        return $this->hasMany(Banner::class,'category_id','id')->withTrashed();
+        return $this->belongsTo(FaqCategory::class,'category_id','id')->with('translation');
     }
 }

@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Http\Requests\admin;
+
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
+
+class FaqRequest extends FormRequest
+{
+
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+
+    public function rules(Request $request): array
+    {
+
+        $id = $this->route('id');
+
+        if($id == 0){
+            $rules = [
+                "category_id"    => "required",
+            ];
+        }
+        foreach(config('app.lang_file') as $key=>$lang){
+            $rules[$key.".name"] =   'required';
+            $rules[$key.".des"] =   'required';
+            $rules[$key.".url"] =   'nullable|url';
+        }
+
+        return $rules;
+    }
+}

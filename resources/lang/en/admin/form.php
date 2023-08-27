@@ -3,6 +3,8 @@
 return
 [
 	'banner_text_view' => 'Add Text To Banner',
+	'banner_url' => 'Url',
+	'banner_url_but' => 'Url Name',
 	'banner_url_type' => 'Open Url in New Page',
 	'button_add' => 'Add',
 	'button_back' => 'Back',
@@ -20,6 +22,7 @@ return
 	'developer' => 'Developer',
 	'faq_answer_ar' => 'Answer',
 	'faq_answer_en' => 'Answer',
+	'faq_answer_full_ar' => 'Additional Answer',
 	'faq_question_ar' => 'Question',
 	'faq_question_en' => 'Question',
 	'is_published' => 'Published',
@@ -35,6 +38,5 @@ return
 	'password_confirm' => 'Confirm Password',
 	'title_ar' => 'Title',
 	'title_en' => 'Title',
-	'banner_url' => 'Url',
-	'banner_url_but' => 'Url Name',
+	'faq_answer_full_en' => 'Additional Answer',
 ];
