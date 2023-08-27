@@ -1,8 +1,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{route('admin.Dashboard')}}" class="brand-link">
-        <img src="{{defAdminAssets('img/LogoIcon.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">{{config('adminConfig.textWithLogo')}}</span>
+        <img src="{{defAdminAssets('img/et_logo_2.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-textX font-weight-light text-center">{{config('adminConfig.textWithLogo')}}</span>
     </a>
 
     <!-- Sidebar -->

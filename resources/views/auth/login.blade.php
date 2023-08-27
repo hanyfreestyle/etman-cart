@@ -6,11 +6,11 @@
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
                 @if ( config('adminConfig.login_logo_img_view') == true)
-                    <img class="img-fluid login_logo" src=" {{ config('adminConfig.login_logo_img') }}">
+                    <img class="img-fluid login_logo_et" src=" {{ config('adminConfig.login_logo_img') }}">
                 @endif
             </div>
             <div class="card-body">
-                <p class="login-box-msg">Sign in to start your session</p>
+{{--                <p class="login-box-msg">Sign in to start your session</p>--}}
 
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
@@ -42,16 +42,16 @@
 
                     </div>
                     <div class="row">
-                        <div class="col-8">
-                            <div class="icheck-primary">
-                                <input type="checkbox" id="remember" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                <label for="remember">
-                                    Remember Me
-                                </label>
-                            </div>
-                        </div>
+{{--                        <div class="col-8">--}}
+{{--                            <div class="icheck-primary">--}}
+{{--                                <input type="checkbox" id="remember" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>--}}
+{{--                                <label for="remember">--}}
+{{--                                    Remember Me--}}
+{{--                                </label>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                         <!-- /.col -->
-                        <div class="col-4">
+                        <div class="col-6 text-center">
                             <button type="submit" class="btn btn-primary btn-block">Sign In</button>
                         </div>
                         <!-- /.col -->
