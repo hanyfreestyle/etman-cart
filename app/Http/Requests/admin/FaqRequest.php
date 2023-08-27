@@ -19,6 +19,10 @@ class FaqRequest extends FormRequest
 
         $id = $this->route('id');
 
+        $rules = [
+
+        ];
+
         if($id == 0){
             $rules = [
                 "category_id"    => "required",

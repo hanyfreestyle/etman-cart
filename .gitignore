@@ -7,6 +7,7 @@
 #/public/db
 /public/ckfinder
 /public/images/*.zip
+/public/images/*.rar
 /storage/*.key
 /storage/
 /vendor

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Requests\admin;
-
 use App\Helpers\AdminHelper;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;

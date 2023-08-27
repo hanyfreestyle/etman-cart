@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Requests\admin;
-
 use Illuminate\Foundation\Http\FormRequest;
 
 class CategoryTableRequest extends FormRequest

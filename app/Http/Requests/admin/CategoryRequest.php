@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Requests\admin;
-
 use App\Helpers\AdminHelper;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Http\FormRequest;
-use Str;
+
 
 class CategoryRequest extends FormRequest
 {
@@ -22,7 +21,6 @@ class CategoryRequest extends FormRequest
             data_set($data, $key.'.slug',  AdminHelper::Url_Slug($data[$key]['slug']) );
         }
         $this->merge($data);
-
     }
 
 

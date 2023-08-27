@@ -28,7 +28,7 @@
                     name="parent_id"
                     label="{{__('admin/def.form_Categories')}}"
                     :sendvalue="old('parent_id',$Category->parent_id)"
-                    :required-span="true"
+                    :required-span="false"
                     print-val-name="name"
                     colrow="col-lg-6 "
                     :send-arr="$Categories"

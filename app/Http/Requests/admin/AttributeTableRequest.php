@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Requests\admin;
-
 use Illuminate\Foundation\Http\FormRequest;
 
 class AttributeTableRequest extends FormRequest
@@ -14,8 +12,11 @@ class AttributeTableRequest extends FormRequest
 
     public function rules(): array
     {
-
         $id = $this->route('id');
+
+        $rules = [
+
+        ];
 
         if($id == '0'){
             foreach(config('app.lang_file') as $key=>$lang){
@@ -28,6 +29,5 @@ class AttributeTableRequest extends FormRequest
         }
 
         return $rules;
-
     }
 }

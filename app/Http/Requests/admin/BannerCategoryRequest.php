@@ -1,9 +1,6 @@
 <?php
-
 namespace App\Http\Requests\admin;
-
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Request;
 
 class BannerCategoryRequest extends FormRequest
 {
@@ -13,10 +10,13 @@ class BannerCategoryRequest extends FormRequest
         return true;
     }
 
-    public function rules(Request $request): array
+    public function rules(): array
     {
-
         $id = $this->route('id');
+
+        $rules = [
+
+        ];
 
         foreach(config('app.lang_file') as $key=>$lang){
             if($id == '0'){

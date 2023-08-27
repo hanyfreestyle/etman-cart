@@ -17,7 +17,7 @@ class ProductPhotoRequest extends FormRequest
     {
         return [
             "image"    => "required|array|min:1|max:5",
-            'image.*'  => 'required|mimes:jpg,jpeg,png,bmp|max:2000',
+            'image.*'  => 'required|mimes:jpg,jpeg,png,webp|max:1000',
         ];
     }
 }

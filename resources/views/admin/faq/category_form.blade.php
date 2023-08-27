@@ -27,7 +27,7 @@
                                 name="{{ $key }}[des]"
                                 dir="{{ $key }}"
                                 reqname="{{ $key }}.des"
-                                :reqspan="false"
+
                                 value="{!! old($key.'.des',$Category->translateOrNew($key)->des) !!}"
                             />
 

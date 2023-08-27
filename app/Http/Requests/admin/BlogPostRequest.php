@@ -31,9 +31,9 @@ class BlogPostRequest extends FormRequest
 
         $id = $this->route('id');
 
-//        $rules =[
-//            'category_id'=> "required",
-//        ];
+        $rules =[
+
+        ];
 
         foreach(config('app.lang_file') as $key=>$lang){
             $rules[$key.".name"] =   'required';

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Requests\admin;
-
 use App\Helpers\AdminHelper;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
@@ -13,8 +12,6 @@ class OurClientRequest extends FormRequest
     {
         return true;
     }
-
-
 
 //    protected function prepareForValidation()
 //    {
@@ -35,10 +32,11 @@ class OurClientRequest extends FormRequest
 
         $id = $this->route('id');
 
+        $rules = [
 
+        ];
 
         foreach(config('app.lang_file') as $key=>$lang){
-            //$rules[$key.".name"] =   'required';
 //            $rules[$key.".des"] =   'required';
 //            $rules[$key.".g_title"] =   'required';
 //            $rules[$key.".g_des"] =   'required';
