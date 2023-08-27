@@ -8,6 +8,8 @@ namespace Database\Seeders;
 use App\Models\admin\BlogPost;
 use App\Models\admin\Category;
 use App\Models\admin\config\WebPrivacy;
+use App\Models\admin\Faq;
+use App\Models\admin\FaqCategory;
 use Database\Seeders\admin\AttributeTableSeeder;
 use Database\Seeders\admin\AttributeTableTranslationSeeder;
 use Database\Seeders\admin\BannerCategorySeeder;
@@ -23,6 +25,10 @@ use Database\Seeders\admin\CategoryTranslationSeeder;
 use Database\Seeders\admin\DeveloperPhotoSeeder;
 use Database\Seeders\admin\DeveloperSeeder;
 use Database\Seeders\admin\DeveloperTranslationSeeder;
+use Database\Seeders\admin\FaqCategorySeeder;
+use Database\Seeders\admin\FaqCategoryTranslationSeeder;
+use Database\Seeders\admin\FaqSeeder;
+use Database\Seeders\admin\FaqTranslationSeeder;
 use Database\Seeders\admin\ListingSeeder;
 use Database\Seeders\admin\ListingTranslationSeeder;
 use Database\Seeders\admin\LocationSeeder;
@@ -101,6 +107,13 @@ class DatabaseSeeder extends Seeder
         $this->call(BannerCategoryTranslationSeeder::class);
         $this->call(BannerSeeder::class);
         $this->call(BannerTranslationSeeder::class);
+
+        $this->call(FaqCategorySeeder::class);
+        $this->call(FaqCategoryTranslationSeeder::class);
+
+        $this->call(FaqSeeder::class);
+        $this->call(FaqTranslationSeeder::class);
+
 
     }
 }
