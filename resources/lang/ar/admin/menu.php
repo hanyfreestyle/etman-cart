@@ -21,8 +21,9 @@ return
 	'uploadFilter' => 'فلاتر الصور',
 	'webPrivacy' => 'سياسية الاستخدام',
 	'web_attribute_Table' => 'جدول البيانات',
+	'web_banner' => 'البانر',
 	'web_category' => 'المجموعات',
 	'web_product' => 'المنتجات',
 	'web_product_menu' => 'منتجات الموقع',
-	'web_banner' => 'البانر',
+	'faq' => 'الاسئلة المتكررة',
 ];

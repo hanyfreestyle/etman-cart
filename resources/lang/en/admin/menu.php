@@ -21,8 +21,9 @@ return
 	'uploadFilter' => 'Upload Filters',
 	'webPrivacy' => 'Privacy',
 	'web_attribute_Table' => 'Attribute Table',
+	'web_banner' => 'Banner',
 	'web_category' => 'Categories',
 	'web_product' => 'Product',
 	'web_product_menu' => 'Web Product',
-	'web_banner' => 'Banner',
+	'faq' => 'FAQ',
 ];
