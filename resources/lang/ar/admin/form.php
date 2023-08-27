@@ -2,6 +2,8 @@
 
 return
 [
+	'banner_text_view' => 'اضافة النص للبانر',
+	'banner_url_type' => 'عرض الرابط فى صفحة جديدة',
 	'button_add' => 'اضافة',
 	'button_back' => 'للخلف',
 	'button_delete' => 'حذف',
@@ -16,6 +18,10 @@ return
 	'des_ar' => 'الوصف',
 	'des_en' => 'Description',
 	'developer' => 'المطورين',
+	'faq_answer_ar' => 'الاجابة',
+	'faq_answer_en' => 'Answer',
+	'faq_question_ar' => 'السؤال',
+	'faq_question_en' => 'Question',
 	'is_published' => 'منشور',
 	'meta_bodyH1_ar' => 'عنوان H1',
 	'meta_bodyH1_en' => 'H1 Tag',
@@ -29,8 +35,6 @@ return
 	'password_confirm' => 'تاكيد كلمة المرور',
 	'title_ar' => 'العنوان',
 	'title_en' => 'Title',
-	'faq_question_ar' => 'السؤال',
-	'faq_question_en' => 'Question',
-	'faq_answer_ar' => 'الاجابة',
-	'faq_answer_en' => 'Answer',
+	'banner_url' => 'الرابط',
+	'banner_url_but' => 'اسم الرابط',
 ];

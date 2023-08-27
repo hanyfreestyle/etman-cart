@@ -7,11 +7,14 @@ use App\Http\Controllers\AdminMainController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\admin\BannerCategoryRequest;
 use App\Http\Requests\admin\OurClientRequest;
+use App\Models\admin\AttributeTable;
 use App\Models\admin\Banner;
 use App\Models\admin\BannerCategory;
 use App\Models\admin\BannerCategoryTranslation;
 use App\Models\admin\BlogPost;
+use App\Models\admin\CategoryTable;
 use App\Models\admin\OurClient;
+use App\Models\admin\ProductTable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
@@ -145,6 +148,14 @@ class BannerCategoryController extends AdminMainController
 #|||||||||||||||||||||||||||||||||||||| #     Restore
     public function restored($id)
     {
+        $subList = BannerCategory::where('id',$id)
+            ->with('get_trashed_list')
+            ->withTrashed()->firstOrFail();
+        if(count($subList->get_trashed_list) > 0){
+            foreach ($subList->get_trashed_list as $list ){
+                Banner::onlyTrashed()->where('id',$list->id)->restore();
+            }
+        }
         BannerCategory::onlyTrashed()->where('id',$id)->restore();
         return back()->with('restore',"");
     }
@@ -154,17 +165,17 @@ class BannerCategoryController extends AdminMainController
     public function ForceDeletes($id)
     {
         $deleteRow =  BannerCategory::onlyTrashed()->where('id',$id)
-//            ->with('more_photos')
+            ->with('get_trashed_list')
             ->firstOrFail();
-//        if(count($deleteRow->more_photos) > 0){
-//            foreach ($deleteRow->more_photos as $del_photo ){
-//                AdminHelper::DeleteAllPhotos($del_photo);
-//            }
-//        }
-        $deleteRow->forceDelete();
-        return back()->with('confirmDelete',"");
-    }
 
+        if(count($deleteRow->get_trashed_list) > 0){
+            foreach ($deleteRow->get_trashed_list as $del_photo ){
+                AdminHelper::DeleteAllPhotos($del_photo);
+            }
+        }
+         $deleteRow->forceDelete();
+         return back()->with('confirmDelete',"");
+    }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     config

@@ -24,8 +24,8 @@
                     @foreach($Banners as $row)
                         <div class="col-lg-12"  data-index="{{$row->id}}" data-position="{{$row->postion}}" >
                             <p class="ListItem-12">
-                            <span>{!!  \App\Helpers\AdminHelper::printTableImage($row) !!} </span>
-                                {{$row->name}}
+                            <span><img  class="sort_banner_img img-rounded elevation-1" src="{{defImagesDir($row->photo_thum_1)}}"></span>
+                            <span class="sort_banner_name"> {{$row->name}}</span>
                             </p>
                         </div>
                     @endforeach

@@ -22,8 +22,10 @@ class BannerRequest extends FormRequest
 
         if($id == 0){
             $rules = [
-                "image"    => "required|array|min:1|max:5",
-                'image.*'  => 'required|mimes:jpg,jpeg,png,bmp|max:2000',
+                "category_id"    => "required",
+                 "image"    => "required|mimes:jpg,jpeg,png,webp|max:1000",
+//                "image"    => "required|array|min:1|max:5",
+//                'image.*'  => 'required|mimes:jpg,jpeg,png,bmp|max:2000',
             ];
         }
         foreach(config('app.lang_file') as $key=>$lang){

@@ -2,6 +2,8 @@
 
 return
 [
+	'banner_text_view' => 'Add Text To Banner',
+	'banner_url_type' => 'Open Url in New Page',
 	'button_add' => 'Add',
 	'button_back' => 'Back',
 	'button_delete' => 'Delete',
@@ -16,6 +18,10 @@ return
 	'des_ar' => 'Description',
 	'des_en' => 'Description',
 	'developer' => 'Developer',
+	'faq_answer_ar' => 'Answer',
+	'faq_answer_en' => 'Answer',
+	'faq_question_ar' => 'Question',
+	'faq_question_en' => 'Question',
 	'is_published' => 'Published',
 	'meta_bodyH1_ar' => 'H1 Text',
 	'meta_bodyH1_en' => 'H1 Tag',
@@ -29,8 +35,6 @@ return
 	'password_confirm' => 'Confirm Password',
 	'title_ar' => 'Title',
 	'title_en' => 'Title',
-	'faq_question_ar' => 'Question',
-	'faq_question_en' => 'Question',
-	'faq_answer_ar' => 'Answer',
-	'faq_answer_en' => 'Answer',
+	'banner_url' => 'Url',
+	'banner_url_but' => 'Url Name',
 ];

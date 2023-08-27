@@ -5,6 +5,15 @@
 
 @section('content')
     <x-breadcrumb-def :pageData="$pageData"/>
+
+    <x-html-section>
+        <div class="row mb-3">
+            <div class="col-12 text-left">
+                <x-action-button  url="{{route( $PrefixCatRoute.'.index') }}"  type="cat" />
+            </div>
+        </div>
+    </x-html-section>
+
     <x-html-section>
         <x-ui-card  :page-data="$pageData" >
             <x-mass.confirm-massage/>
@@ -18,27 +27,15 @@
                             <th class="TD_20"></th>
                             <th>{{__('admin/def.form_name_ar')}}</th>
                             <th>{{__('admin/def.form_name_en')}}</th>
-
-
-                            @if($pageData['ViewType'] == 'deleteList')
-                                <th>{{ __('admin/page.del_date') }}</th>
-                                <th></th>
-                                <th></th>
-                            @else
-                                <th>{{__('admin/def.Category')}}</th>
+                            <th>{{__('admin/def.Category')}}</th>
+                            <th class="tbutaction TD_50"></th>
+                            @can($PrefixRole.'_edit')
                                 <th class="tbutaction TD_50"></th>
-
-                                @can($PrefixRole.'_edit')
-                                    <th class="tbutaction TD_50"></th>
-                                    <th class="tbutaction TD_50"></th>
-                                @endcan
-                                @can($PrefixRole.'_delete')
-                                    <th class="tbutaction TD_50"></th>
-                                @endcan
-                            @endif
-
-
-
+                                <th class="tbutaction TD_50"></th>
+                            @endcan
+                            @can($PrefixRole.'_delete')
+                                <th class="tbutaction TD_50"></th>
+                            @endcan
                         </tr>
                         </thead>
                         <tbody>
@@ -48,25 +45,16 @@
                                 <td class="tc">{!!  \App\Helpers\AdminHelper::printTableImage($row,'photo') !!} </td>
                                 <td>{{ $row->translate('ar')->name}}</td>
                                 <td>{{ $row->translate('en')->name}}</td>
+                                <td><a href="{{route($PrefixRoute.'.ListCategory',$row->categoryName->id)}}">{{ $row->categoryName->name }}</a></td>
+                                <td class="tc" >{!! is_active($row->is_active) !!}</td>
+                                @can($PrefixRole.'_edit')
+                                    <td class="tc"><x-action-button url="{{route($PrefixRoute.'.Sort',$row->category_id)}}" type="sort" :tip="true" /></td>
+                                    <td class="tc"><x-action-button url="{{route($PrefixRoute.'.edit',$row->id)}}" type="edit" :tip="true" /></td>
+                                @endcan
 
-                                @if($pageData['ViewType'] == 'deleteList')
-                                    <td>{{$row->deleted_at}}</td>
-                                    <td class="tc"><x-action-button url="{{route($PrefixRoute.'.restore',$row->id)}}" type="restor" /></td>
-                                    <td class="tc"><x-action-button url="#" id="{{route($PrefixRoute.'.force',$row->id)}}" type="deleteSweet"/></td>
-                                @else
-                                    <td><a href="{{route($PrefixRoute.'.ListCategory',$row->categoryName->id)}}">{{ $row->categoryName->name }}</a></td>
-                                    <td class="tc" >{!! is_active($row->is_active) !!}</td>
-                                    @can($PrefixRole.'_edit')
-                                        <td class="tc"><x-action-button url="{{route($PrefixRoute.'.Sort',$row->category_id)}}" type="sort" :tip="true" /></td>
-                                        <td class="tc"><x-action-button url="{{route($PrefixRoute.'.edit',$row->id)}}" type="edit" :tip="true" /></td>
-                                    @endcan
-
-                                    @can($PrefixRole.'_delete')
-                                        <td class=""><x-action-button url="#" id="{{route($PrefixRoute.'.destroy',$row->id)}}" type="deleteSweet" :tip="true" /></td>
-                                    @endcan
-                                @endif
-
-
+                                @can($PrefixRole.'_delete')
+                                    <td class=""><x-action-button url="#" id="{{route($PrefixRoute.'.destroy',$row->id)}}" type="deleteSweet" :tip="true" /></td>
+                                @endcan
                             </tr>
                         @endforeach
                         </tbody>
@@ -82,7 +70,6 @@
             @endif
         </div>
     </x-html-section>
-
 @endsection
 
 @push('JsCode')

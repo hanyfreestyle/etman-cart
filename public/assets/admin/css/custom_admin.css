@@ -8,7 +8,9 @@
 .TD_190{width:190px!important}.TD_200{width:200px!important}.TD_250{width:250px!important}.TD_300{width:300px!important}.TD_350{width:350px!important}
 .Td_Count{font-size:22px!important;}
 .BB_Number{font-size:22px!important;}
-.tableImg{ max-width: 80px; max-height: 80px;}
+.tableImg{ max-width: 80px; max-height: 80px; margin-right: 20px; margin-left: 20px;}
+.sort_banner_name{  padding: 30px; font-size: 20px; font-weight: bold}
+.sort_banner_img{ max-height: 100px;}
 .hidediv{display: none!important;}
 .def_h1{font-size: 20px; line-height: 25px}
 .mainForm{padding-bottom:50px;}

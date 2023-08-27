@@ -112,6 +112,11 @@ class ActionButton extends Component
                     $this->printLable =  __('admin/def.table_info');
                     break;
 
+                case 'cat':
+                    $this->icon = 'fas fa-sitemap';
+                    $this->bg = getBgColor('dark');
+                    $this->printLable =  __('admin/menu.web_category');
+                    break;
 
                 case 'morePhoto':
                     $this->icon = 'fas fa-images';

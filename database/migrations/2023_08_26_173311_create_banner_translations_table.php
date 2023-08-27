@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->text('des')->nullable();
             $table->text('other')->nullable();
-            $table->string('url')->nullable();
+            $table->text('url')->nullable();
+            $table->string('url_but')->nullable();
             $table->unique(['banner_id','locale']);
             $table->foreign('banner_id')->references('id')->on('banners')->onDelete('cascade');
         });

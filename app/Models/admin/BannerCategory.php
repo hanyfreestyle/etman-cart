@@ -7,6 +7,7 @@ use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class BannerCategory extends Model implements TranslatableContract
@@ -22,10 +23,28 @@ class BannerCategory extends Model implements TranslatableContract
     protected $translationForeignKey = 'category_id';
 
 
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleted(function($account) {
+            $account->get_trashed_list()->delete();
+        });
+
+
+    }
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #
     public function scopeDefquery(Builder $query): Builder
     {
         return $query->with('translations');
+    }
+
+
+    public function get_trashed_list(): HasMany
+    {
+        return $this->hasMany(Banner::class,'category_id','id')->withTrashed();
     }
 }
