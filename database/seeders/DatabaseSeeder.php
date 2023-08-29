@@ -35,6 +35,8 @@ use Database\Seeders\admin\LocationSeeder;
 use Database\Seeders\admin\LocationTranslationSeeder;
 use Database\Seeders\admin\OurClientSeeder;
 use Database\Seeders\admin\OurClientTranslationSeeder;
+use Database\Seeders\admin\PageSeeder;
+use Database\Seeders\admin\PageTranslationSeeder;
 use Database\Seeders\admin\PostPhotoSeeder;
 use Database\Seeders\admin\PostSeeder;
 use Database\Seeders\admin\PostTranslationSeeder;
@@ -113,6 +115,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call(FaqSeeder::class);
         $this->call(FaqTranslationSeeder::class);
+
+        $this->call(PageSeeder::class);
+        $this->call(PageTranslationSeeder::class);
 
 
     }

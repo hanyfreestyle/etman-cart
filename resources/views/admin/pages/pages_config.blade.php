@@ -7,9 +7,9 @@
     <x-html-section-with-card>
         <div class="col-lg-12 pt-3">
             <div class="alert alert-dark alert-dismissible">
-                {{ __('admin/menu.setting_meta_tags') }}
+                {{ __('admin/menu.web_pages') }}
             </div>
-            <x-def-settings modelname="meta"  >
+            <x-def-settings modelname="pageList"  >
 
             </x-def-settings>
 

@@ -138,6 +138,17 @@
             'roleView'=>'Faq_view',
         ],
 
+        [
+            'view'=>true,
+            'sel_routs'=>'Pages',
+            'type'=>'one',
+            'text'=> 'admin/menu.web_pages',
+            'url'=> 'Pages.pageList.index',
+            'icon'=>'fab fa-html5',
+            'roleView'=>'Pages_view',
+        ],
+
+
 
     ],
 

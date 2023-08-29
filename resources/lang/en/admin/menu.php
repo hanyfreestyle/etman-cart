@@ -5,6 +5,7 @@ return
 	'OurClient' => 'Our Client',
 	'blog' => 'News',
 	'dashboard' => 'Home Pgae',
+	'faq' => 'FAQ',
 	'lang_file_admin' => 'Admin Lang File',
 	'lang_file_web' => 'Web Lang File',
 	'roles' => 'Users &amp; Permissions',
@@ -25,5 +26,5 @@ return
 	'web_category' => 'Categories',
 	'web_product' => 'Product',
 	'web_product_menu' => 'Web Product',
-	'faq' => 'FAQ',
+	'web_pages' => 'Manage Pages',
 ];

@@ -11,6 +11,7 @@ use App\Http\Controllers\admin\CategoryTableController;
 use App\Http\Controllers\admin\FaqCategoryController;
 use App\Http\Controllers\admin\FaqController;
 use App\Http\Controllers\admin\OurClientController;
+use App\Http\Controllers\admin\PageController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ProductTableController;
 use App\Http\Controllers\AdminMainController;
@@ -142,6 +143,17 @@ Route::post('/Faq/update/{id}',[FaqController::class,'storeUpdate'])->name('FAQ.
 Route::get('/Faq/Sort/{Categoryid}',[FaqController::class,'Sort'])->name('FAQ.FaqList.Sort');
 Route::post('/Faq/SaveSort', [FaqController::class,'SaveSort'])->name('FAQ.FaqList.SaveSort');
 
+
+Route::get('/Pages', [PageController::class,'index'])->name('Pages.pageList.index');
+Route::get('/Pages/create', [PageController::class,'create'])->name('Pages.pageList.create');
+Route::get('/Pages/edit/{id}', [PageController::class,'edit'])->name('Pages.pageList.edit');
+Route::post('/Pages/Update/{id}', [PageController::class,'storeUpdate'])->name('Pages.pageList.update');
+Route::get('/Pages/delete/{id}', [PageController::class,'delete'])->name('Pages.pageList.destroy');
+Route::get('/Pages/config', [PageController::class,'config'])->name('Pages.pageList.config');
+Route::get('/Pages/SoftDelete/',[PageController::class,'SoftDeletes'])->name('Pages.pageList.SoftDelete');
+Route::get('/Pages/restore/{id}',[PageController::class,'restored'])->name('Pages.pageList.restore');
+Route::get('/Pages/force/{id}',[PageController::class,'ForceDeletes'])->name('Pages.pageList.force');
+Route::get('/Pages/emptyPhoto/{id}', [PageController::class,'emptyPhoto'])->name('Pages.pageList.emptyPhoto');
 
 
 

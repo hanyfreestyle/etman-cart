@@ -30,7 +30,6 @@ Route::get('/metaTags/create', [MetaTagController::class,'create'])->name('confi
 Route::get('/metaTags/edit/{id}', [MetaTagController::class,'edit'])->name('config.meta.edit');
 Route::post('/metaTags/Update/{id}', [MetaTagController::class,'storeUpdate'])->name('config.meta.update');
 Route::get('/metaTags/delete/{id}', [MetaTagController::class,'delete'])->name('config.meta.destroy');
-
 Route::get('/metaTags/config', [MetaTagController::class,'config'])->name('config.meta.config');
 Route::get('/metaTags/SoftDelete/',[MetaTagController::class,'SoftDeletes'])->name('config.meta.SoftDelete');
 Route::get('/metaTags/restore/{id}',[MetaTagController::class,'restored'])->name('config.meta.restore');

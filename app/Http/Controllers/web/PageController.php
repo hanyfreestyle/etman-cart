@@ -8,7 +8,7 @@ use App\Models\admin\Listing;
 use App\Models\admin\Post;
 use Illuminate\Http\Request;
 
-class PageController extends WebMainController
+class WebPageController extends WebMainController
 {
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

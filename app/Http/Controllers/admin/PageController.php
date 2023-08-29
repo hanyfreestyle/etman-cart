@@ -1,0 +1,203 @@
+<?php
+namespace App\Http\Controllers\admin;
+
+use App\Helpers\AdminHelper;
+use App\Helpers\PuzzleUploadProcess;
+use App\Http\Controllers\AdminMainController;
+use App\Http\Requests\admin\config\MetaTagRequest;
+use App\Http\Requests\admin\PageRequest;
+use App\Models\admin\BannerCategory;
+use App\Models\admin\config\MetaTag;
+use App\Models\admin\config\MetaTagTranslation;
+use App\Models\admin\Page;
+use App\Models\admin\PageTranslation;
+use Cache ;
+use Illuminate\Support\Facades\View;
+
+
+class PageController extends AdminMainController
+{
+
+    public $controllerName ;
+    public $PageTitle ;
+    public $selMenu ;
+    public $PrefixRole ;
+    public $PrefixRoute ;
+    public $pageData ;
+
+    function __construct(
+        $selMenu = 'Pages.',
+        $controllerName = 'pageList',
+        $PrefixRole = 'Pages',
+        $PrefixRoute = '#',
+        $PrefixCatRoute = '',
+        $pageData = array(),
+    )
+    {
+        parent::__construct();
+        $this->controllerName = $controllerName;
+        $this->selMenu = $selMenu;
+        $this->PrefixRole = $PrefixRole;
+        $this->PrefixRoute = $this->selMenu.$this->controllerName ;
+        $this->PageTitle = __('admin/menu.web_pages');
+
+
+        $this->middleware('permission:'.$PrefixRole.'_view', ['only' => ['index']]);
+        $this->middleware('permission:'.$PrefixRole.'_add', ['only' => ['create']]);
+        $this->middleware('permission:'.$PrefixRole.'_edit', ['only' => ['edit','config']]);
+        $this->middleware('permission:'.$PrefixRole.'_delete', ['only' => ['destroy']]);
+        $this->middleware('permission:'.$PrefixRole.'_restore', ['only' => ['SoftDeletes','Restore','ForceDeletes']]);
+
+
+        $viewDataTable = AdminHelper::arrIsset($this->modelSettings,$controllerName.'_datatable',0) ;
+        $viewEditor = AdminHelper::arrIsset($this->modelSettings,$controllerName.'_editor',0) ;
+        View::share('viewDataTable', $viewDataTable);
+        View::share('viewEditor', $viewEditor);
+        View::share('tableHeader', AdminHelper::Table_Style($viewDataTable));
+        View::share('PrefixRoute', $this->PrefixRoute);
+        View::share('PrefixRole', $PrefixRole);
+        View::share('controllerName', $controllerName);
+        View::share('PrefixCatRoute', $PrefixCatRoute);
+
+        $sendArr = [
+            'TitlePage' =>  $this->PageTitle ,
+            'selMenu'=> $this->selMenu,
+            'prefix_Role'=> $this->PrefixRole ,
+            'restore'=> 1 ,
+        ];
+        $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
+        $this->pageData = $pageData ;
+
+    }
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     index
+    public function index()
+    {
+        $pageData = $this->pageData;
+        $pageData['ViewType'] = "List";
+        $pageData['Trashed'] = Page::onlyTrashed()->count();
+        $pageData['ConfigUrl'] = route('Pages.pageList.config');
+        $Pages = self::getSelectQuery(Page::defquery());
+        return view('admin.pages.page_index',compact('pageData','Pages'));
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     SoftDeletes
+    public function SoftDeletes()
+    {
+        $pageData = $this->pageData ;
+        $pageData['ViewType'] = "deleteList";
+        $Pages = self::getSelectQuery(Page::onlyTrashed());
+        return view('admin.pages.page_index',compact('pageData','Pages'));
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     create
+    public function create()
+    {
+        $pageData = $this->pageData;
+        $pageData['ViewType'] = "Add";
+        $Page = new Page();
+        $BannerCategory = BannerCategory::all();
+        return view('admin.pages.page_form',compact('pageData','Page','BannerCategory'));
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     edit
+    public function edit($id)
+    {
+        $pageData = $this->pageData;
+        $pageData['ViewType'] = "Edit";
+        $Page = Page::findOrFail($id);
+        $BannerCategory = BannerCategory::all();
+        return view('admin.pages.page_form',compact('pageData','Page','BannerCategory'));
+    }
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     storeUpdate
+    public function storeUpdate(PageRequest $request, $id='0')
+    {
+
+
+        $saveData =  Page::findOrNew($id) ;
+        $saveData->cat_id = $request->input('cat_id');
+        $saveData->banner_id = $request->input('banner_id');
+        $saveData->save();
+
+        $saveImgData = new PuzzleUploadProcess();
+        $saveImgData->setCountOfUpload('2');
+        $saveImgData->setUploadDirIs('page/'.$saveData->id);
+        $saveImgData->setnewFileName($request->input('cat_id'));
+        $saveImgData->UploadOne($request);
+        $saveData = AdminHelper::saveAndDeletePhoto($saveData,$saveImgData);
+        $saveData->save();
+
+        foreach ( config('app.lang_file') as $key=>$lang) {
+            $saveTranslation = PageTranslation::where('page_id',$saveData->id)->where('locale',$key)->firstOrNew();
+            $saveTranslation->page_id = $saveData->id;
+            $saveTranslation->locale = $key;
+            $saveTranslation->slug = AdminHelper::Url_Slug($request->input($key.'.slug'));
+            $saveTranslation->g_title = $request->input($key.'.g_title');
+            $saveTranslation->g_des = $request->input($key.'.g_des');
+            $saveTranslation->body_h1 = $request->input($key.'.body_h1');
+            $saveTranslation->breadcrumb = $request->input($key.'.breadcrumb');
+            $saveTranslation->save();
+        }
+
+       // Cache::forget('WebMeta_Cash');
+        if($id == '0'){
+            return redirect(route($this->PrefixRoute.'.index'))->with('Add.Done',"");
+        }else{
+            return redirect(route($this->PrefixRoute.'.index'))->with('Edit.Done',"");
+        }
+
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     delete
+    public function delete($id)
+    {
+        Page::findOrFail($id)->delete();
+        //Cache::forget('WebMeta_Cash');
+        return redirect(route($this->PrefixRoute.'.index'))->with('confirmDelete','');
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     EmptyPhoto
+    public function emptyPhoto($id){
+        $rowData = Page::findOrFail($id);
+        $rowData = AdminHelper::DeleteAllPhotos($rowData,true);
+        $rowData->save();
+        return back();
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     Restore
+    public function restored($id)
+    {
+        Page::onlyTrashed()->where('id',$id)->restore();
+        return back()->with('restore',"");
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     ForceDeletes
+    public function ForceDeletes($id)
+    {
+        $deleteRow =  Page::onlyTrashed()->where('id',$id)->firstOrFail();
+        $deleteRow = AdminHelper::DeleteAllPhotos($deleteRow);
+        $deleteRow->forceDelete();
+        return back()->with('confirmDelete',"");
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     config
+    public function config()
+    {
+        $pageData = $this->pageData;
+        $pageData['TitlePage'] = __('admin/def.model_config');
+        $pageData['ViewType'] = "List";
+        return view('admin.pages.pages_config',compact('pageData'));
+    }
+
+}

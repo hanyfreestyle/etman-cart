@@ -41,21 +41,22 @@ class PermissionSeeder extends Seeder
             ['cat_id'=> '6', 'name' => 'config_section','name_ar'=>'عرض الاعدادات','name_en'=>'Setting View'],
             ['cat_id'=> '6', 'name' => 'website_config','name_ar'=>'اعدادات الموقع','name_en'=>'Web Site Setting'],
 
-            ['cat_id'=> '7', 'name' => 'meta_view','name_ar'=>'عرض','name_en'=>'View'],
-            ['cat_id'=> '7', 'name' => 'meta_add','name_ar'=>'اضافة','name_en'=>'Add'],
-            ['cat_id'=> '7', 'name' => 'meta_edit','name_ar'=>'تعديل','name_en'=>'Edit'],
-            ['cat_id'=> '7', 'name' => 'meta_delete','name_ar'=>'حذف','name_en'=>'Delete'],
-            ['cat_id'=> '7', 'name' => 'meta_restore','name_ar'=>'استعادة المحذوف','name_en'=>'Restore'],
+            ['cat_id'=> '7', 'name' => 'defPhoto_view','name_ar'=>'عرض','name_en'=>'View'],
+            ['cat_id'=> '7', 'name' => 'defPhoto_add','name_ar'=>'اضافة','name_en'=>'Add'],
+            ['cat_id'=> '7', 'name' => 'defPhoto_edit','name_ar'=>'تعديل','name_en'=>'Edit'],
+            ['cat_id'=> '7', 'name' => 'defPhoto_delete','name_ar'=>'حذف','name_en'=>'Delete'],
 
-            ['cat_id'=> '8', 'name' => 'defPhoto_view','name_ar'=>'عرض','name_en'=>'View'],
-            ['cat_id'=> '8', 'name' => 'defPhoto_add','name_ar'=>'اضافة','name_en'=>'Add'],
-            ['cat_id'=> '8', 'name' => 'defPhoto_edit','name_ar'=>'تعديل','name_en'=>'Edit'],
-            ['cat_id'=> '8', 'name' => 'defPhoto_delete','name_ar'=>'حذف','name_en'=>'Delete'],
+            ['cat_id'=> '8', 'name' => 'upFilter_view','name_ar'=>'عرض','name_en'=>'View'],
+            ['cat_id'=> '8', 'name' => 'upFilter_add','name_ar'=>'اضافة','name_en'=>'Add'],
+            ['cat_id'=> '8', 'name' => 'upFilter_edit','name_ar'=>'تعديل','name_en'=>'Edit'],
+            ['cat_id'=> '8', 'name' => 'upFilter_delete','name_ar'=>'حذف','name_en'=>'Delete'],
 
-            ['cat_id'=> '9', 'name' => 'upFilter_view','name_ar'=>'عرض','name_en'=>'View'],
-            ['cat_id'=> '9', 'name' => 'upFilter_add','name_ar'=>'اضافة','name_en'=>'Add'],
-            ['cat_id'=> '9', 'name' => 'upFilter_edit','name_ar'=>'تعديل','name_en'=>'Edit'],
-            ['cat_id'=> '9', 'name' => 'upFilter_delete','name_ar'=>'حذف','name_en'=>'Delete'],
+            ['cat_id'=> '9', 'name' => 'Pages_view','name_ar'=>'عرض','name_en'=>'View'],
+            ['cat_id'=> '9', 'name' => 'Pages_add','name_ar'=>'اضافة','name_en'=>'Add'],
+            ['cat_id'=> '9', 'name' => 'Pages_edit','name_ar'=>'تعديل','name_en'=>'Edit'],
+            ['cat_id'=> '9', 'name' => 'Pages_delete','name_ar'=>'حذف','name_en'=>'Delete'],
+            ['cat_id'=> '9', 'name' => 'Pages_restore','name_ar'=>'استعادة المحذوف','name_en'=>'Restore'],
+
 
             ['cat_id'=> '10', 'name' => 'category_view','name_ar'=>'عرض','name_en'=>'View'],
             ['cat_id'=> '10', 'name' => 'category_add','name_ar'=>'اضافة','name_en'=>'Add'],
@@ -92,6 +93,14 @@ class PermissionSeeder extends Seeder
             ['cat_id'=> '15', 'name' => 'Faq_edit','name_ar'=>'تعديل','name_en'=>'Edit'],
             ['cat_id'=> '15', 'name' => 'Faq_delete','name_ar'=>'حذف','name_en'=>'Delete'],
             ['cat_id'=> '15', 'name' => 'Faq_restore','name_ar'=>'استعادة المحذوف','name_en'=>'Restore'],
+
+
+            ['cat_id'=> '16', 'name' => 'meta_view','name_ar'=>'عرض','name_en'=>'View'],
+            ['cat_id'=> '16', 'name' => 'meta_add','name_ar'=>'اضافة','name_en'=>'Add'],
+            ['cat_id'=> '16', 'name' => 'meta_edit','name_ar'=>'تعديل','name_en'=>'Edit'],
+            ['cat_id'=> '16', 'name' => 'meta_delete','name_ar'=>'حذف','name_en'=>'Delete'],
+            ['cat_id'=> '16', 'name' => 'meta_restore','name_ar'=>'استعادة المحذوف','name_en'=>'Restore'],
+
 
 
         ];

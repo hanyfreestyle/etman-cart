@@ -81,7 +81,7 @@ class WebMainController extends Controller
         if ($WebMeta->has($cat_id)) {
             return $WebMeta[$cat_id] ;
         }else{
-            return $WebMeta['home'] ;
+            return $WebMeta['home'] ?? '' ;
         }
    }
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
