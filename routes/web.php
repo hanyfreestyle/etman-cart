@@ -4,24 +4,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\web\WebPageController;
 use Illuminate\Support\Facades\Route;
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
 
+Route::group(['prefix' => LaravelLocalization::setLocale()], function(){
 
-Auth::routes([
-    'register' => false, // Registration Routes...
-    'reset' => false, // Password Reset Routes...
-    'verify' => false, // Email Verification Routes...
-]);
-Auth::viaRemember();
-//Auth::logoutOtherDevices('password');
-
-
-Route::group(['middleware' => ['auth','status']], function() {
-    Route::group(['prefix' => LaravelLocalization::setLocale()], function(){
-
-        Route::get('/', [WebPageController::class, 'index'])->name('menu-home');
+    Route::get('/', [WebPageController::class, 'index'])->name('menu-home');
 //
 //
 //        Route::get('/contact-us', [PageController::class, 'contactUs'])->name('menu-contact-us');
@@ -34,8 +20,8 @@ Route::group(['middleware' => ['auth','status']], function() {
 //        Route::get('/blog/{catSlug}', [PageController::class, 'BlogCatList'])->name('blogCatList');
 //        Route::get('/blog/{catSlug}/{postSlug}', [PageController::class, 'BlogView'])->name('blogView');
 
-    });
 });
+
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
