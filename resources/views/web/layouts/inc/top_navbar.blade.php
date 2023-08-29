@@ -15,22 +15,22 @@
                 <a class="nav-link" href="{{route('menu-home')}}">{{__('web/menu.home')}}</a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('menu-blog')}}">{{ __('web/menu.blog') }}</a>
-            </li>
+{{--            <li class="nav-item">--}}
+{{--                <a class="nav-link" href="{{route('menu-blog')}}">{{ __('web/menu.blog') }}</a>--}}
+{{--            </li>--}}
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('menu-developers')}}">{{ __('web/menu.developer') }}</a>
-            </li>
+{{--            <li class="nav-item">--}}
+{{--                <a class="nav-link" href="{{route('menu-developers')}}">{{ __('web/menu.developer') }}</a>--}}
+{{--            </li>--}}
 
 
 {{--            <li class="nav-item">--}}
 {{--                <a class="nav-link" href="#">{{ __('web/.menu_loaction') }}</a>--}}
 {{--            </li>--}}
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('menu-contact-us')}}">{{ __('web/menu.contatc_us') }}</a>
-            </li>
+{{--            <li class="nav-item">--}}
+{{--                <a class="nav-link" href="{{route('menu-contact-us')}}">{{ __('web/menu.contatc_us') }}</a>--}}
+{{--            </li>--}}
 
 
 {{--            <li class="nav-item dropdown">--}}
