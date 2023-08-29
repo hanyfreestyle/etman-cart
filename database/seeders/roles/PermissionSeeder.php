@@ -45,6 +45,7 @@ class PermissionSeeder extends Seeder
             ['cat_id'=> '7', 'name' => 'meta_add','name_ar'=>'اضافة','name_en'=>'Add'],
             ['cat_id'=> '7', 'name' => 'meta_edit','name_ar'=>'تعديل','name_en'=>'Edit'],
             ['cat_id'=> '7', 'name' => 'meta_delete','name_ar'=>'حذف','name_en'=>'Delete'],
+            ['cat_id'=> '7', 'name' => 'meta_restore','name_ar'=>'استعادة المحذوف','name_en'=>'Restore'],
 
             ['cat_id'=> '8', 'name' => 'defPhoto_view','name_ar'=>'عرض','name_en'=>'View'],
             ['cat_id'=> '8', 'name' => 'defPhoto_add','name_ar'=>'اضافة','name_en'=>'Add'],

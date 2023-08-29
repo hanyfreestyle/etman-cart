@@ -16,12 +16,17 @@ return new class extends Migration
             $table->increments('id');
             $table->integer('meta_tag_id')->unsigned();
             $table->string('locale')->index();
+            $table->string('slug')->nullable();
             $table->string('g_title')->nullable();
             $table->text('g_des')->nullable();
             $table->string('body_h1')->nullable();
             $table->string('breadcrumb')->nullable();
 
+
+
             $table->unique(['meta_tag_id','locale']);
+            $table->unique(['locale','slug']);
+
             $table->foreign('meta_tag_id')->references('id')->on('meta_tags')->onDelete('cascade');
         });
     }

@@ -13,6 +13,8 @@ use App\Models\admin\Category;
 use App\Models\admin\CategoryTable;
 use App\Models\admin\CategoryTableTranslation;
 use App\Models\admin\CategoryTranslation;
+use App\Models\admin\config\MetaTag;
+use App\Models\admin\config\MetaTagTranslation;
 use App\Models\admin\config\WebPrivacy;
 use App\Models\admin\config\WebPrivacyTranslation;
 use App\Models\admin\OurClient;
@@ -20,7 +22,6 @@ use App\Models\admin\OurClientTranslation;
 use App\Models\admin\Product;
 use App\Models\admin\ProductPhoto;
 use App\Models\admin\ProductTranslation;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 
@@ -615,4 +616,56 @@ class GetOldDataController extends AdminMainController
 
         }
     }
+
+
+
+    public function index_MetaTag()
+    {
+        $old_Category = DB::connection('mysql2')->table('config_meta')->get();
+        foreach ($old_Category as $oneCategory)
+        {
+            $data = [
+                'id' => $oneCategory->id,
+                'cat_id' => $oneCategory->cat_id,
+                'banner_id' => $oneCategory->banner_id,
+                'created_at' =>now(),
+                'updated_at' =>now(),
+            ];
+            MetaTag::unguard();
+            MetaTag::create($data);
+        }
+    }
+
+    public function index_MetaTagTranslation()
+    {
+        $old_Category = DB::connection('mysql2')->table('config_meta')->get();
+
+
+        foreach ($old_Category as $oneCategory)
+        {
+            $data = [
+                'meta_tag_id' => $oneCategory->id,
+                'locale' => 'ar',
+                'g_title' => $oneCategory->g_name,
+                'g_des' => $oneCategory->g_des,
+                'body_h1' => $oneCategory->header_h3,
+                'breadcrumb' => $oneCategory->header_h6,
+            ];
+
+            MetaTagTranslation::unguard();
+            MetaTagTranslation::create($data);
+
+            $data = [
+                'meta_tag_id' => $oneCategory->id,
+                'locale' => 'en',
+                'g_title' => $oneCategory->g_name_en,
+                'g_des' => $oneCategory->g_des_en,
+                'body_h1' => $oneCategory->header_h3_en,
+                'breadcrumb' => $oneCategory->header_h6_en,
+            ];
+            MetaTagTranslation::unguard();
+            MetaTagTranslation::create($data);
+        }
+    }
+
 }

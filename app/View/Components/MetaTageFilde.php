@@ -12,6 +12,7 @@ class MetaTageFilde extends Component
     public $bodyH1;
     public $oldData;
     public $placeholder;
+    public $slug;
 
 
     public function __construct(
@@ -19,12 +20,14 @@ class MetaTageFilde extends Component
         $breadcrumb = false,
         $bodyH1 = false,
         $placeholder = true,
+        $slug = true,
     )
     {
         $this->oldData = $oldData ;
         $this->breadcrumb = $breadcrumb ;
         $this->bodyH1 = $bodyH1 ;
         $this->placeholder = $placeholder ;
+        $this->slug = $slug ;
 
     }
 

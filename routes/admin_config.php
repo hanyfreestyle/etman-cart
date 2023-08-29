@@ -29,7 +29,13 @@ Route::get('/metaTags', [MetaTagController::class,'index'])->name('config.meta.i
 Route::get('/metaTags/create', [MetaTagController::class,'create'])->name('config.meta.create');
 Route::get('/metaTags/edit/{id}', [MetaTagController::class,'edit'])->name('config.meta.edit');
 Route::post('/metaTags/Update/{id}', [MetaTagController::class,'storeUpdate'])->name('config.meta.update');
-Route::delete('/metaTags/delete/{id}', [MetaTagController::class,'delete'])->name('config.meta.destroy');
+Route::get('/metaTags/delete/{id}', [MetaTagController::class,'delete'])->name('config.meta.destroy');
+
+Route::get('/metaTags/config', [MetaTagController::class,'config'])->name('config.meta.config');
+Route::get('/metaTags/SoftDelete/',[MetaTagController::class,'SoftDeletes'])->name('config.meta.SoftDelete');
+Route::get('/metaTags/restore/{id}',[MetaTagController::class,'restored'])->name('config.meta.restore');
+Route::get('/metaTags/force/{id}',[MetaTagController::class,'ForceDeletes'])->name('config.meta.force');
+Route::get('/metaTags/emptyPhoto/{id}', [MetaTagController::class,'emptyPhoto'])->name('config.meta.emptyPhoto');
 
 Route::get('/webPrivacy', [WebPrivacyController::class,'index'])->name('config.webPrivacy.index');
 Route::get('/webPrivacy/create', [WebPrivacyController::class,'create'])->name('config.webPrivacy.create');

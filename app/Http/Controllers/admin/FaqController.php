@@ -3,14 +3,8 @@
 namespace App\Http\Controllers\admin;
 
 use App\Helpers\AdminHelper;
-use App\Helpers\PuzzleUploadProcess;
 use App\Http\Controllers\AdminMainController;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\admin\BannerRequest;
 use App\Http\Requests\admin\FaqRequest;
-use App\Models\admin\Banner;
-use App\Models\admin\BannerCategory;
-use App\Models\admin\BannerTranslation;
 use App\Models\admin\Faq;
 use App\Models\admin\FaqCategory;
 use App\Models\admin\FaqTranslation;
