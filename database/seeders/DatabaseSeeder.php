@@ -76,8 +76,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call(SettingsTableSeeder::class);
         $this->call(SettingsTranslationsTableSeeder::class);
-        $this->call(MetaTagSeeder::class);
-        $this->call(MetaTagTranslationsTableSeeder::class);
         $this->call(UploadFilterSeeder::class);
         $this->call(UploadFilterSizeSeeder::class);
         $this->call(DefPhotoSeeder::class);
