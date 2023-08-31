@@ -10,8 +10,8 @@
     <!-- Latest Bootstrap min CSS -->
     <link rel="stylesheet" href="{{ defWebAssets('bootstrap/css/bootstrap.min.css') }}">
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+{{--    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap" rel="stylesheet">--}}
+{{--    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">--}}
     <!-- Icon Font CSS -->
     <link rel="stylesheet" href="{{ defWebAssets('css/all.min.css') }}">
     <link rel="stylesheet" href="{{ defWebAssets('css/ionicons.min.css') }}">
@@ -83,6 +83,24 @@
 <script src="{{ defWebAssets('js/jquery.elevatezoom.js') }}"></script>
 <!-- scripts js -->
 <script src="{{ defWebAssets('js/scripts.js') }}"></script>
+
+<script>
+    async function loadarfont(){
+        const font_ar = new FontFace('Tajawal','url({{ defWebAssets('fonts/Ar/TajawalRegular.woff2') }}');
+        await font_ar.load();
+        document.fonts.add(font_ar);
+        document.body.classList.add('Tajawal');
+    };
+    loadarfont();
+
+    async function loadarfont_en(){
+        const font_en = new FontFace('Poppins','url({{ defWebAssets('fonts/En/Poppins-Regular.woff2') }}');
+        await font_en.load();
+        document.fonts.add(font_en);
+        document.body.classList.add('Poppins');
+    };
+    loadarfont_en();
+</script>
 
 </body>
 </html>
