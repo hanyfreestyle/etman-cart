@@ -70,7 +70,7 @@ class CategoryController extends AdminMainController
         $pageData = $this->pageData;
         $pageData['ViewType'] = "List";
         $pageData['SubView'] = false;
-        if( Route::currentRouteName()== 'category.index_Main'){
+        if( Route::currentRouteName()== 'webPro.category.index_Main'){
             $Categories = self::getSelectQuery(Category::defquery()->where('parent_id',null));
         }else{
             $Categories = self::getSelectQuery(Category::defquery());

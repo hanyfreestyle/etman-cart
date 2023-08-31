@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\AdminHelper;
+use App\Models\admin\Category;
 use App\Models\admin\config\DefPhoto;
 use App\Models\admin\config\MetaTag;
 
@@ -36,7 +37,16 @@ class WebMainController extends Controller
 
 
 
+        $MenuCategory = Category::Defquery()->root()
+            ->withCount('children')
+            ->with('children')
+          //  ->with('CatProduct')
 
+            ->orderBy('children_count','desc')
+            ->get();
+        View::share('MenuCategory', $MenuCategory);
+
+        // dd($MenuCategory);
 
         //dd($WebConfig);
 

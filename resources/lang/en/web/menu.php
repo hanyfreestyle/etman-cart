@@ -2,7 +2,7 @@
 
 return
 [
-	'blog' => 'Blog',
+	'All_Categories' => 'All Categories',
 	'contatc_us' => 'Contatc Us',
 	'developer' => 'Developer',
 	'home' => 'Home',

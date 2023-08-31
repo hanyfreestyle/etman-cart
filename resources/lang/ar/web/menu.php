@@ -2,7 +2,7 @@
 
 return
 [
-	'blog' => 'المقالات',
+	'All_Categories' => 'مجموعات المنتجات',
 	'contatc_us' => 'اتصل بنا',
 	'developer' => 'المطورين',
 	'home' => 'الرئيسية',
