@@ -28,6 +28,9 @@ class WebMainController extends Controller
 
         $WebConfig = self::getWebConfig();
         View::share('WebConfig', $WebConfig);
+
+
+
         //dd($WebConfig);
 
 

@@ -1,23 +1,5 @@
-<div class="section bg_default small_pt small_pb">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-6">
-                <div class="newsletter_text text_white">
-                    <h3>Join Our Newsletter Now</h3>
-                    <p> Register now to get updates on promotions. </p>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="newsletter_form2">
-                    <form>
-                        <input type="text" required="" class="form-control rounded-0" placeholder="Enter Email Address">
-                        <button type="submit" class="btn btn-dark rounded-0" name="submit" value="Submit">Subscribe</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<x-web.footer-news-letter />
+
 <footer class="bg_gray">
     <div class="footer_top small_pt pb_20">
         <div class="container">
@@ -79,51 +61,12 @@
             </div>
         </div>
     </div>
-    <div class="middle_footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="shopping_info">
-                        <div class="row justify-content-center">
-                            <div class="col-md-4">
-                                <div class="icon_box icon_box_style2">
-                                    <div class="icon">
-                                        <i class="flaticon-shipped"></i>
-                                    </div>
-                                    <div class="icon_box_content">
-                                        <h5>Free Delivery</h5>
-                                        <p>Phasellus blandit massa enim elit of passage varius nunc.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="icon_box icon_box_style2">
-                                    <div class="icon">
-                                        <i class="flaticon-money-back"></i>
-                                    </div>
-                                    <div class="icon_box_content">
-                                        <h5>30 Day Returns Guarantee</h5>
-                                        <p>Phasellus blandit massa enim elit of passage varius nunc.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="icon_box icon_box_style2">
-                                    <div class="icon">
-                                        <i class="flaticon-support"></i>
-                                    </div>
-                                    <div class="icon_box_content">
-                                        <h5>27/4 Online Support</h5>
-                                        <p>Phasellus blandit massa enim elit of passage varius nunc.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+    <x-web.footer-icons/>
+
+
+
+
     <div class="bottom_footer border-top-tran">
         <div class="container">
             <div class="row">
