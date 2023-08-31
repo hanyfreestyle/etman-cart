@@ -21,12 +21,23 @@ return new class extends Migration
 
             $table->string('phone_num')->nullable();
             $table->string('whatsapp_num')->nullable();
+            $table->string('phone_text')->nullable();
+            $table->string('whatsapp_text')->nullable();
 
             $table->string('facebook')->nullable();
             $table->string('youtube')->nullable();
             $table->string('twitter')->nullable();
             $table->string('instagram')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('def_url')->nullable();
             $table->string('google_api')->nullable();
+
+            $table->integer('download_app')->default(0);
+            $table->integer('top_offer')->default(0);
+
+            $table->string('apple')->nullable();
+            $table->string('android')->nullable();
+            $table->string('windows')->nullable();
 
             $table->timestamps();
         });

@@ -40,6 +40,11 @@ class SettingsController extends AdminMainController
             $request['web_status'] = '0';
         }
         $setting= Setting::findorfail('1');
+        $setting->top_offer = intval((bool) $request->input( 'top_offer'));
+        $setting->download_app = intval((bool) $request->input( 'download_app'));
+
+
+
         $setting->update($request->all());
         Cache::forget('WebConfig_Cash');
 

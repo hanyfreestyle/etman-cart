@@ -40,7 +40,8 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-            "app/Helpers/admin/adminFunction.php"
+            "app/Helpers/admin/adminFunction.php",
+            "app/Helpers/web/WebFunction.php"
         ]
     },
     "autoload-dev": {

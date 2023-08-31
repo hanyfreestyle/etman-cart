@@ -22,7 +22,7 @@
 
 
         [
-            'view'=>false,
+            'view'=>true,
             'sel_routs'=>'weblang',
             'type'=>'one',
             'text'=> 'admin/menu.lang_file_web',

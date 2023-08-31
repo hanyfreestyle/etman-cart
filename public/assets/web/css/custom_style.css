@@ -1,0 +1,17 @@
+.lang_text{
+    font-size: 14px;
+
+}
+.lang_icon{
+    float: left;
+}
+.lang_icon img{
+    width: 16px;
+    height: 16px;
+
+    margin-top: -5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+}

@@ -3,6 +3,7 @@
 return
 [
 	'set_dataTable' => 'جدول البيانات',
+	'set_editor' => 'Editor',
 	'set_filterId' => 'فلتر رفع الصورة',
 	'set_orderBy' => 'ترتيب المحتوى',
 	'set_perpage' => 'عدد المحتوى فى الصفحة',
@@ -13,5 +14,8 @@ return
 	'sort_name_ASC' => 'التريب بالاسم تنازلى',
 	'sort_name_DESC' => 'التريب بالاسم تصاعدى',
 	'sort_postion' => 'Postions',
-	'set_editor' => 'Editor',
+	'web_top_header' => 'Web Top Header',
+	'web_top_header_offer' => 'Top Header Offer',
+	'web_top_header_offer_text' => 'Offer Text',
+	'web_top_header_Download' => 'Download App',
 ];

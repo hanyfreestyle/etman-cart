@@ -26,6 +26,16 @@ class WebMainController extends Controller
         $agent = new Agent();
         View::share('agent', $agent);
 
+        $WebConfig = self::getWebConfig();
+        View::share('WebConfig', $WebConfig);
+        //dd($WebConfig);
+
+
+        $PageView = [
+            'container'=>  webContainer(0), # 'custom-container',
+
+        ];
+        View::share('PageView', $PageView);
 
 
     }

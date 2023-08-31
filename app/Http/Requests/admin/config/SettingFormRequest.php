@@ -22,6 +22,13 @@ class SettingFormRequest extends FormRequest
             'youtube'=> 'exclude_if:youtube,#|required|url',
             'instagram'=> 'exclude_if:instagram,#|required|url',
             'google_api'=> 'exclude_if:google_api,#|required',
+            'apple'=> 'exclude_if:apple,#|required|url',
+            'android'=> 'exclude_if:android,#|required|url',
+            'windows'=> 'exclude_if:windows,#|required|url',
+
+            'top_offer'=> 'required',
+            'download_app'=> 'required',
+
         ];
 
         foreach(config('app.lang_file') as $key=>$lang){

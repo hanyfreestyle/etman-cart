@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('g_title')->nullable();
             $table->text('g_des')->nullable();
             $table->text('closed_mass')->nullable();
+            $table->text('offer')->nullable();
 
             $table->unique(['setting_id','locale']);
             $table->foreign('setting_id')->references('id')->on('config_settings')->onDelete('cascade');

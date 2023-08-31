@@ -22,8 +22,15 @@
                         <x-form-input label="{{ __('admin/config/admin.config_phone') }}" name="phone_num" :requiredSpan="true" colrow="col-lg-12"
                                       value="{{old('phone_num',$setting->phone_num)}}" inputclass="dir_en"/>
 
+                        <x-form-input label="{{ __('admin/config/admin.config_phone') }} Text" name="phone_text" :requiredSpan="true" colrow="col-lg-12"
+                                      value="{{old('phone_text',$setting->phone_text)}}" inputclass="dir_en"/>
+
+
                         <x-form-input label="{{ __('admin/config/admin.config_whatsapp') }}" name="whatsapp_num" :requiredSpan="true" colrow="col-lg-12"
                                       value="{{old('whatsapp_num',$setting->whatsapp_num)}}" inputclass="dir_en"/>
+
+                        <x-form-input label="{{ __('admin/config/admin.config_whatsapp') }} Text" name="whatsapp_text" :requiredSpan="true" colrow="col-lg-12"
+                                      value="{{old('whatsapp_text',$setting->whatsapp_text)}}" inputclass="dir_en"/>
 
                     </x-ui-card>
                 </div>
@@ -75,22 +82,65 @@
                 </div>
 
 
+                <div class="col-lg-7">
+                    <x-ui-card title="{{__('admin/config/settings.web_top_header')}}" :add-form-error="false">
+                        <div class="row">
+                            <x-form-select-arr  label="{{ __('admin/config/settings.web_top_header_offer') }}" name="top_offer" colrow="col-lg-6"
+                                                sendvalue="{{old('top_offer',$setting->top_offer)}}" select-type="selActive"/>
 
-                <div class="col-lg-12">
+                            @foreach ( config('app.lang_file') as $key=>$lang )
+                                <div class="col-lg-12 {{getColDir($key)}}">
+
+                                    <x-trans-input
+                                        label="{{__('admin/config/settings.web_top_header_offer_text')}} ({{ $key}})"
+                                        name="{{ $key }}[offer]"
+                                        dir="{{ $key }}"
+                                        reqname="{{ $key }}.offer"
+                                        value="{{old($key.'.offer', $setting->translate($key)->offer)}}"
+                                    />
+                               </div>
+                            @endforeach
+
+
+                            <x-form-select-arr  label="{{ __('admin/config/settings.web_top_header_Download') }}" name="download_app" colrow="col-lg-6"
+                                                sendvalue="{{old('download_app',$setting->download_app)}}" select-type="selActive"/>
+
+                            <x-form-input label="Apple" name="apple" :requiredSpan="true" colrow="col-lg-12"
+                                          value="{{old('apple',$setting->apple)}}" inputclass="dir_en"/>
+
+                            <x-form-input label="Android" name="android" :requiredSpan="true" colrow="col-lg-12"
+                                          value="{{old('android',$setting->android)}}" inputclass="dir_en"/>
+
+                            <x-form-input label="Windows" name="windows" :requiredSpan="true" colrow="col-lg-12"
+                                          value="{{old('windows',$setting->windows)}}" inputclass="dir_en"/>
+
+                        </div>
+                    </x-ui-card>
+                </div>
+
+
+
+                <div class="col-lg-5">
                     <x-ui-card title="{{ __('admin/config/admin.config_social_media')}}" :add-form-error="false">
                         <div class="row">
 
-                            <x-form-input label="Facebook" name="facebook" :requiredSpan="true" colrow="col-lg-6"
+                            <x-form-input label="Facebook" name="facebook" :requiredSpan="true" colrow="col-lg-12"
                                           value="{{old('facebook',$setting->facebook)}}" inputclass="dir_en"/>
 
-                            <x-form-input label="Youtube" name="youtube" :requiredSpan="true" colrow="col-lg-6"
+                            <x-form-input label="Youtube" name="youtube" :requiredSpan="true" colrow="col-lg-12"
                                           value="{{old('youtube',$setting->youtube)}}" inputclass="dir_en"/>
 
-                            <x-form-input label="Twitter" name="twitter" :requiredSpan="true" colrow="col-lg-6"
+                            <x-form-input label="Twitter" name="twitter" :requiredSpan="true" colrow="col-lg-12"
                                           value="{{old('twitter',$setting->twitter)}}" inputclass="dir_en"/>
 
-                            <x-form-input label="Instagram" name="instagram" :requiredSpan="true" colrow="col-lg-6"
+                            <x-form-input label="Instagram" name="instagram" :requiredSpan="true" colrow="col-lg-12"
                                           value="{{old('instagram',$setting->instagram)}}" inputclass="dir_en"/>
+
+                            <x-form-input label="LinkedIn" name="linkedin" :requiredSpan="true" colrow="col-lg-12"
+                                          value="{{old('linkedin',$setting->linkedin)}}" inputclass="dir_en"/>
+
+                            <x-form-input label="Web Site Url" name="def_url" :requiredSpan="true" colrow="col-lg-12"
+                                          value="{{old('def_url',$setting->def_url)}}" inputclass="dir_en"/>
 
                             <x-form-input label="Google Api" name="google_api" :requiredSpan="true" colrow="col-lg-12"
                                           value="{{old('google_api',$setting->google_api)}}" inputclass="dir_en"/>
@@ -98,6 +148,11 @@
                         </div>
                     </x-ui-card>
                 </div>
+
+
+
+
+
             </div>
         </div>
         <div class="container-fluid">

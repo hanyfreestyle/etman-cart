@@ -18,6 +18,8 @@ use App\Http\Controllers\AdminMainController;
 
 
 
+
+
 Route::get('/Home',[AdminMainController::class,'Home'])->name('admin.Dashboard');
 Route::get('/Home/Update',[AdminMainController::class,'Update'])->name('admin.Dashboard.Update');
 
