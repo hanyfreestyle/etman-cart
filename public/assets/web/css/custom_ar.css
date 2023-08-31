@@ -1,1 +1,5 @@
 body{font-family: 'Tajawal', sans-serif!important;}
+.forcDir{
+    direction: ltr!important;
+
+}

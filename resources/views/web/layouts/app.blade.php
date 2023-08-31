@@ -40,7 +40,7 @@
     <link rel="stylesheet" href="{{ defWebAssets('css/custom_'.thisCurrentLocale().'.css') }}">
 </head>
 
-<body {{ htmlArDir() }}>
+<body {!! htmlArDir() !!}>
 
 <x-web.html-preloader/>
 

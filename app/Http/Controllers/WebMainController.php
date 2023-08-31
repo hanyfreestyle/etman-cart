@@ -8,6 +8,7 @@ use App\Models\admin\config\MetaTag;
 
 use App\Models\admin\config\Setting;
 use App\Models\admin\Location;
+use App\Models\admin\Product;
 use Cache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
@@ -30,12 +31,20 @@ class WebMainController extends Controller
         View::share('WebConfig', $WebConfig);
 
 
+        $CartList = Product::inRandomOrder()->limit(2)->get();
+        View::share('CartList', $CartList);
+
+
+
+
 
         //dd($WebConfig);
 
 
         $PageView = [
             'container'=>  webContainer(0), # 'custom-container',
+            'top_search_view'=> 1, # 'custom-container',
+            'top_search_view_cat'=> 0, # 'custom-container',
 
         ];
         View::share('PageView', $PageView);

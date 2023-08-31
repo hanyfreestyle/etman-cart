@@ -202,9 +202,11 @@
                     <button class="navbar-toggler side_navbar_toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSidetoggle" aria-expanded="false">
                         <span class="ion-android-menu"></span>
                     </button>
-                    <div class="pr_search_icon">
-                        <a href="javascript:void(0);" class="nav-link pr_search_trigger"><i class="linearicons-magnifier"></i></a>
-                    </div>
+                    @if($PageView['top_search_view'])
+                        <div class="pr_search_icon">
+                            <a href="javascript:void(0);" class="nav-link pr_search_trigger"><i class="linearicons-magnifier"></i></a>
+                        </div>
+                    @endif
                     <div class="collapse navbar-collapse mobile_side_menu" id="navbarSidetoggle">
                         <ul class="navbar-nav">
                             <li class="dropdown">

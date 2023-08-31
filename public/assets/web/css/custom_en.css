@@ -9,3 +9,8 @@ margin-left: 0px!important;
 margin-right:.5rem!important
 
 }
+.cart_item_name{
+    text-align: left!important;
+    width: 100%!important;
+    display: block;
+}

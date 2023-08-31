@@ -1,6 +1,8 @@
 <?php
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #    defWebAssets
+use App\Http\Controllers\WebMainController;
+
 if (!function_exists('defWebAssets')) {
     function defWebAssets($path, $secure = null): string
     {
@@ -44,6 +46,18 @@ if (!function_exists('webChangeLocaletext')) {
             $change = 'عربى';
         }
         return $change;
+    }
+}
+
+if (!function_exists('getPhotoPath')) {
+    function getPhotoPath($file,$defPhoto){
+        $defPhoto_file = WebMainController::getDefPhotoById($defPhoto);
+        if($file){
+            $sendImg = defImagesDir($file);
+        }else{
+            $sendImg = defImagesDir($defPhoto_file->photo);
+        }
+        return $sendImg ;
     }
 }
 

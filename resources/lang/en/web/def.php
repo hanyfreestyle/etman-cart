@@ -2,5 +2,6 @@
 
 return
 [
-	'starting_from' => 'Starting from',
+	'but_search' => 'Search',
+	'All_Category' => 'All Category',
 ];
