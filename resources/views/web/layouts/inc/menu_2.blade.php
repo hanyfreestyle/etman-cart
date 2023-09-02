@@ -43,7 +43,7 @@
                                                         </ul>
                                                     @endif
                                                 </li>
-                                                <li class="mega-menu-col col-lg-5">
+                                                <li class="mega-menu-col col-lg-5 d-none d-md-block">
                                                     <div class="header-banner2">
                                                         <img src="{{getPhotoPath($MainCategory->photo,"blog")}}" class="rounded" alt="menu_banner1">
                                                     </div>
