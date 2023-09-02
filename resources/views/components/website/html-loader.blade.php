@@ -1,4 +1,4 @@
-@if($view)
+@if($viewState)
     <div class="preloader">
         <div class="lds-ellipsis">
             <div class="lds-ellipsis">

@@ -4,60 +4,83 @@
     <div class="footer_top small_pt pb_20">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="col-lg-3 col-md-12 col-sm-12">
                     <div class="widget">
                         <div class="footer_logo">
                             <a href="#"><img src="{{ defWebAssets('images/logo_dark.png') }}" alt="logo"/></a>
                         </div>
-                        <p class="mb-3">If you are going to use of Lorem Ipsum need to be sure there isn't anything hidden of text</p>
+                        <p class="mb-3">
+                            عتمان جروب هي شركة محلية أسسها وأدارها السيد حسن عتمان منذ عام 1967. بدأت رحلة السيد عتمان نحو النجاح بفضل تطوير شركته من خلال
+                        </p>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-12 col-sm-12">
+                    <div class="widget">
+
+                        <h6 class="widget_title">المقر الرئيسى</h6>
                         <ul class="contact_info">
                             <li>
                                 <i class="ti-location-pin"></i>
-                                <p>123 Street, Old Trafford, NewYork, USA</p>
-                            </li>
-                            <li>
-                                <i class="ti-email"></i>
-                                <a href="mailto:info@sitename.com">info@sitename.com</a>
+                                <p>
+                                    ش خليل بك متفرع من اسماعيل صبري
+                                    أمام بنك مصر - الجمرك <br>
+                                    الاسكندرية - مصر <br>
+
+                                </p>
                             </li>
                             <li>
                                 <i class="ti-mobile"></i>
-                                <p>+ 457 789 789 65</p>
+                                <p class="forcDir">
+                                    +2 0100 618 0117
+                                    <br>
+                                    +203 48 67 311
+                                    <br>
+
+                                    +203 48 15 941
+                                </p>
                             </li>
+
+                            <li>
+                                <i class=" far fa-clock"></i>
+                                <p><strong>
+                                    مواعيد العمل
+                                    </strong></p>
+                                <p>
+                                    طول ايام الاسبوع
+                                    <br>
+                                    من 9 صباحا وحتى 8 مساءا
+                                </p>
+                            </li>
+
+
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="widget">
-                        <h6 class="widget_title">Useful Links</h6>
+                        <h6 class="widget_title">القائمة الرئيسية</h6>
                         <ul class="widget_links">
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Location</a></li>
-                            <li><a href="#">Affiliates</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a class="" href="#">{{__('web/menu.home')}} </a></li>
+                            <li><a class="" href="#">{{ __('web/menu.About_Us') }}</a></li>
+                            <li><a class="" href="#">{{ __('web/menu.Faq') }}</a></li>
+                            <li><a class="" href="#">{{  __('web/menu.New')}}</a></li>
+                            <li><a class="" href="#">{{ __('web/menu.Our_Client') }}</a></li>
+                            <li><a class="" href="#">{{  __('web/menu.contatc_us')}}</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="widget">
-                        <h6 class="widget_title">My Account</h6>
+                        <h6 class="widget_title">قائمة المنتجات</h6>
                         <ul class="widget_links">
-                            <li><a href="#">My Account</a></li>
-                            <li><a href="#">Discount</a></li>
-                            <li><a href="#">Returns</a></li>
-                            <li><a href="#">Orders History</a></li>
-                            <li><a href="#">Order Tracking</a></li>
+                            @foreach($MenuCategory as $MainCategory)
+                                <li><a href="#">{{$MainCategory->name}}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-12">
-                    <div class="widget">
-                        <h6 class="widget_title">Instagram</h6>
-                        <ul class="widget_instafeed instafeed_col4">
-                            <li><a href="#"><span class="insta_icon"><i class="ti-instagram"></i></span></a></li>
-                        </ul>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>

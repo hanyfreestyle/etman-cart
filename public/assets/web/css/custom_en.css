@@ -14,3 +14,14 @@ margin-right:.5rem!important
     width: 100%!important;
     display: block;
 }
+
+/*.offset-lg-3 {*/
+/*    margin-left:25%;*/
+/*}*/
+
+
+@media (min-width: 992px){
+    .offset-lg-3 {
+        margin-left: 25%;
+    }
+}

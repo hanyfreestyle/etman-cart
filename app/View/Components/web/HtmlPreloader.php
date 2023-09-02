@@ -9,12 +9,12 @@ use Illuminate\View\Component;
 class HtmlPreloader extends Component
 {
 
-    public $viewState ;
+    public $view ;
     public function __construct(
-        $viewState = false
+        $view = false,
     )
     {
-        $this->viewState = $viewState ;
+        $this->view = $view ;
     }
 
     /**

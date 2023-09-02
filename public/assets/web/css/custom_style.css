@@ -1,3 +1,4 @@
+.stop_view{display: none!important;}
 .lang_text{
     font-size: 14px;
 
@@ -12,11 +13,48 @@
     margin-top: -5px;
     margin-left: 5px;
     margin-right: 5px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    /*box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;*/
 
 }
 
 .header_logo{
-    max-height: 60px;
+    max-height: 45px;
+    margin-right: 20px;
     width: auto;
 }
+.banner_section.slide_medium, .banner_section.slide_medium .carousel-item, .banner_section.slide_medium .banner_content_wrap, .banner_section.slide_medium .banner_content_wrap .carousel-item, .banner_section.shop_el_slider, .banner_section.shop_el_slider .carousel-item, .banner_section.shop_el_slider .banner_content_wrap, .banner_section.shop_el_slider .banner_content_wrap .carousel-item {
+    height: 240px;
+}
+
+
+@media only screen and (min-width: 991px) {
+    .header_logo{
+        max-height: 55px;
+        margin-right: 50px;
+        width: auto;
+    }
+
+    .banner_section.slide_medium, .banner_section.slide_medium .carousel-item, .banner_section.slide_medium .banner_content_wrap, .banner_section.slide_medium .banner_content_wrap .carousel-item, .banner_section.shop_el_slider, .banner_section.shop_el_slider .carousel-item, .banner_section.shop_el_slider .banner_content_wrap, .banner_section.shop_el_slider .banner_content_wrap .carousel-item {
+        height: 460px;
+    }
+
+}
+
+
+
+.header_phone_number{
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    font-family:'Poppins', sans-serif!important;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+
+}
+
+
+
+
+
+
+
+
