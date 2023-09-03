@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components\web;
+namespace App\View\Components\Website;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class FooterNewsLetter extends Component
+class FooterIcons extends Component
 {
     public $viewStauts ;
     public function __construct(
@@ -18,6 +18,6 @@ class FooterNewsLetter extends Component
 
     public function render(): View|Closure|string
     {
-        return view('components.web.footer-news-letter');
+        return view('components.website.footer-icons');
     }
 }

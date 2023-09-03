@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\web;
+namespace App\View\Components\Website;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -21,6 +21,6 @@ class MenuCategoriesWrap extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.web.menu-categories-wrap');
+        return view('components.website.menu-categories-wrap');
     }
 }

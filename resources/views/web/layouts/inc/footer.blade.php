@@ -1,4 +1,4 @@
-<x-web.footer-news-letter />
+<x-website.footer-news-letter/>
 
 <footer class="bg_gray">
     <div class="footer_top small_pt pb_20">
@@ -85,10 +85,7 @@
         </div>
     </div>
 
-    <x-web.footer-icons/>
-
-
-
+    <x-website.footer-icons/>
 
     <div class="bottom_footer border-top-tran">
         <div class="container">

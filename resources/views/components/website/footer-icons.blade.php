@@ -1,4 +1,4 @@
-
+@if($viewStauts)
     <div class="middle_footer">
         <div class="container">
             <div class="row">
@@ -44,5 +44,7 @@
             </div>
         </div>
     </div>
+@endif
+
 
 

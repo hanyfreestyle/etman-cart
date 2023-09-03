@@ -1,8 +1,5 @@
 .stop_view{display: none!important;}
-.lang_text{
-    font-size: 14px;
 
-}
 .lang_icon{
     float: left;
 }
@@ -35,7 +32,7 @@
     }
 
     .banner_section.slide_medium, .banner_section.slide_medium .carousel-item, .banner_section.slide_medium .banner_content_wrap, .banner_section.slide_medium .banner_content_wrap .carousel-item, .banner_section.shop_el_slider, .banner_section.shop_el_slider .carousel-item, .banner_section.shop_el_slider .banner_content_wrap, .banner_section.shop_el_slider .banner_content_wrap .carousel-item {
-        height: 460px;
+        height: 450px;
     }
 
 }

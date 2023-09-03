@@ -1,4 +1,4 @@
-
+@if($viewStauts)
     <div class="section bg_default small_pt small_pb">
         <div class="container">
             <div class="row align-items-center">
@@ -19,4 +19,4 @@
             </div>
         </div>
     </div>
-
+@endif

@@ -1,30 +1,9 @@
 <div class="categories_wrap">
-    <button type="button" data-bs-toggle="collapse" data-bs-target="#navCatContent" aria-expanded="false" class="categories_btn categories_menu">
-        <span> {{__('web/menu.All_Categories')}}</span><i class="linearicons-menu"></i>
+    <button type="button" data-bs-toggle="collapse" data-bs-target="#navCatContent" aria-expanded="false" class="categories_btn">
+        <i class="linearicons-menu"></i><span> {{__('web/menu.All_Categories')}} </span>
     </button>
-    <div id="navCatContent" class="navbar collapse">
+    <div id="navCatContent" class="nav_cat navbar collapse">
         <ul>
-
-
-
-{{--            @foreach($MenuCategory as $MainCategory)--}}
-{{--                <li>{{$MainCategory->name}} {{$MainCategory->children_count}}</li>--}}
-{{--                @if($MainCategory->children_count > 0 )--}}
-{{--                    @foreach($MainCategory->children  as $SubCategory)--}}
-{{--                        @if($loop->index < 2)--}}
-
-{{--                            <li class="mr-5" style="margin-right: 100px!important;">{{$SubCategory->name}} {{count($SubCategory->CatProduct)}}</li>--}}
-
-{{--                            @if(count($SubCategory->CatProduct) > 0 )--}}
-{{--                                @foreach($SubCategory->CatProduct as $Product)--}}
-{{--                                    <li class="mr-5" style="margin-right: 100px!important;">{{$Product->name}}</li>--}}
-{{--                                @endforeach--}}
-{{--                            @endif--}}
-{{--                        @endif--}}
-{{--                    @endforeach--}}
-{{--                @endif--}}
-{{--            @endforeach--}}
-
 
             @foreach($MenuCategory as $MainCategory)
                 @if($MainCategory->children_count <= 0 )
@@ -58,7 +37,7 @@
                                         </ul>
                                     @endif
                                 </li>
-                                <li class="mega-menu-col col-lg-5">
+                                <li class="mega-menu-col col-lg-5 d-none d-md-block">
                                     <div class="header-banner2">
                                         <img src="{{getPhotoPath($MainCategory->photo,"blog")}}" class="rounded" alt="menu_banner1">
                                     </div>
@@ -67,18 +46,20 @@
                         </div>
                     </li>
                 @endif
-
-
-
             @endforeach
-
-{{--            <li>--}}
-{{--                <ul class="more_slide_open">--}}
-{{--                    <li><a class="dropdown-item nav-link nav_item" href="login.html"><i class="flaticon-fax"></i> <span>Fax Machine</span></a></li>--}}
-{{--                    <li><a class="dropdown-item nav-link nav_item" href="register.html"><i class="flaticon-mouse"></i> <span>Mouse</span></a></li>--}}
-{{--                </ul>--}}
-{{--            </li>--}}
+            <li><a class="dropdown-item nav-link nav_item" href="#"><i class="flaticon-jacket"></i> <span>{{__('web/menu.New_Category')}} </span></a></li>
+            <li><a class="dropdown-item nav-link nav_item" href="#"><i class="flaticon-jacket"></i> <span>{{__('web/menu.New_Category')}} </span></a></li>
+            <li><a class="dropdown-item nav-link nav_item" href="#"><i class="flaticon-jacket"></i> <span>{{__('web/menu.New_Category')}} </span></a></li>
+            <li><a class="dropdown-item nav-link nav_item" href="#"><i class="flaticon-jacket"></i> <span>{{__('web/menu.New_Category')}} </span></a></li>
+            <li>
+                <ul class="more_slide_open">
+                    <li><a class="dropdown-item nav-link nav_item" href="#"><i class="flaticon-pijamas"></i> <span>{{__('web/menu.New_Category')}}</span></a></li>
+                    <li><a class="dropdown-item nav-link nav_item" href="#"><i class="flaticon-scarf"></i> <span>{{__('web/menu.New_Category')}}</span></a></li>
+                    <li><a class="dropdown-item nav-link nav_item" href="#"><i class="flaticon-vintage"></i> <span>{{__('web/menu.New_Category')}}</span></a></li>
+                    <li><a class="dropdown-item nav-link nav_item" href="#"><i class="flaticon-pregnant"></i> <span>{{__('web/menu.New_Category')}}</span></a></li>
+                </ul>
+            </li>
         </ul>
-{{--        <div class="more_categories">More Categories</div>--}}
+        <div class="more_categories">{{__('web/menu.More_Categories')}}</div>
     </div>
 </div>

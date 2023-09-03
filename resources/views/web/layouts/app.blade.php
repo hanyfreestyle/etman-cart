@@ -11,7 +11,7 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ defWebAssets('images/favicon.png') }}">
     <link rel="stylesheet" href="{{ defWebAssets('css/animate.css') }}">
-    <link rel="stylesheet" href="{{ defWebAssets('bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ defWebAssets('bootstrap/css/bootstrap.min_'.thisCurrentLocale().'.css') }}">
     <link rel="stylesheet" href="{{ defWebAssets('css/all.min.css') }}">
     <link rel="stylesheet" href="{{ defWebAssets('css/ionicons.min.css') }}">
     <link rel="stylesheet" href="{{ defWebAssets('css/themify-icons.css') }}">
@@ -37,13 +37,6 @@
 
 <body >
 
-{{--<x-web.html-preloader />--}}
-{{--<x-web-html-preloader/>--}}
-{{--<x-WebSite.web-html-preloader/>--}}
-{{--<x-web-site.web-html-preloader/>--}}
-
-
-
 <x-website.html-loader/>
 
 <header class="header_wrap">
@@ -51,9 +44,6 @@
     @include('web.layouts.inc.header_middle_2')
     @include('web.layouts.inc.menu_2')
 </header>
-
-
-
 
 <div class="banner_section slide_medium shop_banner_slider staggered-animation-wrap">
     <div class="container">

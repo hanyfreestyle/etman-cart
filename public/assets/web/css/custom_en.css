@@ -3,25 +3,24 @@ body{font-family: 'Poppins', sans-serif!important; font-size:14px;}
     float: right!important;
 }
 
-me-0{margin-right:0!important}.me-1{margin-right:.25rem!important}.me-2{margin-right:.5rem!important}.me-3{margin-left:1rem!important}.me-4{margin-right:1.5rem!important}.me-5{margin-right:3rem!important}.me-auto{margin-right:auto!important}
-.me-3{
-margin-left: 0px!important;
-margin-right:.5rem!important
-
-}
-.cart_item_name{
-    text-align: left!important;
-    width: 100%!important;
-    display: block;
+.lang_text{
+    font-size: 14px;
+    font-family: 'Tajawal', sans-serif!important;
 }
 
-/*.offset-lg-3 {*/
-/*    margin-left:25%;*/
+/*me-0{margin-right:0!important}.me-1{margin-right:.25rem!important}.me-2{margin-right:.5rem!important}.me-3{margin-left:1rem!important}.me-4{margin-right:1.5rem!important}.me-5{margin-right:3rem!important}.me-auto{margin-right:auto!important}*/
+/*.me-3{*/
+/*margin-left: 0px!important;*/
+/*margin-right:.5rem!important*/
+
+/*}*/
+/*.cart_item_name{*/
+/*    text-align: left!important;*/
+/*    width: 100%!important;*/
+/*    display: block;*/
 /*}*/
 
 
-@media (min-width: 992px){
-    .offset-lg-3 {
-        margin-left: 25%;
-    }
-}
+
+
+
