@@ -1,8 +1,8 @@
 <div class="middle-header dark_skin">
     <div class="container">
         <div class="nav_block">
-            <a class="navbar-brand" href="#">
-                <img class="logo_dark header_logo" src="{{ defWebAssets('images/logo_dark.png') }}" alt="logo" />
+            <a class="navbar-brand" href="{{route('Page_HomePage')}}">
+                <img class="logo_dark header_logo" src=" {{getDefPhotoPath($DefPhotoList,'dark-logo')}}" alt="logo" />
             </a>
             <div class="contact_phone order-md-last forcDir">
                 <i class="linearicons-phone-wave"></i>

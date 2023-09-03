@@ -24,10 +24,8 @@ use Artesaos\SEOTools\Facades\JsonLd;
 class WebMainController extends Controller
 {
 
-    public $PageView ;
-
     public function __construct(
-        $PageView = array(),
+
     )
     {
         $agent = new Agent();
@@ -36,6 +34,8 @@ class WebMainController extends Controller
         $WebConfig = self::getWebConfig();
         View::share('WebConfig', $WebConfig);
 
+        $DefPhotoList = self::getDefPhotoList();
+        View::share('DefPhotoList', $DefPhotoList);
 
         $CartList = Product::inRandomOrder()->limit(2)->get();
         View::share('CartList', $CartList);
@@ -54,8 +54,6 @@ class WebMainController extends Controller
         $MenuCategory = Category::Defquery()->root()
             ->withCount('children')
             ->with('children')
-          //  ->with('CatProduct')
-
             ->orderBy('children_count','desc')
             ->get();
         View::share('MenuCategory', $MenuCategory);
@@ -133,15 +131,15 @@ class WebMainController extends Controller
 #|||||||||||||||||||||||||||||||||||||| #     getDefPhotoById
     static function getDefPhotoById($cat_id){
 
-        $DefPhoto = Cache::remember('DefPhoto_Cash',config('app.def_photo_cash'), function (){
-            return  DefPhoto::get()->keyBy('cat_id');
-        });
-
-        if ($DefPhoto->has($cat_id)) {
-            return $DefPhoto[$cat_id] ;
-        }else{
-            return $DefPhoto['logo'] ;
-        }
+//        $DefPhoto = Cache::remember('DefPhoto_Cash',config('app.def_photo_cash'), function (){
+//            return  DefPhoto::get()->keyBy('cat_id');
+//        });
+//
+//        if ($DefPhoto->has($cat_id)) {
+//            return $DefPhoto[$cat_id] ;
+//        }else{
+//            return $DefPhoto['logo'] ;
+//        }
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -153,6 +151,15 @@ class WebMainController extends Controller
         return $WebConfig ;
     }
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     getWebConfig
+    static function getDefPhotoList(){
+        $DefPhotoList = Cache::remember('DefPhotoList_Cash',config('app.def_photo_cash'), function (){
+            return  DefPhoto::get()->keyBy('cat_id');
+        });
+
+        return $DefPhotoList ;
+    }
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

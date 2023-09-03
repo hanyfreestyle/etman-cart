@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 23, 2023 at 03:22 PM
+-- Generation Time: Sep 03, 2023 at 08:44 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -63,7 +63,9 @@ INSERT INTO `category_translations` (`id`, `category_id`, `locale`, `slug`, `nam
 (35, 36, 'ar', 'الأشرطة-ذاتية-اللصق-ليزير-تيب', 'ليزير تيب', 'ليزير تيب يستخدام فى اعمال التغليف وكذلك فى الديكورات والاعمال الفنية و الحفلات وكذلك الاستخدامات المكتبية يمكننا توفير 6 ألوان مختلفة لتلبية طلب العميل.', 'الأشرطة ذاتية اللصق | ليزير تيب يستخدام فى اعمال التغليف والديكور ', 'ليزير تيب يستخدام فى اعمال التغليف وكذلك فى الديكورات والاعمال الفنية و الحفلات وكذلك الاستخدامات المكتبية يمكننا توفير 6 ألوان مختلفة لتلبية طلب العميل.', NULL, NULL),
 (36, 36, 'en', 'Self-Adhesive-Tape-Laser-Tape', 'Laser Tape', 'Laser Tape use for sealing and decorative Use in parties and stationery we can supply 6 different colors to meet client request.', 'Self Adhesive Tape | LASER Tape Use in parties and stationery ', 'Laser Tape use for sealing and decorative Use in parties and stationery we can supply 6 different colors to meet client request.', NULL, NULL),
 (37, 37, 'ar', 'جامبو-رول', 'جامبو رول', 'شرائط BOPP الجامبو رول هي منتج نصف نهائى يستخدمه المصنعون للشرائط ذاتية اللصق عن طريق اعادة تقطيعه على الماكينات المجهزة لذلك مع منتجاتنا نضمن افضل جودة تساعدك على تقديم افضل منتج نهائى يستطيع المنافسة فى الاسواق المحلية والعالمية \r\n\r\nيمكننا توريد جميع أنواع الشرائط ذاتية اللصق BOPP بسماكات وألوان مختلفة ، عادي / مطبوع في رولات جامبو من جميع العروض والسمك.', 'الأشرطة ذاتية اللصق | جامبو رول | عتمان جروب', 'شرائط BOPP الجامبو رول هي منتج نصف نهائى يستخدمه المصنعون للشرائط ذاتية اللصق عن طريق اعادة تقطيعه على الماكينات المجهزة لذلك مع منتجاتنا نضمن افضل جودة', NULL, NULL),
-(38, 37, 'en', 'Jumbo-Roll', 'Jumbo Roll', 'BOPP jumbo roll tape is Semi-finished product for Semi manufacturers slitting it into smaller rolls on the slitting machine. With our products, You can assure your brand quality stability.\r\n\r\nWe can supply all kinds of BOPP Self adhesive tape in various thicknesses, colors, plain/printed in Jumbo rolls of all widths and thickness.', 'Jumbo Roll | Self Adhesive Tape | Etman Group', 'BOPP jumbo roll tape is Semi-finished product for Semi manufacturers slitting it into smaller rolls on the slitting machine.We can supply all kinds of BOPP', NULL, NULL);
+(38, 37, 'en', 'Jumbo-Roll', 'Jumbo Roll', 'BOPP jumbo roll tape is Semi-finished product for Semi manufacturers slitting it into smaller rolls on the slitting machine. With our products, You can assure your brand quality stability.\r\n\r\nWe can supply all kinds of BOPP Self adhesive tape in various thicknesses, colors, plain/printed in Jumbo rolls of all widths and thickness.', 'Jumbo Roll | Self Adhesive Tape | Etman Group', 'BOPP jumbo roll tape is Semi-finished product for Semi manufacturers slitting it into smaller rolls on the slitting machine.We can supply all kinds of BOPP', NULL, NULL),
+(39, 38, 'ar', 'ادوات-مكتبية', 'ادوات مكتبية', 'ادوات مكتبية', 'ادوات مكتبية', 'ادوات مكتبية', NULL, NULL),
+(40, 38, 'en', 'stationary', 'Stationary', 'Stationary', 'Stationary', 'Stationary', NULL, NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

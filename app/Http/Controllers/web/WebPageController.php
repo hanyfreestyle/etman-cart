@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\web;
 use App\Http\Controllers\WebMainController;
-use App\Models\admin\Banner;
 use Illuminate\Http\Request;
 
 class WebPageController extends WebMainController
@@ -17,6 +16,9 @@ class WebPageController extends WebMainController
             'SelMenu' => 'HomePage',
             'CatId' => 'HomePage',
         ];
+
+        $PageMeta = parent::getMeatByCatId('HomePage');
+        parent::printSeoMeta($PageMeta);
 
         return view('web.index',compact('SinglePageView'));
     }
@@ -44,7 +46,10 @@ class WebPageController extends WebMainController
             'SelMenu' => 'OurClient',
             'CatId' => 'OurClient',
         ];
-        return view('web.index',compact('SinglePageView'));
+        $PageMeta = parent::getMeatByCatId('OurClient');
+        parent::printSeoMeta($PageMeta);
+
+        return view('web.page_our_client',compact('SinglePageView','PageMeta'));
     }
 
 
@@ -52,12 +57,14 @@ class WebPageController extends WebMainController
 #|||||||||||||||||||||||||||||||||||||| #    LatestNews
     public function LatestNews ()
     {
-
         $SinglePageView = [
             'SelMenu' => 'LatestNews',
             'CatId' => 'LatestNews',
         ];
-        return view('web.index',compact('SinglePageView'));
+        $PageMeta = parent::getMeatByCatId('LatestNews');
+        parent::printSeoMeta($PageMeta);
+
+        return view('web.blog_list',compact('SinglePageView','PageMeta'));
     }
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #    FaqList
@@ -67,7 +74,10 @@ class WebPageController extends WebMainController
             'SelMenu' => 'FaqList',
             'CatId' => 'FaqList',
         ];
-        return view('web.index',compact('SinglePageView'));
+        $PageMeta = parent::getMeatByCatId('FaqList');
+        parent::printSeoMeta($PageMeta);
+
+        return view('web.faq_list',compact('SinglePageView','PageMeta'));
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -79,7 +89,10 @@ class WebPageController extends WebMainController
             'CatId' => 'ContactUs',
         ];
 
-        return view('web.index',compact('SinglePageView'));
+        $PageMeta = parent::getMeatByCatId('ContactUs');
+        parent::printSeoMeta($PageMeta);
+
+        return view('web.page_contact_us',compact('SinglePageView','PageMeta'));
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

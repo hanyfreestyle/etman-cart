@@ -62,4 +62,24 @@ if (!function_exists('getPhotoPath')) {
 }
 
 
+if (!function_exists('getDefPhotoPath')) {
+    function getDefPhotoPath($DefPhotoList,$cat_id){
+        if ($DefPhotoList->has($cat_id)) {
+            $file =  $DefPhotoList[$cat_id]['photo'] ;
+            $sendImg = defImagesDir($file);
+
+        }else{
+              $sendImg = "ddddd"  ;
+        }
+
+
+        return $sendImg ;
+    }
+}
+
+
+
+
+
+
 

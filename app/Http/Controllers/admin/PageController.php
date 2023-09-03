@@ -154,7 +154,7 @@ class PageController extends AdminMainController
             $saveTranslation->save();
         }
 
-       // Cache::forget('WebMeta_Cash');
+        Cache::forget('WebMeta_Cash');
         if($id == '0'){
             return redirect(route($this->PrefixRoute.'.index'))->with('Add.Done',"");
         }else{
@@ -168,7 +168,7 @@ class PageController extends AdminMainController
     public function delete($id)
     {
         Page::findOrFail($id)->delete();
-        //Cache::forget('WebMeta_Cash');
+        Cache::forget('WebMeta_Cash');
         return redirect(route($this->PrefixRoute.'.index'))->with('confirmDelete','');
     }
 
@@ -178,6 +178,7 @@ class PageController extends AdminMainController
         $rowData = Page::findOrFail($id);
         $rowData = AdminHelper::DeleteAllPhotos($rowData,true);
         $rowData->save();
+        Cache::forget('WebMeta_Cash');
         return back();
     }
 
@@ -186,6 +187,7 @@ class PageController extends AdminMainController
     public function restored($id)
     {
         Page::onlyTrashed()->where('id',$id)->restore();
+        Cache::forget('WebMeta_Cash');
         return back()->with('restore',"");
     }
 
@@ -196,6 +198,7 @@ class PageController extends AdminMainController
         $deleteRow =  Page::onlyTrashed()->where('id',$id)->firstOrFail();
         $deleteRow = AdminHelper::DeleteAllPhotos($deleteRow);
         $deleteRow->forceDelete();
+        Cache::forget('WebMeta_Cash');
         return back()->with('confirmDelete',"");
     }
 
@@ -206,6 +209,7 @@ class PageController extends AdminMainController
         $pageData = $this->pageData;
         $pageData['TitlePage'] = __('admin/def.model_config');
         $pageData['ViewType'] = "List";
+        Cache::forget('WebMeta_Cash');
         return view('admin.pages.pages_config',compact('pageData'));
     }
 
@@ -221,6 +225,7 @@ class PageController extends AdminMainController
         $Pages = Page::with('translation')
             ->orderBy('postion','asc')
             ->get();
+        Cache::forget('WebMeta_Cash');
         return view('admin.pages.pages_sort',compact('pageData','Pages'));
     }
 
@@ -235,6 +240,7 @@ class PageController extends AdminMainController
             $saveData->postion = $newPosition;
             $saveData->save();
         }
+        Cache::forget('WebMeta_Cash');
         return response()->json(['success'=>$positions]);
     }
 }

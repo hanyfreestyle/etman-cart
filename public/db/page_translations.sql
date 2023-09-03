@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 03, 2023 at 12:45 PM
+-- Generation Time: Sep 03, 2023 at 07:55 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -26,8 +26,8 @@ SET time_zone = "+00:00";
 --
 
 INSERT INTO `page_translations` (`id`, `page_id`, `locale`, `slug`, `name`, `g_title`, `g_des`, `body_h1`, `breadcrumb`) VALUES
-(1, 1, 'ar', 'index', 'الصفحة الرئيسية', 'عتمان جروب فخر الصناعة المصرية | خدمة العملاء 01006180117', 'عتمان جروب فخر الصناعة المصرية متخصصون فى تصنيع الاشرطة ذاتية اللصق وشرائط الزينة و جميع مستلزمات التعبئة والتغليف بمصر الاسكندرية خدمة العملاء 01006180117', 'عتمان جروب', 'عتمان جروب'),
-(2, 1, 'en', 'index', 'Home Page', 'Etman Group is the pride of the Egyptian industry Hotline 01006180117', 'Etman Group,the pride of the Egyptian industry, specialized in the manufacture of self-adhesive tapes, PP Ribbon and all packaging Products Hotline 01006180117', 'Etman Group', 'Etman Group'),
+(1, 1, 'ar', 'home', 'الصفحة الرئيسية', 'عتمان جروب فخر الصناعة المصرية | خدمة العملاء 01006180117', 'عتمان جروب فخر الصناعة المصرية متخصصون فى تصنيع الاشرطة ذاتية اللصق وشرائط الزينة و جميع مستلزمات التعبئة والتغليف بمصر الاسكندرية خدمة العملاء 01006180117', 'عتمان جروب', 'عتمان جروب'),
+(2, 1, 'en', 'home', 'Home Page', 'Etman Group is the pride of the Egyptian industry Hotline 01006180117', 'Etman Group,the pride of the Egyptian industry, specialized in the manufacture of self-adhesive tapes, PP Ribbon and all packaging Products Hotline 01006180117', 'Etman Group', 'Etman Group'),
 (3, 2, 'ar', 'عملائنا', 'عملائنا', 'عتمان جروب | قائمة بعملائنا', 'بعد اكثر من 40 عام من العمل فى السوق المصرى نتشرف بخدمة عملائنا التى تشرفنا بخدمتهم على مدار السنوات السابقة', 'عملائنا', 'عملائنا'),
 (4, 2, 'en', 'our-client', 'Our Client', 'Etman Group | Our Client', 'After more than 40 years of working in the Egyptian market, we are honored to serve our customers, which we were honored to serve over the past years', 'Our Client', 'Our Client'),
 (5, 3, 'ar', 'أخر-الأخبار', 'أخر الأخبار', 'عتمان جروب | أخر الاخبار | احدث العروض | الوظائف المتاحة', 'تابع اخر اخبار شركة عتمان جروب وكن دائما على علم باحداث العروض والخصومات التى نقدمه دائما والوظائف المتوفرة حاليا', 'أخر الأخبار', 'أخر الأخبار'),

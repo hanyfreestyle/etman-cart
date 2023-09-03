@@ -87,3 +87,28 @@
 
 
 
+.footer_logo img {
+    max-width: 80%;
+    margin-top: 15px;
+}
+
+.footer_about_text{
+    font-size: 14px;
+    line-height:32px!important;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.footer_about_more{
+    width: 100%;
+
+}
+
+.footer_about_more a{
+    color: #FF324D;
+    float: left;
+    margin-left: 10px;
+
+}
+
+

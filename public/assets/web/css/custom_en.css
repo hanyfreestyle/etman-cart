@@ -28,5 +28,23 @@ body{font-family: 'Poppins', sans-serif!important; font-size:14px;}
 }
 
 
+.footer_about_text{
+    font-size: 14px;
+    line-height:26px!important;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+
+
+.footer_about_more a{
+    color: #FF324D;
+    float: right;
+    margin-left: 0px;
+    margin-right: 10px;
+
+}
+
+
 
 

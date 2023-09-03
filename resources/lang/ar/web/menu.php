@@ -6,7 +6,7 @@ return
 	'All_Categories' => 'مجموعات المنتجات',
 	'Faq' => 'الاسئلة المتكررة',
 	'More_Categories' => 'المزيد من المجموعات',
-	'New' => 'اخر الاخبار',
+	'Latest_News' => 'اخر الاخبار',
 	'New_Category' => 'مجموعة جديدة',
 	'Our_Client' => 'عملائنا',
 	'contatc_us' => 'اتصل بنا',

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 23, 2023 at 03:16 PM
+-- Generation Time: Sep 03, 2023 at 08:44 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -44,7 +44,8 @@ INSERT INTO `categories` (`id`, `parent_id`, `photo`, `photo_thum_1`, `is_active
 (25, 23, 'images/category/25/gift-accessories-gift-paper.webp', 'images/category/25/gift-accessories-gift-paper_1.webp', 1, '2023-08-20 13:21:00', '2023-08-20 15:14:43'),
 (26, 23, 'images/category/26/gift-accessories-crepe-paper.webp', 'images/category/26/gift-accessories-crepe-paper_1.webp', 1, '2023-08-20 13:21:00', '2023-08-20 15:14:46'),
 (36, 1, 'images/category/36/self-adhesive-tape-laser-tape.webp', 'images/category/36/self-adhesive-tape-laser-tape_1.webp', 1, '2023-08-20 13:21:00', '2023-08-20 15:14:49'),
-(37, 1, 'images/category/37/jumbo-roll.webp', 'images/category/37/jumbo-roll_1.webp', 1, '2023-08-20 13:21:00', '2023-08-20 15:14:52');
+(37, 1, 'images/category/37/jumbo-roll.webp', 'images/category/37/jumbo-roll_1.webp', 1, '2023-08-20 13:21:00', '2023-08-20 15:14:52'),
+(38, NULL, NULL, NULL, 1, '2023-09-03 15:42:03', '2023-09-03 15:42:03');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

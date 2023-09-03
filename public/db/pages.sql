@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 03, 2023 at 12:45 PM
+-- Generation Time: Sep 03, 2023 at 07:55 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -26,9 +26,9 @@ SET time_zone = "+00:00";
 --
 
 INSERT INTO `pages` (`id`, `cat_id`, `view_name`, `banner_id`, `photo`, `photo_thum_1`, `is_active`, `menu_main`, `menu_footer`, `postion`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 'Home', NULL, 1, NULL, NULL, 1, 1, 1, 1, NULL, '2023-08-29 06:41:34', '2023-09-03 07:44:21'),
-(2, 'OurClient', NULL, NULL, NULL, NULL, 1, 1, 1, 3, NULL, '2023-08-29 06:41:34', '2023-09-03 07:44:38'),
-(3, 'LastNews', NULL, NULL, NULL, NULL, 1, 1, 1, 4, NULL, '2023-08-29 06:41:34', '2023-09-03 07:44:46'),
+(1, 'HomePage', NULL, 1, NULL, NULL, 1, 1, 1, 1, NULL, '2023-08-29 06:41:34', '2023-09-03 10:39:17'),
+(2, 'OurClient', NULL, 1, NULL, NULL, 1, 1, 1, 3, NULL, '2023-08-29 06:41:34', '2023-09-03 14:11:05'),
+(3, 'LatestNews', NULL, NULL, NULL, NULL, 1, 1, 1, 4, NULL, '2023-08-29 06:41:34', '2023-09-03 09:21:59'),
 (4, 'ErrorPage', NULL, NULL, NULL, NULL, 1, 0, 0, 8, NULL, '2023-08-29 06:41:34', '2023-09-03 07:25:20'),
 (5, 'FaqList', NULL, NULL, NULL, NULL, 1, 1, 1, 5, NULL, '2023-08-29 06:41:34', '2023-09-03 07:44:55'),
 (6, 'TermsConditions', NULL, NULL, NULL, NULL, 1, 0, 1, 6, NULL, '2023-08-29 06:41:34', '2023-09-03 07:45:03'),

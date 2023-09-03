@@ -19,6 +19,28 @@ Breadcrumbs::for('AboutUs', function (BreadcrumbTrail $trail) {
 });
 
 
+Breadcrumbs::for('OurClient', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push(__('web/menu.Our_Client'), route('Page_OurClient'));
+});
+
+Breadcrumbs::for('ContactUs', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push(__('web/menu.contatc_us'), route('Page_ContactUs'));
+});
+
+Breadcrumbs::for('FaqList', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push(__('web/menu.Faq'), route('Page_FaqList'));
+});
+
+Breadcrumbs::for('LatestNews', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push(__('web/menu.Latest_News'), route('Page_FaqList'));
+});
+
+
+
 //
 //Breadcrumbs::for('blog', function (BreadcrumbTrail $trail) {
 //    $trail->parent('home');
