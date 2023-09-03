@@ -48,3 +48,30 @@ body{font-family: 'Poppins', sans-serif!important; font-size:14px;}
 
 
 
+
+
+
+footer .widget_title {
+    text-transform: capitalize;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-size: 15px;
+    font-weight: 600!important;
+    letter-spacing: 1px;
+}
+
+
+.footer_phone{
+    font-size: 15px!important;
+    line-height: 30px!important;
+    letter-spacing: 1px;
+}
+
+.footer_address{
+    font-size: 14px!important;
+    line-height: 30px!important;
+}
+
+
+
+

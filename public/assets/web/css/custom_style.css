@@ -93,8 +93,8 @@
 }
 
 .footer_about_text{
-    font-size: 14px;
-    line-height:32px!important;
+    font-size: 15px;
+    line-height:30px!important;
     margin-top: 0px;
     margin-bottom: 0px;
 }
@@ -110,5 +110,42 @@
     margin-left: 10px;
 
 }
+
+
+footer .widget_title {
+    text-transform: capitalize;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-size: 17px;
+}
+
+.widget_links li {
+    list-style: none;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    border-bottom: 1px dotted rgba(0,0,0,.2);
+}
+
+.widget_links li a {
+    font-size: 15px;
+    font-weight: 500!important;
+    color: #687188;
+}
+
+.widget_links li:last-child {
+    padding-bottom: 5px;
+}
+
+.footer_phone{
+    font-size: 17px!important;
+    line-height: 30px!important;
+    letter-spacing: 1px;
+}
+
+.footer_address{
+    font-size: 14px!important;
+    line-height: 30px!important;
+}
+
 
 

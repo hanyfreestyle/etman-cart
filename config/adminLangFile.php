@@ -22,6 +22,7 @@ return [
         '4'=> ['id'=> '4' , 'group'=>'web' , 'sub_dir'=> null , 'file_name'=> 'footer','name'=>'Footer' ],
         '5'=> ['id'=> '5' , 'group'=>'web' , 'sub_dir'=> null , 'file_name'=> 'newsletter','name'=>'Newsletter' ],
         '6'=> ['id'=> '6' , 'group'=>'web' , 'sub_dir'=> null , 'file_name'=> 'cart','name'=>'Cart' ],
+        '7'=> ['id'=> '7' , 'group'=>'web' , 'sub_dir'=> null , 'file_name'=> 'address','name'=>'Address' ],
 
     ],
 
