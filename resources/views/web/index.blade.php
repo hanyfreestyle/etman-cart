@@ -1,14 +1,10 @@
 @extends('web.layouts.app')
 
 @section('content')
-{{--    <div class="section pb_20 small_pt">--}}
 
-
-{{--        {{getDefPhotoPath($DefPhotoList,'dark-logo')}}--}}
-{{--    </div>--}}
-{{--    <div class="section pb_20 small_pt">--}}
-{{--        <div class="container">--}}
-{{--            <div class="row mb-5">--}}
+    <div class="section pb_20 small_pt">
+        <div class="container">
+            <div class="row mb-5">
 
 {{--                @foreach($MenuCategory as $MainCategory)--}}
 {{--                    <li>{{$MainCategory->name}} {{$MainCategory->children_count}}</li>--}}
@@ -31,9 +27,9 @@
 {{--                    @endif--}}
 
 {{--                @endforeach--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+            </div>
+        </div>
+    </div>
 
 
 
