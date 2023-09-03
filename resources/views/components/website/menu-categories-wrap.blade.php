@@ -1,8 +1,19 @@
+
+
 <div class="categories_wrap">
     <button type="button" data-bs-toggle="collapse" data-bs-target="#navCatContent" aria-expanded="false" class="categories_btn">
         <i class="linearicons-menu"></i><span> {{__('web/menu.All_Categories')}} </span>
     </button>
-    <div id="navCatContent" class="nav_cat navbar collapse">
+
+
+    @if(isset($SinglePageView['CatId'])  and count($PagesList[$SinglePageView['CatId']]->PageBanner) > 0)
+        <div id="navCatContent" class="nav_cat navbar collapse">
+            @else
+                <div id="navCatContent" class="navbar collapse">
+                    @endif
+
+
+
         <ul>
 
             @foreach($MenuCategory as $MainCategory)

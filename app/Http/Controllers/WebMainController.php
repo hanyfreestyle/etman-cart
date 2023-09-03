@@ -43,12 +43,13 @@ class WebMainController extends Controller
 
         $PagesList  = Page::where('is_active',true)
             ->with('translation')
+            ->with('PageBanner')
             ->orderBy('postion','ASC')
             ->get()
             ->keyBy('cat_id')
         ;
         View::share('PagesList', $PagesList);
-        //dd($PagesList);
+
 
         $MenuCategory = Category::Defquery()->root()
             ->withCount('children')
@@ -68,7 +69,7 @@ class WebMainController extends Controller
             'top_search_view_cat'=> 0, # 'custom-container',
 
         ];
-        $this->PageView = $PageView ;
+        $this->PageView = $PageView;
         View::share('PageView', $PageView);
 
 

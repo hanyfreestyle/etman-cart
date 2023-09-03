@@ -10,20 +10,12 @@ use Illuminate\Http\Request;
 class WebPageController extends WebMainController
 {
 
-    function __construct(
-
-    )
-    {
-        parent::__construct();
-        $PageView = $this->PageView ;
-
-    }
-
     public function HomePage()
     {
 
         $SinglePageView = [
             'SelMenu' => 'HomePage',
+            'CatId' => 'HomePage',
         ];
 
         $Banner_def = Banner::query()

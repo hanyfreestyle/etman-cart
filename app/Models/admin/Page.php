@@ -7,6 +7,7 @@ use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Page extends Model implements TranslatableContract
@@ -26,5 +27,12 @@ class Page extends Model implements TranslatableContract
     public function scopeDefquery(Builder $query): Builder
     {
         return $query->with('translations');
+    }
+
+
+    public function PageBanner(): HasMany
+    {
+        return $this->hasMany(Banner::class , 'category_id', 'banner_id')
+            ->where('is_active', true);
     }
 }
