@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="{{ defWebAssets('css/custom_style.css') }}">
     <link rel="stylesheet" href="{{ defWebAssets('css/custom_'.thisCurrentLocale().'.css') }}">
 </head>
-
+{{--{!! htmlArDir() !!}--}}
 <body >
 
 <x-website.html-loader/>
@@ -43,11 +43,11 @@
     @include('web.layouts.inc.menu')
 </header>
 
-@if( isset($SinglePageView['CatId'])  and count($PagesList[$SinglePageView['CatId']]->PageBanner) > 0)
-    @include('web.layouts.inc.def_banner')
-@else
-    @yield('breadcrumb')
-@endif
+{{--@if( isset($SinglePageView['CatId'])  and count($PagesList[$SinglePageView['CatId']]->PageBanner) > 0)--}}
+{{--    @include('web.layouts.inc.def_banner')--}}
+{{--@else--}}
+{{--    @yield('breadcrumb')--}}
+{{--@endif--}}
 
 
 

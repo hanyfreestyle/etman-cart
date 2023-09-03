@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\web;
 use App\Http\Controllers\WebMainController;
+use App\Models\admin\OurClient;
+use App\Models\admin\OurClientTranslation;
 use Illuminate\Http\Request;
 
 class WebPageController extends WebMainController
@@ -49,7 +51,9 @@ class WebPageController extends WebMainController
         $PageMeta = parent::getMeatByCatId('OurClient');
         parent::printSeoMeta($PageMeta);
 
-        return view('web.page_our_client',compact('SinglePageView','PageMeta'));
+        $OurClients = OurClient::all();
+
+        return view('web.page_our_client',compact('SinglePageView','PageMeta','OurClients'));
     }
 
 

@@ -50,15 +50,26 @@ if (!function_exists('webChangeLocaletext')) {
 }
 
 if (!function_exists('getPhotoPath')) {
-    function getPhotoPath($file,$defPhoto){
-        $defPhoto_file = WebMainController::getDefPhotoById($defPhoto);
+//    function getPhotoPath($file,$defPhoto){
+//        $defPhoto_file = WebMainController::getDefPhotoById($defPhoto);
+//        if($file){
+//            $sendImg = defImagesDir($file);
+//        }else{
+//            $sendImg = defImagesDir($defPhoto_file->photo);
+//        }
+//        return $sendImg ;
+//    }
+
+        function getPhotoPath($file,$defPhoto=""){
+       // $defPhoto_file = WebMainController::getDefPhotoById($defPhoto);
         if($file){
             $sendImg = defImagesDir($file);
         }else{
-            $sendImg = defImagesDir($defPhoto_file->photo);
+            $sendImg = "";
         }
         return $sendImg ;
     }
+
 }
 
 
@@ -76,6 +87,42 @@ if (!function_exists('getDefPhotoPath')) {
         return $sendImg ;
     }
 }
+
+if (!function_exists('GetCopyRight')) {
+    function GetCopyRight($StartDate,$CompanyName) {
+        if($StartDate > date("Y")) {
+            $StartDate = date("Y");
+        }
+        $Lang =  LaravelLocalization::getCurrentLocale() ;
+        switch($Lang) {
+            case 'ar':
+                $copyname = "جميع الحقوق محفوظة";
+                if($StartDate == date("Y")) {
+                    $CopyRight = $copyname." &copy; ".date("Y")." ".$CompanyName;
+                } else {
+                    $CopyRight = $copyname." &copy; ".$StartDate." - ".date("Y")." ".$CompanyName;
+                }
+                break;
+//            case 'En':
+//                $copyname = "All Rights Reserved";
+//                if($StartDate == date("Y")) {
+//                    $CopyRight = $copyname." &copy; ".date("Y")." ".$CompanyName;
+//                } else {
+//                    $CopyRight = $copyname." &copy; ".$StartDate." - ".date("Y")." ".$CompanyName;
+//                }
+//                break;
+            default:
+                $copyname = "All Rights Reserved";
+                if($StartDate == date("Y")) {
+                    $CopyRight = $copyname." &copy; ".date("Y")." ".$CompanyName;
+                } else {
+                    $CopyRight = $copyname." &copy; ".$StartDate." - ".date("Y")." ".$CompanyName;
+                }
+        }
+        return $CopyRight;
+    }
+}
+
 
 
 

@@ -1,11 +1,11 @@
 @extends('web.layouts.app')
 
 @section('content')
-    <div class="section pb_20 small_pt">
+{{--    <div class="section pb_20 small_pt">--}}
 
 
-        {{getDefPhotoPath($DefPhotoList,'dark-logo')}}
-    </div>
+{{--        {{getDefPhotoPath($DefPhotoList,'dark-logo')}}--}}
+{{--    </div>--}}
 {{--    <div class="section pb_20 small_pt">--}}
 {{--        <div class="container">--}}
 {{--            <div class="row mb-5">--}}

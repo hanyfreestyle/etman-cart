@@ -149,3 +149,66 @@ footer .widget_title {
 
 
 
+
+
+.Client_title   {
+    font-size: 16px!important;
+
+    margin-top: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+
+
+}
+.Client_title a {
+
+    color: #FF324D!important;
+
+}
+
+.blog_post {
+    margin-bottom:25px;
+    transition: all 0.5s ease-in-out;
+}
+
+
+/*.accordion.accordion_style1 .card-header a:last-child {*/
+/* */
+/*}*/
+
+
+.accordion.accordion_style1 .card-header a {
+    padding-left: 40px;
+    padding-right: 0;
+
+    padding-top: 0px;
+    margin-bottom: 0px!important;
+    margin-top:15px!important;
+
+}
+
+.accordion_style1 .card-header a::after {
+
+    top: auto;
+}
+
+.accordion .card-header a{
+    padding-bottom: 10px;
+}
+
+
+#headingFour {
+    border-bottom: 0px solid rgba(0,0,0,.125);
+}
+#collapseTwo .footer_address{
+    font-size: 16px!important;
+
+}
+.card-header h6{
+    font-size: 16px;
+    padding-bottom: 0px;
+
+
+}
+
+
