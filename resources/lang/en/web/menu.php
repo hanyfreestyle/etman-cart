@@ -10,5 +10,6 @@ return
 	'New_Category' => 'New  Category',
 	'Our_Client' => 'Our Client',
 	'contatc_us' => 'Contatc Us',
-	'home' => 'Home Pgae',
+	'home' => 'Home',
+	'home_page' => 'Home Pgae',
 ];

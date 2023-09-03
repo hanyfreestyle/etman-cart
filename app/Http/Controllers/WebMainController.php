@@ -120,7 +120,7 @@ class WebMainController extends Controller
     static function getMeatByCatId($cat_id){
 
         $WebMeta = Cache::remember('WebMeta_Cash',config('app.meta_tage_cash'), function (){
-            return  MetaTag::with('translation')->get()->keyBy('cat_id');
+            return  Page::with('translation')->get()->keyBy('cat_id');
         });
 
         if ($WebMeta->has($cat_id)) {

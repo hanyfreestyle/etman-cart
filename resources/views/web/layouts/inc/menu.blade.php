@@ -1,5 +1,5 @@
 
-<div class="bottom_header light_skin main_menu_uppercase bg_dark mb-4">
+<div class="bottom_header light_skin main_menu_uppercase bg_dark  @if(isset($SinglePageView['CatId'])  and count($PagesList[$SinglePageView['CatId']]->PageBanner) > 0) mb-4 @endif">
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-4 col-sm-6 col-3">
@@ -13,7 +13,7 @@
                     </button>
                     <div class="collapse navbar-collapse mobile_side_menu" id="navbarSidetoggle">
                         <ul class="navbar-nav">
-                            <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'HomePage' ) setActive @endif" href="{{ route('Page_HomePage') }}">{{__('web/menu.home')}} </a></li>
+                            <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'HomePage' ) setActive @endif" href="{{ route('Page_HomePage') }}">{{__('web/menu.home_page')}} </a></li>
                             <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'AboutUs' ) setActive @endif" href="{{ route('Page_AboutUs') }}">{{ __('web/menu.About_Us') }}</a></li>
                             <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'OurClient' ) setActive @endif" href="{{ route('Page_OurClient') }}">{{ __('web/menu.Our_Client') }}</a></li>
                             <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'LatestNews' ) setActive @endif" href="{{ route('Page_LatestNews') }}">{{ __('web/menu.New')}}</a></li>

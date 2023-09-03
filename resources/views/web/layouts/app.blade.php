@@ -5,9 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="Anil z" name="author">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Shopwise is Powerful features and You Can Use The Perfect Build this Template For Any eCommerce Website. The template is built for sell Fashion Products, Shoes, Bags, Cosmetics, Clothes, Sunglasses, Furniture, Kids Products, Electronics, Stationery Products and Sporting Goods.">
-    <meta name="keywords" content="ecommerce, electronics store, Fashion store, furniture store,  bootstrap 4, clean, minimal, modern, online store, responsive, retail, shopping, ecommerce store">
-    <title>Etman-Group</title>
+    {!! SEO::generate() !!}
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ defWebAssets('images/favicon.png') }}">
     <link rel="stylesheet" href="{{ defWebAssets('css/animate.css') }}">
@@ -47,6 +45,8 @@
 
 @if( isset($SinglePageView['CatId'])  and count($PagesList[$SinglePageView['CatId']]->PageBanner) > 0)
     @include('web.layouts.inc.def_banner')
+@else
+    @yield('breadcrumb')
 @endif
 
 

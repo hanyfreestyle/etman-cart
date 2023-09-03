@@ -10,33 +10,40 @@ use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
 
 Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
-    $trail->push(__('web/menu.home'), route('menu-home'));
+    $trail->push(__('web/menu.home'), route('Page_HomePage'));
 });
 
-Breadcrumbs::for('blog', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('AboutUs', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push(__('web/menu.blog'), route('menu-blog'));
+    $trail->push(__('web/menu.About_Us'), route('Page_AboutUs'));
 });
 
-Breadcrumbs::for('blogCatList', function (BreadcrumbTrail $trail, $Category) {
-    $trail->parent('blog');
-    $trail->push($Category->name, route('blogCatList', $Category->slug));
-});
 
-Breadcrumbs::for('post_view', function (BreadcrumbTrail $trail, $Category,$Post) {
-    $trail->parent('blog');
-    $trail->push($Category->name, route('blogCatList', $Category->slug));
-    $trail->push($Post->name, route('blogCatList', $Post->slug));
-});
-
-Breadcrumbs::for('developer_list', function (BreadcrumbTrail $trail) {
-    $trail->parent('home');
-    $trail->push(__('web/menu.developer'), route('menu-developers'));
-});
-
-Breadcrumbs::for('developer_view', function (BreadcrumbTrail $trail,$Developer) {
-    $trail->parent('developer_list');
-    $trail->push( $Developer->name , route('page-developer-view',$Developer->slug));
-});
+//
+//Breadcrumbs::for('blog', function (BreadcrumbTrail $trail) {
+//    $trail->parent('home');
+//    $trail->push(__('web/menu.blog'), route('menu-blog'));
+//});
+//
+//Breadcrumbs::for('blogCatList', function (BreadcrumbTrail $trail, $Category) {
+//    $trail->parent('blog');
+//    $trail->push($Category->name, route('blogCatList', $Category->slug));
+//});
+//
+//Breadcrumbs::for('post_view', function (BreadcrumbTrail $trail, $Category,$Post) {
+//    $trail->parent('blog');
+//    $trail->push($Category->name, route('blogCatList', $Category->slug));
+//    $trail->push($Post->name, route('blogCatList', $Post->slug));
+//});
+//
+//Breadcrumbs::for('developer_list', function (BreadcrumbTrail $trail) {
+//    $trail->parent('home');
+//    $trail->push(__('web/menu.developer'), route('menu-developers'));
+//});
+//
+//Breadcrumbs::for('developer_view', function (BreadcrumbTrail $trail,$Developer) {
+//    $trail->parent('developer_list');
+//    $trail->push( $Developer->name , route('page-developer-view',$Developer->slug));
+//});
 
 
