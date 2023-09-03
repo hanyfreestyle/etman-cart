@@ -9,6 +9,7 @@ use App\Models\admin\config\MetaTag;
 
 use App\Models\admin\config\Setting;
 use App\Models\admin\Location;
+use App\Models\admin\Page;
 use App\Models\admin\Product;
 use Cache;
 use Illuminate\Http\Request;
@@ -23,7 +24,11 @@ use Artesaos\SEOTools\Facades\JsonLd;
 class WebMainController extends Controller
 {
 
-    public function __construct()
+    public $PageView ;
+
+    public function __construct(
+        $PageView = array(),
+    )
     {
         $agent = new Agent();
         View::share('agent', $agent);
@@ -36,6 +41,14 @@ class WebMainController extends Controller
         View::share('CartList', $CartList);
 
 
+        $PagesList  = Page::where('is_active',true)
+            ->with('translation')
+            ->orderBy('postion','ASC')
+            ->get()
+            ->keyBy('cat_id')
+        ;
+        View::share('PagesList', $PagesList);
+        //dd($PagesList);
 
         $MenuCategory = Category::Defquery()->root()
             ->withCount('children')
@@ -49,11 +62,13 @@ class WebMainController extends Controller
 
 
         $PageView = [
+            'selMenu'=>  '',
             'container'=>  webContainer(0), # 'custom-container',
             'top_search_view'=> 1, # 'custom-container',
             'top_search_view_cat'=> 0, # 'custom-container',
 
         ];
+        $this->PageView = $PageView ;
         View::share('PageView', $PageView);
 
 

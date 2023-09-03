@@ -61,12 +61,15 @@
                     <div class="widget">
                         <h6 class="widget_title">القائمة الرئيسية</h6>
                         <ul class="widget_links">
-                            <li><a class="" href="#">{{__('web/menu.home')}} </a></li>
-                            <li><a class="" href="#">{{ __('web/menu.About_Us') }}</a></li>
-                            <li><a class="" href="#">{{ __('web/menu.Faq') }}</a></li>
-                            <li><a class="" href="#">{{  __('web/menu.New')}}</a></li>
-                            <li><a class="" href="#">{{ __('web/menu.Our_Client') }}</a></li>
-                            <li><a class="" href="#">{{  __('web/menu.contatc_us')}}</a></li>
+                            <li><a class="" href="{{ route('Page_HomePage') }}">{{__('web/menu.home')}} </a></li>
+                            <li><a class="" href="{{ route('Page_AboutUs') }}">{{ __('web/menu.About_Us') }}</a></li>
+                            <li><a class="" href="{{ route('Page_OurClient') }}">{{ __('web/menu.Our_Client') }}</a></li>
+                            <li><a class="" href="{{ route('Page_LatestNews') }}">{{  __('web/menu.New')}}</a></li>
+                            <li><a class="" href="{{ route('Page_FaqList') }}">{{ __('web/menu.Faq') }}</a></li>
+                            <li><a class="" href="{{ route('Page_ContactUs') }}">{{  __('web/menu.contatc_us')}}</a></li>
+
+
+
                         </ul>
                     </div>
                 </div>

@@ -9,25 +9,124 @@ use Illuminate\Http\Request;
 
 class WebPageController extends WebMainController
 {
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     index
-    public function index()
+
+    function __construct(
+
+    )
+    {
+        parent::__construct();
+        $PageView = $this->PageView ;
+
+    }
+
+    public function HomePage()
     {
 
+        $SinglePageView = [
+            'SelMenu' => 'HomePage',
+        ];
+
         $Banner_def = Banner::query()
-        ->where('category_id',1)
+            ->where('category_id',1)
             ->orderBy('postion')
             ->get()
         ;
 
-        $Banner_def2 = Banner::query()
-            ->where('category_id',2)
-            ->orderBy('postion')
-            ->get()
-        ;
 
-//        $Meta = parent::getMeatByCatId('home');
-//        parent::printSeoMeta($Meta);
-        return view('web.index',compact('Banner_def','Banner_def2'));
+        return view('web.index',compact('SinglePageView','Banner_def'));
     }
+
+
+
+
+
+
+    public function AboutUs ()
+    {
+
+        $SinglePageView = [
+            'SelMenu' => 'AboutUs',
+        ];
+        $Banner_def = Banner::query()
+            ->where('category_id',1)
+            ->orderBy('postion')
+            ->get()
+        ;
+
+
+
+        return view('web.index',compact('SinglePageView','Banner_def'));
+    }
+
+    public function OurClient ()
+    {
+
+        $SinglePageView = [
+            'SelMenu' => 'OurClient',
+        ];
+        $Banner_def = Banner::query()
+            ->where('category_id',1)
+            ->orderBy('postion')
+            ->get()
+        ;
+
+
+
+        return view('web.index',compact('SinglePageView','Banner_def'));
+    }
+
+
+    public function LatestNews ()
+    {
+
+        $SinglePageView = [
+            'SelMenu' => 'LatestNews',
+        ];
+        $Banner_def = Banner::query()
+            ->where('category_id',1)
+            ->orderBy('postion')
+            ->get()
+        ;
+
+
+
+        return view('web.index',compact('SinglePageView','Banner_def'));
+    }
+
+    public function FaqList ()
+    {
+
+        $SinglePageView = [
+            'SelMenu' => 'FaqList',
+        ];
+        $Banner_def = Banner::query()
+            ->where('category_id',1)
+            ->orderBy('postion')
+            ->get()
+        ;
+
+
+
+        return view('web.index',compact('SinglePageView','Banner_def'));
+    }
+
+
+    public function ContactUs ()
+    {
+
+        $SinglePageView = [
+            'SelMenu' => 'ContactUs',
+        ];
+        $Banner_def = Banner::query()
+            ->where('category_id',1)
+            ->orderBy('postion')
+            ->get()
+        ;
+
+
+
+        return view('web.index',compact('SinglePageView','Banner_def'));
+    }
+
+
 }

@@ -54,7 +54,20 @@
 }
 
 
+.navbar .navbar-nav > li > .nav-link {
+    font-size: 16px;
 
+}
+
+
+.setActive{
+    /*color: #FF324D!important;*/
+    background: #FF324D!important;
+    color: #fff!important;
+
+
+
+}
 
 
 

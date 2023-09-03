@@ -13,12 +13,12 @@
                     </button>
                     <div class="collapse navbar-collapse mobile_side_menu" id="navbarSidetoggle">
                         <ul class="navbar-nav">
-                            <li><a class="nav-link nav_item" href="#">{{__('web/menu.home')}} </a></li>
-                            <li><a class="nav-link nav_item" href="#">{{ __('web/menu.About_Us') }}</a></li>
-                            <li><a class="nav-link nav_item" href="#">{{ __('web/menu.Faq') }}</a></li>
-                            <li><a class="nav-link nav_item" href="#">{{  __('web/menu.New')}}</a></li>
-                            <li><a class="nav-link nav_item" href="#">{{ __('web/menu.Our_Client') }}</a></li>
-                            <li><a class="nav-link nav_item" href="#">{{  __('web/menu.contatc_us')}}</a></li>
+                            <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'HomePage' ) setActive @endif" href="{{ route('Page_HomePage') }}">{{__('web/menu.home')}} </a></li>
+                            <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'AboutUs' ) setActive @endif" href="{{ route('Page_AboutUs') }}">{{ __('web/menu.About_Us') }}</a></li>
+                            <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'OurClient' ) setActive @endif" href="{{ route('Page_OurClient') }}">{{ __('web/menu.Our_Client') }}</a></li>
+                            <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'LatestNews' ) setActive @endif" href="{{ route('Page_LatestNews') }}">{{ __('web/menu.New')}}</a></li>
+                            <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'FaqList' ) setActive @endif" href="{{ route('Page_FaqList') }}">{{ __('web/menu.Faq') }}</a></li>
+                            <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'ContactUs' ) setActive @endif" href="{{ route('Page_ContactUs') }}">{{ __('web/menu.contatc_us')}}</a></li>
                         </ul>
                     </div>
 

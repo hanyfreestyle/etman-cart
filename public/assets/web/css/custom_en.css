@@ -20,6 +20,10 @@ body{font-family: 'Poppins', sans-serif!important; font-size:14px;}
 /*    display: block;*/
 /*}*/
 
+.main_menu_uppercase .navbar-nav > li > .nav-link {
+    text-transform:none;
+    letter-spacing: 1px;
+}
 
 
 
