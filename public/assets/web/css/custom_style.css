@@ -1,5 +1,8 @@
 .stop_view{display: none!important;}
-
+.changeLangMobile img{
+    width: 20px;
+    height: 20px;
+}
 .lang_icon{
     float: left;
 }
@@ -10,7 +13,7 @@
     margin-top: -5px;
     margin-left: 5px;
     margin-right: 5px;
-    /*box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;*/
+
 
 }
 
@@ -35,17 +38,19 @@
         height: 450px;
     }
 
+    .changeLangMobile{
+        display: none!important;
+    }
+
 }
 
 
 
 .header_phone_number{
-    /*font-family: Arial, Helvetica, sans-serif;*/
     font-family:'Poppins', sans-serif!important;
     font-size: 15px;
     font-weight: bold;
     letter-spacing: 1px;
-
 }
 
 

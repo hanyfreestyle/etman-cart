@@ -9,9 +9,11 @@ use App\Http\Requests\admin\PageRequest;
 use App\Models\admin\BannerCategory;
 use App\Models\admin\config\MetaTag;
 use App\Models\admin\config\MetaTagTranslation;
+use App\Models\admin\OurClient;
 use App\Models\admin\Page;
 use App\Models\admin\PageTranslation;
 use Cache ;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
 
@@ -123,6 +125,12 @@ class PageController extends AdminMainController
         $saveData =  Page::findOrNew($id) ;
         $saveData->cat_id = $request->input('cat_id');
         $saveData->banner_id = $request->input('banner_id');
+
+        $saveData->is_active = intval((bool) $request->input( 'is_active'));
+        $saveData->menu_main = intval((bool) $request->input( 'menu_main'));
+        $saveData->menu_footer = intval((bool) $request->input( 'menu_footer'));
+
+
         $saveData->save();
 
         $saveImgData = new PuzzleUploadProcess();
@@ -138,6 +146,7 @@ class PageController extends AdminMainController
             $saveTranslation->page_id = $saveData->id;
             $saveTranslation->locale = $key;
             $saveTranslation->slug = AdminHelper::Url_Slug($request->input($key.'.slug'));
+            $saveTranslation->name = $request->input($key.'.name');
             $saveTranslation->g_title = $request->input($key.'.g_title');
             $saveTranslation->g_des = $request->input($key.'.g_des');
             $saveTranslation->body_h1 = $request->input($key.'.body_h1');
@@ -200,4 +209,32 @@ class PageController extends AdminMainController
         return view('admin.pages.pages_config',compact('pageData'));
     }
 
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     Sort
+    public  function Sort(){
+
+        $pageData = $this->pageData;
+        $pageData['ViewType'] = "List";
+
+        $Pages = Page::with('translation')
+            ->orderBy('postion','asc')
+            ->get();
+        return view('admin.pages.pages_sort',compact('pageData','Pages'));
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     SaveSort
+    public function SaveSort(Request $request){
+        $positions = $request->positions;
+        foreach($positions as $position) {
+            $id = $position[0];
+            $newPosition = $position[1];
+            $saveData =  Page::findOrFail($id) ;
+            $saveData->postion = $newPosition;
+            $saveData->save();
+        }
+        return response()->json(['success'=>$positions]);
+    }
 }

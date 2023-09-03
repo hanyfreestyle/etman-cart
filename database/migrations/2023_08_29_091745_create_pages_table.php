@@ -16,6 +16,10 @@ return new class extends Migration
             $table->integer('banner_id')->nullable();
             $table->string("photo")->nullable();
             $table->string("photo_thum_1")->nullable();
+            $table->boolean("is_active")->default(true);
+            $table->boolean("menu_main")->default(false);
+            $table->boolean("menu_footer")->default(false);
+            $table->integer("postion")->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

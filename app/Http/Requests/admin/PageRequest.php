@@ -40,9 +40,9 @@ class PageRequest extends FormRequest
         }
 
         foreach(config('app.lang_file') as $key=>$lang){
+            $rules[$key.".name"] =   'required';
             $rules[$key.".g_title"] =   'required';
             $rules[$key.".g_des"] =   'required';
-
             if($id == '0'){
                 $rules[$key.".slug"] = 'required|unique:page_translations,slug';
             }else{

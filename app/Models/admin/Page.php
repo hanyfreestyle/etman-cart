@@ -15,7 +15,7 @@ class Page extends Model implements TranslatableContract
     use Translatable;
     use SoftDeletes;
 
-    public $translatedAttributes = ['slug','g_title','g_title','g_des','body_h1','breadcrumb'];
+    public $translatedAttributes = ['slug','name','g_title','g_des','body_h1','breadcrumb'];
     protected $fillable = ['cat_id','view_name','banner_id','photo','photo_thum_1'];
     protected $table = "pages";
     protected $primaryKey = 'id';

@@ -46,9 +46,6 @@ class WebMainController extends Controller
             ->get();
         View::share('MenuCategory', $MenuCategory);
 
-        // dd($MenuCategory);
-
-        //dd($WebConfig);
 
 
         $PageView = [

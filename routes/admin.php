@@ -156,7 +156,8 @@ Route::get('/Pages/SoftDelete/',[PageController::class,'SoftDeletes'])->name('Pa
 Route::get('/Pages/restore/{id}',[PageController::class,'restored'])->name('Pages.pageList.restore');
 Route::get('/Pages/force/{id}',[PageController::class,'ForceDeletes'])->name('Pages.pageList.force');
 Route::get('/Pages/emptyPhoto/{id}', [PageController::class,'emptyPhoto'])->name('Pages.pageList.emptyPhoto');
-
+Route::get('/Pages/Sort',[PageController::class,'Sort'])->name('Pages.pageList.Sort');
+Route::post('/Pages/SaveSort', [PageController::class,'SaveSort'])->name('Pages.pageList.SaveSort');
 
 
 

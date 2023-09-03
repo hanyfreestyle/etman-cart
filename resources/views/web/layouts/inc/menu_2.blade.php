@@ -21,9 +21,12 @@
                             <li><a class="nav-link nav_item" href="#">{{  __('web/menu.contatc_us')}}</a></li>
                         </ul>
                     </div>
+
                     <ul class="navbar-nav attr-nav align-items-center">
+                        <li><a href="{{ LaravelLocalization::getLocalizedURL(webChangeLocale(), null, [], true) }}" class="nav-link changeLangMobile">
+                                <span> <img src="{{ defWebAssets('img/'.webChangeLocale().'.png') }}" alt=""></span>
+                            </a></li>
                         <li><a href="#" class="nav-link"><i class="linearicons-user"></i></a></li>
-{{--                        <li><a href="#" class="nav-link"><i class="linearicons-heart"></i><span class="wishlist_count">0</span></a></li>--}}
                         <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="#" data-bs-toggle="dropdown"><i class="linearicons-cart"></i><span class="cart_count">2</span></a>
 
                             <div class="cart_box dropdown-menu dropdown-menu-right">
@@ -50,12 +53,16 @@
                                 </div>
                             </div>
                         </li>
+
                     </ul>
                     @if($PageView['top_search_view'])
                         <div class="pr_search_icon">
                             <a href="javascript:void(0);" class="nav-link pr_search_trigger"><i class="linearicons-magnifier"></i></a>
                         </div>
                     @endif
+
+
+
                 </nav>
             </div>
         </div>

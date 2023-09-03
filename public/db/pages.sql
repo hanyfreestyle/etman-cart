@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 29, 2023 at 11:50 AM
+-- Generation Time: Sep 03, 2023 at 12:45 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -25,16 +25,15 @@ SET time_zone = "+00:00";
 -- Dumping data for table `pages`
 --
 
-INSERT INTO `pages` (`id`, `cat_id`, `view_name`, `banner_id`, `photo`, `photo_thum_1`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 'Home', NULL, 1, NULL, NULL, NULL, '2023-08-29 06:41:34', '2023-08-29 06:41:34'),
-(2, 'OurClient', NULL, 0, NULL, NULL, NULL, '2023-08-29 06:41:34', '2023-08-29 06:41:34'),
-(3, 'LastNews', NULL, 0, NULL, NULL, NULL, '2023-08-29 06:41:34', '2023-08-29 06:41:34'),
-(4, 'ErrorPage', NULL, 0, NULL, NULL, NULL, '2023-08-29 06:41:34', '2023-08-29 06:41:34'),
-(5, 'FaqList', NULL, 0, NULL, NULL, NULL, '2023-08-29 06:41:34', '2023-08-29 06:41:34'),
-(6, 'TermsConditions', NULL, 0, NULL, NULL, NULL, '2023-08-29 06:41:34', '2023-08-29 06:41:34'),
-(7, 'ContactUs', NULL, 0, NULL, NULL, NULL, '2023-08-29 06:41:34', '2023-08-29 06:41:34'),
-(8, 'AboutUs', NULL, 0, NULL, NULL, NULL, '2023-08-29 06:41:34', '2023-08-29 06:41:34'),
-(9, 'DarkMode', NULL, 3, NULL, NULL, NULL, '2023-08-29 06:41:34', '2023-08-29 06:41:34');
+INSERT INTO `pages` (`id`, `cat_id`, `view_name`, `banner_id`, `photo`, `photo_thum_1`, `is_active`, `menu_main`, `menu_footer`, `postion`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 'Home', NULL, 1, NULL, NULL, 1, 1, 1, 1, NULL, '2023-08-29 06:41:34', '2023-09-03 07:44:21'),
+(2, 'OurClient', NULL, NULL, NULL, NULL, 1, 1, 1, 3, NULL, '2023-08-29 06:41:34', '2023-09-03 07:44:38'),
+(3, 'LastNews', NULL, NULL, NULL, NULL, 1, 1, 1, 4, NULL, '2023-08-29 06:41:34', '2023-09-03 07:44:46'),
+(4, 'ErrorPage', NULL, NULL, NULL, NULL, 1, 0, 0, 8, NULL, '2023-08-29 06:41:34', '2023-09-03 07:25:20'),
+(5, 'FaqList', NULL, NULL, NULL, NULL, 1, 1, 1, 5, NULL, '2023-08-29 06:41:34', '2023-09-03 07:44:55'),
+(6, 'TermsConditions', NULL, NULL, NULL, NULL, 1, 0, 1, 6, NULL, '2023-08-29 06:41:34', '2023-09-03 07:45:03'),
+(7, 'ContactUs', NULL, NULL, NULL, NULL, 1, 1, 1, 7, NULL, '2023-08-29 06:41:34', '2023-09-03 07:45:14'),
+(8, 'AboutUs', NULL, NULL, NULL, NULL, 1, 1, 1, 2, NULL, '2023-08-29 06:41:34', '2023-09-03 07:44:30');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

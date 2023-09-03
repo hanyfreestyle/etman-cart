@@ -14,6 +14,7 @@ return new class extends Migration
             $table->integer('page_id')->unsigned();
             $table->string('locale')->index();
             $table->string('slug')->nullable();
+            $table->string('name')->nullable();
             $table->string('g_title')->nullable();
             $table->text('g_des')->nullable();
             $table->string('body_h1')->nullable();

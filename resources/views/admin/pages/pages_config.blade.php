@@ -9,7 +9,7 @@
             <div class="alert alert-dark alert-dismissible">
                 {{ __('admin/menu.web_pages') }}
             </div>
-            <x-def-settings modelname="pageList"  >
+            <x-def-settings modelname="pageList"  :orderby-postion="true" >
 
             </x-def-settings>
 
