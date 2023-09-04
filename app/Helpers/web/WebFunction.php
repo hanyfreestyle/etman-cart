@@ -50,26 +50,15 @@ if (!function_exists('webChangeLocaletext')) {
 }
 
 if (!function_exists('getPhotoPath')) {
-//    function getPhotoPath($file,$defPhoto){
-//        $defPhoto_file = WebMainController::getDefPhotoById($defPhoto);
-//        if($file){
-//            $sendImg = defImagesDir($file);
-//        }else{
-//            $sendImg = defImagesDir($defPhoto_file->photo);
-//        }
-//        return $sendImg ;
-//    }
-
-        function getPhotoPath($file,$defPhoto=""){
-       // $defPhoto_file = WebMainController::getDefPhotoById($defPhoto);
+    function getPhotoPath($file,$defPhoto="dark-logo"){
+        $defPhoto_file = WebMainController::getDefPhotoById($defPhoto);
         if($file){
             $sendImg = defImagesDir($file);
         }else{
-            $sendImg = "";
+            $sendImg = defImagesDir($defPhoto_file->photo ?? '');
         }
         return $sendImg ;
     }
-
 }
 
 

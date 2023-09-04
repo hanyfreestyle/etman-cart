@@ -41,21 +41,11 @@ class WebMainController extends Controller
         View::share('CartList', $CartList);
 
 
-        $PagesList  = Page::where('is_active',true)
-            ->with('translation')
-            ->with('PageBanner')
-            ->orderBy('postion','ASC')
-            ->get()
-            ->keyBy('cat_id')
-        ;
+        $PagesList  = self::getPagesList();
         View::share('PagesList', $PagesList);
 
 
-        $MenuCategory = Category::Defquery()->root()
-            ->withCount('children')
-            ->with('children')
-            ->orderBy('children_count','desc')
-            ->get();
+        $MenuCategory = self::getMenuCategory();
         View::share('MenuCategory', $MenuCategory);
 
 
@@ -69,7 +59,6 @@ class WebMainController extends Controller
         ];
         $this->PageView = $PageView;
         View::share('PageView', $PageView);
-
 
     }
 
@@ -116,7 +105,6 @@ class WebMainController extends Controller
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     getMeatByCatId
     static function getMeatByCatId($cat_id){
-
         $WebMeta = Cache::remember('WebMeta_Cash',config('app.meta_tage_cash'), function (){
             return  Page::with('translation')->get()->keyBy('cat_id');
         });
@@ -127,25 +115,23 @@ class WebMainController extends Controller
             return $WebMeta['home'] ?? '' ;
         }
    }
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     getDefPhotoById
     static function getDefPhotoById($cat_id){
+        $DefPhoto = self::getDefPhotoList();
 
-//        $DefPhoto = Cache::remember('DefPhoto_Cash',config('app.def_photo_cash'), function (){
-//            return  DefPhoto::get()->keyBy('cat_id');
-//        });
-//
-//        if ($DefPhoto->has($cat_id)) {
-//            return $DefPhoto[$cat_id] ;
-//        }else{
-//            return $DefPhoto['logo'] ;
-//        }
+        if ($DefPhoto->has($cat_id)) {
+            return $DefPhoto[$cat_id] ;
+        }else{
+            return $DefPhoto['logo'] ?? '';
+        }
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     getWebConfig
     static function getWebConfig(){
-        $WebConfig = Cache::remember('WebConfig_Cash',config('app.website_config_cash'), function (){
+        $WebConfig = Cache::remember('WebConfig_Cash',config('app.def_24h_cash'), function (){
             return  Setting::where('id' , 1)->with('translation')->first();
         });
         return $WebConfig ;
@@ -154,16 +140,42 @@ class WebMainController extends Controller
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     getWebConfig
     static function getDefPhotoList(){
-        $DefPhotoList = Cache::remember('DefPhotoList_Cash',config('app.def_photo_cash'), function (){
+        $DefPhotoList = Cache::remember('DefPhotoList_Cash',config('app.def_24h_cash'), function (){
             return  DefPhoto::get()->keyBy('cat_id');
         });
-
         return $DefPhotoList ;
     }
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     getPagesList
+    static function getPagesList(){
+        $PagesList = Cache::remember('PagesList_Cash',config('app.def_24h_cash'), function (){
+            return  Page::where('is_active',true)
+                ->with('translation')
+                ->with('PageBanner')
+                ->orderBy('postion','ASC')
+                ->get()
+                ->keyBy('cat_id')
+                ;
+        });
+        return $PagesList ;
+    }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     text
+#|||||||||||||||||||||||||||||||||||||| #     getMenuCategory
+    static function getMenuCategory(){
+        $MenuCategory = Cache::remember('MenuCategory_Cash',config('app.def_24h_cash'), function (){
+            return   Category::Defquery()->root()
+                ->with('translation')
+                ->withCount('children')
+                ->with('children')
+                ->with('CatProduct')
+                ->orderBy('children_count','desc')
+                ->get();
+        });
+        return $MenuCategory ;
+    }
+
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     text

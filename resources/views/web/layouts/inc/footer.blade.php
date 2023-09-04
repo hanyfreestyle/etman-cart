@@ -18,10 +18,7 @@
                         </p>
                     </div>
                 </div>
-
-
                 <div class="col-lg-3 col-md-12 col-sm-12">
-
                     <x-website.footer-col-row title="{{ __('web/address.ad1_title') }}" prefix="Two" >
                         <ul class="contact_info">
                             <li>
@@ -47,8 +44,6 @@
                         </ul>
                     </x-website.footer-col-row>
                 </div>
-
-
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <x-website.footer-col-row title="{{ __('web/footer.menu_main') }}" prefix="Three" >
                         <ul class="widget_links">
@@ -57,6 +52,7 @@
                             <li><a class="" href="{{ route('Page_OurClient') }}">{{ __('web/menu.Our_Client') }}</a></li>
                             <li><a class="" href="{{ route('Page_LatestNews') }}">{{  __('web/menu.Latest_News')}}</a></li>
                             <li><a class="" href="{{ route('Page_FaqList') }}">{{ __('web/menu.Faq') }}</a></li>
+                            <li><a class="" href="{{ route('Page_TermsConditions') }}">{{ __('web/menu.Terms') }}</a></li>
                             <li><a class="" href="{{ route('Page_ContactUs') }}">{{  __('web/menu.contatc_us')}}</a></li>
                         </ul>
                     </x-website.footer-col-row>

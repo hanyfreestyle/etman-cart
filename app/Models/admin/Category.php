@@ -43,21 +43,26 @@ class Category extends Model implements TranslatableContract
 #|||||||||||||||||||||||||||||||||||||| #     children
     public function children():hasMany
     {
-       return $this->hasMany(Category::class , 'parent_id', 'id' )->with('CatProduct');
+       return $this->hasMany(Category::class , 'parent_id', 'id' )
+           ->with('CatProduct')
+           ->with('translation')
+           ;
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     children
     public function CatProduct():hasMany
     {
-        return $this->hasMany(Product::class , 'category_id', 'id' );
+        return $this->hasMany(Product::class , 'category_id', 'id' )
+            ->with('translation');
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     table_data
     public function table_data():hasMany
     {
-        return $this->hasMany(CategoryTable::class , 'category_id', 'id' );
+        return $this->hasMany(CategoryTable::class , 'category_id', 'id' )
+            ->with('translation');
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

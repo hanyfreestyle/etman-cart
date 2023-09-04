@@ -101,6 +101,26 @@ class WebPageController extends WebMainController
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #    AboutUs
+    public function TermsConditions ()
+    {
+        $SinglePageView = [
+            'SelMenu' => 'TermsConditions',
+            'CatId' => 'TermsConditions',
+        ];
+
+        $PageMeta = parent::getMeatByCatId('TermsConditions');
+        parent::printSeoMeta($PageMeta);
+
+        return view('web.page_contact_us',compact('SinglePageView','PageMeta'));
+    }
+
+
+
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #    AboutUs
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #    AboutUs
