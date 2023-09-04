@@ -5,34 +5,31 @@
 @section('content')
 
     <div class="section">
-        <div class="container">
-            <div class="row grid_container masonry">
-                <div class="col-lg-4 col-md-6 grid-sizer"></div>
 
+
+
+        <div class="container OurClientList">
+
+
+
+
+            <div class="row">
                 @foreach($OurClients as $Client)
-                    <div class="col-lg-4 col-md-6 grid_item">
-                        <div class="blog_post blog_style2 box_shadow1">
-                            <div class="blog_img">
-                                <a href="#">
-                                    <img src="{{ getPhotoPath($Client->photo) }}" alt="blog_small_img7">
-                                </a>
+                    <div class="col-lg-4 text-center">
+                        <div class="blog_post blog_style2 rounded box_shadow1">
+                            <div class="Client_img">
+                                    <img src="{{ getPhotoPath($Client->photo) }}" alt="{{$Client->name}}">
                             </div>
-
                         </div>
                         <h2 class="Client_title"><a href="#">{{$Client->name}}</a></h2>
                     </div>
                 @endforeach
-
-
             </div>
+
             <div class="row">
                 <div class="col-12 mt-2 mt-md-4">
                     <ul class="pagination pagination_style1 justify-content-center">
-                        <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"><i class="linearicons-arrow-left"></i></a></li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#"><i class="linearicons-arrow-right"></i></a></li>
+                        {{ $OurClients->links() }}
                     </ul>
                 </div>
             </div>

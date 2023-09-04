@@ -30,4 +30,13 @@ class OurClient extends Model implements TranslatableContract
         return $query->with('translations');
     }
 
+
+    public function scopeDefWeb(Builder $query): Builder
+    {
+        return $query->where('is_active',true)
+            ->with('translation')
+            ->orderBy('postion','asc')
+            ;
+    }
+
 }

@@ -1,4 +1,5 @@
 .stop_view{display: none!important;}
+.section {padding: 50px 0; position:relative;}
 .changeLangMobile img{
     width: 20px;
     height: 20px;
@@ -61,21 +62,9 @@
 
 
 .setActive{
-    /*color: #FF324D!important;*/
     background: #FF324D!important;
     color: #fff!important;
-
-
-
-
 }
-
-
-.categories_btnX {
-    padding: 21px 15px;
-}
-
-
 
 .breadcrumb_section.page-title-mini {
     padding: 20px 0;
@@ -87,77 +76,42 @@
 
 
 
-.footer_logo img {
-    max-width: 80%;
-    margin-top: 15px;
+.webSiteFooter .footer_logo img{max-width:80%;margin-top:15px}
+.webSiteFooter .footer_about_text{font-size:14px;line-height:30px!important;margin-top:0; margin-bottom: 0px!important;}
+.webSiteFooter .footer_about_more{width:100%}
+.webSiteFooter .footer_about_more a{color:#FF324D;float:left;margin-left:10px}
+.webSiteFooter .widget_title{margin-top:10px;margin-bottom:15px;font-size:17px}
+.webSiteFooter .widget_links li{list-style:none;padding-bottom:5px;margin-bottom:10px;border-bottom:1px dotted rgba(0,0,0,.2)}
+.webSiteFooter .widget_links li a{font-size:15px;font-weight:500!important}
+.webSiteFooter .widget_links li:last-child{padding-bottom:5px}
+.webSiteFooter .footer_phone{font-family:'Poppins',sans-serif!important;font-size:16px!important;font-weight:500;line-height:30px!important;letter-spacing:1px}
+.webSiteFooter .footer_address{font-size:15px!important;line-height:30px!important}
+
+.webSiteFooter .accordion.accordion_style1 .card-header a{padding-left:40px;padding-right:0;padding-top:0;margin-bottom:0!important;margin-top:15px!important}
+.webSiteFooter .accordion_style1 .card-header a::after{top:auto;left:10px}
+.webSiteFooter .accordion .card-header a{padding-bottom:10px}
+.webSiteFooter #headingFour{border-bottom:0 solid rgba(0,0,0,.125)}
+.webSiteFooter #collapseTwo .footer_address{font-size:16px!important}
+.webSiteFooter .card-header h6{font-size:16px;padding-bottom:0}
+
+
+.OurClientList .Client_img  {
+    text-align: center;
+}
+.OurClientList .Client_img img{
+    max-width: 90%;
 }
 
-.footer_about_text{
-    font-size: 15px;
-    line-height:30px!important;
-    margin-top: 0px;
-    margin-bottom: 0px;
-}
-
-.footer_about_more{
-    width: 100%;
-
-}
-
-.footer_about_more a{
-    color: #FF324D;
-    float: left;
-    margin-left: 10px;
-
-}
-
-
-footer .widget_title {
-    text-transform: capitalize;
-    margin-top: 10px;
-    margin-bottom: 15px;
-    font-size: 17px;
-}
-
-.widget_links li {
-    list-style: none;
-    padding-bottom: 5px;
-    margin-bottom: 10px;
-    border-bottom: 1px dotted rgba(0,0,0,.2);
-}
-
-.widget_links li a {
-    font-size: 15px;
-    font-weight: 500!important;
-    color: #687188;
-}
-
-.widget_links li:last-child {
-    padding-bottom: 5px;
-}
-
-.footer_phone{
-    font-size: 17px!important;
-    line-height: 30px!important;
-    letter-spacing: 1px;
-}
-
-.footer_address{
-    font-size: 14px!important;
-    line-height: 30px!important;
-}
-
-
-
-
-
-.Client_title   {
-    font-size: 16px!important;
+.OurClientList .Client_title   {
+    font-size: 15px!important;
 
     margin-top: 10px;
     margin-bottom: 30px;
     text-align: center;
-
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #FF324D!important;
 
 }
 .Client_title a {
@@ -166,49 +120,26 @@ footer .widget_title {
 
 }
 
-.blog_post {
-    margin-bottom:25px;
-    transition: all 0.5s ease-in-out;
-}
-
-
-/*.accordion.accordion_style1 .card-header a:last-child {*/
-/* */
-/*}*/
-
-
-.accordion.accordion_style1 .card-header a {
-    padding-left: 40px;
-    padding-right: 0;
-
-    padding-top: 0px;
-    margin-bottom: 0px!important;
-    margin-top:15px!important;
+.OurClientList .blog_post {
+    margin-bottom:20px;
 
 }
 
-.accordion_style1 .card-header a::after {
-
-    top: auto;
+@media only screen and (max-width: 480px) {
+    .OurClientList .blog_post {
+        max-width: 90%!important;
+        margin: auto;
+    }
 }
 
-.accordion .card-header a{
-    padding-bottom: 10px;
-}
+
+/*
 
 
-#headingFour {
-    border-bottom: 0px solid rgba(0,0,0,.125);
-}
-#collapseTwo .footer_address{
-    font-size: 16px!important;
-
-}
-.card-header h6{
-    font-size: 16px;
-    padding-bottom: 0px;
 
 
-}
 
+
+
+*/
 

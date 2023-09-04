@@ -1,6 +1,6 @@
 <x-website.footer-news-letter/>
 
-<footer class="bg_gray">
+<footer class="bg_gray webSiteFooter">
     <div class="footer_top small_pt pb_20">
         <div class="container">
             <div class="row accordion accordion_style1" id="accordion"  >
@@ -22,94 +22,35 @@
 
                 <div class="col-lg-3 col-md-12 col-sm-12">
 
-                    @if($agent->isMobile())
-                        <div class="card">
-                            <div class="card-header" id="headingTwo">
-                                <h6 class="mb-0"> <a class="collapsed" data-bs-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">{{__('web/address.ad1_title')}}</a> </h6>
-                            </div>
-                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
-                                <div class="card-body">
-                                    <ul class="contact_info">
-                                        <li>
-                                            <i class="ti-location-pin"></i>
-                                            <p class="footer_address">
-                                                {!! nl2br(__('web/address.ad1_address')) !!}
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <i class="ti-mobile"></i>
-                                            <p class="forcDir footer_phone">
-                                                {!! nl2br(__('web/address.ad1_phone')) !!}
-                                            </p>
-                                        </li>
+                    <x-website.footer-col-row title="{{ __('web/address.ad1_title') }}" prefix="Two" >
+                        <ul class="contact_info">
+                            <li>
+                                <i class="ti-location-pin"></i>
+                                <p class="footer_address">
+                                    {!! nl2br(__('web/address.ad1_address')) !!}
+                                </p>
+                            </li>
+                            <li>
+                                <i class="ti-mobile"></i>
+                                <p class="forcDir footer_phone">
+                                    {!! nl2br(__('web/address.ad1_phone')) !!}
+                                </p>
+                            </li>
 
-                                        <li>
-                                            <i class=" far fa-clock"></i>
-                                            <p class="footer_address"><strong>{{__('web/address.ad1_hours')}}</strong>
-                                                <br>
-                                                {!!  nl2br(__('web/address.ad1_hours_text')) !!}
-                                            </p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    @else
-                        <div class="widget">
-                            <h6 class="widget_title">{{__('web/address.ad1_title')}}</h6>
-                            <ul class="contact_info">
-                                <li>
-                                    <i class="ti-location-pin"></i>
-                                    <p class="footer_address">
-                                        {!! nl2br(__('web/address.ad1_address')) !!}
-                                    </p>
-                                </li>
-                                <li>
-                                    <i class="ti-mobile"></i>
-                                    <p class="forcDir footer_phone">
-                                        {!! nl2br(__('web/address.ad1_phone')) !!}
-                                    </p>
-                                </li>
-
-                                <li>
-                                    <i class=" far fa-clock"></i>
-                                    <p class="footer_address"><strong>{{__('web/address.ad1_hours')}}</strong>
-                                        <br>
-                                        {!!  nl2br(__('web/address.ad1_hours_text')) !!}
-                                    </p>
-                                </li>
-                            </ul>
-                        </div>
-                    @endif
-
-
-
+                            <li>
+                                <i class=" far fa-clock"></i>
+                                <p class="footer_address"><strong>{{__('web/address.ad1_hours')}}</strong>
+                                    <br>
+                                    {!!  nl2br(__('web/address.ad1_hours_text')) !!}
+                                </p>
+                            </li>
+                        </ul>
+                    </x-website.footer-col-row>
                 </div>
 
 
                 <div class="col-lg-3 col-md-4 col-sm-6">
-                    @if($agent->isMobile())
-                    <div class="card">
-                        <div class="card-header" id="headingThree">
-                            <h6 class="mb-0"> <a class="collapsed" data-bs-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">{{__('web/footer.menu_main') }}</a> </h6>
-                        </div>
-                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordion">
-                            <div class="card-body">
-                                <ul class="widget_links">
-                                    <li><a class="" href="{{ route('Page_HomePage') }}">{{__('web/menu.home')}} </a></li>
-                                    <li><a class="" href="{{ route('Page_AboutUs') }}">{{ __('web/menu.About_Us') }}</a></li>
-                                    <li><a class="" href="{{ route('Page_OurClient') }}">{{ __('web/menu.Our_Client') }}</a></li>
-                                    <li><a class="" href="{{ route('Page_LatestNews') }}">{{  __('web/menu.Latest_News')}}</a></li>
-                                    <li><a class="" href="{{ route('Page_FaqList') }}">{{ __('web/menu.Faq') }}</a></li>
-                                    <li><a class="" href="{{ route('Page_ContactUs') }}">{{  __('web/menu.contatc_us')}}</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    @else
-
-                    <div class="widget">
-                        <h6 class="widget_title">{{__('web/footer.menu_main') }}</h6>
+                    <x-website.footer-col-row title="{{ __('web/footer.menu_main') }}" prefix="Three" >
                         <ul class="widget_links">
                             <li><a class="" href="{{ route('Page_HomePage') }}">{{__('web/menu.home')}} </a></li>
                             <li><a class="" href="{{ route('Page_AboutUs') }}">{{ __('web/menu.About_Us') }}</a></li>
@@ -118,47 +59,19 @@
                             <li><a class="" href="{{ route('Page_FaqList') }}">{{ __('web/menu.Faq') }}</a></li>
                             <li><a class="" href="{{ route('Page_ContactUs') }}">{{  __('web/menu.contatc_us')}}</a></li>
                         </ul>
-                    </div>
-                    @endif
-
+                    </x-website.footer-col-row>
                 </div>
 
 
                 <div class="col-lg-3 col-md-4 col-sm-6">
-
-                    @if($agent->isMobile())
-                        <div class="card">
-                            <div class="card-header" id="headingFour">
-                                <h6 class="mb-0"> <a class="collapsed" data-bs-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">{{__('web/footer.menu_Categories')}}</a> </h6>
-                            </div>
-                            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-bs-parent="#accordion">
-                                <div class="card-body">
-                                    <ul class="widget_links">
-                                        @foreach($MenuCategory as $MainCategory)
-                                            <li><a href="#">{{$MainCategory->name}}</a></li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    @else
-                        <div class="widget">
-                            <h6 class="widget_title">{{__('web/footer.menu_Categories')}}</h6>
-                            <ul class="widget_links">
-                                @foreach($MenuCategory as $MainCategory)
-                                    <li><a href="#">{{$MainCategory->name}}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
-
-
-
+                    <x-website.footer-col-row title="{{__('web/footer.menu_Categories')}}" prefix="Four" >
+                        <ul class="widget_links">
+                            @foreach($MenuCategory as $MainCategory)
+                                <li><a href="#">{{$MainCategory->name}}</a></li>
+                            @endforeach
+                        </ul>
+                    </x-website.footer-col-row>
                 </div>
-
-
-
 
             </div>
         </div>
@@ -170,9 +83,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
-{{--                    <p class="mb-lg-0 text-center">© 2020 All Rights Reserved by Bestwebcreator</p>--}}
                     <p class="mb-lg-0 text-center">{!! GetCopyRight('2010',$WebConfig->name ) !!}</p>
-
                 </div>
                 <div class="col-lg-4 order-lg-first">
                     <div class="widget mb-lg-0">

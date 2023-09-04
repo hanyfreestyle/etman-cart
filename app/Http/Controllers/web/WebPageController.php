@@ -51,7 +51,7 @@ class WebPageController extends WebMainController
         $PageMeta = parent::getMeatByCatId('OurClient');
         parent::printSeoMeta($PageMeta);
 
-        $OurClients = OurClient::all();
+        $OurClients = OurClient::defWeb()->paginate(12);
 
         return view('web.page_our_client',compact('SinglePageView','PageMeta','OurClients'));
     }

@@ -8,17 +8,7 @@ body{font-family: 'Poppins', sans-serif!important; font-size:14px;}
     font-family: 'Tajawal', sans-serif!important;
 }
 
-/*me-0{margin-right:0!important}.me-1{margin-right:.25rem!important}.me-2{margin-right:.5rem!important}.me-3{margin-left:1rem!important}.me-4{margin-right:1.5rem!important}.me-5{margin-right:3rem!important}.me-auto{margin-right:auto!important}*/
-/*.me-3{*/
-/*margin-left: 0px!important;*/
-/*margin-right:.5rem!important*/
 
-/*}*/
-/*.cart_item_name{*/
-/*    text-align: left!important;*/
-/*    width: 100%!important;*/
-/*    display: block;*/
-/*}*/
 
 .main_menu_uppercase .navbar-nav > li > .nav-link {
     text-transform:none;
@@ -28,50 +18,15 @@ body{font-family: 'Poppins', sans-serif!important; font-size:14px;}
 }
 
 
-.footer_about_text{
-    font-size: 14px;
-    line-height:26px!important;
-    margin-top: 0px;
-    margin-bottom: 0px;
-}
-
-
-
-.footer_about_more a{
-    color: #FF324D;
-    float: right;
-    margin-left: 0px;
-    margin-right: 10px;
-
-}
-
-
-
-
-
-
-
-footer .widget_title {
-    text-transform: capitalize;
-    margin-top: 10px;
-    margin-bottom: 15px;
-    font-size: 15px;
-    font-weight: 600!important;
-    letter-spacing: 1px;
-}
-
-
-.footer_phone{
-    font-size: 15px!important;
-    line-height: 30px!important;
-    letter-spacing: 1px;
-}
-
-.footer_address{
-    font-size: 14px!important;
-    line-height: 30px!important;
-}
-
+.webSiteFooter .footer_about_text{font-size:14px;line-height:26px!important;margin-top:0;margin-bottom:0}
+.webSiteFooter .footer_about_more a{color:#FF324D;float:right;margin-left:0;margin-right:10px}
+.webSiteFooter .widget_title{text-transform:capitalize;margin-top:10px;margin-bottom:15px;font-size:15px;font-weight:600!important;letter-spacing:1px}
+.webSiteFooter .footer_address{font-size:14px!important;line-height:25px!important}
+.webSiteFooter .footer_phone{font-family:'Poppins',sans-serif!important;font-size:16px!important;font-weight:500;line-height:30px!important;letter-spacing:1px}
+.webSiteFooter .accordion.accordion_style1 .card-header a{padding-left:0;padding-right:40px}
+.webSiteFooter .accordion_style1 .card-header a::after{top:auto;left:auto;right:10px}
+.webSiteFooter .accordion .card-header a{padding-bottom:10px}
+.webSiteFooter .card-header h6{font-size:15px;letter-spacing:1px}
 
 
 
