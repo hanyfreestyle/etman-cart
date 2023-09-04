@@ -15,6 +15,10 @@ Auth::viaRemember();
 
 Route::group(['prefix' => LaravelLocalization::setLocale()], function(){
     Route::get('/', [WebPageController::class, 'HomePage'])->name('Page_HomePage');
+
+
+
+
   //  Route::get('/{slug}', [WebPageController::class, 'PageView'])->name('WebPageView');
 //    Route::get('/', [WebPageController::class, 'index'])->name('Web_Home_Page');
 //    Route::get('/AboutUs', [WebPageController::class, 'About'])->name('Web_About_Us');
@@ -36,7 +40,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function(){
 Route::group(['prefix' => LaravelLocalization::setLocale(),
     'middleware' => [ 'localize' ]], function () {
 
+//    Route::get(LaravelLocalization::transRoute('routes.AboutUs'),[WebPageController::class, 'AboutUs'])
+//        ->where('extension', '(?:.html)?');
+
+
     Route::get(LaravelLocalization::transRoute('routes.AboutUs'),[WebPageController::class, 'AboutUs'])
+//        ->where('extension', '(?:.html)?')
         ->name('Page_AboutUs');
 
     Route::get(LaravelLocalization::transRoute('routes.OurClient'),[WebPageController::class, 'OurClient'])

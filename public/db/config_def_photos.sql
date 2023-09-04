@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 03, 2023 at 08:45 PM
+-- Generation Time: Sep 04, 2023 at 11:27 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -27,7 +27,10 @@ SET time_zone = "+00:00";
 
 INSERT INTO `config_def_photos` (`id`, `cat_id`, `photo`, `photo_thum_1`, `photo_thum_2`, `postion`, `created_at`, `updated_at`) VALUES
 (1, 'light-logo', 'images/def-photo/light-logo-AJG4FyEGq8.webp', NULL, NULL, 2, '2023-09-03 15:03:13', '2023-09-03 15:04:25'),
-(2, 'dark-logo', 'images/def-photo/dark-logo-yHavtqPGm6.webp', NULL, NULL, 1, '2023-09-03 15:04:17', '2023-09-03 15:04:25');
+(2, 'dark-logo', 'images/def-photo/dark-logo-yHavtqPGm6.webp', NULL, NULL, 1, '2023-09-03 15:04:17', '2023-09-03 15:04:25'),
+(3, 'about-1', 'images/def-photo/about-1-yn7io2tGJe.webp', NULL, NULL, 0, '2023-09-04 14:21:50', '2023-09-04 14:21:50'),
+(4, 'about-2', 'images/def-photo/about-2-hRbvFjEYBB.webp', NULL, NULL, 0, '2023-09-04 14:22:23', '2023-09-04 14:22:23'),
+(5, 'faq-icon', 'images/def-photo/faq-icon-Trcw3x3A7W.webp', 'images/def-photo/faq-icon-Ns5XjqT77R.webp', NULL, 0, '2023-09-04 18:17:24', '2023-09-04 18:24:42');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

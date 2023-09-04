@@ -76,7 +76,8 @@ if (!function_exists('getDefPhotoPath')) {
         return $sendImg ;
     }
 }
-
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     GetCopyRight
 if (!function_exists('GetCopyRight')) {
     function GetCopyRight($StartDate,$CompanyName) {
         if($StartDate > date("Y")) {
@@ -109,6 +110,19 @@ if (!function_exists('GetCopyRight')) {
                 }
         }
         return $CopyRight;
+    }
+}
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     ChangeText
+if (!function_exists('ChangeText')) {
+    function ChangeText($value) {
+        $WebConfig = WebMainController::getWebConfig();
+        $CompanyName = '<span>'.$WebConfig->name.'</span>';
+        $rep1 = array("[CompanyName]","[WebSiteName]");
+        $rep2 = array($CompanyName,$WebConfig->def_url);
+        $value = str_replace($rep1,$rep2,$value);
+        return $value;
     }
 }
 

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\web;
 use App\Http\Controllers\WebMainController;
+use App\Models\admin\config\WebPrivacy;
+use App\Models\admin\FaqCategory;
 use App\Models\admin\OurClient;
 use App\Models\admin\OurClientTranslation;
 use Illuminate\Http\Request;
@@ -81,7 +83,13 @@ class WebPageController extends WebMainController
         $PageMeta = parent::getMeatByCatId('FaqList');
         parent::printSeoMeta($PageMeta);
 
-        return view('web.faq_list',compact('SinglePageView','PageMeta'));
+        $FaqCategories = FaqCategory::defWeb()
+        ->get();
+
+//        dd($FaqCategories);
+
+
+        return view('web.faq_list',compact('SinglePageView','PageMeta','FaqCategories'));
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -111,7 +119,12 @@ class WebPageController extends WebMainController
         $PageMeta = parent::getMeatByCatId('TermsConditions');
         parent::printSeoMeta($PageMeta);
 
-        return view('web.page_contact_us',compact('SinglePageView','PageMeta'));
+        $Terms = WebPrivacy::where('is_active',true)
+            ->with('translation')
+            ->orderBy('postion','asc')
+            ->get();
+
+        return view('web.page_term_conditions',compact('SinglePageView','PageMeta','Terms'));
     }
 
 

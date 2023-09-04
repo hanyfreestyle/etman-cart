@@ -8,6 +8,7 @@ use App\Http\Requests\admin\config\UploadFilterSizeRequest;
 use App\Models\admin\config\UploadFilter;
 use App\Models\admin\config\UploadFilterSize;
 use Illuminate\Support\Facades\View;
+use Cache ;
 
 
 class UploadFilterSizeController extends AdminMainController

@@ -133,13 +133,128 @@
 }
 
 
-/*
-
-
-
-
-
-
-
+/*############################################################################################################################
+PrivacyList
 */
+.PrivacyList br{display:block!important;margin-bottom:5px!important;font-size:5px!important;line-height:5px!important}
+.PrivacyList span{color:#08c}
+.PrivacyList .itam{margin-bottom:20px}
+/*.PrivacyList h2{font-weight:400!important;font-size:1.6em!important;line-height:normal!important;padding:0;margin:0;margin-bottom:10px}*/
+.PrivacyList h2{
+    font-size: 18px;
+    padding: 0px;
+    margin: 0px;
+    color: #FF324D!important;
+    margin-top: 10px;
+}
 
+.PrivacyList p{
+    padding: 0px;
+    margin: 0px;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+
+.PrivacyList h3{
+    padding: 0px;
+    margin: 0px;
+    font-size: 16px;
+    margin-top: 10px;
+
+}
+
+.PrivacyList ul{
+    margin: 0px;
+ }
+.PrivacyList ul li{
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+
+
+.AboutUs p{
+    margin-bottom: 10px;
+}
+
+.AboutUs img{
+    background: #fff;
+    padding: 4px;
+    border: 1px solid #b0b0b0;
+    vertical-align: text-top;
+
+
+}
+
+.ddd{
+    background: red;
+    height: 100%;
+}
+
+
+.faqcat_list {
+    border-top: 0px solid #ddd;
+    border-bottom: 0px solid #ddd;
+}
+.faqcat_list .icon_box {
+    margin-top: 0;
+    padding-top: 0px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+
+
+}
+
+
+.faq_icon{
+
+    /*box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px!important;*/
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 3px, rgba(0, 0, 0, 0.12) 0px 1px 2px!important;
+}
+
+
+.faqcat_list .col-md-4{
+
+    max-width: 95%;
+    margin-bottom: 30px;
+
+}
+
+.faqcat_list h2{
+    font-size: 1.2rem;
+
+    margin-bottom: 8px;
+
+
+}
+
+.faqcat_list p{
+    font-size: .9rem;
+
+
+    display: -webkit-box;
+
+
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 22px;
+    margin-bottom: 5px;
+
+}
+
+
+.faq_icon img{
+    max-width: 60px;
+
+}
+.faqcat_list .readmore{
+
+}
+
+
+.faqcat_list .readmore{width:100%; background: red}
+.faqcat_list .readmore a{color:#FF324D;float:left;margin-left:0px!important;font-size: .85rem!important;}

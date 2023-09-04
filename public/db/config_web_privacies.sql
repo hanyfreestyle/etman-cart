@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 24, 2023 at 08:12 PM
+-- Generation Time: Sep 04, 2023 at 07:11 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -26,7 +26,6 @@ SET time_zone = "+00:00";
 --
 
 INSERT INTO `config_web_privacies` (`id`, `name`, `postion`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'Header', 1, 1, '2023-08-24 12:42:57', '2023-08-24 15:07:10'),
 (2, 'شروط وسياسة الخصوصية', 2, 1, '2023-08-24 12:42:57', '2023-08-24 12:42:57'),
 (3, 'جمع المعلومات واستخدامها', 3, 1, '2023-08-24 12:42:57', '2023-08-24 12:42:57'),
 (4, 'أنواع البيانات المجمعة', 4, 1, '2023-08-24 12:42:57', '2023-08-24 12:42:57'),

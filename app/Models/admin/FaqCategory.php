@@ -16,7 +16,7 @@ class FaqCategory extends Model implements TranslatableContract
     use Translatable;
     use SoftDeletes;
 
-    public $translatedAttributes = ['name'];
+    public $translatedAttributes = ['slug','name','des','g_title','g_des'];
     protected $fillable = [''];
     protected $table = "faq_categories";
     protected $primaryKey = 'id';
@@ -44,5 +44,24 @@ class FaqCategory extends Model implements TranslatableContract
     {
         return $this->hasMany(Faq::class,'category_id','id')->withTrashed();
     }
+
+
+
+    public function scopeDefWeb(Builder $query): Builder
+    {
+        return $query->where('is_active',true)
+            ->with('translation')
+            ->withCount('FaqToCat')
+            ->with('FaqToCat')
+            ->orderBy('faq_to_cat_count','DESC')
+            ;
+    }
+
+
+    public function FaqToCat(): HasMany
+    {
+        return $this->hasMany(Faq::class,'category_id','id');
+    }
+
 
 }
