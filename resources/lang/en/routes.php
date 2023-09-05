@@ -7,4 +7,6 @@ return [
     'TermsConditions' => 'terms-and-conditions',
     'ContactUs' => 'contact-us',
 
+    'FaqCatView' => 'faq/{slug}',
+
 ];

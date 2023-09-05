@@ -86,12 +86,38 @@ class WebPageController extends WebMainController
         $FaqCategories = FaqCategory::defWeb()
         ->get();
 
-//        dd($FaqCategories);
-
-
-        return view('web.faq_list',compact('SinglePageView','PageMeta','FaqCategories'));
+       return view('web.faq_list',compact('SinglePageView','PageMeta','FaqCategories'));
     }
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     FaqCatView
+    public function FaqCatView ($slug)
+    {
+        $slug = \AdminHelper::Url_Slug($slug);
+        $FaqCategory  = FaqCategory::defWeb()
+            ->whereTranslation('slug', $slug)
+            ->firstOrFail();
+
+        $SinglePageView = [
+            'SelMenu' => 'FaqList',
+            'CatId' => 'FaqList',
+        ];
+        $PageMeta = $FaqCategory ;
+        parent::printSeoMeta($PageMeta);
+
+        $FaqCategories = FaqCategory::defWeb()
+            ->where('id','!=',$FaqCategory->id)
+            ->get();
+
+
+//        dd($PageMeta);
+
+        return view('web.faq_cat_view',compact('SinglePageView','PageMeta','FaqCategory','FaqCategories'));
+
+
+
+
+    }
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #    AboutUs
     public function ContactUs ()

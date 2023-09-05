@@ -14,7 +14,7 @@
                             {!! __('web/footer.about_text') !!}
                         </p>
                         <p class="footer_about_more">
-                            <a href="">{{__('web/def.read_more')}}</a>
+                            <a href="{{route('Page_AboutUs')}}">{{__('web/def.read_more')}}</a>
                         </p>
                     </div>
                 </div>
@@ -83,12 +83,30 @@
                 </div>
                 <div class="col-lg-4 order-lg-first">
                     <div class="widget mb-lg-0">
-                        <ul class="social_icons text-center text-lg-start">
-                            <li><a href="#" class="sc_facebook"><i class="ion-social-facebook"></i></a></li>
-                            <li><a href="#" class="sc_twitter"><i class="ion-social-twitter"></i></a></li>
-                            <li><a href="#" class="sc_google"><i class="ion-social-googleplus"></i></a></li>
-                            <li><a href="#" class="sc_youtube"><i class="ion-social-youtube-outline"></i></a></li>
-                            <li><a href="#" class="sc_instagram"><i class="ion-social-instagram-outline"></i></a></li>
+                        <ul class="social_icons  social_icons_footer text-center text-lg-start">
+                            @if($WebConfig->facebook)
+                                <li><a href="{{$WebConfig->facebook}}" target="_blank" class="sc_facebook"><i class="ion-social-facebook"></i></a></li>
+                            @endif
+                            @if($WebConfig->twitter)
+                                <li><a href="{{$WebConfig->twitter}}"  target="_blank" class="sc_twitter"><i class="ion-social-twitter"></i></a></li>
+                            @endif
+
+                            @if($WebConfig->youtube)
+                                <li><a href="{{$WebConfig->youtube}}"  target="_blank" class="sc_youtube"><i class="ion-social-youtube-outline"></i></a></li>
+                            @endif
+
+                            @if($WebConfig->instagram)
+                                <li><a href="{{$WebConfig->instagram}}" target="_blank" class="sc_instagram"><i class="ion-social-instagram-outline"></i></a></li>
+                            @endif
+
+                            @if($WebConfig->linkedin)
+                                    <li><a href="{{$WebConfig->linkedin}}" target="_blank" class="sc_linkedin"><i class="ion-social-linkedin"></i></a></li>
+                            @endif
+
+
+
+
+
                         </ul>
                     </div>
                 </div>

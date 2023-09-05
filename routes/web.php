@@ -58,6 +58,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::get(LaravelLocalization::transRoute('routes.FaqList'),[WebPageController::class, 'FaqList'])
         ->name('Page_FaqList');
 
+    Route::get(LaravelLocalization::transRoute('routes.FaqCatView'),[WebPageController::class, 'FaqCatView'])
+        ->name('Page_FaqCatView');
+
+
     Route::get(LaravelLocalization::transRoute('routes.TermsConditions'),[WebPageController::class, 'TermsConditions'])
         ->name('Page_TermsConditions');
 

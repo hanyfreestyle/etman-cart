@@ -30,3 +30,21 @@ body{font-family: 'Poppins', sans-serif!important; font-size:14px;}
 
 
 
+.faqcat_list h2{
+    font-size: 1.1rem;
+
+}
+
+.faqcat_list p{
+    font-size: .85rem;
+    line-height: 22px;
+    margin-bottom: 5px;
+}
+
+
+.faqcat_list .readmore a{color:#FF324D;float:right;margin-left:0px!important;font-size: .8rem!important;}
+
+
+
+
+

@@ -7,4 +7,6 @@ return [
     'TermsConditions' => 'سياسية-الاستخدام',
     'ContactUs' => 'اتصل-بنا',
 
+    'FaqCatView' => 'faq/{slug}',
+
 ];

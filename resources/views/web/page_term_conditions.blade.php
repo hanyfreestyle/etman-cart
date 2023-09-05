@@ -4,9 +4,30 @@
 @endsection
 @section('content')
 
+
+{{--    <div class="section AboutUs">--}}
+{{--        <div class="container PrivacyLisX">--}}
+{{--            <div class="row">--}}
+{{--                @foreach($Terms as $Term)--}}
+{{--                    <h2>{!! $Term->h1 !!}</h2>--}}
+{{--                    <h3>{!! $Term->h2 !!}</h3>--}}
+{{--                    <p>{!! ChangeText($Term->des) !!}</p>--}}
+{{--                    @if($Term->lists)--}}
+{{--                        <ul>--}}
+{{--                            @foreach(explode(PHP_EOL, $Term->lists) as $list)--}}
+{{--                                <li>{{$list}}</li>--}}
+{{--                            @endforeach--}}
+{{--                        </ul>--}}
+{{--                    @endif--}}
+{{--                @endforeach--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--   </div>--}}
+
+
     <div class="section pb_20 small_pt">
         <div class="container PrivacyList">
-            <div class="row mb-5">
+            <div class="row">
                 @foreach($Terms as $Term)
                     <h2>{!! $Term->h1 !!}</h2>
                     <h3>{!! $Term->h2 !!}</h3>

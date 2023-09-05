@@ -34,6 +34,11 @@ Breadcrumbs::for('FaqList', function (BreadcrumbTrail $trail) {
     $trail->push(__('web/menu.Faq'), route('Page_FaqList'));
 });
 
+Breadcrumbs::for('FaqCatView', function (BreadcrumbTrail $trail, $FaqCategory) {
+    $trail->parent('FaqList');
+    $trail->push($FaqCategory->name, route('Page_FaqCatView', $FaqCategory->slug));
+});
+
 Breadcrumbs::for('LatestNews', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push(__('web/menu.Latest_News'), route('Page_FaqList'));

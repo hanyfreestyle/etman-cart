@@ -133,44 +133,6 @@
 }
 
 
-/*############################################################################################################################
-PrivacyList
-*/
-.PrivacyList br{display:block!important;margin-bottom:5px!important;font-size:5px!important;line-height:5px!important}
-.PrivacyList span{color:#08c}
-.PrivacyList .itam{margin-bottom:20px}
-/*.PrivacyList h2{font-weight:400!important;font-size:1.6em!important;line-height:normal!important;padding:0;margin:0;margin-bottom:10px}*/
-.PrivacyList h2{
-    font-size: 18px;
-    padding: 0px;
-    margin: 0px;
-    color: #FF324D!important;
-    margin-top: 10px;
-}
-
-.PrivacyList p{
-    padding: 0px;
-    margin: 0px;
-    font-size: 16px;
-    margin-bottom: 20px;
-}
-
-
-.PrivacyList h3{
-    padding: 0px;
-    margin: 0px;
-    font-size: 16px;
-    margin-top: 10px;
-
-}
-
-.PrivacyList ul{
-    margin: 0px;
- }
-.PrivacyList ul li{
-    font-size: 15px;
-    margin-bottom: 5px;
-}
 
 
 
@@ -204,7 +166,13 @@ PrivacyList
     display: flex;
     -ms-flex-align: center;
     align-items: center;
+}
 
+.faqcat_list .cat_count{
+
+    color:#FF324D;
+    font-size:14px;
+    font-family:  sans-serif!important;
 
 }
 
@@ -225,10 +193,7 @@ PrivacyList
 
 .faqcat_list h2{
     font-size: 1.2rem;
-
     margin-bottom: 8px;
-
-
 }
 
 .faqcat_list p{
@@ -251,10 +216,77 @@ PrivacyList
     max-width: 60px;
 
 }
-.faqcat_list .readmore{
 
-}
 
 
 .faqcat_list .readmore{width:100%; background: red}
 .faqcat_list .readmore a{color:#FF324D;float:left;margin-left:0px!important;font-size: .85rem!important;}
+
+
+
+.PrivacyList  {
+    padding:10px 20px;
+
+
+}
+.PrivacyList h2{
+    font-size: 18px;
+    color: #FF324D!important;
+
+    margin: 0px!important;
+    margin-top: 10px!important;
+    margin-bottom: 10px!important;
+    line-height: 0px!important;
+
+}
+
+.PrivacyList h3{
+    font-size: 16px;
+    margin-top: 15px!important;
+
+    font-weight: bold;
+
+
+}
+.PrivacyList span {
+    color:#08c;
+    font-weight: bold;
+}
+
+.PrivacyList p{
+    font-size: 15px;
+    line-height: 30px;
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+
+.PrivacyList ul{
+    margin: 0px;
+    padding-right: 20px!important;
+    padding-left: 15px!important;
+    margin-bottom: 20px!important;
+}
+.PrivacyList ul li{
+    font-size: 15px;
+    margin-bottom: 5px;
+    line-height: 30px!important;
+
+}
+
+
+.social_icons [class*="sc_"] i {
+    line-height: 36px!important;
+}
+
+
+
+.faq_logo img{
+    max-width: 100px;
+    margin: auto;
+}
+
+.faq_logo h3{
+    font-size: 15px;
+    text-align: center;
+    line-height: 25px;
+}
