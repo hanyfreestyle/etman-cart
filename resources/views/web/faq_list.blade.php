@@ -17,7 +17,7 @@
                     <div class="faqcat_list pb-5">
                         <div class="row">
                             @foreach($FaqCategories as $Category )
-                                <div class="col-md-4">
+                                <div class="col-md-4 mb-lg-3">
                                     <div class="icon_box icon_box_style2">
 
                                         <div class="icon faq_icon">
@@ -28,7 +28,7 @@
 
                                         <div class="icon_box_content">
                                             <h2><a href="{{route('Page_FaqCatView',$Category->slug)}}">{{ $Category->name }}</a>
-                                                <span class="cat_count">{ {{$Category->faq_to_cat_count}} }</span></h2>
+                                                <span class="cat_count">({{$Category->faq_to_cat_count}})</span></h2>
                                             <p>{{ $Category->g_des }}</p>
                                             <span class="readmore">
                                                 <a href="{{route('Page_FaqCatView',$Category->slug)}}">{{__('web/def.read_more')}}</a>
@@ -39,12 +39,20 @@
 
                             @endforeach
 
-
+                                <div class="row">
+                                    <div class="col-12 mt-0 mt-md-4">
+                                        <ul class="pagination pagination_style1 justify-content-center">
+                                            {{ $FaqCategories->links() }}
+                                        </ul>
+                                    </div>
+                                </div>
 
                         </div>
                     </div>
                 </div>
             </div>
+
+
         </div>
 
 

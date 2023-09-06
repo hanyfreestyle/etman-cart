@@ -149,130 +149,16 @@
 
 }
 
-.ddd{
-    background: red;
-    height: 100%;
-}
 
-
-.faqcat_list {
-    border-top: 0px solid #ddd;
-    border-bottom: 0px solid #ddd;
-}
-.faqcat_list .icon_box {
-    margin-top: 0;
-    padding-top: 0px;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-align: center;
-    align-items: center;
-}
-
-.faqcat_list .cat_count{
-
-    color:#FF324D;
-    font-size:14px;
-    font-family:  sans-serif!important;
-
-}
-
-
-.faq_icon{
-
-    /*box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px!important;*/
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 3px, rgba(0, 0, 0, 0.12) 0px 1px 2px!important;
-}
-
-
-.faqcat_list .col-md-4{
-
-    max-width: 95%;
-    margin-bottom: 30px;
-
-}
-
-.faqcat_list h2{
-    font-size: 1.2rem;
-    margin-bottom: 8px;
-}
-
-.faqcat_list p{
-    font-size: .9rem;
-
-
-    display: -webkit-box;
-
-
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    line-height: 22px;
-    margin-bottom: 5px;
-
-}
-
-
-.faq_icon img{
-    max-width: 60px;
-
-}
-
-
-
-.faqcat_list .readmore{width:100%; background: red}
-.faqcat_list .readmore a{color:#FF324D;float:left;margin-left:0px!important;font-size: .85rem!important;}
-
-
-
-.PrivacyList  {
-    padding:10px 20px;
-
-
-}
-.PrivacyList h2{
-    font-size: 18px;
-    color: #FF324D!important;
-
-    margin: 0px!important;
-    margin-top: 10px!important;
-    margin-bottom: 10px!important;
-    line-height: 0px!important;
-
-}
-
-.PrivacyList h3{
-    font-size: 16px;
-    margin-top: 15px!important;
-
-    font-weight: bold;
-
-
-}
-.PrivacyList span {
-    color:#08c;
-    font-weight: bold;
-}
-
-.PrivacyList p{
-    font-size: 15px;
-    line-height: 30px;
-    margin-bottom: 20px;
-    margin-top: 0px;
-}
-
-.PrivacyList ul{
-    margin: 0px;
-    padding-right: 20px!important;
-    padding-left: 15px!important;
-    margin-bottom: 20px!important;
-}
-.PrivacyList ul li{
-    font-size: 15px;
-    margin-bottom: 5px;
-    line-height: 30px!important;
-
-}
-
+.faqcat_list{border-top:0 solid #ddd;border-bottom:0 solid #ddd;margin-top:20px}
+.faqcat_list .icon_box{margin:auto;max-width:100%;margin-bottom:20px;margin-top:0;padding-top:0;display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center}
+.faqcat_list h2{font-size:18px;margin-bottom:5px}
+.faqcat_list .cat_count{color:#FF324D;font-size:14px;font-family:sans-serif!important}
+.faqcat_list p{font-size:15px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;line-height:25px;margin-bottom:5px}
+.faq_icon{box-shadow:rgba(0,0,0,0.05) 0 1px 3px,rgba(0,0,0,0.12) 0 1px 2px!important}
+.faq_icon img{max-width:60px}
+.faqcat_list .readmore{width:100%}
+.faqcat_list .readmore a{color:#FF324D;float:left;margin-left:0!important;font-size:.85rem!important}
 
 .social_icons [class*="sc_"] i {
     line-height: 36px!important;
@@ -290,3 +176,80 @@
     text-align: center;
     line-height: 25px;
 }
+
+
+
+
+.PrivacyList{padding:10px 20px}
+.PrivacyList h2{font-size:18px;color:#FF324D!important;margin:0!important;margin-top:10px!important;margin-bottom:10px!important;line-height:0!important}
+.PrivacyList h3{font-size:16px;margin-top:15px!important;font-weight:700}
+.PrivacyList span{color:#08c;font-weight:700}
+.PrivacyList p{font-size:15px;line-height:30px;margin-bottom:20px;margin-top:0}
+.PrivacyList ul{margin:0;padding-right:20px!important;padding-left:15px!important;margin-bottom:20px!important}
+.PrivacyList ul li{font-size:15px;margin-bottom:5px;line-height:30px!important}
+
+
+.contact_map_1{
+    height: 300px;
+}
+
+@media only screen and (min-width: 991px) {
+    .contact_map_1{
+        height: 430px;
+    }
+}
+
+
+.contact_page h2{
+    color:#FF324D;
+    font-size:20px;
+    font-weight: bold;
+}
+
+.contact_page .footer_address{
+    font-size:16px;
+    font-weight: 500;
+
+}
+
+.contact_page .footer_phone{
+    font-family:'Poppins',sans-serif!important;
+    font-size:16px;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+
+.contactform .def_h2{
+    color:#FF324D;
+    font-size:22px;
+    font-weight: bold;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    padding: 0px 15px;
+}
+
+.contactform p{
+    font-size:16px;
+    margin-top: 15px!important;
+    padding: 0px 15px;
+}
+
+.conatct_img img{
+   margin-top: 10px;
+    margin-bottom: 20px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+}
+
+
+.conatct_faq .def_h2{
+    font-size:22px;
+    font-weight: bold;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    padding: 0px 15px;
+}
+
+
+

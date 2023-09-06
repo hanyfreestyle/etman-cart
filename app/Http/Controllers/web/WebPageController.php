@@ -58,7 +58,6 @@ class WebPageController extends WebMainController
         return view('web.page_our_client',compact('SinglePageView','PageMeta','OurClients'));
     }
 
-
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #    LatestNews
     public function LatestNews ()
@@ -72,6 +71,8 @@ class WebPageController extends WebMainController
 
         return view('web.blog_list',compact('SinglePageView','PageMeta'));
     }
+
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #    FaqList
     public function FaqList ()
@@ -83,8 +84,7 @@ class WebPageController extends WebMainController
         $PageMeta = parent::getMeatByCatId('FaqList');
         parent::printSeoMeta($PageMeta);
 
-        $FaqCategories = FaqCategory::defWeb()
-        ->get();
+        $FaqCategories = FaqCategory::defWeb()->paginate(12);
 
        return view('web.faq_list',compact('SinglePageView','PageMeta','FaqCategories'));
     }
@@ -118,6 +118,8 @@ class WebPageController extends WebMainController
 
 
     }
+
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #    AboutUs
     public function ContactUs ()
@@ -130,7 +132,10 @@ class WebPageController extends WebMainController
         $PageMeta = parent::getMeatByCatId('ContactUs');
         parent::printSeoMeta($PageMeta);
 
-        return view('web.page_contact_us',compact('SinglePageView','PageMeta'));
+        $FaqCategories = FaqCategory::defWeb()
+            ->get();
+
+        return view('web.page_contact_us',compact('SinglePageView','PageMeta','FaqCategories'));
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

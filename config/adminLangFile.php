@@ -24,6 +24,7 @@ return [
         '6'=> ['id'=> '6' , 'group'=>'web' , 'sub_dir'=> null , 'file_name'=> 'cart','name'=>'Cart' ],
         '7'=> ['id'=> '7' , 'group'=>'web' , 'sub_dir'=> null , 'file_name'=> 'address','name'=>'Address' ],
         '8'=> ['id'=> '8' , 'group'=>'web' , 'sub_dir'=> null , 'file_name'=> 'about','name'=>'About Us' ],
+        '9'=> ['id'=> '9' , 'group'=>'web' , 'sub_dir'=> null , 'file_name'=> 'contact_form','name'=>'Contact Form' ],
 
     ],
 

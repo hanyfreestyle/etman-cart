@@ -88,8 +88,12 @@
 <script src="{{ defWebAssets('js/slick.min.js') }}"></script>
 <!-- elevatezoom js -->
 <script src="{{ defWebAssets('js/jquery.elevatezoom.js') }}"></script>
+
+@yield('googleMaps')
+
 <!-- scripts js -->
 <script src="{{ defWebAssets('js/scripts.js') }}"></script>
+
 
 <script>
     async function loadarfont(){

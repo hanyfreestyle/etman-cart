@@ -594,6 +594,17 @@ PAGE JS
 	}
 	
 	var map_selector = $('#map');
+	
+	
+	if ($("#sub_map").length > 0){
+		google.maps.event.addDomListener(window, 'load', init);
+	}
+	
+	var map_selector_sub = $('#sub_map');
+	
+
+	
+	
 	function init() {
 		
 		var mapOptions = {
@@ -603,15 +614,41 @@ PAGE JS
 		  };
 		var mapElement = document.getElementById('map');
 		var map = new google.maps.Map(mapElement, mapOptions);
+		
+		
+		
+	    var marker;
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng(map_selector.data("latitude"), map_selector.data("longitude")),
+            map: map,
+            animation: google.maps.Animation.DROP
+        });
+		
+ 
+		
+		
+		var mapOptions = {
+			zoom: map_selector_sub.data("zoom"),
+			mapTypeControl: false,
+			center: new google.maps.LatLng(map_selector_sub.data("latitude"), map_selector_sub.data("longitude")), // New York
+		  };
+		var mapElement = document.getElementById('sub_map');
+		var map2 = new google.maps.Map(mapElement, mapOptions);
 		var marker = new google.maps.Marker({
-			position: new google.maps.LatLng(map_selector.data("latitude"), map_selector.data("longitude")),
-			map: map,
-			icon: map_selector.data("icon"),
+			position: new google.maps.LatLng(map_selector_sub.data("latitude"), map_selector_sub.data("longitude")),
+			map: map2,
+			icon: map_selector_sub.data("icon"),
 			
-			title: map_selector.data("title"),
+			title: map_selector_sub.data("title"),
 		});
-		marker.setAnimation(google.maps.Animation.BOUNCE);
+		
+		
 	}	
+	
+	
+
+ 
+ 
 
 	
 	/*===================================*

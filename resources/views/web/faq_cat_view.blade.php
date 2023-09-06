@@ -7,17 +7,15 @@
                 <div class="col-md-6">
                     <div class="page-title">
                         <h1>{{$FaqCategory->name}}</h1>
+                    </div>
                 </div>
-            </div>
-
-            <div class="col-md-6">
-                {{ Breadcrumbs::render('FaqCatView',$FaqCategory) }}
+                <div class="col-md-6">
+                    {{ Breadcrumbs::render('FaqCatView',$FaqCategory) }}
+                </div>
             </div>
         </div>
     </div>
-    </div>
 
-{{--    <x-website.breadcrumb :meta="$PageMeta" :catid="$SinglePageView['CatId']" />--}}
 @endsection
 @section('content')
 
@@ -26,64 +24,62 @@
 
 
 
-    <div class="section pb_20 small_pt">
+    <div class="section  pb_20 small_pt pt-lg-2">
 
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="faqcat_list pb-5 mt-3">
+                    <div class="faqcat_list pb-5">
                         <div class="row">
 
                             <div class="col-lg-4">
-{{--                                                @foreach($MenuCategory as $MainCategory)--}}
-{{--                                                    <li>{{$MainCategory->name}} {{$MainCategory->children_count}}</li>--}}
-{{--                                                    @if($MainCategory->children_count > 0 )--}}
+                                {{--                                                @foreach($MenuCategory as $MainCategory)--}}
+                                {{--                                                    <li>{{$MainCategory->name}} {{$MainCategory->children_count}}</li>--}}
+                                {{--                                                    @if($MainCategory->children_count > 0 )--}}
 
-{{--                                                        @foreach($MainCategory->children  as $SubCategory)--}}
-{{--                                                            @if($loop->index < 2)--}}
+                                {{--                                                        @foreach($MainCategory->children  as $SubCategory)--}}
+                                {{--                                                            @if($loop->index < 2)--}}
 
-{{--                                                                <li class="mr-5" style="margin-right: 20px!important;">{{$SubCategory->name}} {{count($SubCategory->CatProduct)}}</li>--}}
+                                {{--                                                                <li class="mr-5" style="margin-right: 20px!important;">{{$SubCategory->name}} {{count($SubCategory->CatProduct)}}</li>--}}
 
-{{--                                                                @if(count($SubCategory->CatProduct) > 0 )--}}
-{{--                                                                    @foreach($SubCategory->CatProduct as $Product)--}}
-{{--                                                                        <li class="mr-5" style="margin-right: 20px!important;">{{$Product->name}}</li>--}}
-{{--                                                                    @endforeach--}}
+                                {{--                                                                @if(count($SubCategory->CatProduct) > 0 )--}}
+                                {{--                                                                    @foreach($SubCategory->CatProduct as $Product)--}}
+                                {{--                                                                        <li class="mr-5" style="margin-right: 20px!important;">{{$Product->name}}</li>--}}
+                                {{--                                                                    @endforeach--}}
 
-{{--                                                                @endif--}}
-{{--                                                            @endif--}}
-{{--                                                        @endforeach--}}
+                                {{--                                                                @endif--}}
+                                {{--                                                            @endif--}}
+                                {{--                                                        @endforeach--}}
 
-{{--                                                    @endif--}}
+                                {{--                                                    @endif--}}
 
-{{--                                                @endforeach--}}
+                                {{--                                                @endforeach--}}
                             </div>
 
-                                <div class="col-lg-8">
-                                    <div class="row mb-2">
-                                        <div class="col-lg-12">
-                                            <div class="icon_box icon_box_style2">
-                                                <div class="icon faq_icon">
-                                                    <img src="{!! getPhotoPath($FaqCategory->photo_thum_1,"faq-icon") !!}">
-                                                </div>
-                                                <div class="icon_box_content">
-                                                    <h2> {{ $FaqCategory->name }}</h2>
-                                                    <p>{{ $FaqCategory->g_des }}</p>
-                                                </div>
+                            <div class="col-lg-8">
+                                <div class="row mb-2">
+                                    <div class="col-lg-12">
+                                        <div class="icon_box icon_box_style2">
+                                            <div class="icon faq_icon">
+                                                <img src="{!! getPhotoPath($FaqCategory->photo_thum_1,"faq-icon") !!}">
+                                            </div>
+                                            <div class="icon_box_content">
+                                                <h2> {{ $FaqCategory->name }}</h2>
+                                                <p>{{ $FaqCategory->g_des }}</p>
                                             </div>
                                         </div>
                                     </div>
-
-
-                                    <div class="row accordion accordion_style1" id="accordion"  >
-                                        <div class="col-lg-12">
-                                            @foreach($FaqCategory->FaqToCat as $Faq )
-                                                <x-website.faq-slider :title="$Faq->name" :prefix="$Faq->id">
-                                                    {{$Faq->des}}
-                                                </x-website.faq-slider>
-                                            @endforeach
-                                        </div>
+                                </div>
+                                <div class="row accordion accordion_style1" id="accordion"  >
+                                    <div class="col-lg-12">
+                                        @foreach($FaqCategory->FaqToCat as $Faq )
+                                            <x-website.faq-slider :title="$Faq->name" :prefix="$Faq->id">
+                                                {{$Faq->des}}
+                                            </x-website.faq-slider>
+                                        @endforeach
                                     </div>
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -112,14 +108,12 @@
                             @if($FaqCategory->photo)
                                 <div class="item">
                                     <a href="{{route('Page_FaqCatView',$FaqCategory->slug)}}">
-                                    <div class="cl_logoX">
-                                        <img src="{{getPhotoPath($FaqCategory->photo)}}" alt="cl_logo"/>
-                                    </div>
-                                    <h3>{{$FaqCategory->name}}</h3>
+                                        <div class="cl_logoX">
+                                            <img src="{{getPhotoPath($FaqCategory->photo)}}" alt="cl_logo"/>
+                                        </div>
+                                        <h3>{{$FaqCategory->name}}</h3>
                                     </a>
-
                                 </div>
-
                             @endif
                         @endforeach
                     </div>
