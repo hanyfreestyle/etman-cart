@@ -9,14 +9,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Mcamara\LaravelLocalization\Interfaces\LocalizedUrlRoutable;
 
-class FaqCategory extends Model implements TranslatableContract
+class FaqCategory extends Model implements TranslatableContract , LocalizedUrlRoutable
 {
     use HasFactory;
     use Translatable;
     use SoftDeletes;
 
-    public $translatedAttributes = ['slug','name','des','g_title','g_des'];
+
+    public $translatedAttributes = ['slug','name','des','g_title','g_des','locale'];
     protected $fillable = [''];
     protected $table = "faq_categories";
     protected $primaryKey = 'id';
@@ -63,5 +65,23 @@ class FaqCategory extends Model implements TranslatableContract
         return $this->hasMany(Faq::class,'category_id','id');
     }
 
+    public function slugs(): HasMany
+    {
+        return $this->hasMany(FaqCategoryTranslation::class,'category_id','id');
+    }
 
+    public function getLocalizedRouteKey($locale)
+    {
+
+
+
+        return $this->slugs()->where('locale',$locale)->first()->slug;
+
+
+
+
+        //return $this->FaqCatSlug->where('locale','=',$locale)->first() ;
+       //return $this->FaqCatSlug->first()->slug;
+
+    }
 }

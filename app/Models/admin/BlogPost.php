@@ -22,6 +22,8 @@ class BlogPost extends Model implements TranslatableContract
     protected $primaryKey = 'id';
     protected $translationForeignKey = 'blog_id';
 
+    protected $dates = ['published_at'];
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     setActive
     public function setActive(bool $status = true): self
@@ -42,6 +44,18 @@ class BlogPost extends Model implements TranslatableContract
     public function more_photos(): HasMany
     {
         return $this->hasMany(BlogPostPhoto::class,'blog_id','id');
+    }
+
+
+
+    public function scopeDefWeb(Builder $query): Builder
+    {
+        return $query->where('is_active',true)
+            ->with('translation')
+//            ->withCount('FaqToCat')
+//            ->with('FaqToCat')
+//            ->orderBy('faq_to_cat_count','DESC')
+            ;
     }
 
 }

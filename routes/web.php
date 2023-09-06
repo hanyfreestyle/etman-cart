@@ -43,9 +43,13 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 //    Route::get(LaravelLocalization::transRoute('routes.AboutUs'),[WebPageController::class, 'AboutUs'])
 //        ->where('extension', '(?:.html)?');
 
+    Route::get('about{extension}', function() {
+        return 'About page';
+    })->where('extension', '(?:.html)?');
+
 
     Route::get(LaravelLocalization::transRoute('routes.AboutUs'),[WebPageController::class, 'AboutUs'])
-//        ->where('extension', '(?:.html)?')
+       // ->where('extension', '(?:.html)?')
         ->name('Page_AboutUs');
 
     Route::get(LaravelLocalization::transRoute('routes.OurClient'),[WebPageController::class, 'OurClient'])
@@ -54,6 +58,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 
     Route::get(LaravelLocalization::transRoute('routes.LatestNews'),[WebPageController::class, 'LatestNews'])
         ->name('Page_LatestNews');
+
+    Route::get(LaravelLocalization::transRoute('routes.LatestNews_View'),[WebPageController::class, 'LatestNews_View'])
+        ->name('LatestNews_View');
+
+
 
     Route::get(LaravelLocalization::transRoute('routes.FaqList'),[WebPageController::class, 'FaqList'])
         ->name('Page_FaqList');

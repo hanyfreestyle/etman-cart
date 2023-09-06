@@ -44,6 +44,13 @@ Breadcrumbs::for('LatestNews', function (BreadcrumbTrail $trail) {
     $trail->push(__('web/menu.Latest_News'), route('Page_FaqList'));
 });
 
+Breadcrumbs::for('LatestNewsView', function (BreadcrumbTrail $trail, $Post) {
+    $trail->parent('LatestNews');
+    $trail->push(\Illuminate\Support\Str::limit($Post->name,35), route('Page_FaqCatView', $Post->slug));
+});
+
+
+
 Breadcrumbs::for('TermsConditions', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push(__('web/menu.Terms'), route('Page_TermsConditions'));

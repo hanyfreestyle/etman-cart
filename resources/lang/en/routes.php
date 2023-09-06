@@ -8,5 +8,6 @@ return [
     'ContactUs' => 'contact-us',
 
     'FaqCatView' => 'faq/{slug}',
+    'LatestNews_View' => 'latest-news/{slug}',
 
 ];

@@ -5,7 +5,7 @@ return
 	'Message' => 'Message',
 	'Phone' => 'Phone',
 	'Submit' => 'Submit Your Message',
-	'des' => 'We welcome your inquiries. Please complete the following information and the specialist will respond to your message as soon as possible.',
+	'des' => 'We are delighted to hear from you! Please leave a message for our customer service team to read. We will get back to you as soon as possible&nbsp;by&nbsp;email.',
 	'email' => 'Enter Name',
 	'name' => 'Enter Name',
 	'subject' => 'Subject',

@@ -94,7 +94,7 @@
 
                     <h2 class="def_h2">{{__('web/contact_form.title')}}</h2>
 
-                    <p class="leads"> {{__('web/contact_form.des')}}</p>
+                    <p class="leads"> {!! __('web/contact_form.des') !!}</p>
                     <div class="field_form">
                         <form method="post" name="">
                             <div class="row">

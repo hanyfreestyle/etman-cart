@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\web;
 use App\Http\Controllers\WebMainController;
+use App\Models\admin\BlogPost;
 use App\Models\admin\config\WebPrivacy;
 use App\Models\admin\FaqCategory;
 use App\Models\admin\OurClient;
 use App\Models\admin\OurClientTranslation;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class WebPageController extends WebMainController
 {
@@ -19,6 +22,7 @@ class WebPageController extends WebMainController
         $SinglePageView = [
             'SelMenu' => 'HomePage',
             'CatId' => 'HomePage',
+            'slug' => null,
         ];
 
         $PageMeta = parent::getMeatByCatId('HomePage');
@@ -34,6 +38,7 @@ class WebPageController extends WebMainController
         $SinglePageView = [
             'SelMenu' => 'AboutUs',
             'CatId' => 'AboutUs',
+            'slug' => null,
         ];
 
         $PageMeta = parent::getMeatByCatId('AboutUs');
@@ -49,6 +54,7 @@ class WebPageController extends WebMainController
         $SinglePageView = [
             'SelMenu' => 'OurClient',
             'CatId' => 'OurClient',
+            'slug' => null,
         ];
         $PageMeta = parent::getMeatByCatId('OurClient');
         parent::printSeoMeta($PageMeta);
@@ -65,12 +71,46 @@ class WebPageController extends WebMainController
         $SinglePageView = [
             'SelMenu' => 'LatestNews',
             'CatId' => 'LatestNews',
+            'slug' => null,
         ];
         $PageMeta = parent::getMeatByCatId('LatestNews');
         parent::printSeoMeta($PageMeta);
 
-        return view('web.blog_list',compact('SinglePageView','PageMeta'));
+        $BlogPosts =  BlogPost::defWeb()->paginate(12);
+
+        return view('web.blog_list',compact('SinglePageView','PageMeta','BlogPosts'));
     }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #    LatestNews
+    public function LatestNews_View ($slug)
+    {
+        $slug = \AdminHelper::Url_Slug($slug);
+        $Post  = BlogPost::defWeb()
+            ->whereTranslation('locale', 'ar')
+            ->whereTranslation('slug', $slug)
+            ->firstOrFail();
+
+       $SinglePageView = [
+            'SelMenu' => 'LatestNews',
+            'CatId' => 'LatestNews',
+            'slug' => 'latest-news/'.$Post->translate(webChangeLocale())->slug,
+           // 'slug' => null,
+        ];
+        $PageMeta = parent::getMeatByCatId('LatestNews');
+        parent::printSeoMeta($PageMeta);
+
+
+
+
+        $BlogPosts =  BlogPost::defWeb()->where('id','!=',$Post->id)->limit(2)->get();
+
+
+
+        return view('web.blog_view',compact('SinglePageView','PageMeta','Post','BlogPosts'));
+    }
+
+
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -80,6 +120,7 @@ class WebPageController extends WebMainController
         $SinglePageView = [
             'SelMenu' => 'FaqList',
             'CatId' => 'FaqList',
+            'slug' => null,
         ];
         $PageMeta = parent::getMeatByCatId('FaqList');
         parent::printSeoMeta($PageMeta);
@@ -93,14 +134,32 @@ class WebPageController extends WebMainController
 #|||||||||||||||||||||||||||||||||||||| #     FaqCatView
     public function FaqCatView ($slug)
     {
+
+
+
         $slug = \AdminHelper::Url_Slug($slug);
+
         $FaqCategory  = FaqCategory::defWeb()
+            ->whereTranslation('locale', 'ar')
             ->whereTranslation('slug', $slug)
             ->firstOrFail();
+
+
+
+//        $FaqCategory = FaqCategory::whereTranslation('slug', $slug)->firstOrFail();
+//
+//
+//
+//        if ($FaqCategory->translate()->where('slug', $slug)->first()->locale != app()->getLocale()) {
+//            dd('eeeee');
+//        }
+
+
 
         $SinglePageView = [
             'SelMenu' => 'FaqList',
             'CatId' => 'FaqList',
+            'slug' => 'faq/'.$FaqCategory->translate(webChangeLocale())->slug,
         ];
         $PageMeta = $FaqCategory ;
         parent::printSeoMeta($PageMeta);
@@ -110,9 +169,14 @@ class WebPageController extends WebMainController
             ->get();
 
 
-//        dd($PageMeta);
+      // dd($FaqCategory);
 
-        return view('web.faq_cat_view',compact('SinglePageView','PageMeta','FaqCategory','FaqCategories'));
+        $hany  = FaqCategory::defWeb()
+            ->whereTranslation('slug', $slug)
+
+            ->firstOrFail();
+
+        return view('web.faq_cat_view',compact('SinglePageView','PageMeta','FaqCategory','FaqCategories','hany'));
 
 
 
@@ -127,6 +191,7 @@ class WebPageController extends WebMainController
         $SinglePageView = [
             'SelMenu' => 'ContactUs',
             'CatId' => 'ContactUs',
+            'slug' => null,
         ];
 
         $PageMeta = parent::getMeatByCatId('ContactUs');
