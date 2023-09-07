@@ -3,6 +3,7 @@ namespace App\Helpers;
 
 use App\Http\Controllers\WebMainController;
 use App\Models\admin\Category;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
@@ -521,7 +522,9 @@ class AdminHelper{
     }
 
 
-
+    static function saveDateCarbon($getVal){
+        return Carbon::parse($getVal)->format("Y-m-d H:i:s");
+    }
 
 
 }

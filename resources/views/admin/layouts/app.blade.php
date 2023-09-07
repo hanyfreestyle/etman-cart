@@ -92,6 +92,18 @@
 <script src="{{defAdminAssets('parsley/parsley.js')}}"></script>
 <script>
     $(function () {
+
+        $('.DatePicker').daterangepicker({
+            singleDatePicker: true,
+            autoApply: true,
+            //autoUpdateInput: false,
+            // autoUpdateInput:true,
+           // showDropdowns: true,
+            minYear: 2022,
+            maxYear: parseInt(moment().format('YYYY'),10),
+
+        });
+
         //Initialize Select2 Elements
         $('.select2').select2()
 
@@ -114,6 +126,7 @@
 
         //Date and time picker
         $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' } });
+
 
         //Date range picker
         $('#reservation').daterangepicker()

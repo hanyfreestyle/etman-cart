@@ -23,19 +23,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-9">
-                    <div class="single_post">
+                    <div class="single_post latest_news_view">
                         <h1 class="blog_title">{{$Post->name}}</h1>
                         <ul class="list_none blog_meta">
-                            <li><a href="#"><i class="ti-calendar"></i>{{ \Carbon\Carbon::parse($Post->published_at )->format('d/m/Y')}}</a></li>
+                            <li><a href="#"><i class="ti-calendar"></i>{{  $Post->getFormatteDate() }}</a></li>
                         </ul>
                         <div class="blog_img">
-                            <img src="{{ getPhotoPath($Post->photo) }}" alt="blog_img1">
+                            <img src="{{ getPhotoPath($Post->photo, 'blog','photo_thum_1') }}" alt="blog_img1">
                         </div>
                         <div class="blog_content">
                             <div class="blog_text">
-                                <p>
                                     {!! $Post->des !!}
-                                </p>
+
 {{--                                <blockquote class="blockquote_style3">--}}
 {{--                                    <p>Integer is metus site turpis facilisis customers. elementum an mauris in venenatis consectetur east. Praesent condimentum bibendum Morbi sit amet commodo pellentesque at fringilla tincidunt risus.</p>--}}
 {{--                                </blockquote>--}}
@@ -54,11 +53,8 @@
 {{--                                    </div>--}}
 {{--                                </div>--}}
 
-
-
                                 <div class="blog_post_footer">
                                     <div class="row justify-content-between align-items-center">
-
                                         <div class="col-md-12">
                                             <ul class="social_icons text-md-end">
                                                 <li><a href="#" class="sc_facebook"><i class="ion-social-facebook"></i></a></li>
@@ -74,38 +70,17 @@
                         </div>
                     </div>
 
-
+                    <hr>
                     <div class="related_post">
                         <div class="content_title">
                             <h5>{{__('web/def.read_more')}}</h5>
                         </div>
                         <div class="row latest_news_list">
-
                             @foreach($BlogPosts as $Post)
                                 <div class="col-lg-6 col-md-6">
-                                    <div class="blog_post blog_style2 box_shadow1">
-                                        <div class="blog_img">
-                                            <a href="{{route('LatestNews_View',$Post->slug)}}">
-                                                <img src="{{ getPhotoPath($Post->photo_thum_1) }}" alt="blog_small_img1">
-                                            </a>
-                                        </div>
-                                        <div class="blog_content bg-white">
-                                            <div class="blog_text">
-                                                <h2 class="blog_title crop_text_2"><a href="{{route('LatestNews_View',$Post->slug)}}">{{$Post->name}}</a></h2>
-                                                <ul class="list_none blog_meta">
-                                                    <li><a href="#"><i class="ti-calendar"></i>{{ \Carbon\Carbon::parse($Post->published_at )->format('d/m/Y')}}</a></li>
-                                                </ul>
-                                                <p class="g_des crop_text_3"> {{$Post->g_des}}</p>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
+                                    <x-website.card-last-news  :post-data="$Post"/>
                                 </div>
                             @endforeach
-
-
-
                         </div>
                     </div>
 

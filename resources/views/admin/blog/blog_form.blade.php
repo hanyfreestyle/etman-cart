@@ -21,13 +21,20 @@
         <x-ui-card :page-data="$pageData">
             <x-mass.confirm-massage />
 
+
+
             <form  class="mainForm" action="{{route($PrefixRoute.'.update',intval($BlogPost->id))}}" method="post"  enctype="multipart/form-data">
                 @csrf
+
+            <div class="row"  >
+                <x-form-input-date value="{{old('published_at',$BlogPost->published_at)}}" />
+            </div>
+
                 <div class="row">
                     @foreach ( config('app.lang_file') as $key=>$lang )
                         <div class="col-lg-6 {{getColDir($key)}}">
                             <x-trans-input
-                                label="{{__('admin/def.form_name_'.$key)}} ({{ $key}})"
+                                label="{{__('admin/form.title_'.$key)}} ({{ $key}})"
                                 name="{{ $key }}[name]"
                                 inputid="name_{{ $key }}"
                                 dir="{{ $key }}"

@@ -131,7 +131,7 @@ class WebMainController extends Controller
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     getWebConfig
     static function getWebConfig(){
-        $WebConfig = Cache::remember('WebConfig_Cash',config('app.def_24h_cash'), function (){
+        $WebConfig = Cache::remember('WebConfig_Cash_'.app()->getLocale(),config('app.def_24h_cash'), function (){
             return  Setting::where('id' , 1)->with('translation')->first();
         });
         return $WebConfig ;
@@ -140,7 +140,7 @@ class WebMainController extends Controller
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     getWebConfig
     static function getDefPhotoList(){
-        $DefPhotoList = Cache::remember('DefPhotoList_Cash',config('app.def_24h_cash'), function (){
+        $DefPhotoList = Cache::remember('DefPhotoList_Cash_'.app()->getLocale(),config('app.def_24h_cash'), function (){
             return  DefPhoto::get()->keyBy('cat_id');
         });
         return $DefPhotoList ;
@@ -149,7 +149,7 @@ class WebMainController extends Controller
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     getPagesList
     static function getPagesList(){
-        $PagesList = Cache::remember('PagesList_Cash',config('app.def_24h_cash'), function (){
+        $PagesList = Cache::remember('PagesList_Cash_'.app()->getLocale(),config('app.def_24h_cash'), function (){
             return  Page::where('is_active',true)
                 ->with('translation')
                 ->with('PageBanner')
@@ -164,7 +164,7 @@ class WebMainController extends Controller
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     getMenuCategory
     static function getMenuCategory(){
-        $MenuCategory = Cache::remember('MenuCategory_Cash',config('app.def_24h_cash'), function (){
+        $MenuCategory = Cache::remember('MenuCategory_Cash_'.app()->getLocale(),config('app.def_24h_cash'), function (){
             return   Category::Defquery()->root()
                 ->with('translation')
                 ->withCount('children')

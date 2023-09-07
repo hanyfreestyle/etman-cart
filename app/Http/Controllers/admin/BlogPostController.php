@@ -12,6 +12,7 @@ use App\Models\admin\BlogPostPhoto;
 use App\Models\admin\BlogPostTranslation;
 use App\Models\admin\OurClient;
 use App\Models\admin\OurClientTranslation;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\View;
@@ -124,7 +125,7 @@ class BlogPostController extends AdminMainController
 
         $saveData =  BlogPost::findOrNew($id);
 
-        //$saveData->category_id = $request->input('category_id');
+        $saveData->published_at = AdminHelper::saveDateCarbon($request->published_at);
         $saveData->setActive((bool) request('is_active', false));
         $saveData->save();
 

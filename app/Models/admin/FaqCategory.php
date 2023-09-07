@@ -18,7 +18,7 @@ class FaqCategory extends Model implements TranslatableContract , LocalizedUrlRo
     use SoftDeletes;
 
 
-    public $translatedAttributes = ['slug','name','des','g_title','g_des','locale'];
+    public $translatedAttributes = ['slug','name','des','g_title','g_des'];
     protected $fillable = [''];
     protected $table = "faq_categories";
     protected $primaryKey = 'id';

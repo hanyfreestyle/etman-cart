@@ -4,6 +4,7 @@ namespace App\Models\admin;
 
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -23,6 +24,10 @@ class BlogPost extends Model implements TranslatableContract
     protected $translationForeignKey = 'blog_id';
 
     protected $dates = ['published_at'];
+    protected $casts = [
+        'published_at' => 'datetime'
+    ];
+
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     setActive
@@ -47,15 +52,24 @@ class BlogPost extends Model implements TranslatableContract
     }
 
 
-
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #    scopeDefWeb
     public function scopeDefWeb(Builder $query): Builder
     {
         return $query->where('is_active',true)
+            ->whereDate('published_at','<=',now())
             ->with('translation')
-//            ->withCount('FaqToCat')
-//            ->with('FaqToCat')
-//            ->orderBy('faq_to_cat_count','DESC')
+            ->withCount('more_photos')
+            ->orderBy('published_at','desc')
             ;
+    }
+
+
+    public function getFormatteDate()
+    {
+       //return $this->published_at->format('F jS Y');
+       return Carbon::parse($this->published_at)->locale(app()->getLocale())->translatedFormat('jS F Y') ;
+
     }
 
 }

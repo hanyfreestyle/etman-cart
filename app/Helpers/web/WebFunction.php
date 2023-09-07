@@ -50,12 +50,12 @@ if (!function_exists('webChangeLocaletext')) {
 }
 
 if (!function_exists('getPhotoPath')) {
-    function getPhotoPath($file,$defPhoto="dark-logo"){
+    function getPhotoPath($file,$defPhoto="dark-logo",$defPhotoThum="photo"){
         $defPhoto_file = WebMainController::getDefPhotoById($defPhoto);
         if($file){
             $sendImg = defImagesDir($file);
         }else{
-            $sendImg = defImagesDir($defPhoto_file->photo ?? '');
+            $sendImg = defImagesDir($defPhoto_file->$defPhotoThum ?? '');
         }
         return $sendImg ;
     }

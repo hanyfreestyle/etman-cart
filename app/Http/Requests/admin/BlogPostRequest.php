@@ -32,7 +32,7 @@ class BlogPostRequest extends FormRequest
         $id = $this->route('id');
 
         $rules =[
-
+            'published_at' => 'required|date_format:m/d/Y',
         ];
 
         foreach(config('app.lang_file') as $key=>$lang){

@@ -260,6 +260,7 @@
     font-size: 16px;
     font-weight: 600;
     line-height: 28px;
+    min-height: 60px;
 }
 .latest_news_list .g_des{
     font-size: 15px;
@@ -268,6 +269,18 @@
     min-height: 90px;
 
 }
+
+.latest_news_view .blog_title{
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 28px;
+    margin-bottom: 10px!important;
+}
+.latest_news_view .blog_text {
+
+
+}
+
 
 
 

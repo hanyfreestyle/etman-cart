@@ -16,11 +16,12 @@ return
 	'icon' => 'Icon',
 	'main_category' => 'Main Category',
 	'main_category_form' => 'Main Category',
+	'model_config' => 'Model Settings',
 	'photo' => 'Photo',
 	'post' => 'Post',
 	'status' => 'Status',
 	'status_active' => 'Active',
 	'status_unactive' => 'UnActive',
 	'table_info' => 'Information Table',
-	'model_config' => 'Model Settings',
+	'published_at' => 'Published at',
 ];

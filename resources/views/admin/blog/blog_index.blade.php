@@ -17,8 +17,9 @@
                         <tr>
                             <th class="TD_20">#</th>
                             <th class="TD_20"></th>
-                            <th>{{__('admin/def.form_name_ar')}}</th>
-                            <th>{{__('admin/def.form_name_en')}}</th>
+                            <th class="TD_150">{{__('admin/def.published_at')}}</th>
+                            <th class="TD_250">{{__('admin/form.title_ar')}}</th>
+                            <th class="TD_250">{{__('admin/form.title_en')}}</th>
                             @if($pageData['ViewType'] == 'deleteList')
                                 <th>{{ __('admin/page.del_date') }}</th>
                                 <th></th>
@@ -41,6 +42,7 @@
                             <tr>
                                 <td>{{$Post->id}}</td>
                                 <td class="tc">{!!  \App\Helpers\AdminHelper::printTableImage($Post,'photo') !!} </td>
+                                <td>{{$Post->getFormatteDate()}}</td>
                                 <td>{{ $Post->translate('ar')->name}}</td>
                                 <td>{{ $Post->translate('en')->name}}</td>
 
