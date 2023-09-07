@@ -10,4 +10,5 @@ return [
     'FaqCatView' => 'faq/{slug}',
     'LatestNews_View' => 'latest-news/{slug}',
 
+    'MainCategory' => 'category-list',
 ];

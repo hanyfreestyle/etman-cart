@@ -62,10 +62,29 @@
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <x-website.footer-col-row title="{{__('web/footer.menu_Categories')}}" prefix="Four" >
                         <ul class="widget_links">
-                            @foreach($MenuCategory as $MainCategory)
-                                <li><a href="#">{{$MainCategory->name}}</a></li>
-                            @endforeach
+
+                            @if($agent->isMobile())
+                                @foreach($MenuCategory as $MainCategory)
+                                    <li><a href="#">{{$MainCategory->name}}</a></li>
+                                @endforeach
+
+                            @else
+                                @foreach($MenuCategory as $MainCategory)
+                                    @if($loop->index < 7)
+                                    <li><a href="#">{{$MainCategory->name}}</a></li>
+                                    @endif
+                                @endforeach
+
+
+                            @endif
+
                         </ul>
+                        @if(count($MenuCategory) > 7)
+                            <p class="footer_about_more">
+                                <a href="{{route('Page_MainCategory')}}">{{__('web/def.View_All')}}</a>
+                            </p>
+                        @endif
+
                     </x-website.footer-col-row>
                 </div>
 

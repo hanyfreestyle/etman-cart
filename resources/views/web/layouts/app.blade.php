@@ -86,6 +86,11 @@
 <script src="{{ defWebAssets('js/jquery.dd.min.js') }}"></script>
 <!-- slick js -->
 <script src="{{ defWebAssets('js/slick.min.js') }}"></script>
+
+
+<script src="{{ defWebAssets('js/isotope-loadmore.js') }}"></script>
+
+
 <!-- elevatezoom js -->
 <script src="{{ defWebAssets('js/jquery.elevatezoom.js') }}"></script>
 

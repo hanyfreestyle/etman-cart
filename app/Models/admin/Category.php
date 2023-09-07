@@ -72,4 +72,18 @@ class Category extends Model implements TranslatableContract
         return $query->with('translations')->withCount('children')->withCount('table_data');
     }
 
+
+
+
+    public function scopeDefWeb(Builder $query): Builder
+    {
+        return $query->where('is_active',true)
+            ->with('translation')
+            ->withCount('FaqToCat')
+            ->with('FaqToCat')
+            ->orderBy('faq_to_cat_count','DESC')
+            ;
+    }
+
+
 }

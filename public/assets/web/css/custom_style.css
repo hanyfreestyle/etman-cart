@@ -317,6 +317,12 @@
     -webkit-box-orient:vertical;
     overflow:hidden;
 }
+.crop_text_4{
+    display:-webkit-box;
+    -webkit-line-clamp:4;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+}
 
 
 .SubCategory{
@@ -329,3 +335,67 @@
 .Product_name{
     border-bottom: 1px dotted rgba(0,0,0,.2);
 }
+
+
+.list_sub_children{
+    width: 100%;
+
+}
+
+.list_sub_children .list_i{
+    width: 33.33333333333333333330%;
+    background: #fff;
+}
+
+.list_sub_children h3{
+    font-size: 15px;
+    font-weight: 600;
+    color:#FF324D!important;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+
+.shop_container.list .pr_desc{
+    max-height: 110px;
+}
+
+.pr_desc .Product_name{
+    list-style: none!important;
+    font-size: 14px;
+    margin-bottom: 8px;
+
+}
+
+.Category_title {
+    font-size: 16px;
+    font-weight: 600;
+}
+.Category_des{
+    font-size: 15px;
+}
+
+.readmore_cat{
+    width: 100%;
+    margin-top: -22px;
+    /*background:#00FF00;*/
+    text-align: left!important;
+}
+
+.readmore_cat a{
+    font-size: 14px;
+    font-weight: 600;
+    color:#FF324D!important;
+}
+
+.MainCategory_slider_img{
+    width: 60px!important;
+    margin: auto!important;
+}
+
+.Main_Categories_h2{
+    font-size: 20px;
+    margin-top: 25px;
+}
+
+

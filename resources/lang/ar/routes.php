@@ -10,4 +10,7 @@ return [
     'FaqCatView' => 'faq/{slug}',
     'LatestNews_View' => 'latest-news/{slug}',
 
+
+    'MainCategory' => 'قائمة-المنتجات',
+
 ];

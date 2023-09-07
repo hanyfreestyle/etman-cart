@@ -58,6 +58,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
         ->name('Page_ContactUs');
 
 
+    Route::get(LaravelLocalization::transRoute('routes.MainCategory'),[WebPageController::class, 'MainCategory'])
+        ->name('Page_MainCategory');
+
+
+
 
 
 });

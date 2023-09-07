@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\web;
 use App\Http\Controllers\WebMainController;
 use App\Models\admin\BlogPost;
+use App\Models\admin\Category;
 use App\Models\admin\config\WebPrivacy;
 use App\Models\admin\FaqCategory;
 use App\Models\admin\OurClient;
@@ -208,6 +209,23 @@ class WebPageController extends WebMainController
 
 
 
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #    FaqList
+    public function MainCategory ()
+    {
+        $SinglePageView = [
+            'SelMenu' => '',
+            'CatId' => 'FaqList',
+            'slug' => null,
+        ];
+        $PageMeta = parent::getMeatByCatId('FaqList');
+        parent::printSeoMeta($PageMeta);
+
+        //$FaqCategories = Category::defWeb()->paginate(12);
+
+        return view('web.web_product.category_main',compact('SinglePageView','PageMeta'));
+    }
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
