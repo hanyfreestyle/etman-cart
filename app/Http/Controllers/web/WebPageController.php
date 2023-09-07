@@ -6,11 +6,7 @@ use App\Models\admin\BlogPost;
 use App\Models\admin\config\WebPrivacy;
 use App\Models\admin\FaqCategory;
 use App\Models\admin\OurClient;
-use App\Models\admin\OurClientTranslation;
-use App\Models\User;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
 
 class WebPageController extends WebMainController
 {

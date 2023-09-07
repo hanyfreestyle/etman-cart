@@ -283,6 +283,26 @@
 
 
 
+.cat_icon_span{
+
+}
+
+.cat_icon_span img{
+    margin: auto!important;
+    width: 30px;
+    height: 30px;
+
+    filter: grayscale(100%);
+}
+
+#navCatContent li a:hover .cat_icon_span img {
+    filter:none!important;
+
+}
+
+
+
+
 
 .crop_text_2{
     display:-webkit-box;
@@ -296,4 +316,16 @@
     -webkit-line-clamp:3;
     -webkit-box-orient:vertical;
     overflow:hidden;
+}
+
+
+.SubCategory{
+    border-bottom: 0px solid rgba(0,0,0,.1);
+    overflow: hidden;
+    text-transform:none!important;
+    color:#FF324D!important;
+}
+
+.Product_name{
+    border-bottom: 1px dotted rgba(0,0,0,.2);
 }

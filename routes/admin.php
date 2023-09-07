@@ -41,6 +41,7 @@ Route::get('/Category/edit/{id}',[CategoryController::class,'edit'])->name('webP
 Route::get('/Category/destroy/{id}',[CategoryController::class,'destroy'])->name('webPro.category.destroy');
 Route::post('/Category/update/{id}',[CategoryController::class,'storeUpdate'])->name('webPro.category.update');
 Route::get('/Category/emptyPhoto/{id}', [CategoryController::class,'emptyPhoto'])->name('webPro.category.emptyPhoto');
+Route::get('/Category/emptyIcon/{id}', [CategoryController::class,'emptyIcon'])->name('webPro.category.emptyIcon');
 Route::get('/Category/Config',[CategoryController::class,'config'])->name('webPro.categoryConfig.Config');
 
 Route::get('/Category/TableList/{id}',[CategoryTableController::class,'TableList'])->name('webPro.category.Table_list');

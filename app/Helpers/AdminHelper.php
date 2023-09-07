@@ -361,6 +361,20 @@ class AdminHelper{
         $img = Image::make(public_path($path));
         return $img ;
     }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     saveAndDeletePhoto
+    static function saveAndDeleteIcon($saveData,$saveImgData){
+
+        if(count( $saveImgData->sendSaveData) != 0){
+            if(File::exists($saveData->icon)){
+                File::delete($saveData->icon);
+            }
+            $saveData->icon = $saveImgData->sendSaveData['photo']['file_name'];
+        }
+        return $saveData ;
+    }
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     saveAndDeletePhoto
     static function saveAndDeletePhoto($saveData,$saveImgData){

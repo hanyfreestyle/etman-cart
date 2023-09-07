@@ -9,7 +9,7 @@
             <div class="alert alert-dark alert-dismissible">
                 {{ __('admin/menu.web_category') }}
             </div>
-            <x-def-settings modelname="category">
+            <x-def-settings modelname="category" :icon="true">
 
             </x-def-settings>
 

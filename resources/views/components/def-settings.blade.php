@@ -52,6 +52,12 @@
         @endif
 
 
+{{--        @if($icon)--}}
+{{--            <x-form-select-arr  label="Icon" name="{{$modelname}}_icon_filterid" colrow="col-lg-3"--}}
+{{--                                sendvalue="{{old($modelname.'_icon_filterid',\App\Helpers\AdminHelper::arrIsset($modelSettings,$modelname.'_icon_filterid',0))}}" :send-arr="$filterTypes"/>--}}
+{{--        @endif--}}
+
+
 
         {{$slot}}
     </div>

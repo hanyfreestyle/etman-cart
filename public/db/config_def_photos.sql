@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 07, 2023 at 05:00 PM
+-- Generation Time: Sep 07, 2023 at 09:57 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -32,7 +32,8 @@ INSERT INTO `config_def_photos` (`id`, `cat_id`, `photo`, `photo_thum_1`, `photo
 (4, 'about-2', 'images/def-photo/about-2-hRbvFjEYBB.webp', NULL, NULL, 0, '2023-09-04 14:22:23', '2023-09-04 14:22:23'),
 (5, 'faq-icon', 'images/def-photo/faq-icon-Trcw3x3A7W.webp', 'images/def-photo/faq-icon-Ns5XjqT77R.webp', NULL, 0, '2023-09-04 18:17:24', '2023-09-04 18:24:42'),
 (6, 'contact-from', 'images/def-photo/contact-from-taOS5rT9SI.webp', NULL, NULL, 0, '2023-09-06 19:37:35', '2023-09-06 19:37:35'),
-(7, 'blog', 'images/def-photo/blog-CDdCixPmfn.webp', 'images/def-photo/blog-EE6OS73peP.webp', NULL, 0, '2023-09-07 11:29:31', '2023-09-07 11:32:49');
+(7, 'blog', 'images/def-photo/blog-CDdCixPmfn.webp', 'images/def-photo/blog-EE6OS73peP.webp', NULL, 0, '2023-09-07 11:29:31', '2023-09-07 11:32:49'),
+(8, 'categorie', 'images/def-photo/categorie-yowV12nU2k.webp', NULL, NULL, 0, '2023-09-07 16:54:20', '2023-09-07 16:54:20');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

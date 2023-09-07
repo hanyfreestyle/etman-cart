@@ -128,9 +128,18 @@ class CategoryController extends AdminMainController
         $saveImgData = new PuzzleUploadProcess();
         $saveImgData->setCountOfUpload('2');
         $saveImgData->setUploadDirIs('category/'.$saveData->id);
+        //$saveImgData->setfileUploadName('photo');
         $saveImgData->setnewFileName($request->input('en.slug'));
         $saveImgData->UploadOne($request);
         $saveData = AdminHelper::saveAndDeletePhoto($saveData,$saveImgData);
+        $saveData->save();
+
+        $saveImgData_icon = new PuzzleUploadProcess();
+        $saveImgData_icon->setUploadDirIs('category/'.$saveData->id);
+        $saveImgData_icon->setnewFileName($request->input('en.slug'));
+        $saveImgData_icon->setfileUploadName('icon');
+        $saveImgData_icon->UploadOneNofilter($request,'4',60,60);
+        $saveData = AdminHelper::saveAndDeletePhotoByOne($saveData,$saveImgData_icon,'icon');
         $saveData->save();
 
         foreach ( config('app.lang_file') as $key=>$lang) {
@@ -180,6 +189,18 @@ class CategoryController extends AdminMainController
         $rowData->save();
         return back();
     }
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     EmptyPhoto
+    public function emptyIcon ($id){
+        $rowData = Category::findOrFail($id);
+        $rowData = AdminHelper::DeleteAllPhotos($rowData,true,['icon']);
+        $rowData->save();
+        return back();
+    }
+
+
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     config

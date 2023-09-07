@@ -20,6 +20,7 @@ class FormUploadFile extends Component
     public $acceptFile;
     public $thisfilterid;
     public $emptyphotourl;
+    public $addFilterList;
 
     public function __construct(
         $rowCol = 'col-6',
@@ -34,6 +35,7 @@ class FormUploadFile extends Component
         $acceptFile = "image/*",# image/*,.zip
         $thisfilterid = '',
         $emptyphotourl = '#',
+        $addFilterList = true,
 
     )
     {
@@ -49,6 +51,13 @@ class FormUploadFile extends Component
         $this->acceptFile = $acceptFile;
         $this->thisfilterid = $thisfilterid;
         $this->emptyphotourl = $emptyphotourl;
+        $this->addFilterList = $addFilterList;
+
+
+
+        if($label){
+            $this->label = $label ;
+        }
 
 
         if($this->viewType == 'Edit'){

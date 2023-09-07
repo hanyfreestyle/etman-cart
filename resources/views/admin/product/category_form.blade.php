@@ -68,10 +68,33 @@
 
                 <hr>
 
-                <x-form-upload-file view-type="{{$pageData['ViewType']}}" :row-data="$Category"
-                                    :multiple="false"
-                                    thisfilterid="{{ \App\Helpers\AdminHelper::arrIsset($modelSettings,$controllerName.'_filterid',0) }}"
-                                    :emptyphotourl="$PrefixRoute.'.emptyPhoto'"  />
+                <div class="row">
+
+                    <div class="col-lg-6">
+
+                        <x-form-upload-file view-type="{{$pageData['ViewType']}}" :row-data="$Category"
+                                            :multiple="false"
+
+                                            thisfilterid="{{ \App\Helpers\AdminHelper::arrIsset($modelSettings,$controllerName.'_filterid',0) }}"
+                                            :emptyphotourl="$PrefixRoute.'.emptyPhoto'"  />
+                    </div>
+
+                    <div class="col-lg-6">
+                    <x-form-upload-file view-type="{{$pageData['ViewType']}}" :row-data="$Category"
+                                        :multiple="false"
+                                        label="Icon"
+                                        fild-name="icon"
+                                        file-name="icon"
+                                        :add-filter-list="false"
+                                        :emptyphotourl="$PrefixRoute.'.emptyIcon'"  />
+                    </div>
+                </div>
+
+
+
+
+
+
 
                 <div class="container-fluid">
                     <x-form-submit text="{{$pageData['ViewType']}}" />

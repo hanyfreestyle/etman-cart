@@ -1,11 +1,14 @@
-@if(intval($thisfilterid) == 0)
-    <div class="row">
-        <x-form-select-arr  label="{{__('admin/def.form_selectFilterLable')}}" name="filter_id" colrow="col-lg-6"
-                            sendvalue="{{old('filter_id')}}" :send-arr="$filterTypes"/>
-    </div>
-@else
-    <input type="hidden" name="filter_id" value="{{ $thisfilterid }}">
+@if($addFilterList)
+    @if(intval($thisfilterid) == 0)
+        <div class="row">
+            <x-form-select-arr  label="{{__('admin/def.form_selectFilterLable')}}" name="filter_id" colrow="col-lg-6"
+                                sendvalue="{{old('filter_id')}}" :send-arr="$filterTypes"/>
+        </div>
+    @else
+        <input type="hidden" name="filter_id" value="{{ $thisfilterid }}">
+    @endif
 @endif
+
 <div class="row">
     <div class="{{$rowCol}}">
         <div class="form-group">

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->string("photo")->nullable();
             $table->string("photo_thum_1")->nullable();
+            $table->string("icon")->nullable();
             $table->boolean("is_active")->default(true);
             $table->timestamps();
 
