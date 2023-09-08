@@ -12,5 +12,7 @@ return [
 
 
     'MainCategory' => 'قائمة-المنتجات',
+    'WebCategoryView' => 'category/{slug}',
+
 
 ];

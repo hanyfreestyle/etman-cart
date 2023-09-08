@@ -65,6 +65,14 @@ Breadcrumbs::for('MainCategory', function (BreadcrumbTrail $trail) {
 });
 
 
+Breadcrumbs::for('WebCategoryView', function (BreadcrumbTrail $trail, $Category) {
+    $trail->parent('MainCategory');
+    $trail->push($Category->name, route('Page_WebCategoryView', $Category->slug));
+});
+
+
+
+
 //
 //Breadcrumbs::for('blog', function (BreadcrumbTrail $trail) {
 //    $trail->parent('home');

@@ -79,9 +79,13 @@ class Category extends Model implements TranslatableContract
     {
         return $query->where('is_active',true)
             ->with('translation')
-            ->withCount('FaqToCat')
-            ->with('FaqToCat')
-            ->orderBy('faq_to_cat_count','DESC')
+            ->withCount('children')
+            ->with('children')
+            ->withCount('CatProduct')
+            ->with('CatProduct')
+            ->withCount('table_data')
+            ->with('table_data')
+
             ;
     }
 

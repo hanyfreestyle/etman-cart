@@ -11,4 +11,5 @@ return [
     'LatestNews_View' => 'latest-news/{slug}',
 
     'MainCategory' => 'category-list',
+    'WebCategoryView' => 'category/{slug}',
 ];

@@ -61,7 +61,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::get(LaravelLocalization::transRoute('routes.MainCategory'),[WebPageController::class, 'MainCategory'])
         ->name('Page_MainCategory');
 
-
+    Route::get(LaravelLocalization::transRoute('routes.WebCategoryView'),[WebPageController::class, 'WebCategoryView'])
+        ->name('Page_WebCategoryView');
 
 
 

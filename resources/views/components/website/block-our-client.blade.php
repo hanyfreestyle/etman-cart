@@ -4,7 +4,7 @@
             <div class="col-md-12">
                 <div class="heading_tab_header">
                     <div class="heading_s2">
-                        <h2>{{__('web/menu.Our_Client')}}</h2>
+                        <h2 class="def_h2">{{__('web/menu.Our_Client')}}</h2>
                     </div>
                 </div>
             </div>

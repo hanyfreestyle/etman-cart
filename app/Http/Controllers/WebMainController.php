@@ -43,6 +43,11 @@ class WebMainController extends Controller
         $CartList = Product::inRandomOrder()->limit(2)->get();
         View::share('CartList', $CartList);
 
+        $RecentProduct = Product::inRandomOrder()->limit(3)->get();
+        View::share('RecentProduct', $RecentProduct);
+
+
+
 
 //        $PagesList  = self::getPagesList();
 //        View::share('PagesList', $PagesList);

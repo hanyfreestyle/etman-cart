@@ -250,8 +250,39 @@ class WebPageController extends WebMainController
     }
 
 
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #    AboutUs
+#|||||||||||||||||||||||||||||||||||||| #     WebCategoryView
+    public function WebCategoryView ($slug)
+    {
+        $slug = \AdminHelper::Url_Slug($slug);
+
+        $Category  = Category::defWeb()
+            ->withCount('CatProduct')
+            ->with('CatProduct')
+            ->whereTranslation('slug', $slug)
+            ->firstOrFail();
+
+        if ($Category->translate()->where('slug', $slug)->first()->locale != app()->getLocale()) {
+            return redirect()->route('Page_WebCategoryView', $Category->translate()->slug);
+        }
+
+
+
+
+        $PageMeta = $Category ;
+        parent::printSeoMeta($PageMeta);
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['breadcrumb'] = "FaqList" ;
+        $SinglePageView['slug'] = 'category/'.$Category->translate(webChangeLocale())->slug;
+
+//dd($Category);
+
+        return view('web.web_product.category_view',compact('SinglePageView','PageMeta','Category'));
+
+    }
+
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #    AboutUs

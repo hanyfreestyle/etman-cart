@@ -375,10 +375,7 @@
     color:#FF324D!important;
 }
 
-.MainCategory_slider_img{
-    width: 60px!important;
-    margin: auto!important;
-}
+
 
 .Main_Categories_h2{
     font-size: 20px;
@@ -476,4 +473,17 @@
     list-style: none;
     margin-bottom: 4px;
     padding-bottom: 3px;
+}
+
+
+
+.MainCategory_Home_Slider .slider_icon{
+    width: 60px!important;
+    margin: auto!important;
+}
+
+
+
+.def_h2{
+    font-size: 23px;
 }

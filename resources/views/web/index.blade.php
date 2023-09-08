@@ -31,12 +31,12 @@
 {{--        </div>--}}
 {{--    </div>--}}
 
-    <div class="section small_pb small_pt">
+    <div class="section small_pb small_pt MainCategory_Home_Slider">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="heading_s4 text-center">
-                        <h2 class="Main_Categories_h2"><a href="{{route('Page_MainCategory')}}">{{ __('web/def.Main_Categories') }}</a></h2>
+                        <h2 class="def_h2"><a href="{{route('Page_MainCategory')}}">{{ __('web/def.Main_Categories') }}</a></h2>
                     </div>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                         <div class="item">
                             <div class="categories_box">
                                 <a href="#">
-                                    <img  class="MainCategory_slider_img" src="{{ getPhotoPath($MainCategory->icon ,'faq-icon') }}" alt="cat_img1"/>
+                                    <img  class="slider_icon" src="{{ getPhotoPath($MainCategory->icon ,'faq-icon') }}" alt="cat_img1"/>
                                     <span>{{$MainCategory->name}}</span>
                                 </a>
                             </div>
