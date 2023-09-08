@@ -9,6 +9,7 @@ use App\Models\admin\AttributeTable;
 use App\Models\admin\Category;
 use App\Models\admin\CategoryTable;
 use App\Models\admin\CategoryTableTranslation;
+use Cache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
@@ -50,6 +51,14 @@ class CategoryTableController extends AdminMainController
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| # ClearCash
+    public function ClearCash(){
+        foreach ( config('app.lang_file') as $key=>$lang){
+            Cache::forget('MenuCategory_Cash_'.$key);
+        }
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     TableList
     public  function TableList($id){
 
@@ -78,6 +87,7 @@ class CategoryTableController extends AdminMainController
     {
         $deleteRow = CategoryTable::findOrFail($id);
         $deleteRow->forceDelete();
+        self::ClearCash();
         return redirect(route($this->PrefixRoute.'.Table_list',$deleteRow->category_id))->with('confirmDelete',"");
     }
 
@@ -114,7 +124,7 @@ class CategoryTableController extends AdminMainController
             $saveTranslation->des = $request->input($key.'.des');
             $saveTranslation->save();
         }
-
+        self::ClearCash();
         if($id == '0'){
             return redirect(route($this->PrefixRoute.'.Table_list',$request->input('category_id')))->with('Add.Done',"");
         }else{
@@ -135,7 +145,7 @@ class CategoryTableController extends AdminMainController
             ->orderBy('postion')
             ->paginate(10);
         $Category = Category::findOrFail($id) ;
-
+        self::ClearCash();
         return view('admin.product.category_table_sort',compact('CategoryTable','pageData','Category'));
     }
 
@@ -150,6 +160,7 @@ class CategoryTableController extends AdminMainController
             $saveData->postion = $newPosition;
             $saveData->save();
         }
+        self::ClearCash();
         return response()->json(['success'=>$positions]);
     }
 

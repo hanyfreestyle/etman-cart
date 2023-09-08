@@ -1,6 +1,6 @@
 @extends('web.layouts.app')
 @section('breadcrumb')
-    <x-website.breadcrumb :meta="$PageMeta" :catid="$SinglePageView['CatId']" />
+    <x-website.breadcrumb :meta="$PageMeta" :catid="$SinglePageView['breadcrumb']" />
 @endsection
 @section('content')
     <div class="sectionX pb-5 pt-lg-4">

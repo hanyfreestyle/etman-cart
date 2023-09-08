@@ -28,24 +28,27 @@ class WebMainController extends Controller
 
     )
     {
+
+        $stopCash = 0 ;
         $agent = new Agent();
         View::share('agent', $agent);
 
-        $WebConfig = self::getWebConfig();
+        $WebConfig = self::getWebConfig($stopCash);
         View::share('WebConfig', $WebConfig);
 
-        $DefPhotoList = self::getDefPhotoList();
+        $DefPhotoList = self::getDefPhotoList($stopCash);
         View::share('DefPhotoList', $DefPhotoList);
+
 
         $CartList = Product::inRandomOrder()->limit(2)->get();
         View::share('CartList', $CartList);
 
 
-        $PagesList  = self::getPagesList();
-        View::share('PagesList', $PagesList);
+//        $PagesList  = self::getPagesList();
+//        View::share('PagesList', $PagesList);
 
 
-        $MenuCategory = self::getMenuCategory();
+        $MenuCategory = self::getMenuCategory($stopCash);
         View::share('MenuCategory', $MenuCategory);
 
 
@@ -69,50 +72,62 @@ class WebMainController extends Controller
     static function printSeoMeta($row,$defPhoto="logo",$sendArr=array()){
         $lang = thisCurrentLocale();
 
-        $type = AdminHelper::arrIsset($sendArr,'type','website');
-        $siteName = self::getWebConfig();
-
-        if($row->photo){
-            $defImage = $row->photo ;
-        }else{
-            $GetdefImage = self::getDefPhotoById($defPhoto);
-            $defImage =optional($GetdefImage)->photo;
-        }
-        if($defImage){
-            $defImage = defImagesDir($defImage);
-        }
-
-        SEOMeta::setTitle($row->translate($lang)->g_title ?? "");
-        SEOMeta::setDescription($row->translate($lang)->g_des ?? "");
-        SEOMeta::addMeta('article:published_time', $row->published_at ?? "" , 'property');
-
-        OpenGraph::setTitle($row->translate($lang)->g_title ?? "");
-        OpenGraph::setDescription($row->translate($lang)->g_des ?? "" );
-        OpenGraph::addProperty('type', $type);
-        OpenGraph::setUrl(url()->current());
-        OpenGraph::addImage($defImage);
-        OpenGraph::setSiteName($siteName->translate($lang)->name ?? "");
-
-        TwitterCard::setTitle($row->translate($lang)->g_title ?? "");
-        TwitterCard::setDescription($row->translate($lang)->g_des ?? "");
-        TwitterCard::setUrl(url()->current());
-        TwitterCard::setImage($defImage);
-        TwitterCard::setImage($defImage);
-        TwitterCard::setType('summary_large_image');
+//        $type = AdminHelper::arrIsset($sendArr,'type','website');
+//        $siteName = self::getWebConfig();
+//
+//        if($row->photo){
+//            $defImage = $row->photo ;
+//        }else{
+//            $GetdefImage = self::getDefPhotoById($defPhoto);
+//            $defImage =optional($GetdefImage)->photo;
+//        }
+//        if($defImage){
+//            $defImage = defImagesDir($defImage);
+//        }
+//
+//        SEOMeta::setTitle($row->translate($lang)->g_title ?? "");
+//        SEOMeta::setDescription($row->translate($lang)->g_des ?? "");
+//        SEOMeta::addMeta('article:published_time', $row->published_at ?? "" , 'property');
+//
+//        OpenGraph::setTitle($row->translate($lang)->g_title ?? "");
+//        OpenGraph::setDescription($row->translate($lang)->g_des ?? "" );
+//        OpenGraph::addProperty('type', $type);
+//        OpenGraph::setUrl(url()->current());
+//        OpenGraph::addImage($defImage);
+//        OpenGraph::setSiteName($siteName->translate($lang)->name ?? "");
+//
+//        TwitterCard::setTitle($row->translate($lang)->g_title ?? "");
+//        TwitterCard::setDescription($row->translate($lang)->g_des ?? "");
+//        TwitterCard::setUrl(url()->current());
+//        TwitterCard::setImage($defImage);
+//        TwitterCard::setImage($defImage);
+//        TwitterCard::setType('summary_large_image');
 
 
     }
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     getMeatByCatId
     static function getMeatByCatId($cat_id){
-        $WebMeta = Cache::remember('WebMeta_Cash',config('app.meta_tage_cash'), function (){
-            return  Page::with('translation')->get()->keyBy('cat_id');
+
+//        $WebMeta = Cache::remember('WebMeta_Cash',config('app.meta_tage_cash'), function (){
+//            return  Page::with('translation')->get()->keyBy('cat_id');
+//        });
+
+        $PagesList = Cache::remember('PagesList_Cash_'.app()->getLocale(),config('app.def_24h_cash'), function (){
+            return  Page::where('is_active',true)
+                ->with('translation')
+                ->with('PageBanner')
+                ->withcount('PageBanner')
+                ->orderBy('postion','ASC')
+                ->get()
+                ->keyBy('cat_id')
+                ;
         });
 
-        if ($WebMeta->has($cat_id)) {
-            return $WebMeta[$cat_id] ;
+        if ($PagesList->has($cat_id)) {
+            return $PagesList[$cat_id] ;
         }else{
-            return $WebMeta['home'] ?? '' ;
+            return $PagesList['home'] ?? '' ;
         }
    }
 
@@ -130,19 +145,28 @@ class WebMainController extends Controller
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     getWebConfig
-    static function getWebConfig(){
-        $WebConfig = Cache::remember('WebConfig_Cash_'.app()->getLocale(),config('app.def_24h_cash'), function (){
-            return  Setting::where('id' , 1)->with('translation')->first();
-        });
+    static function getWebConfig($stopCash=0){
+        if($stopCash){
+            $WebConfig = Setting::where('id' , 1)->with('translation')->first();
+        }else{
+            $WebConfig = Cache::remember('WebConfig_Cash_'.app()->getLocale(),config('app.def_24h_cash'), function (){
+                return  Setting::where('id' , 1)->with('translation')->first();
+            });
+        }
         return $WebConfig ;
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     getWebConfig
-    static function getDefPhotoList(){
-        $DefPhotoList = Cache::remember('DefPhotoList_Cash_'.app()->getLocale(),config('app.def_24h_cash'), function (){
-            return  DefPhoto::get()->keyBy('cat_id');
-        });
+    static function getDefPhotoList($stopCash=0){
+
+        if($stopCash){
+            $DefPhotoList = DefPhoto::get()->keyBy('cat_id');
+        }else{
+            $DefPhotoList = Cache::remember('DefPhotoList_Cash_'.app()->getLocale(),config('app.def_24h_cash'), function (){
+                return  DefPhoto::get()->keyBy('cat_id');
+            });
+        }
         return $DefPhotoList ;
     }
 
@@ -163,16 +187,28 @@ class WebMainController extends Controller
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     getMenuCategory
-    static function getMenuCategory(){
-        $MenuCategory = Cache::remember('MenuCategory_Cash_'.app()->getLocale(),config('app.def_24h_cash'), function (){
-            return   Category::Defquery()->root()
+    static function getMenuCategory($stopCash=0){
+
+        if($stopCash){
+            $MenuCategory = Category::Defquery()->root()
                 ->with('translation')
                 ->withCount('children')
                 ->with('children')
                 ->with('CatProduct')
                 ->orderBy('children_count','desc')
                 ->get();
-        });
+        }else{
+            $MenuCategory = Cache::remember('MenuCategory_Cash_'.app()->getLocale(),config('app.def_24h_cash'), function (){
+                return   Category::Defquery()->root()
+                    ->with('translation')
+                    ->withCount('children')
+                    ->with('children')
+                    ->with('CatProduct')
+                    ->orderBy('children_count','desc')
+                    ->get();
+            });
+        }
+
         return $MenuCategory ;
     }
 

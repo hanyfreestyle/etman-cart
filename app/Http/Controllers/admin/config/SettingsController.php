@@ -19,6 +19,16 @@ class SettingsController extends AdminMainController
         $this->middleware('permission:website_config', ['only' => ['webConfigEdit','webConfigUpdate']]);
     }
 
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| # ClearCash
+    public function ClearCash(){
+        foreach ( config('app.lang_file') as $key=>$lang){
+            Cache::forget('WebConfig_Cash_'.$key);
+        }
+    }
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #   webConfigEdit
     public function webConfigEdit(){
@@ -46,8 +56,7 @@ class SettingsController extends AdminMainController
 
 
         $setting->update($request->all());
-        Cache::forget('WebConfig_Cash');
-
+        self::ClearCash();
         return  back()->with('Edit.Done',"");
     }
 
@@ -106,7 +115,7 @@ public function webConfigModel(){
     }
 
 
-    public function clearCash()
+    public function clearCash_xxx()
     {
         Artisan::call('cache:clear');
         echobr('Application cache has been cleared');

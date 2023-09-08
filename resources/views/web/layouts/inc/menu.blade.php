@@ -1,5 +1,5 @@
 
-<div class="bottom_header light_skin main_menu_uppercase bg_dark  @if(isset($SinglePageView['CatId'])  and count($PagesList[$SinglePageView['CatId']]->PageBanner) > 0) mb-4 @endif">
+<div class="bottom_header light_skin main_menu_uppercase bg_dark  @if($SinglePageView['banner_id']  and $SinglePageView['banner_count'] > 0) mb-4 @endif">
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-4 col-sm-6 col-3">

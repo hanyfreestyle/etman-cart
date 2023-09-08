@@ -8,6 +8,7 @@ use App\Http\Requests\admin\FaqRequest;
 use App\Models\admin\Faq;
 use App\Models\admin\FaqCategory;
 use App\Models\admin\FaqTranslation;
+use Cache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
@@ -65,6 +66,15 @@ class FaqController extends AdminMainController
         $this->pageData = $pageData ;
 
     }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| # ClearCash
+    public function ClearCash(){
+        foreach ( config('app.lang_file') as $key=>$lang){
+            Cache::forget('Faq_Cash_'.$key);
+        }
+    }
+
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     index
@@ -134,6 +144,7 @@ class FaqController extends AdminMainController
             $saveTranslation->save();
         }
 
+        self::ClearCash();
         if($id == '0'){
             return redirect(route($this->PrefixRoute.'.index'))->with('Add.Done',"");
         }else{
@@ -148,6 +159,7 @@ class FaqController extends AdminMainController
         $deleteRow = Faq::findOrFail($id);
         $deleteRow = AdminHelper::DeleteAllPhotos($deleteRow);
         $deleteRow->forceDelete();
+        self::ClearCash();
         return back()->with('confirmDelete',"");
     }
 
@@ -177,6 +189,7 @@ class FaqController extends AdminMainController
             $saveData->postion = $newPosition;
             $saveData->save();
         }
+        self::ClearCash();
         return response()->json(['success'=>$positions]);
     }
 

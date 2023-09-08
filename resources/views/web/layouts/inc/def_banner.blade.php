@@ -5,7 +5,7 @@
                 <div id="carouselExampleControls" class="carousel slide light_arrow" data-bs-ride="carousel">
                     <div class="carousel-inner">
 
-                        @foreach($PagesList[$SinglePageView['CatId']]->PageBanner as $banner)
+                        @foreach( $SinglePageView['banner_list'] as $banner)
                             <div class="carousel-item @if($loop->index == 0) active @endif background_bg" data-img-src="{{getPhotoPath($banner->photo,"blog")}}">
                                 <div class="banner_slide_content banner_content_inner">
                                     <div class="col-lg-7 col-10">
@@ -22,7 +22,7 @@
 
                     </div>
                     <ol class="carousel-indicators indicators_style1">
-                        @foreach($PagesList[$SinglePageView['CatId']]->PageBanner as $banner)
+                        @foreach( $SinglePageView['banner_list'] as $banner)
                             <li data-bs-target="#carouselExampleControls" data-bs-slide-to="{{$loop->index}}"
                                 class="@if($loop->index == 0) active @endif"></li>
                         @endforeach

@@ -4,12 +4,8 @@ namespace App\Http\Controllers\admin;
 use App\Helpers\AdminHelper;
 use App\Helpers\PuzzleUploadProcess;
 use App\Http\Controllers\AdminMainController;
-use App\Http\Requests\admin\config\MetaTagRequest;
 use App\Http\Requests\admin\PageRequest;
 use App\Models\admin\BannerCategory;
-use App\Models\admin\config\MetaTag;
-use App\Models\admin\config\MetaTagTranslation;
-use App\Models\admin\OurClient;
 use App\Models\admin\Page;
 use App\Models\admin\PageTranslation;
 use Cache ;
@@ -72,6 +68,13 @@ class PageController extends AdminMainController
 
     }
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| # ClearCash
+    public function ClearCash(){
+        foreach ( config('app.lang_file') as $key=>$lang){
+            Cache::forget('PagesList_Cash_'.$key);
+        }
+    }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     index
@@ -154,7 +157,8 @@ class PageController extends AdminMainController
             $saveTranslation->save();
         }
 
-        Cache::forget('WebMeta_Cash');
+        self::ClearCash();
+
         if($id == '0'){
             return redirect(route($this->PrefixRoute.'.index'))->with('Add.Done',"");
         }else{
@@ -168,7 +172,7 @@ class PageController extends AdminMainController
     public function delete($id)
     {
         Page::findOrFail($id)->delete();
-        Cache::forget('WebMeta_Cash');
+        self::ClearCash();
         return redirect(route($this->PrefixRoute.'.index'))->with('confirmDelete','');
     }
 
@@ -178,7 +182,7 @@ class PageController extends AdminMainController
         $rowData = Page::findOrFail($id);
         $rowData = AdminHelper::DeleteAllPhotos($rowData,true);
         $rowData->save();
-        Cache::forget('WebMeta_Cash');
+        self::ClearCash();
         return back();
     }
 
@@ -187,7 +191,7 @@ class PageController extends AdminMainController
     public function restored($id)
     {
         Page::onlyTrashed()->where('id',$id)->restore();
-        Cache::forget('WebMeta_Cash');
+        self::ClearCash();
         return back()->with('restore',"");
     }
 
@@ -198,7 +202,7 @@ class PageController extends AdminMainController
         $deleteRow =  Page::onlyTrashed()->where('id',$id)->firstOrFail();
         $deleteRow = AdminHelper::DeleteAllPhotos($deleteRow);
         $deleteRow->forceDelete();
-        Cache::forget('WebMeta_Cash');
+        self::ClearCash();
         return back()->with('confirmDelete',"");
     }
 
@@ -209,7 +213,7 @@ class PageController extends AdminMainController
         $pageData = $this->pageData;
         $pageData['TitlePage'] = __('admin/def.model_config');
         $pageData['ViewType'] = "List";
-        Cache::forget('WebMeta_Cash');
+        self::ClearCash();
         return view('admin.pages.pages_config',compact('pageData'));
     }
 
@@ -225,7 +229,7 @@ class PageController extends AdminMainController
         $Pages = Page::with('translation')
             ->orderBy('postion','asc')
             ->get();
-        Cache::forget('WebMeta_Cash');
+        self::ClearCash();
         return view('admin.pages.pages_sort',compact('pageData','Pages'));
     }
 
@@ -240,7 +244,7 @@ class PageController extends AdminMainController
             $saveData->postion = $newPosition;
             $saveData->save();
         }
-        Cache::forget('WebMeta_Cash');
+        self::ClearCash();
         return response()->json(['success'=>$positions]);
     }
 }

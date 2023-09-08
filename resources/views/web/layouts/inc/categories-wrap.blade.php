@@ -6,7 +6,7 @@
 
 
     <div id="navCatContent"
-         class="@if(isset($SinglePageView['CatId']) and count($PagesList[$SinglePageView['CatId']]->PageBanner) > 0) nav_cat @endif navbar collapse">
+         class="@if($SinglePageView['banner_id']  and $SinglePageView['banner_count'] > 0) nav_cat @endif navbar collapse">
         <ul>
 
             @foreach($MenuCategory as $MainCategory)

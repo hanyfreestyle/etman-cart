@@ -58,6 +58,13 @@ Breadcrumbs::for('TermsConditions', function (BreadcrumbTrail $trail) {
 
 
 
+
+Breadcrumbs::for('MainCategory', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push(__('web/def.Main_Categories'), route('Page_MainCategory'));
+});
+
+
 //
 //Breadcrumbs::for('blog', function (BreadcrumbTrail $trail) {
 //    $trail->parent('home');

@@ -9,6 +9,7 @@ use App\Http\Requests\admin\BannerRequest;
 use App\Models\admin\Banner;
 use App\Models\admin\BannerCategory;
 use App\Models\admin\BannerTranslation;
+use Cache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
@@ -64,6 +65,15 @@ class BannerController extends AdminMainController
         $this->pageData = $pageData ;
 
     }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| # ClearCash
+    public function ClearCash(){
+        foreach ( config('app.lang_file') as $key=>$lang){
+            Cache::forget('PagesList_Cash_'.$key);
+        }
+    }
+
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     index
@@ -140,6 +150,7 @@ class BannerController extends AdminMainController
             $saveTranslation->save();
         }
 
+        self::ClearCash();
         if($id == '0'){
             return redirect(route($this->PrefixRoute.'.index'))->with('Add.Done',"");
         }else{
@@ -154,6 +165,7 @@ class BannerController extends AdminMainController
         $deleteRow = Banner::findOrFail($id);
         $deleteRow = AdminHelper::DeleteAllPhotos($deleteRow);
         $deleteRow->forceDelete();
+        self::ClearCash();
         return back()->with('confirmDelete',"");
     }
 
@@ -168,6 +180,7 @@ class BannerController extends AdminMainController
             ->where('category_id',$Category->id)
             ->orderBy('postion','asc')
             ->get();
+        self::ClearCash();
         return view('admin.banner.sort',compact('Banners','Category','pageData'));
     }
 
@@ -182,6 +195,7 @@ class BannerController extends AdminMainController
             $saveData->postion = $newPosition;
             $saveData->save();
         }
+        self::ClearCash();
         return response()->json(['success'=>$positions]);
     }
 

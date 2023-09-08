@@ -45,7 +45,7 @@
     @include('web.layouts.inc.menu')
 </header>
 
-@if( isset($SinglePageView['CatId'])  and count($PagesList[$SinglePageView['CatId']]->PageBanner) > 0)
+@if( $SinglePageView['banner_id']  and $SinglePageView['banner_count'] > 0)
     @include('web.layouts.inc.def_banner')
 @else
     @yield('breadcrumb')
@@ -81,7 +81,7 @@
 <!-- imagesloaded js -->
 <script src="{{ defWebAssets('js/imagesloaded.pkgd.min.js') }}"></script>
 <!-- isotope min js -->
-<script src="{{ defWebAssets('js/isotope.min.js') }}"></script>
+<script src="{{ defWebAssets('js/isotope_'.thisCurrentLocale().'.min.js') }}"></script>
 <!-- jquery.dd.min js -->
 <script src="{{ defWebAssets('js/jquery.dd.min.js') }}"></script>
 <!-- slick js -->

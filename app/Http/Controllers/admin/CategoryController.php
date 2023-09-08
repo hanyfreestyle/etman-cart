@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\admin;
+use Cache;
 use Illuminate\Support\Facades\View;
 use App\Helpers\AdminHelper;
 use App\Helpers\PuzzleUploadProcess;
@@ -61,6 +62,15 @@ class CategoryController extends AdminMainController
         $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
         $this->pageData = $pageData ;
 
+    }
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| # ClearCash
+    public function ClearCash(){
+        foreach ( config('app.lang_file') as $key=>$lang){
+            Cache::forget('MenuCategory_Cash_'.$key);
+        }
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -164,6 +174,7 @@ class CategoryController extends AdminMainController
             }
         }
 
+        self::ClearCash();
         if($id == '0'){
             return redirect(route($this->PrefixRoute.'.index'))->with('Add.Done',"");
         }else{
@@ -178,6 +189,7 @@ class CategoryController extends AdminMainController
         $deleteRow = Category::findOrFail($id);
         $deleteRow = AdminHelper::DeleteAllPhotos($deleteRow);
         $deleteRow->delete();
+        self::ClearCash();
         return back()->with('confirmDelete',"");
     }
 
@@ -187,6 +199,7 @@ class CategoryController extends AdminMainController
         $rowData = Category::findOrFail($id);
         $rowData = AdminHelper::DeleteAllPhotos($rowData,true);
         $rowData->save();
+        self::ClearCash();
         return back();
     }
 
@@ -197,6 +210,7 @@ class CategoryController extends AdminMainController
         $rowData = Category::findOrFail($id);
         $rowData = AdminHelper::DeleteAllPhotos($rowData,true,['icon']);
         $rowData->save();
+        self::ClearCash();
         return back();
     }
 

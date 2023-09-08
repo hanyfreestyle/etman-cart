@@ -337,23 +337,10 @@
 }
 
 
-.list_sub_children{
-    width: 100%;
 
-}
+/*
 
-.list_sub_children .list_i{
-    width: 33.33333333333333333330%;
-    background: #fff;
-}
 
-.list_sub_children h3{
-    font-size: 15px;
-    font-weight: 600;
-    color:#FF324D!important;
-    padding-bottom: 5px;
-    border-bottom: 1px solid rgba(0,0,0,.1);
-}
 
 
 .shop_container.list .pr_desc{
@@ -378,7 +365,7 @@
 .readmore_cat{
     width: 100%;
     margin-top: -22px;
-    /*background:#00FF00;*/
+
     text-align: left!important;
 }
 
@@ -397,5 +384,96 @@
     font-size: 20px;
     margin-top: 25px;
 }
+*/
 
 
+
+.MainCategoryList .list_product_action_box   {
+    text-align: left!important;
+
+
+}
+
+.MainCategoryList .list_product_action_box a  {
+    padding: 7px 10px!important;
+    margin-top: 10px;
+}
+
+.MainCategoryList .shop_container.list .pr_desc {
+    max-height: 170px;
+    margin-bottom: 0!important;
+    /*background: #00FF00;*/
+}
+@media only screen and (min-width: 991px) {
+    .MainCategoryList .shop_container.list .pr_desc {
+       height: 170px;
+    }
+
+}
+
+.MainCategoryList .shop_container.list .pr_desc p {
+    font-size: 15px;
+
+}
+
+
+
+.MainCategoryList .product_title {
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+
+.MainCategoryList .list .product .product_title {
+    font-size: 18px;
+    text-align: right;
+    margin-bottom: 5px;
+}
+
+
+
+@media only screen and (max-width: 991px) {
+    .MainCategoryList .shop_container.list .grid_item{
+        max-width: 95%;
+        margin: auto;
+    }
+
+}
+
+
+.MainCategoryList .list_sub_children{
+    width: 100%;
+    margin-top: 10px;
+
+}
+
+.MainCategoryList .list_sub_children .list_i{
+    width: 33.33333333333333333330%;
+    background: #fff;
+}
+.MainCategoryList .list_sub_children h3{
+    font-size: 15px;
+    font-weight: 600;
+
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    margin-bottom: 3px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color:#FF324D!important;
+    text-transform: capitalize;
+}
+.MainCategoryList .list_sub_children h3 a{
+    color:#FF324D!important;
+}
+
+.MainCategoryList .product_name_li{
+    border-bottom: 1px dotted rgba(0,0,0,.2);
+    font-size: 14px;
+    list-style: none;
+    margin-bottom: 4px;
+    padding-bottom: 3px;
+}

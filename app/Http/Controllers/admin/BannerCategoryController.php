@@ -4,18 +4,11 @@ namespace App\Http\Controllers\admin;
 
 use App\Helpers\AdminHelper;
 use App\Http\Controllers\AdminMainController;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\admin\BannerCategoryRequest;
-use App\Http\Requests\admin\OurClientRequest;
-use App\Models\admin\AttributeTable;
 use App\Models\admin\Banner;
 use App\Models\admin\BannerCategory;
 use App\Models\admin\BannerCategoryTranslation;
-use App\Models\admin\BlogPost;
-use App\Models\admin\CategoryTable;
-use App\Models\admin\OurClient;
-use App\Models\admin\ProductTable;
-use Illuminate\Http\Request;
+use Cache;
 use Illuminate\Support\Facades\View;
 
 class BannerCategoryController extends AdminMainController
@@ -68,6 +61,15 @@ class BannerCategoryController extends AdminMainController
 
 
     }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| # ClearCash
+    public function ClearCash(){
+        foreach ( config('app.lang_file') as $key=>$lang){
+            Cache::forget('PagesList_Cash_'.$key);
+        }
+    }
+
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     index
@@ -126,7 +128,7 @@ class BannerCategoryController extends AdminMainController
             $saveTranslation->name = $request->input($key.'.name');
             $saveTranslation->save();
         }
-
+        self::ClearCash();
         if($id == '0'){
             return redirect(route($this->PrefixRoute.'.index'))->with('Add.Done',"");
         }else{
@@ -140,6 +142,7 @@ class BannerCategoryController extends AdminMainController
     {
         $deleteRow = BannerCategory::findOrFail($id);
         $deleteRow->delete();
+        self::ClearCash();
         return back()->with('confirmDelete',"");
     }
 
@@ -157,6 +160,7 @@ class BannerCategoryController extends AdminMainController
             }
         }
         BannerCategory::onlyTrashed()->where('id',$id)->restore();
+        self::ClearCash();
         return back()->with('restore',"");
     }
 
@@ -173,8 +177,9 @@ class BannerCategoryController extends AdminMainController
                 AdminHelper::DeleteAllPhotos($del_photo);
             }
         }
-         $deleteRow->forceDelete();
-         return back()->with('confirmDelete',"");
+        $deleteRow->forceDelete();
+        self::ClearCash();
+        return back()->with('confirmDelete',"");
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

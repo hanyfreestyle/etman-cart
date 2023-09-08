@@ -8,14 +8,13 @@ use App\Http\Controllers\AdminMainController;
 use App\Http\Requests\admin\ProductPhotoRequest;
 use App\Http\Requests\admin\ProductRequest;
 use App\Models\admin\Category;
-use App\Models\admin\CategoryTranslation;
 use App\Models\admin\Listing;
 use App\Models\admin\ListingPhoto;
 use App\Models\admin\Product;
 use App\Models\admin\ProductPhoto;
 use App\Models\admin\ProductTranslation;
+use Cache;
 use Illuminate\Http\Request;
-use DB ;
 use Illuminate\Support\Facades\View;
 
 
@@ -68,6 +67,13 @@ class ProductController extends AdminMainController
 
     }
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| # ClearCash
+    public function ClearCash(){
+        foreach ( config('app.lang_file') as $key=>$lang){
+            Cache::forget('MenuCategory_Cash_'.$key);
+        }
+    }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     index
@@ -145,6 +151,7 @@ class ProductController extends AdminMainController
             $saveTranslation->save();
         }
 
+        self::ClearCash();
         if($id == '0'){
             return redirect(route($this->PrefixRoute.'.index'))->with('Add.Done',"");
         }else{
@@ -165,6 +172,7 @@ class ProductController extends AdminMainController
         }
         $deleteRow = AdminHelper::DeleteAllPhotos($deleteRow);
         $deleteRow->delete();
+        self::ClearCash();
         return back()->with('confirmDelete',"");
     }
 
@@ -174,6 +182,7 @@ class ProductController extends AdminMainController
         $rowData = Product::findOrFail($id);
         $rowData = AdminHelper::DeleteAllPhotos($rowData,true);
         $rowData->save();
+        self::ClearCash();
         return back();
     }
 
@@ -206,6 +215,7 @@ class ProductController extends AdminMainController
             $saveData->photo_thum_1 = $newPhoto['photo_thum_1']['file_name'];
             $saveData->save();
         }
+        self::ClearCash();
         return back()->with('Add.Done',"");
     }
 
@@ -220,6 +230,7 @@ class ProductController extends AdminMainController
             $saveData->position = $newPosition;
             $saveData->save();
         }
+        self::ClearCash();
         return response()->json(['success'=>$positions]);
     }
 
@@ -229,6 +240,7 @@ class ProductController extends AdminMainController
         $deleteRow = ProductPhoto::findOrFail($id);
         $deleteRow = AdminHelper::DeleteAllPhotos($deleteRow);
         $deleteRow->delete();
+        self::ClearCash();
         return back()->with('confirmDelete',"");
     }
 

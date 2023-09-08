@@ -9,6 +9,7 @@ use App\Http\Requests\admin\FaqCategoryRequest;
 use App\Models\admin\Faq;
 use App\Models\admin\FaqCategory;
 use App\Models\admin\FaqCategoryTranslation;
+use Cache;
 use Illuminate\Support\Facades\View;
 
 class FaqCategoryController extends AdminMainController
@@ -63,6 +64,14 @@ class FaqCategoryController extends AdminMainController
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| # ClearCash
+    public function ClearCash(){
+        foreach ( config('app.lang_file') as $key=>$lang){
+            Cache::forget('Faq_Cash_'.$key);
+        }
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     index
     public function index()
     {
@@ -82,6 +91,7 @@ class FaqCategoryController extends AdminMainController
         $pageData = $this->pageData ;
         $pageData['ViewType'] = "deleteList";
         $FaqCategories = self::getSelectQuery(FaqCategory::onlyTrashed());
+        self::ClearCash();
         return view('admin.faq.category_index',compact('pageData','FaqCategories'));
     }
 
@@ -135,6 +145,8 @@ class FaqCategoryController extends AdminMainController
             $saveTranslation->save();
         }
 
+        self::ClearCash();
+
        if($id == '0'){
             return redirect(route($this->PrefixRoute.'.index'))->with('Add.Done',"");
         }else{
@@ -149,6 +161,7 @@ class FaqCategoryController extends AdminMainController
         $rowData = FaqCategory::findOrFail($id);
         $rowData = AdminHelper::DeleteAllPhotos($rowData,true);
         $rowData->save();
+        self::ClearCash();
         return back();
     }
 
@@ -158,6 +171,7 @@ class FaqCategoryController extends AdminMainController
     {
         $deleteRow = FaqCategory::findOrFail($id);
         $deleteRow->delete();
+        self::ClearCash();
         return back()->with('confirmDelete',"");
     }
 
@@ -175,6 +189,7 @@ class FaqCategoryController extends AdminMainController
             }
         }
         FaqCategory::onlyTrashed()->where('id',$id)->restore();
+        self::ClearCash();
         return back()->with('restore',"");
     }
 
@@ -193,6 +208,7 @@ class FaqCategoryController extends AdminMainController
         }
         $deleteRow = AdminHelper::DeleteAllPhotos($deleteRow);
         $deleteRow->forceDelete();
+        self::ClearCash();
         return back()->with('confirmDelete',"");
     }
 

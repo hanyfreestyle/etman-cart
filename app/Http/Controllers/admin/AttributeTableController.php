@@ -9,6 +9,7 @@ use App\Models\admin\AttributeTable;
 use App\Models\admin\AttributeTableTranslation;
 use App\Models\admin\CategoryTable;
 use App\Models\admin\ProductTable;
+use Cache;
 use Illuminate\Support\Facades\View;
 
 class AttributeTableController extends AdminMainController
@@ -55,12 +56,20 @@ class AttributeTableController extends AdminMainController
             'selMenu'=> $this->selMenu,
             'prefix_Role'=> $this->PrefixRole ,
             'restore'=> 1 ,
-            ];
+        ];
         $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
         $this->pageData = $pageData ;
 
     }
 
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| # ClearCash
+    public function ClearCash(){
+        foreach ( config('app.lang_file') as $key=>$lang){
+            Cache::forget('MenuCategory_Cash_'.$key);
+        }
+    }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     index
@@ -77,7 +86,6 @@ class AttributeTableController extends AdminMainController
         );
         return view('admin.attribute_tables.index',compact('pageData','Attributes'));
     }
-
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     SoftDeletes
@@ -129,10 +137,10 @@ class AttributeTableController extends AdminMainController
 
         $subList = CategoryTable::where('attribute_id',$id)->pluck('id')->toArray();
         if(count($subList) > 0){
-                    CategoryTable::whereIn("id", $subList)
-                    ->update(['is_active' => (int)$saveData->is_active]);
+            CategoryTable::whereIn("id", $subList)
+                ->update(['is_active' => (int)$saveData->is_active]);
         }
-
+        self::ClearCash();
         if($id == '0'){
             return redirect(route($this->PrefixRoute.'.index'))->with('Add.Done',"");
         }else{
@@ -146,6 +154,7 @@ class AttributeTableController extends AdminMainController
     {
         $deleteRow = AttributeTable::findOrFail($id);
         $deleteRow->delete();
+        self::ClearCash();
         return redirect(route($this->PrefixRoute.'.index'))->with('confirmDelete',"");
     }
 
@@ -171,6 +180,7 @@ class AttributeTableController extends AdminMainController
         }
 
         AttributeTable::onlyTrashed()->where('id',$id)->restore();
+        self::ClearCash();
         return back()->with('restore',"");
     }
 
@@ -180,6 +190,7 @@ class AttributeTableController extends AdminMainController
     {
         $deleteRow =  AttributeTable::onlyTrashed()->where('id',$id)->firstOrFail();
         $deleteRow->forceDelete();
+        self::ClearCash();
         return back()->with('confirmDelete',"");
     }
 

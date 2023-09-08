@@ -27,6 +27,16 @@ class DefPhotoController extends AdminMainController
         $this->middleware('permission:'.$controllerName.'_delete', ['only' => ['destroy']]);
     }
 
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| # ClearCash
+    public function ClearCash(){
+        foreach ( config('app.lang_file') as $key=>$lang){
+            Cache::forget('DefPhotoList_Cash_'.$key);
+        }
+        Cache::forget('DefPhoto_Cash');
+    }
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     index
     public function index(){
@@ -59,7 +69,6 @@ class DefPhotoController extends AdminMainController
         $pageData['ViewType'] = "Edit";
 
         $rowData = DefPhoto::findOrFail($id);
-       // $filterTypes = UploadFilter::all();
         return view('admin.config.defphoto_form',compact('rowData','pageData'));
     }
 
@@ -69,7 +78,7 @@ class DefPhotoController extends AdminMainController
         $deleteRow = DefPhoto::findOrFail($id);
         $deleteRow = AdminHelper::onlyDeletePhotos($deleteRow,3);
         $deleteRow->delete();
-        Cache::forget('DefPhoto_Cash');
+        self::ClearCash();
         return redirect(route('config.defPhoto.index'))->with('confirmDelete',"");
     }
 
@@ -90,30 +99,13 @@ class DefPhotoController extends AdminMainController
         $saveData = AdminHelper::saveAndDeletePhoto($saveData,$saveImgData);
 
         $saveData->save();
-        Cache::forget('DefPhoto_Cash');
+        self::ClearCash();
 
         if($id == '0'){
             return redirect(route('config.defPhoto.index'))->with('Add.Done',__('general.alertMass.confirmAdd'));
         }else{
             return  back()->with('Edit.Done',__('general.alertMass.confirmEdit'));
         }
-
-
-    }
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     sortDefPhotoList
-    public function sortDefPhotoSave(Request $request){
-        $positions = $request->positions;
-        foreach($positions as $position) {
-            $id = $position[0];
-            $newPosition = $position[1];
-            $saveData =  DefPhoto::findOrFail($id) ;
-            $saveData->postion = $newPosition;
-            $saveData->save();
-        }
-        Cache::forget('DefPhoto_Cash');
-        return response()->json(['success'=>$positions]);
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -125,6 +117,21 @@ class DefPhotoController extends AdminMainController
         $rowData = DefPhoto::orderBy('postion')->paginate(50);
         $pageData['ViewType'] = "List";
         return view('admin.config.defphoto_indexSort',compact('pageData','rowData'));
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     sortDefPhotoSave
+    public function sortDefPhotoSave(Request $request){
+        $positions = $request->positions;
+        foreach($positions as $position) {
+            $id = $position[0];
+            $newPosition = $position[1];
+            $saveData =  DefPhoto::findOrFail($id) ;
+            $saveData->postion = $newPosition;
+            $saveData->save();
+        }
+        self::ClearCash();
+        return response()->json(['success'=>$positions]);
     }
 
 }

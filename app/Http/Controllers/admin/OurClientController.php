@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminMainController;
 use App\Http\Requests\admin\OurClientRequest;
 use App\Models\admin\OurClient;
 use App\Models\admin\OurClientTranslation;
+use Cache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use DB;
@@ -62,6 +63,15 @@ class OurClientController extends AdminMainController
         $this->pageData = $pageData ;
 
 
+    }
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| # ClearCash
+    public function ClearCash(){
+        foreach ( config('app.lang_file') as $key=>$lang){
+            Cache::forget('OurClient_Cash_'.$key);
+        }
     }
 
 
@@ -124,6 +134,7 @@ class OurClientController extends AdminMainController
             $saveTranslation->g_des = $request->input($key.'.g_des');
             $saveTranslation->save();
         }
+        self::ClearCash();
 
        if($id == '0'){
             return redirect(route($this->PrefixRoute.'.index'))->with('Add.Done',"");
@@ -139,6 +150,7 @@ class OurClientController extends AdminMainController
         $deleteRow = OurClient::findOrFail($id);
         $deleteRow = AdminHelper::DeleteAllPhotos($deleteRow);
         $deleteRow->delete();
+        self::ClearCash();
         return back()->with('confirmDelete',"");
     }
 
@@ -149,6 +161,7 @@ class OurClientController extends AdminMainController
         $rowData = OurClient::findOrFail($id);
         $rowData = AdminHelper::DeleteAllPhotos($rowData,true);
         $rowData->save();
+        self::ClearCash();
         return back();
     }
 
@@ -176,6 +189,7 @@ class OurClientController extends AdminMainController
             $saveData->postion = $newPosition;
             $saveData->save();
         }
+        self::ClearCash();
         return response()->json(['success'=>$positions]);
     }
 

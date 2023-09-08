@@ -10,14 +10,10 @@ use App\Http\Requests\admin\ProductPhotoRequest;
 use App\Models\admin\BlogPost;
 use App\Models\admin\BlogPostPhoto;
 use App\Models\admin\BlogPostTranslation;
-use App\Models\admin\OurClient;
-use App\Models\admin\OurClientTranslation;
-use Carbon\Carbon;
+use Cache;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\View;
-use DB;
-use Intervention\Image\Facades\Image;
+
 
 class BlogPostController extends AdminMainController
 {
@@ -70,6 +66,14 @@ class BlogPostController extends AdminMainController
         $this->pageData = $pageData ;
     }
 
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| # ClearCash
+    public function ClearCash(){
+        foreach ( config('app.lang_file') as $key=>$lang){
+            Cache::forget('BlogPost_Cash_'.$key);
+        }
+    }
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -149,6 +153,8 @@ class BlogPostController extends AdminMainController
             $saveTranslation->save();
         }
 
+        self::ClearCash();
+
         if($id == '0'){
             return redirect(route($this->PrefixRoute.'.index'))->with('Add.Done',"");
         }else{
@@ -163,6 +169,7 @@ class BlogPostController extends AdminMainController
     {
         $deleteRow = BlogPost::findOrFail($id);
         $deleteRow->delete();
+        self::ClearCash();
         return redirect(route($this->PrefixRoute.'.index'))->with('confirmDelete',"");
     }
 
@@ -171,6 +178,7 @@ class BlogPostController extends AdminMainController
     public function restored($id)
     {
         BlogPost::onlyTrashed()->where('id',$id)->restore();
+        self::ClearCash();
         return back()->with('restore',"");
     }
 
@@ -186,6 +194,7 @@ class BlogPostController extends AdminMainController
         }
         $deleteRow = AdminHelper::DeleteAllPhotos($deleteRow);
         $deleteRow->forceDelete();
+        self::ClearCash();
         return back()->with('confirmDelete',"");
     }
 
@@ -206,6 +215,7 @@ class BlogPostController extends AdminMainController
         $rowData = BlogPost::findOrFail($id);
         $rowData = AdminHelper::DeleteAllPhotos($rowData,true);
         $rowData->save();
+        self::ClearCash();
         return back();
     }
 
@@ -238,6 +248,7 @@ class BlogPostController extends AdminMainController
             $saveData->photo_thum_1 = $newPhoto['photo_thum_1']['file_name'];
             $saveData->save();
         }
+        self::ClearCash();
         return back()->with('Add.Done',"");
     }
 
@@ -252,6 +263,7 @@ class BlogPostController extends AdminMainController
             $saveData->position = $newPosition;
             $saveData->save();
         }
+        self::ClearCash();
         return response()->json(['success'=>$positions]);
     }
 
@@ -261,8 +273,8 @@ class BlogPostController extends AdminMainController
         $deleteRow = BlogPostPhoto::findOrFail($id);
         $deleteRow = AdminHelper::DeleteAllPhotos($deleteRow);
         $deleteRow->delete();
+        self::ClearCash();
         return back()->with('confirmDelete',"");
     }
-
 
 }

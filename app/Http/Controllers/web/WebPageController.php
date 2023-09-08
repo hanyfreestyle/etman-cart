@@ -11,20 +11,35 @@ use App\Models\admin\OurClient;
 
 class WebPageController extends WebMainController
 {
+    public $SinglePageView ;
+    public function __construct(
 
+    )
+    {
+        parent::__construct();
+        $SinglePageView = [
+            'SelMenu' => '',
+            'slug' => null,
+            'banner_id' => null,
+            'breadcrumb' => 'home',
+
+        ];
+
+        $this->SinglePageView = $SinglePageView ;
+    }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #    HomePage
     public function HomePage()
     {
-        $SinglePageView = [
-            'SelMenu' => 'HomePage',
-            'CatId' => 'HomePage',
-            'slug' => null,
-        ];
-
         $PageMeta = parent::getMeatByCatId('HomePage');
         parent::printSeoMeta($PageMeta);
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['SelMenu'] = 'HomePage' ;
+        $SinglePageView['banner_id'] = $PageMeta->banner_id ;
+        $SinglePageView['banner_count'] = $PageMeta->page_banner_count ;
+        $SinglePageView['banner_list'] = $PageMeta->PageBanner ;
+
 
         return view('web.index',compact('SinglePageView'));
     }
@@ -33,14 +48,15 @@ class WebPageController extends WebMainController
 #|||||||||||||||||||||||||||||||||||||| #    AboutUs
     public function AboutUs ()
     {
-        $SinglePageView = [
-            'SelMenu' => 'AboutUs',
-            'CatId' => 'AboutUs',
-            'slug' => null,
-        ];
-
         $PageMeta = parent::getMeatByCatId('AboutUs');
         parent::printSeoMeta($PageMeta);
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['SelMenu'] = 'AboutUs' ;
+        $SinglePageView['banner_id'] = $PageMeta->banner_id ;
+        $SinglePageView['banner_count'] = $PageMeta->page_banner_count ;
+        $SinglePageView['banner_list'] = $PageMeta->PageBanner ;
+        $SinglePageView['breadcrumb'] = "AboutUs" ;
 
         return view('web.page_about',compact('SinglePageView','PageMeta'));
     }
@@ -49,13 +65,15 @@ class WebPageController extends WebMainController
 #|||||||||||||||||||||||||||||||||||||| #    OurClient
     public function OurClient ()
     {
-        $SinglePageView = [
-            'SelMenu' => 'OurClient',
-            'CatId' => 'OurClient',
-            'slug' => null,
-        ];
         $PageMeta = parent::getMeatByCatId('OurClient');
         parent::printSeoMeta($PageMeta);
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['SelMenu'] = 'OurClient' ;
+        $SinglePageView['banner_id'] = $PageMeta->banner_id ;
+        $SinglePageView['banner_count'] = $PageMeta->page_banner_count ;
+        $SinglePageView['banner_list'] = $PageMeta->PageBanner ;
+        $SinglePageView['breadcrumb'] = "OurClient" ;
 
         $OurClients = OurClient::defWeb()->paginate(12);
 
@@ -66,13 +84,16 @@ class WebPageController extends WebMainController
 #|||||||||||||||||||||||||||||||||||||| #    LatestNews
     public function LatestNews ()
     {
-        $SinglePageView = [
-            'SelMenu' => 'LatestNews',
-            'CatId' => 'LatestNews',
-            'slug' => null,
-        ];
+
         $PageMeta = parent::getMeatByCatId('LatestNews');
         parent::printSeoMeta($PageMeta);
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['SelMenu'] = 'LatestNews' ;
+        $SinglePageView['banner_id'] = $PageMeta->banner_id ;
+        $SinglePageView['banner_count'] = $PageMeta->page_banner_count ;
+        $SinglePageView['banner_list'] = $PageMeta->PageBanner ;
+        $SinglePageView['breadcrumb'] = "LatestNews" ;
 
         $BlogPosts =  BlogPost::defWeb()->paginate(12);
 
@@ -93,14 +114,12 @@ class WebPageController extends WebMainController
             return redirect()->route('LatestNews_View', $Post->translate()->slug);
         }
 
-
-       $SinglePageView = [
-            'SelMenu' => 'LatestNews',
-            'CatId' => 'LatestNews',
-            'slug' => 'latest-news/'.$Post->translate(webChangeLocale())->slug,
-        ];
         $PageMeta = parent::getMeatByCatId('LatestNews');
         parent::printSeoMeta($PageMeta);
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['SelMenu'] = 'LatestNews' ;
+        $SinglePageView['slug'] = 'latest-news/'.$Post->translate(webChangeLocale())->slug ;
 
         $BlogPosts =  BlogPost::defWeb()->where('id','!=',$Post->id)->limit(2)->get();
 
@@ -114,13 +133,16 @@ class WebPageController extends WebMainController
 #|||||||||||||||||||||||||||||||||||||| #    FaqList
     public function FaqList ()
     {
-        $SinglePageView = [
-            'SelMenu' => 'FaqList',
-            'CatId' => 'FaqList',
-            'slug' => null,
-        ];
+
         $PageMeta = parent::getMeatByCatId('FaqList');
         parent::printSeoMeta($PageMeta);
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['SelMenu'] = 'FaqList' ;
+        $SinglePageView['banner_id'] = $PageMeta->banner_id ;
+        $SinglePageView['banner_count'] = $PageMeta->page_banner_count ;
+        $SinglePageView['banner_list'] = $PageMeta->PageBanner ;
+        $SinglePageView['breadcrumb'] = "FaqList" ;
 
         $FaqCategories = FaqCategory::defWeb()->paginate(12);
 
@@ -141,28 +163,19 @@ class WebPageController extends WebMainController
              return redirect()->route('Page_FaqCatView', $FaqCategory->translate()->slug);
         }
 
-        $SinglePageView = [
-            'SelMenu' => 'FaqList',
-            'CatId' => 'FaqList',
-            'slug' => 'faq/'.$FaqCategory->translate(webChangeLocale())->slug,
-        ];
 
         $PageMeta = $FaqCategory ;
         parent::printSeoMeta($PageMeta);
 
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['SelMenu'] = 'FaqList' ;
+        $SinglePageView['slug'] = 'faq/'.$FaqCategory->translate(webChangeLocale())->slug;
+
+
         $FaqCategories = FaqCategory::defWeb()
             ->where('id','!=',$FaqCategory->id)
             ->get();
-
-
-
-
-
-
         return view('web.faq_cat_view',compact('SinglePageView','PageMeta','FaqCategory','FaqCategories'));
-
-
-
 
     }
 
@@ -171,14 +184,16 @@ class WebPageController extends WebMainController
 #|||||||||||||||||||||||||||||||||||||| #    AboutUs
     public function ContactUs ()
     {
-        $SinglePageView = [
-            'SelMenu' => 'ContactUs',
-            'CatId' => 'ContactUs',
-            'slug' => null,
-        ];
 
         $PageMeta = parent::getMeatByCatId('ContactUs');
         parent::printSeoMeta($PageMeta);
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['SelMenu'] = 'ContactUs' ;
+        $SinglePageView['banner_id'] = $PageMeta->banner_id ;
+        $SinglePageView['banner_count'] = $PageMeta->page_banner_count ;
+        $SinglePageView['banner_list'] = $PageMeta->PageBanner ;
+        $SinglePageView['breadcrumb'] = "ContactUs" ;
 
         $FaqCategories = FaqCategory::defWeb()
             ->get();
@@ -190,13 +205,16 @@ class WebPageController extends WebMainController
 #|||||||||||||||||||||||||||||||||||||| #    AboutUs
     public function TermsConditions ()
     {
-        $SinglePageView = [
-            'SelMenu' => 'TermsConditions',
-            'CatId' => 'TermsConditions',
-        ];
 
         $PageMeta = parent::getMeatByCatId('TermsConditions');
         parent::printSeoMeta($PageMeta);
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['banner_id'] = $PageMeta->banner_id ;
+        $SinglePageView['banner_count'] = $PageMeta->page_banner_count ;
+        $SinglePageView['banner_list'] = $PageMeta->PageBanner ;
+        $SinglePageView['breadcrumb'] = "TermsConditions" ;
+
 
         $Terms = WebPrivacy::where('is_active',true)
             ->with('translation')
@@ -214,13 +232,17 @@ class WebPageController extends WebMainController
 #|||||||||||||||||||||||||||||||||||||| #    FaqList
     public function MainCategory ()
     {
-        $SinglePageView = [
-            'SelMenu' => '',
-            'CatId' => 'FaqList',
-            'slug' => null,
-        ];
-        $PageMeta = parent::getMeatByCatId('FaqList');
+
+        $PageMeta = parent::getMeatByCatId('MainCategory');
         parent::printSeoMeta($PageMeta);
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['banner_id'] = $PageMeta->banner_id ;
+        $SinglePageView['banner_count'] = $PageMeta->page_banner_count ;
+        $SinglePageView['banner_list'] = $PageMeta->PageBanner ;
+        $SinglePageView['breadcrumb'] = "MainCategory" ;
+
+
 
         //$FaqCategories = Category::defWeb()->paginate(12);
 
