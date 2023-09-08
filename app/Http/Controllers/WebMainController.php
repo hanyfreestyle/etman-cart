@@ -72,36 +72,36 @@ class WebMainController extends Controller
     static function printSeoMeta($row,$defPhoto="logo",$sendArr=array()){
         $lang = thisCurrentLocale();
 
-//        $type = AdminHelper::arrIsset($sendArr,'type','website');
-//        $siteName = self::getWebConfig();
-//
-//        if($row->photo){
-//            $defImage = $row->photo ;
-//        }else{
-//            $GetdefImage = self::getDefPhotoById($defPhoto);
-//            $defImage =optional($GetdefImage)->photo;
-//        }
-//        if($defImage){
-//            $defImage = defImagesDir($defImage);
-//        }
-//
-//        SEOMeta::setTitle($row->translate($lang)->g_title ?? "");
-//        SEOMeta::setDescription($row->translate($lang)->g_des ?? "");
-//        SEOMeta::addMeta('article:published_time', $row->published_at ?? "" , 'property');
-//
-//        OpenGraph::setTitle($row->translate($lang)->g_title ?? "");
-//        OpenGraph::setDescription($row->translate($lang)->g_des ?? "" );
-//        OpenGraph::addProperty('type', $type);
-//        OpenGraph::setUrl(url()->current());
-//        OpenGraph::addImage($defImage);
-//        OpenGraph::setSiteName($siteName->translate($lang)->name ?? "");
-//
-//        TwitterCard::setTitle($row->translate($lang)->g_title ?? "");
-//        TwitterCard::setDescription($row->translate($lang)->g_des ?? "");
-//        TwitterCard::setUrl(url()->current());
-//        TwitterCard::setImage($defImage);
-//        TwitterCard::setImage($defImage);
-//        TwitterCard::setType('summary_large_image');
+        $type = AdminHelper::arrIsset($sendArr,'type','website');
+        $siteName = self::getWebConfig();
+
+        if($row->photo){
+            $defImage = $row->photo ;
+        }else{
+            $GetdefImage = self::getDefPhotoById($defPhoto);
+            $defImage =optional($GetdefImage)->photo;
+        }
+        if($defImage){
+            $defImage = defImagesDir($defImage);
+        }
+
+        SEOMeta::setTitle($row->translate($lang)->g_title ?? "");
+        SEOMeta::setDescription($row->translate($lang)->g_des ?? "");
+        SEOMeta::addMeta('article:published_time', $row->published_at ?? "" , 'property');
+
+        OpenGraph::setTitle($row->translate($lang)->g_title ?? "");
+        OpenGraph::setDescription($row->translate($lang)->g_des ?? "" );
+        OpenGraph::addProperty('type', $type);
+        OpenGraph::setUrl(url()->current());
+        OpenGraph::addImage($defImage);
+        OpenGraph::setSiteName($siteName->translate($lang)->name ?? "");
+
+        TwitterCard::setTitle($row->translate($lang)->g_title ?? "");
+        TwitterCard::setDescription($row->translate($lang)->g_des ?? "");
+        TwitterCard::setUrl(url()->current());
+        TwitterCard::setImage($defImage);
+        TwitterCard::setImage($defImage);
+        TwitterCard::setType('summary_large_image');
 
 
     }
