@@ -90,6 +90,6 @@
 
 
 @section('AddScript')
-    <script src="{{ defWebAssets('js/isotope-loadmore.js') }}"></script>
+{{--    <script src="{{ defWebAssets('js/isotope-loadmore.js') }}"></script>--}}
 @endsection
 

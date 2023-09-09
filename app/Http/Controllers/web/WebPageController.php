@@ -242,10 +242,6 @@ class WebPageController extends WebMainController
         $SinglePageView['banner_list'] = $PageMeta->PageBanner ;
         $SinglePageView['breadcrumb'] = "MainCategory" ;
 
-
-
-        //$FaqCategories = Category::defWeb()->paginate(12);
-
         return view('web.web_product.category_main',compact('SinglePageView','PageMeta'));
     }
 

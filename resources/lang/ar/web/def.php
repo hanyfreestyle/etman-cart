@@ -6,7 +6,7 @@ return
 	'All_Category' => 'كل المجموعات',
 	'Description' => 'الوصف',
 	'Load_More' => 'عرض المزيد',
-	'Main_Categories' => 'قائمة المجموعات',
+	'Main_Categories' => 'قائمة المنتجات',
 	'Recent_Items' => 'اضيف مؤخرا',
 	'Related_Category' => 'الاقسام الفرعية',
 	'View_All' => 'عرض الكل',

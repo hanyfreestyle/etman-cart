@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 03, 2023 at 07:55 PM
+-- Generation Time: Sep 09, 2023 at 01:44 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -37,11 +37,13 @@ INSERT INTO `page_translations` (`id`, `page_id`, `locale`, `slug`, `name`, `g_t
 (9, 5, 'ar', 'الأسئلة-المتكررة', 'الأسئلة المتكررة', 'الأسئلة المتكررة | عتمان جروب | الاسكندرية 01006180117', 'تساعدك الأسئلة المتكررة على الرد لجميع الاستفسارت الخاصة بالمنتجات والعروض وطرق الشحن وطرق الدفع المتاحة لدى عتمان جروب', 'الأسئلة المتكررة', 'الأسئلة المتكررة'),
 (10, 5, 'en', 'frequently-asked-questions', 'FAQ', 'Frequently Asked Questions | Etman Group | 01006180117', 'Frequently asked questions help you answer all inquiries about products, offers, shipping methods and payment methods available at Etman Group', 'Frequently Asked Questions', 'Frequently Asked Questions'),
 (11, 6, 'ar', 'سياسية-الاستخدام', 'سياسية الاستخدم', 'عتمان جروب | شروط وسياسة الخصوصية', 'شروط وسياسة الخصوصية تعرفك هذه الصفحة بسياساتنا المتعلقة بجمع البيانات الشخصية واستخدامها والكشف عنها عند استخدامك للخدمة والأختيارات المرتبطة بهذه البيانات.', 'سياسية الاستخدم', NULL),
-(12, 6, 'en', 'terms-conditions', 'Privacy Policy', 'Etman Group | Our Privacy Policy', 'Terms and Privacy Policy This page informs you of our policies regarding the collection, use and disclosure of personal data when you use the Service', 'Terms &amp;amp; Conditions', NULL),
+(12, 6, 'en', 'terms-conditions', 'Privacy Policy', 'Etman Group | Our Privacy Policy', 'Terms and Privacy Policy This page informs you of our policies regarding the collection, use and disclosure of personal data when you use the Service', 'Terms & Conditions', NULL),
 (13, 7, 'ar', 'اتصل-بنا', 'اتصل بنا', 'عتمان جروب | اتصل بنا | الاسكندرية 01006180117', 'عتمان جروب المقر الرئيسي 14 ش خليل بك متفرع من اسماعيل صبري - أمام بنك مصر - الجمرك الاسكندرية - مصر / هاتف 01006180117', 'اتصل بنا', NULL),
 (14, 7, 'en', 'contact-us', 'Contact Us', 'Etman Group | Contact Us | Alexandria 0100-6180-117', 'Etman Group Headquarters 14 Khalil Bey St., off Ismail Sabry - in front of Banque Misr - Customs, Alexandria - Egypt  Phone : 01006180117', 'Contact Us', NULL),
 (15, 8, 'ar', 'من-نحن', 'من نحن', 'عتمان جروب هي شركة محلية منذ عام 1967 | الاسكندرية 01006180117', 'عتمان جروب هي شركة محلية أسسها السيد حسن عتمان منذ عام 1967. بدأت رحلة السيد عتمان نحو النجاح بفضل تطور شركته من خلال إنتاج شرائط البولي بروبلين وشرائط الزينة', 'من نحن', 'من نحن'),
-(16, 8, 'en', 'about-us', 'About Us', 'Etman Group is a local company since 1967 | Alexandria 01006180117', 'Etman Group is a local company founded and operated by Mr Hassan Etman in 1967. Mr Etman’s journey to success started due to the development of his company by', 'About Us', 'About Us');
+(16, 8, 'en', 'about-us', 'About Us', 'Etman Group is a local company since 1967 | Alexandria 01006180117', 'Etman Group is a local company founded and operated by Mr Hassan Etman in 1967. Mr Etman’s journey to success started due to the development of his company by', 'About Us', 'About Us'),
+(17, 9, 'ar', 'قائمة-المنتجات', 'قائمة المنتجات', 'قائمة المنتجات', 'قائمة المنتجات', 'قائمة المنتجات', 'قائمة المنتجات'),
+(18, 9, 'en', 'category-list', 'Category List', 'Category List', 'Category List', 'Category List', 'Category List');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

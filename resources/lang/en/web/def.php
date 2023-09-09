@@ -6,7 +6,7 @@ return
 	'All_Category' => 'All Category',
 	'Description' => 'Description',
 	'Load_More' => 'Load More',
-	'Main_Categories' => 'Main Categories',
+	'Main_Categories' => 'Category List',
 	'Recent_Items' => 'Recent Items',
 	'Related_Category' => 'Related Category',
 	'View_All' => 'View All',
