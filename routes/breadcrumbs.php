@@ -10,7 +10,8 @@ use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
 
 Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
-    $trail->push(__('web/menu.home'), route('Page_HomePage'));
+   // $trail->push(__('web/menu.home'), route('Page_HomePage'));
+    $trail->push('<i class="fa fa-home"></i>', route('Page_HomePage'));
 });
 
 Breadcrumbs::for('AboutUs', function (BreadcrumbTrail $trail) {
@@ -65,10 +66,21 @@ Breadcrumbs::for('MainCategory', function (BreadcrumbTrail $trail) {
 });
 
 
-Breadcrumbs::for('WebCategoryView', function (BreadcrumbTrail $trail, $Category) {
+Breadcrumbs::for('WebCategoryView', function (BreadcrumbTrail $trail, $trees) {
     $trail->parent('MainCategory');
-    $trail->push($Category->name, route('Page_WebCategoryView', $Category->slug));
+    foreach($trees as $tree){
+        $trail->push($tree->name, route('Page_WebCategoryView', $tree->slug));
+    }
 });
+
+Breadcrumbs::for('WebProductView', function (BreadcrumbTrail $trail, $trees,$Product) {
+    $trail->parent('MainCategory');
+    foreach($trees as $tree){
+        $trail->push($tree->name, route('Page_WebCategoryView', $tree->slug));
+    }
+    $trail->push($Product->name, route('Page_WebProductView', $Product->slug));
+});
+
 
 
 

@@ -62,7 +62,10 @@ class Category extends Model implements TranslatableContract
     public function table_data():hasMany
     {
         return $this->hasMany(CategoryTable::class , 'category_id', 'id' )
-            ->with('translation');
+            ->where('is_active',true)
+            ->with('translation')
+            ->with('attributeName')
+            ->orderBy('postion');
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

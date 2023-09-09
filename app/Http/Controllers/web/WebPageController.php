@@ -7,6 +7,7 @@ use App\Models\admin\Category;
 use App\Models\admin\config\WebPrivacy;
 use App\Models\admin\FaqCategory;
 use App\Models\admin\OurClient;
+use App\Models\admin\Product;
 
 
 class WebPageController extends WebMainController
@@ -27,6 +28,7 @@ class WebPageController extends WebMainController
 
         $this->SinglePageView = $SinglePageView ;
     }
+
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #    HomePage
@@ -275,10 +277,64 @@ class WebPageController extends WebMainController
         $SinglePageView['breadcrumb'] = "WebCategoryView" ;
         $SinglePageView['slug'] = 'category/'.$Category->translate(webChangeLocale())->slug;
 
-//dd($Category);
+        $trees = Category::find($Category->id)->ancestorsAndSelf()->orderBy('depth','asc')->get() ;
+        ///dd($Category->table_data);
+// dd($trees);
 
-        return view('web.web_product.category_view',compact('SinglePageView','PageMeta','Category'));
+        return view('web.web_product.category_view',compact('SinglePageView','PageMeta','Category','trees'));
 
+    }
+
+
+
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     WebProductView
+    public function WebProductView($slug){
+        $slug = \AdminHelper::Url_Slug($slug);
+
+        $Product  = Product::defWeb()
+            ->whereTranslation('slug', $slug)
+            ->firstOrFail();
+
+       $ReletedProducts = Product::with('translation')
+           ->where('category_id',$Product->category_id)
+           ->where('id','!=',$Product->id)
+           ->limit(8)
+           ->get();
+
+       ;
+
+        $PageMeta = $Product ;
+        parent::printSeoMeta($PageMeta);
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['SelMenu'] = 'MainCategory' ;
+        $SinglePageView['breadcrumb'] = "WebProductView" ;
+        $SinglePageView['slug'] = 'product/'.$Product->translate(webChangeLocale())->slug;
+
+        $trees = Category::find($Product->category_id)->ancestorsAndSelf()->orderBy('depth','asc')->get() ;
+
+        return view('web.web_product.product_view',compact('SinglePageView','PageMeta','Product','trees','ReletedProducts'));
+    }
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     WebPro_Qview
+    public function WebPro_Qview($slug){
+        $slug = \AdminHelper::Url_Slug($slug);
+
+        $Product  = Product::defWeb()
+            ->whereTranslation('slug', $slug)
+            ->firstOrFail();
+
+
+
+
+
+        return view('web.web_product.Qview',compact('Product'));
     }
 
 

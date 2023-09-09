@@ -60,6 +60,19 @@ class Product extends Model implements TranslatableContract
         return $this->hasMany(ProductPhoto::class,'product_id','id');
     }
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #
+    public function scopeDefWeb(Builder $query): Builder
+    {
+        return $query->where('is_active',true)
+            ->with('translations')
+            ->with('categoryName')
+            ->withCount('table_data')
+            ->with('table_data')
+            ->withCount('more_photos')
+            ->with('more_photos')
+            ;
+    }
 
 
 

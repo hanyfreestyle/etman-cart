@@ -62,6 +62,9 @@
 
 <!-- Latest jQuery -->
 <script src="{{ defWebAssets('js/jquery-3.6.0.min.js') }}"></script>
+<!-- jquery-ui -->
+<script src="{{ defWebAssets('js/jquery-ui.js') }}"></script>
+
 <!-- popper min js -->
 <script src="{{ defWebAssets('js/popper.min.js') }}"></script>
 <!-- Latest compiled and minified Bootstrap -->
@@ -87,10 +90,9 @@
 <!-- slick js -->
 <script src="{{ defWebAssets('js/slick.min.js') }}"></script>
 
+<script src="{{ defWebAssets('js/jquery.show-more.js') }}"></script>
 
 @yield('AddScript')
-
-
 <!-- elevatezoom js -->
 <script src="{{ defWebAssets('js/jquery.elevatezoom.js') }}"></script>
 
@@ -99,8 +101,13 @@
 <!-- scripts js -->
 <script src="{{ defWebAssets('js/scripts.js') }}"></script>
 
-
 <script>
+    $(function() {
+        AddReadMore("250","عرض المزيد","عرض اقل");
+    });
+</script>
+<script>
+
     async function loadarfont(){
         const font_ar = new FontFace('Tajawal','url({{ defWebAssets('fonts/Ar/TajawalRegular.woff2') }}');
         await font_ar.load();

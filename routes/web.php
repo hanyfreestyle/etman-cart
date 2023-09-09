@@ -15,6 +15,7 @@ Auth::viaRemember();
 
 Route::group(['prefix' => LaravelLocalization::setLocale()], function(){
     Route::get('/', [WebPageController::class, 'HomePage'])->name('Page_HomePage');
+    Route::get('/web/Qview/{slug}', [WebPageController::class, 'WebPro_Qview'])->name('Page_WebPro_Qview');
 
 });
 
@@ -63,6 +64,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 
     Route::get(LaravelLocalization::transRoute('routes.WebCategoryView'),[WebPageController::class, 'WebCategoryView'])
         ->name('Page_WebCategoryView');
+
+    Route::get(LaravelLocalization::transRoute('routes.WebProductView'),[WebPageController::class, 'WebProductView'])
+        ->name('Page_WebProductView');
+
 
 
 
