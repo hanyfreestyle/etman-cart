@@ -123,22 +123,7 @@
 
                             @foreach($ReletedProducts as $Product)
                                 <div class="item">
-                                    <div class="product">
-                                        <div class="product_img">
-                                            <a href="{{route('Page_WebProductView',$Product->slug)}}">
-                                                <img src="{{getPhotoPath($Product->photo)}}" alt="product_img1">
-                                            </a>
-                                            <div class="product_action_box">
-                                                <ul class="list_none pr_action_btn">
-                                                    <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product_info">
-                                            <h6 class="product_title"><a href="{{route('Page_WebProductView',$Product->slug)}}">{{$Product->name}}</a></h6>
-
-                                        </div>
-                                    </div>
+                                    <x-website.block-product-card :product="$Product"/>
                                 </div>
                             @endforeach
                         </div>
