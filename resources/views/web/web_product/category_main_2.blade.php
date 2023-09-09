@@ -3,7 +3,7 @@
     <x-website.breadcrumb :meta="$PageMeta" :catid="$SinglePageView['breadcrumb']" />
 @endsection
 @section('content')
-    <div class="section MainCategoryList pt-lg-3 pt-1">
+    <div class="section MainCategoryList pt-1">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -23,15 +23,15 @@
                                 {{--                                </div>--}}
                                 <div class="product_header_right">
                                     <div class="products_view">
-                                        <a href="javascript:void(0);" class="shorting_icon shorting_icon_new grid active"><i class="ti-view-grid"></i></a>
-                                        <a href="javascript:void(0);" class="shorting_icon shorting_icon_new list"><i class="ti-layout-list-thumb"></i></a>
+                                        <a href="javascript:void(0);" class="shorting_icon grid active"><i class="ti-view-grid"></i></a>
+                                        <a href="javascript:void(0);" class="shorting_icon list"><i class="ti-layout-list-thumb"></i></a>
                                     </div>
 
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row shop_container shop_container_50" data-item="8" data-item-show="4" data-finish-message="No More Item to Show" data-btn="{{__('web/def.Load_More')}}">
+                    <div class="row shop_container loadmore" data-item="8" data-item-show="4" data-finish-message="No More Item to Show" data-btn="{{__('web/def.Load_More')}}">
                         @foreach($MenuCategory as $MainCategory)
                             <div class="col-lg-3 col-md-4 col-6 grid_item">
                                 <div class="product">
@@ -90,6 +90,6 @@
 
 
 @section('AddScript')
-{{--    <script src="{{ defWebAssets('js/isotope-loadmore.js') }}"></script>--}}
+    <script src="{{ defWebAssets('js/isotope-loadmore.js') }}"></script>
 @endsection
 

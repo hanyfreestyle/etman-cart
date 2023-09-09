@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="{{ defWebAssets('css/style.css') }}">
     <link rel="stylesheet" href="{{ defWebAssets('css/responsive.css') }}">
 
+    <link rel="stylesheet" href="{{ defWebAssets('css/style_edit.css') }}">
+
     @if(thisCurrentLocale() == 'ar')
         <link rel="stylesheet" href="{{ defWebAssets('css/rtl-style.css') }}">
     @endif

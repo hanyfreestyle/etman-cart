@@ -5,31 +5,22 @@
             <div class="row align-items-center">
                 <div class="col-md-6">
                     <div class="page-title">
-                        <h1>{{$Category->name}}</h1>
+                        <span>{{$Category->name}}</span>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    {{ Breadcrumbs::render('WebCategoryView',$Category) }}
+                    {{ Breadcrumbs::render($SinglePageView['breadcrumb'],$Category) }}
                 </div>
             </div>
         </div>
     </div>
 @endsection
 @section('content')
-    <div class="section">
+    <div class="section CategoryViewPage pt-lg-5 pt-3">
         <div class="container">
             <div class="row">
                 <div class="col-xl-9 col-lg-8">
                     <div class="row">
-                        <div class="col-lg-5 col-md-6 mb-4 mb-md-0">
-                            <div class="product-image">
-                                <div class="product_img_boxX">
-                                    <img id="product_img" src='{{getPhotoPath($Category->photo,'categorie')}}' data-zoom-image="assets/images/product_zoom_img1.jpg" alt="product_img1" />
-
-                                </div>
-
-                            </div>
-                        </div>
                         <div class="col-lg-7 col-md-6">
                             <div class="pr_detail">
                                 <div class="product_description">
@@ -69,6 +60,16 @@
                             </div>
 
                         </div>
+                        <div class="col-lg-5 col-md-6 mb-4 mb-md-0">
+                            <div class="product-image">
+                                <div class="product_img_boxX">
+                                    <img id="product_img" src='{{getPhotoPath($Category->photo,'categorie')}}' data-zoom-image="assets/images/product_zoom_img1.jpg" alt="product_img1" />
+
+                                </div>
+
+                            </div>
+                        </div>
+
                     </div>
                     <div class="row">
                         <div class="col-12">
@@ -141,45 +142,7 @@
                     @endif
                 </div>
                 @if($agent->isMobile() == false )
-                    <div class="col-xl-3 col-lg-4 order-lg-first mt-4 pt-2 mt-lg-0 pt-lg-0">
-                        <div class="sidebar">
-                            <div class="widget">
-                                <h5 class="widget_title">Categories</h5>
-                                <ul class="widget_categories">
-
-                                    @foreach($MenuCategory as $MainCategory)
-                                        @if($loop->index < 10)
-                                            <li><a href="{{route('Page_WebCategoryView',$MainCategory->slug)}}">
-                                                    <span class="categories_name">{{$MainCategory->name}}</span>
-                                                    <span class="categories_num"> @if( $MainCategory->children_count> 0) ({{$MainCategory->children_count}}) @endif  </span>
-                                                </a></li>
-
-                                        @endif
-                                    @endforeach
-                                </ul>
-                            </div>
-
-                            @if($Category->children_count > 0)
-                                <div class="widget">
-                                    <h5 class="widget_title">{{__('web/def.Recent_Items')}}</h5>
-                                    <ul class="widget_recent_post">
-                                        @foreach($RecentProduct as $RProduct)
-                                            <li>
-                                                <div class="post_img">
-                                                    <a href="#"><img src="{{getPhotoPath($RProduct->photo)}}" alt="shop_small1"></a>
-                                                </div>
-                                                <div class="post_content">
-                                                    <h6 class="product_title"><a href="shop-product-detail-left-sidebar.html">{{$RProduct->name}}</a></h6>
-                                                    <div class="product_price"><span class="price">$55.00</span><del>$95.00</del></div>
-                                                </div>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
-
-                        </div>
-                    </div>
+                    @include('web.web_product.category_view_sidebar')
                 @endif
             </div>
         </div>

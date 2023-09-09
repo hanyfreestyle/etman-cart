@@ -241,6 +241,7 @@ class WebPageController extends WebMainController
         $SinglePageView['banner_count'] = $PageMeta->page_banner_count ;
         $SinglePageView['banner_list'] = $PageMeta->PageBanner ;
         $SinglePageView['breadcrumb'] = "MainCategory" ;
+        $SinglePageView['SelMenu'] = 'MainCategory' ;
 
         return view('web.web_product.category_main',compact('SinglePageView','PageMeta'));
     }
@@ -270,7 +271,8 @@ class WebPageController extends WebMainController
         parent::printSeoMeta($PageMeta);
 
         $SinglePageView = $this->SinglePageView ;
-        $SinglePageView['breadcrumb'] = "FaqList" ;
+        $SinglePageView['SelMenu'] = 'MainCategory' ;
+        $SinglePageView['breadcrumb'] = "WebCategoryView" ;
         $SinglePageView['slug'] = 'category/'.$Category->translate(webChangeLocale())->slug;
 
 //dd($Category);
