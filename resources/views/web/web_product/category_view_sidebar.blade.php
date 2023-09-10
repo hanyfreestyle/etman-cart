@@ -1,4 +1,4 @@
-<div class="col-xl-3 col-lg-4 order-lg-first mt-4 pt-2 mt-lg-0 pt-lg-0">
+<div class="col-xl-3 col-lg-4">
     <div class="sidebar">
         <div class="widget">
             <h3 class="widget_title def_h3">{{ __('web/def.Main_Categories') }}</h3>
@@ -16,7 +16,7 @@
             </ul>
         </div>
 
-        @if($Category->children_count > 0)
+        @if($Category->children_count > 0 or $Category->table_data_count > 0)
             <div class="widget ">
                 <h3 class="widget_title def_h3">{{__('web/def.Recent_Items')}}</h3>
                 <ul class="widget_recent_post">
@@ -26,7 +26,7 @@
                                 <a href="#"><img src="{{getPhotoPath($RProduct->photo)}}" alt="shop_small1"></a>
                             </div>
                             <div class="post_content">
-                                <h6 class="product_title"><a href="shop-product-detail-left-sidebar.html">{{$RProduct->name}}</a></h6>
+                                <h6 class="product_title"><a href="#">{{$RProduct->name}}</a></h6>
                                 <div class="product_price"><span class="price">$55.00</span><del>$95.00</del></div>
                             </div>
                         </li>

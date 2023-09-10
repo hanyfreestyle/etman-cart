@@ -30,6 +30,11 @@ Breadcrumbs::for('ContactUs', function (BreadcrumbTrail $trail) {
     $trail->push(__('web/menu.contatc_us'), route('Page_ContactUs'));
 });
 
+Breadcrumbs::for('TermsConditions', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push(__('web/menu.Terms'), route('Page_TermsConditions'));
+});
+
 Breadcrumbs::for('FaqList', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push(__('web/menu.Faq'), route('Page_FaqList'));
@@ -39,6 +44,8 @@ Breadcrumbs::for('FaqCatView', function (BreadcrumbTrail $trail, $FaqCategory) {
     $trail->parent('FaqList');
     $trail->push($FaqCategory->name, route('Page_FaqCatView', $FaqCategory->slug));
 });
+
+
 
 Breadcrumbs::for('LatestNews', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
@@ -52,19 +59,10 @@ Breadcrumbs::for('LatestNewsView', function (BreadcrumbTrail $trail, $Post) {
 
 
 
-Breadcrumbs::for('TermsConditions', function (BreadcrumbTrail $trail) {
-    $trail->parent('home');
-    $trail->push(__('web/menu.Terms'), route('Page_TermsConditions'));
-});
-
-
-
-
 Breadcrumbs::for('MainCategory', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push(__('web/def.Main_Categories'), route('Page_MainCategory'));
 });
-
 
 Breadcrumbs::for('WebCategoryView', function (BreadcrumbTrail $trail, $trees) {
     $trail->parent('MainCategory');
@@ -80,36 +78,5 @@ Breadcrumbs::for('WebProductView', function (BreadcrumbTrail $trail, $trees,$Pro
     }
     $trail->push($Product->name, route('Page_WebProductView', $Product->slug));
 });
-
-
-
-
-
-//
-//Breadcrumbs::for('blog', function (BreadcrumbTrail $trail) {
-//    $trail->parent('home');
-//    $trail->push(__('web/menu.blog'), route('menu-blog'));
-//});
-//
-//Breadcrumbs::for('blogCatList', function (BreadcrumbTrail $trail, $Category) {
-//    $trail->parent('blog');
-//    $trail->push($Category->name, route('blogCatList', $Category->slug));
-//});
-//
-//Breadcrumbs::for('post_view', function (BreadcrumbTrail $trail, $Category,$Post) {
-//    $trail->parent('blog');
-//    $trail->push($Category->name, route('blogCatList', $Category->slug));
-//    $trail->push($Post->name, route('blogCatList', $Post->slug));
-//});
-//
-//Breadcrumbs::for('developer_list', function (BreadcrumbTrail $trail) {
-//    $trail->parent('home');
-//    $trail->push(__('web/menu.developer'), route('menu-developers'));
-//});
-//
-//Breadcrumbs::for('developer_view', function (BreadcrumbTrail $trail,$Developer) {
-//    $trail->parent('developer_list');
-//    $trail->push( $Developer->name , route('page-developer-view',$Developer->slug));
-//});
 
 

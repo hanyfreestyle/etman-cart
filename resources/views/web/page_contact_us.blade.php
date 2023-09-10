@@ -1,13 +1,23 @@
 @extends('web.layouts.app')
 @section('breadcrumb')
-    <x-website.breadcrumb :meta="$PageMeta" :catid="$SinglePageView['breadcrumb']" />
+    <x-website.breadcrumb >
+        {{ Breadcrumbs::render($SinglePageView['breadcrumb']) }}
+    </x-website.breadcrumb>
 @endsection
 @section('content')
-    <div class="sectionX pb-5 pt-lg-4">
+    <div class="section">
         <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="def_h1 def_border " >{{$PageMeta->body_h1}}</h1>
+                </div>
+            </div>
+
+
             <div class="row">
 
-                <div class="col-lg-6 pt-2 pt-lg-0 mt-4 mt-lg-0">
+                <div class="col-lg-6">
                     <div id="map" class="contact_map_1" data-zoom="17" data-latitude="31.202236" data-longitude="29.882242"></div>
                     <div class="mt-3 contact_page">
                         <h2>{{ __('web/address.ad1_title') }}</h2>
@@ -126,36 +136,10 @@
         </div>
     </div>
 
-    <div class="section small_pt">
-        <div class="container conatct_faq">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="heading_tab_header">
-                        <div >
-                            <h2 class="def_h2">{{ __('web/menu.Faq') }}</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="faq_logo carousel_slider owl-carousel owl-theme nav_style3" data-dots="false" data-nav="true" data-margin="30" data-loop="true" data-autoplay="false" data-responsive='{"0":{"items": "2"}, "480":{"items": "3"}, "767":{"items": "4"}, "991":{"items": "6"}}'>
-                        @foreach($FaqCategories as $FaqCategory)
-                            @if($FaqCategory->photo)
-                                <div class="item">
-                                    <a href="{{route('Page_FaqCatView',$FaqCategory->slug)}}">
-                                        <div class="cl_logoX">
-                                            <img src="{{getPhotoPath($FaqCategory->photo)}}" alt="cl_logo"/>
-                                        </div>
-                                        <h3>{{$FaqCategory->name}}</h3>
-                                    </a>
-                                </div>
-                            @endif
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
+
+
+    <div class="section mt-3 mt-lg-3 pb-5">
+        <x-website.block-faq-carousel :faq-categories="$FaqCategories" />
     </div>
 
 @endsection

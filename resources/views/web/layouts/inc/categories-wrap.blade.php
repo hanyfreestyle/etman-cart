@@ -3,12 +3,9 @@
         <i class="linearicons-menu"></i><span> {{__('web/menu.All_Categories')}} </span>
     </button>
 
-
-
     <div id="navCatContent"
          class="@if($SinglePageView['banner_id']  and $SinglePageView['banner_count'] > 0) nav_cat @endif navbar collapse">
         <ul>
-
             @foreach($MenuCategory as $MainCategory)
                 @if($loop->index < 9)
                     @if($MainCategory->children_count <= 0 )
@@ -29,10 +26,10 @@
                                                     @if($loop->index < 2)
                                                         <li class="mega-menu-col col-lg-6">
                                                             <ul>
-                                                                <li class="dropdown-header SubCategory"><a href="{{route('Page_WebCategoryView',$SubCategory->slug)}}">{{$SubCategory->name}}</a></li>
+                                                                <li class="dropdown-header sub_catName"><a href="{{route('Page_WebCategoryView',$SubCategory->slug)}}">{{$SubCategory->name}}</a></li>
                                                                 @if(count($SubCategory->CatProduct) > 0 )
                                                                     @foreach($SubCategory->CatProduct as $Product)
-                                                                        <li class="Product_name"><a class="dropdown-item nav-link nav_item" href="#">{{$Product->name}}</a></li>
+                                                                        <li class="Product_name"><a class="dropdown-item nav-link nav_item" href="{{route('Page_WebProductView',$Product->slug)}}">{{$Product->name}}</a></li>
                                                                     @endforeach
                                                                 @endif
                                                             </ul>
@@ -44,7 +41,11 @@
                                     </li>
                                     <li class="mega-menu-col col-lg-5 d-none d-md-block">
                                         <div class="header-banner2">
-                                            <img src="{{getPhotoPath($MainCategory->photo,"blog")}}" class="rounded" alt="menu_banner1">
+                                            <a href="{{route('Page_WebCategoryView',$MainCategory->slug)}}"> <img  class="img_cat" src="{{getPhotoPath($MainCategory->photo,"blog")}}" class="rounded" alt="menu_banner1"></a>
+                                            <div class="readMore_but">
+                                            <a href="{{route('Page_WebCategoryView',$MainCategory->slug)}}">{{__('web/def.Load_More')}}</a>
+                                            </div>
+
                                         </div>
                                     </li>
                                 </ul>

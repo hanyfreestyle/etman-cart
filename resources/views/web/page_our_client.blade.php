@@ -1,12 +1,23 @@
 @extends('web.layouts.app')
 @section('breadcrumb')
-    <x-website.breadcrumb :meta="$PageMeta" :catid="$SinglePageView['breadcrumb']" />
+    <x-website.breadcrumb>
+        {{ Breadcrumbs::render($SinglePageView['breadcrumb']) }}
+    </x-website.breadcrumb>
 @endsection
 @section('content')
 
     <div class="section">
         <div class="container OurClientList">
+
             <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="def_h1 text-center" >{{$PageMeta->body_h1}}</h1>
+                    <p class="def_gdes text-center">{{$PageMeta->g_des}}</p>
+                </div>
+            </div>
+
+
+            <div class="row ">
                 @foreach($OurClients as $Client)
                     <div class="col-lg-4 text-center">
                         <div class="blog_post blog_style2 rounded box_shadow1">
@@ -14,7 +25,7 @@
                                     <img src="{{ getPhotoPath($Client->photo,'light-logo') }}" alt="{{$Client->name}}">
                             </div>
                         </div>
-                        <h2 class="Client_title"><a href="#">{{$Client->name}}</a></h2>
+                        <h2 class="def_h3 crop_text_1 def_color">{{$Client->name}}</h2>
                     </div>
                 @endforeach
             </div>

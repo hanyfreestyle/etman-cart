@@ -15,6 +15,8 @@
         <div class="pr_desc">
             <p> {{$product->g_des}}</p>
         </div>
-
+{{--        <div class="list_product_action_box">--}}
+{{--            <a class="btn btn-danger btn-sm" href="{{route('Page_WebProductView',$product->slug)}}">{{__('web/def.View_Details')}}</a>--}}
+{{--        </div>--}}
     </div>
 </div>

@@ -17,4 +17,5 @@ return
 	'lable_Category' => 'القسم :',
 	'lable_SKU' => 'المعرف :',
 	'read_more' => 'اقرأ المزيد',
+	'products' => 'المنتجات',
 ];

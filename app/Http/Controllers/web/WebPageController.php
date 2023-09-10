@@ -83,6 +83,101 @@ class WebPageController extends WebMainController
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #    ContactUs
+    public function ContactUs ()
+    {
+        $PageMeta = parent::getMeatByCatId('ContactUs');
+        parent::printSeoMeta($PageMeta);
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['SelMenu'] = 'ContactUs' ;
+        $SinglePageView['banner_id'] = $PageMeta->banner_id ;
+        $SinglePageView['banner_count'] = $PageMeta->page_banner_count ;
+        $SinglePageView['banner_list'] = $PageMeta->PageBanner ;
+        $SinglePageView['breadcrumb'] = "ContactUs" ;
+
+        $FaqCategories = FaqCategory::defWeb()
+            ->get();
+        return view('web.page_contact_us',compact('SinglePageView','PageMeta','FaqCategories'));
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #    TermsConditions
+    public function TermsConditions ()
+    {
+
+        $PageMeta = parent::getMeatByCatId('TermsConditions');
+        parent::printSeoMeta($PageMeta);
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['banner_id'] = $PageMeta->banner_id ;
+        $SinglePageView['banner_count'] = $PageMeta->page_banner_count ;
+        $SinglePageView['banner_list'] = $PageMeta->PageBanner ;
+        $SinglePageView['breadcrumb'] = "TermsConditions" ;
+
+
+        $Terms = WebPrivacy::where('is_active',true)
+            ->with('translation')
+            ->orderBy('postion','asc')
+            ->get();
+
+        return view('web.page_term_conditions',compact('SinglePageView','PageMeta','Terms'));
+    }
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #    FaqList
+    public function FaqList ()
+    {
+
+        $PageMeta = parent::getMeatByCatId('FaqList');
+        parent::printSeoMeta($PageMeta);
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['SelMenu'] = 'FaqList' ;
+        $SinglePageView['banner_id'] = $PageMeta->banner_id ;
+        $SinglePageView['banner_count'] = $PageMeta->page_banner_count ;
+        $SinglePageView['banner_list'] = $PageMeta->PageBanner ;
+        $SinglePageView['breadcrumb'] = "FaqList" ;
+
+        $FaqCategories = FaqCategory::defWeb()->paginate(12);
+
+        return view('web.faq_list',compact('SinglePageView','PageMeta','FaqCategories'));
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     FaqCatView
+    public function FaqCatView ($slug)
+    {
+        $slug = \AdminHelper::Url_Slug($slug);
+
+        $FaqCategory  = FaqCategory::defWeb()
+            ->whereTranslation('slug', $slug)
+            ->firstOrFail();
+
+        if ($FaqCategory->translate()->where('slug', $slug)->first()->locale != app()->getLocale()) {
+            return redirect()->route('Page_FaqCatView', $FaqCategory->translate()->slug);
+        }
+
+
+        $PageMeta = $FaqCategory ;
+        parent::printSeoMeta($PageMeta);
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['SelMenu'] = 'FaqList' ;
+        $SinglePageView['breadcrumb'] = "FaqCatView" ;
+        $SinglePageView['slug'] = 'faq/'.$FaqCategory->translate(webChangeLocale())->slug;
+
+
+        $FaqCategories = FaqCategory::defWeb()
+            ->where('id','!=',$FaqCategory->id)
+            ->get();
+
+        return view('web.faq_cat_view',compact('SinglePageView','PageMeta','FaqCategory','FaqCategories'));
+
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #    LatestNews
     public function LatestNews ()
     {
@@ -121,6 +216,7 @@ class WebPageController extends WebMainController
 
         $SinglePageView = $this->SinglePageView ;
         $SinglePageView['SelMenu'] = 'LatestNews' ;
+        $SinglePageView['breadcrumb'] = "LatestNewsView" ;
         $SinglePageView['slug'] = 'latest-news/'.$Post->translate(webChangeLocale())->slug ;
 
         $BlogPosts =  BlogPost::defWeb()->where('id','!=',$Post->id)->limit(2)->get();
@@ -129,109 +225,8 @@ class WebPageController extends WebMainController
     }
 
 
-
-
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #    FaqList
-    public function FaqList ()
-    {
-
-        $PageMeta = parent::getMeatByCatId('FaqList');
-        parent::printSeoMeta($PageMeta);
-
-        $SinglePageView = $this->SinglePageView ;
-        $SinglePageView['SelMenu'] = 'FaqList' ;
-        $SinglePageView['banner_id'] = $PageMeta->banner_id ;
-        $SinglePageView['banner_count'] = $PageMeta->page_banner_count ;
-        $SinglePageView['banner_list'] = $PageMeta->PageBanner ;
-        $SinglePageView['breadcrumb'] = "FaqList" ;
-
-        $FaqCategories = FaqCategory::defWeb()->paginate(12);
-
-       return view('web.faq_list',compact('SinglePageView','PageMeta','FaqCategories'));
-    }
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     FaqCatView
-    public function FaqCatView ($slug)
-    {
-        $slug = \AdminHelper::Url_Slug($slug);
-
-        $FaqCategory  = FaqCategory::defWeb()
-            ->whereTranslation('slug', $slug)
-            ->firstOrFail();
-
-        if ($FaqCategory->translate()->where('slug', $slug)->first()->locale != app()->getLocale()) {
-             return redirect()->route('Page_FaqCatView', $FaqCategory->translate()->slug);
-        }
-
-
-        $PageMeta = $FaqCategory ;
-        parent::printSeoMeta($PageMeta);
-
-        $SinglePageView = $this->SinglePageView ;
-        $SinglePageView['SelMenu'] = 'FaqList' ;
-        $SinglePageView['slug'] = 'faq/'.$FaqCategory->translate(webChangeLocale())->slug;
-
-
-        $FaqCategories = FaqCategory::defWeb()
-            ->where('id','!=',$FaqCategory->id)
-            ->get();
-        return view('web.faq_cat_view',compact('SinglePageView','PageMeta','FaqCategory','FaqCategories'));
-
-    }
-
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #    AboutUs
-    public function ContactUs ()
-    {
-
-        $PageMeta = parent::getMeatByCatId('ContactUs');
-        parent::printSeoMeta($PageMeta);
-
-        $SinglePageView = $this->SinglePageView ;
-        $SinglePageView['SelMenu'] = 'ContactUs' ;
-        $SinglePageView['banner_id'] = $PageMeta->banner_id ;
-        $SinglePageView['banner_count'] = $PageMeta->page_banner_count ;
-        $SinglePageView['banner_list'] = $PageMeta->PageBanner ;
-        $SinglePageView['breadcrumb'] = "ContactUs" ;
-
-        $FaqCategories = FaqCategory::defWeb()
-            ->get();
-
-        return view('web.page_contact_us',compact('SinglePageView','PageMeta','FaqCategories'));
-    }
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #    AboutUs
-    public function TermsConditions ()
-    {
-
-        $PageMeta = parent::getMeatByCatId('TermsConditions');
-        parent::printSeoMeta($PageMeta);
-
-        $SinglePageView = $this->SinglePageView ;
-        $SinglePageView['banner_id'] = $PageMeta->banner_id ;
-        $SinglePageView['banner_count'] = $PageMeta->page_banner_count ;
-        $SinglePageView['banner_list'] = $PageMeta->PageBanner ;
-        $SinglePageView['breadcrumb'] = "TermsConditions" ;
-
-
-        $Terms = WebPrivacy::where('is_active',true)
-            ->with('translation')
-            ->orderBy('postion','asc')
-            ->get();
-
-        return view('web.page_term_conditions',compact('SinglePageView','PageMeta','Terms'));
-    }
-
-
-
-
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #    FaqList
+#|||||||||||||||||||||||||||||||||||||| #    MainCategory
     public function MainCategory ()
     {
 
@@ -247,8 +242,6 @@ class WebPageController extends WebMainController
 
         return view('web.web_product.category_main',compact('SinglePageView','PageMeta'));
     }
-
-
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     WebCategoryView
@@ -267,8 +260,6 @@ class WebPageController extends WebMainController
         }
 
 
-
-
         $PageMeta = $Category ;
         parent::printSeoMeta($PageMeta);
 
@@ -278,17 +269,10 @@ class WebPageController extends WebMainController
         $SinglePageView['slug'] = 'category/'.$Category->translate(webChangeLocale())->slug;
 
         $trees = Category::find($Category->id)->ancestorsAndSelf()->orderBy('depth','asc')->get() ;
-        ///dd($Category->table_data);
-// dd($trees);
 
         return view('web.web_product.category_view',compact('SinglePageView','PageMeta','Category','trees'));
 
     }
-
-
-
-
-
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     WebProductView
@@ -299,13 +283,13 @@ class WebPageController extends WebMainController
             ->whereTranslation('slug', $slug)
             ->firstOrFail();
 
-       $ReletedProducts = Product::with('translation')
-           ->where('category_id',$Product->category_id)
-           ->where('id','!=',$Product->id)
-           ->limit(8)
-           ->get();
+        $ReletedProducts = Product::with('translation')
+            ->where('category_id',$Product->category_id)
+            ->where('id','!=',$Product->id)
+            ->limit(8)
+            ->get();
 
-       ;
+        ;
 
         $PageMeta = $Product ;
         parent::printSeoMeta($PageMeta);
@@ -319,6 +303,42 @@ class WebPageController extends WebMainController
 
         return view('web.web_product.product_view',compact('SinglePageView','PageMeta','Product','trees','ReletedProducts'));
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

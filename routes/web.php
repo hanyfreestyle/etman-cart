@@ -23,18 +23,24 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function(){
 Route::group(['prefix' => LaravelLocalization::setLocale(),
     'middleware' => [ 'localize' ]], function () {
 
-
-    Route::get('about{extension}', function() {
-        return 'About page';
-    })->where('extension', '(?:.html)?');
-
-
     Route::get(LaravelLocalization::transRoute('routes.AboutUs'),[WebPageController::class, 'AboutUs'])
-       // ->where('extension', '(?:.html)?')
         ->name('Page_AboutUs');
 
     Route::get(LaravelLocalization::transRoute('routes.OurClient'),[WebPageController::class, 'OurClient'])
         ->name('Page_OurClient');
+
+    Route::get(LaravelLocalization::transRoute('routes.ContactUs'),[WebPageController::class, 'ContactUs'])
+        ->name('Page_ContactUs');
+
+    Route::get(LaravelLocalization::transRoute('routes.TermsConditions'),[WebPageController::class, 'TermsConditions'])
+        ->name('Page_TermsConditions');
+
+
+    Route::get(LaravelLocalization::transRoute('routes.FaqList'),[WebPageController::class, 'FaqList'])
+        ->name('Page_FaqList');
+
+    Route::get(LaravelLocalization::transRoute('routes.FaqCatView'),[WebPageController::class, 'FaqCatView'])
+        ->name('Page_FaqCatView');
 
 
     Route::get(LaravelLocalization::transRoute('routes.LatestNews'),[WebPageController::class, 'LatestNews'])
@@ -45,18 +51,27 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 
 
 
-    Route::get(LaravelLocalization::transRoute('routes.FaqList'),[WebPageController::class, 'FaqList'])
-        ->name('Page_FaqList');
-
-    Route::get(LaravelLocalization::transRoute('routes.FaqCatView'),[WebPageController::class, 'FaqCatView'])
-        ->name('Page_FaqCatView');
 
 
-    Route::get(LaravelLocalization::transRoute('routes.TermsConditions'),[WebPageController::class, 'TermsConditions'])
-        ->name('Page_TermsConditions');
 
-    Route::get(LaravelLocalization::transRoute('routes.ContactUs'),[WebPageController::class, 'ContactUs'])
-        ->name('Page_ContactUs');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     Route::get(LaravelLocalization::transRoute('routes.MainCategory'),[WebPageController::class, 'MainCategory'])
@@ -72,33 +87,5 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 
 
 });
-
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     text
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     text
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     text
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     text
-
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     text
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     text
-
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     text
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     text
-
 
 

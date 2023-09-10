@@ -17,4 +17,5 @@ return
 	'lable_Category' => 'Category :',
 	'lable_SKU' => 'SKU',
 	'read_more' => 'Read More',
+	'products' => 'Products',
 ];

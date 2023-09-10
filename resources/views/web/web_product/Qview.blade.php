@@ -37,19 +37,7 @@
                 </div>
 
                 @if($Product->table_data_count)
-                    <div class="row mt-2">
-                        <div class="col-12">
-                            <h2> {{__('web/def.Additional_info')}}</h2>
-                            <table class="table table-bordered">
-                                @foreach($Product->table_data as $tableData)
-                                    <tr>
-                                        <td>{{$tableData->attributeName->name}}</td>
-                                        <td>{{$tableData->des}}</td>
-                                    </tr>
-                                @endforeach
-                            </table>
-                        </div>
-                    </div>
+                    <x-website.block-additional-table :row-data="$Product->table_data" />
                 @endif
 
 

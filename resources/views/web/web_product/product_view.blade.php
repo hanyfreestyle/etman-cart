@@ -1,24 +1,12 @@
 @extends('web.layouts.app')
 @section('breadcrumb')
-
-    <div class="breadcrumb_section bg_gray page-title-mini">
-        <div class="container">
-            <div class="row align-items-center">
-                {{--                <div class="col-md-6">--}}
-                {{--                    <div class="page-title">--}}
-                {{--                        <span>{{$Category->name}}</span>--}}
-                {{--                    </div>--}}
-                {{--                </div>--}}
-                <div class="col-md-12">
-                    {{ Breadcrumbs::render($SinglePageView['breadcrumb'],$trees,$Product) }}
-                </div>
-            </div>
-        </div>
-    </div>
+    <x-website.breadcrumb>
+        {{ Breadcrumbs::render($SinglePageView['breadcrumb'],$trees,$Product) }}
+    </x-website.breadcrumb>
 @endsection
 @section('content')
 
-    <div class="section ProductViewPage pt-lg-5 pt-4">
+    <div class="section ProductViewPage pt-lg-5 pt-4 pb-5">
         <div class="container">
             <div class="row">
                 @if($agent->isMobile())
@@ -87,39 +75,22 @@
                     </div>
 
                     @if($Product->table_data_count)
-                        <div class="row">
-                            <div class="col-12">
-                                <h2> {{__('web/def.Additional_info')}}</h2>
-                                <table class="table table-bordered">
-                                    @foreach($Product->table_data as $tableData)
-                                        <tr>
-                                            <td>{{$tableData->attributeName->name}}</td>
-                                            <td>{{$tableData->des}}</td>
-                                        </tr>
-                                    @endforeach
-                                </table>
-                            </div>
-                        </div>
+                        <x-website.block-additional-table :row-data="$Product->table_data" />
                     @endif
                 </div>
             </div>
 
 
-            <div class="row">
-                <div class="col-12 text-left">
-                    <hr>
-                    <x-website.block-share-icons/>
-                </div>
-            </div>
+
 
 
             @if(count($ReletedProducts) > 0)
-                <div class="row mt-lg-3">
+                <div class="row mt-lg-3 MainCategoryList">
                     <div class="col-12">
-                    <h3>{{__('web/def.Releted_Products')}}</h3>
+                    <h3 class="ReletedProducts">{{__('web/def.Releted_Products')}}</h3>
                         <hr>
 
-                        <div class="releted_product_slider carousel_slider owl-carousel owl-theme" data-margin="20" data-responsive='{"0":{"items": "2"}, "481":{"items": "2"}, "768":{"items": "3"}, "1199":{"items": "4"}}'>
+                        <div class="releted_product_slider carousel_slider owl-carousel owl-theme" data-margin="5" data-responsive='{"0":{"items": "2"}, "481":{"items": "2"}, "768":{"items": "3"}, "1199":{"items": "4"}}'>
 
                             @foreach($ReletedProducts as $Product)
                                 <div class="item">

@@ -1,11 +1,21 @@
 @extends('web.layouts.app')
 @section('breadcrumb')
-    <x-website.breadcrumb :meta="$PageMeta" :catid="$SinglePageView['breadcrumb']" />
+    <x-website.breadcrumb>
+        {{ Breadcrumbs::render($SinglePageView['breadcrumb']) }}
+    </x-website.breadcrumb>
+
 @endsection
 @section('content')
 
     <div class="section">
         <div class="container latest_news_list">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="def_h1 text-center" >{{$PageMeta->body_h1}}</h1>
+                    <p class="def_gdes text-center">{{$PageMeta->g_des}}</p>
+                </div>
+            </div>
+
             <div class="row">
                 @foreach($BlogPosts as $Post)
                     <div class="col-lg-4 col-md-6">
