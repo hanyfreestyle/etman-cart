@@ -92,5 +92,9 @@ class Category extends Model implements TranslatableContract
             ;
     }
 
-
+    public function recursiveProduct()
+    {
+        return $this->hasManyOfDescendantsAndSelf(Product::class ,'category_id', 'id')
+            ->inRandomOrder();
+    }
 }

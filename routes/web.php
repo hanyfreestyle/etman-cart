@@ -50,30 +50,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
         ->name('LatestNews_View');
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     Route::get(LaravelLocalization::transRoute('routes.MainCategory'),[WebPageController::class, 'MainCategory'])
         ->name('Page_MainCategory');
 

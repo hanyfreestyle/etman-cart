@@ -187,3 +187,13 @@
 .ProductViewPage .product-meta span{font-size:14px;font-weight:400}
 .ProductViewPage .ReletedProducts{font-size:20px;padding-bottom:0!important;margin-bottom:0!important;font-weight:700}
 
+.MainCategory_Home_Slider .slider_icon{
+    width: 60px!important;
+    margin: auto!important;
+}
+
+.HomeImageCat{
+    margin-top: 70px;
+    border-radius : 200px 200px 200px 200px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}

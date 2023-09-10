@@ -43,7 +43,15 @@ class WebPageController extends WebMainController
         $SinglePageView['banner_list'] = $PageMeta->PageBanner ;
 
 
-        return view('web.index',compact('SinglePageView'));
+        $MainCategoryPro  = Category::where('parent_id',null)
+            ->with('recursiveProduct')
+            ->limit(4)
+            ->get();
+
+
+
+
+        return view('web.index',compact('SinglePageView','MainCategoryPro'));
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
