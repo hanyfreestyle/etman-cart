@@ -1,51 +1,12 @@
 <x-website.footer-news-letter/>
 
-
-
 <footer class="bg_gray webSiteFooter">
     <div class="footer_top small_pt pb_20">
         <div class="container">
             <div class="row accordion accordion_style1" id="accordion"  >
 
-                <div class="col-lg-3 col-md-12 col-sm-12">
-                    <div class="widget">
-                        <div class="footer_logo text-center">
-                            <a href="{{route('Page_HomePage')}}"><img src="{{getDefPhotoPath($DefPhotoList,'dark-logo')}}" alt="logo"/></a>
-                        </div>
-                        <p class="footer_about_text">
-                            {!! __('web/footer.about_text') !!}
-                        </p>
-                        <p class="footer_about_more">
-                            <a href="{{route('Page_AboutUs')}}">{{__('web/def.read_more')}}</a>
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-12 col-sm-12">
-                    <x-website.footer-col-row title="{{ __('web/address.ad1_title') }}" prefix="Two" >
-                        <ul class="contact_info">
-                            <li>
-                                <i class="ti-location-pin"></i>
-                                <p class="footer_address">
-                                    {!! nl2br(__('web/address.ad1_address')) !!}
-                                </p>
-                            </li>
-                            <li>
-                                <i class="ti-mobile"></i>
-                                <p class="forcDir footer_phone">
-                                    {!! nl2br(__('web/address.ad1_phone')) !!}
-                                </p>
-                            </li>
 
-                            <li>
-                                <i class=" far fa-clock"></i>
-                                <p class="footer_address"><strong>{{__('web/address.ad1_hours')}}</strong>
-                                    <br>
-                                    {!!  nl2br(__('web/address.ad1_hours_text')) !!}
-                                </p>
-                            </li>
-                        </ul>
-                    </x-website.footer-col-row>
-                </div>
+
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <x-website.footer-col-row title="{{ __('web/footer.menu_main') }}" prefix="Three" >
                         <ul class="widget_links">
@@ -59,8 +20,6 @@
                         </ul>
                     </x-website.footer-col-row>
                 </div>
-
-
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <x-website.footer-col-row title="{{__('web/footer.menu_Categories')}}" prefix="Four" >
                         <ul class="widget_links">
@@ -93,8 +52,8 @@
             </div>
         </div>
     </div>
-    <hr>
 
+    <x-website.footer-icons/>
 
     <div class="bottom_footer border-top-tran">
         <div class="container">

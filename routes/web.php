@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\web\ShopPageController;
 use App\Http\Controllers\web\WebPageController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 
     Route::get(LaravelLocalization::transRoute('routes.OurClient'),[WebPageController::class, 'OurClient'])
         ->name('Page_OurClient');
+
+    Route::get(LaravelLocalization::transRoute('routes.Careers'),[WebPageController::class, 'Careers'])
+        ->name('Page_Careers');
+
 
     Route::get(LaravelLocalization::transRoute('routes.ContactUs'),[WebPageController::class, 'ContactUs'])
         ->name('Page_ContactUs');
@@ -63,5 +68,13 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 
 
 });
+
+
+Route::group(['prefix' => 'EtmanShop'], function(){
+    Route::get('/', [ShopPageController::class, 'Shop_HomePage'])->name('Shop_HomePage');
+
+
+});
+
 
 

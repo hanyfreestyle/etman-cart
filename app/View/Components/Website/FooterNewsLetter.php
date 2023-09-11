@@ -10,12 +10,15 @@ class FooterNewsLetter extends Component
 {
 
     public $viewStauts ;
+    public $type;
 
     public function __construct(
-        $viewStauts = true
+        $viewStauts = true,
+        $type = 'web',
     )
     {
         $this->viewStauts =  $viewStauts ;
+        $this->type =  $type ;
     }
 
     public function render(): View|Closure|string

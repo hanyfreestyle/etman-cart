@@ -1,21 +1,7 @@
-<div class="banner_section  slide_medium shop_banner_slider staggered-animation-wrap">
+<div class="banner_section slide_medium shop_banner_slider staggered-animation-wrap">
     <div class="container">
         <div class="row">
-            @if($agent->isMobile() == false)
-                <div class="col-lg-3 col-12 order-2 sub_banner">
-                    <div class="row">
-                        <div class="col-lg-12 col-6">
-                            <img class="rounded" src=" {{getDefPhotoPath($DefPhotoList,'banner_1')}}" alt="logo" />
-                        </div>
-
-                        <div class="col-lg-12 col-6 mt-lg-3">
-                            <img class="rounded" src=" {{getDefPhotoPath($DefPhotoList,'direction')}}" alt="whatsapp" />
-                        </div>
-                    </div>
-                </div>
-            @endif
-
-            <div class="col-lg-9">
+            <div class="col-lg-9 offset-lg-3">
                 <div id="carouselExampleControls" class="carousel slide light_arrow" data-bs-ride="carousel">
                     <div class="carousel-inner">
 

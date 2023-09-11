@@ -6,6 +6,7 @@ return [
     'FaqList' => 'frequently-asked-questions',
     'TermsConditions' => 'terms-and-conditions',
     'ContactUs' => 'contact-us',
+    'Careers' => 'careers',
 
     'FaqCatView' => 'faq/{slug}',
     'LatestNews_View' => 'latest-news/{slug}',

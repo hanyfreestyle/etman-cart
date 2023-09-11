@@ -35,18 +35,19 @@
     <link rel="stylesheet" href="{{ defWebAssets('css/custom_style.css') }}">
     <link rel="stylesheet" href="{{ defWebAssets('css/custom_'.thisCurrentLocale().'.css') }}">
 </head>
+{{--{!! htmlArDir() !!}--}}
 <body {!! htmlArDir() !!}>
 
 <x-website.html-loader/>
 
 <header class="header_wrap">
-    @include('web.layouts.inc.header_top')
-    @include('web.layouts.inc.header_middle')
-    @include('web.layouts.inc.menu')
+    @include('shop.layouts.inc.header_top')
+    @include('shop.layouts.inc.header_middle')
+    @include('shop.layouts.inc.menu')
 </header>
 
 @if( $SinglePageView['banner_id']  and $SinglePageView['banner_count'] > 0)
-    @include('web.layouts.inc.def_banner')
+    @include('shop.layouts.inc.def_banner')
 @else
     @yield('breadcrumb')
 @endif
@@ -58,7 +59,7 @@
     @yield('content')
 </div>
 
-@include('web.layouts.inc.footer')
+@include('shop.layouts.inc.footer')
 
 <!-- Latest jQuery -->
 <script src="{{ defWebAssets('js/jquery-3.6.0.min.js') }}"></script>

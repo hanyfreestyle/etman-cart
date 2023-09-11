@@ -8,10 +8,10 @@
 .lang_icon{float:left}
 .lang_icon img{width:16px;height:16px;margin-top:-5px;margin-left:5px;margin-right:5px}
 .header_logo{max-height:45px;margin-right:20px;width:auto}
-.banner_section.slide_medium,.banner_section.slide_medium .carousel-item,.banner_section.slide_medium .banner_content_wrap,.banner_section.slide_medium .banner_content_wrap .carousel-item,.banner_section.shop_el_slider,.banner_section.shop_el_slider .carousel-item,.banner_section.shop_el_slider .banner_content_wrap,.banner_section.shop_el_slider .banner_content_wrap .carousel-item{height:240px}
+.banner_section.slide_medium,.banner_section.slide_medium .carousel-item,.banner_section.slide_medium .banner_content_wrap,.banner_section.slide_medium .banner_content_wrap .carousel-item,.banner_section.shop_el_slider,.banner_section.shop_el_slider .carousel-item,.banner_section.shop_el_slider .banner_content_wrap,.banner_section.shop_el_slider .banner_content_wrap .carousel-item{height:205px}
 @media only screen and (min-width: 991px) {
     .header_logo{max-height:55px;margin-right:50px;width:auto}
-    .banner_section.slide_medium,.banner_section.slide_medium .carousel-item,.banner_section.slide_medium .banner_content_wrap,.banner_section.slide_medium .banner_content_wrap .carousel-item,.banner_section.shop_el_slider,.banner_section.shop_el_slider .carousel-item,.banner_section.shop_el_slider .banner_content_wrap,.banner_section.shop_el_slider .banner_content_wrap .carousel-item{height:450px}
+    .banner_section.slide_medium,.banner_section.slide_medium .carousel-item,.banner_section.slide_medium .banner_content_wrap,.banner_section.slide_medium .banner_content_wrap .carousel-item,.banner_section.shop_el_slider,.banner_section.shop_el_slider .carousel-item,.banner_section.shop_el_slider .banner_content_wrap,.banner_section.shop_el_slider .banner_content_wrap .carousel-item{height:410px}
     .changeLangMobile{display:none!important}
 }
 .header_phone_number{font-family:'Poppins',sans-serif!important;font-size:15px;font-weight:700;letter-spacing:1px}
@@ -197,3 +197,111 @@
     border-radius : 200px 200px 200px 200px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
+
+
+
+.web_site_Logo_light{
+    max-height: 40px;
+    margin-top: 8px;
+
+}
+.web_site_Logo_div{
+    text-align: right;
+
+}
+
+@media only screen and (min-width: 991px) {
+    .web_site_Logo_light{
+        max-height: 45px;
+        margin-top: 8px;
+
+    }
+    .web_site_Logo_div{
+        text-align:center;
+
+    }
+}
+
+
+
+.ShopNowMobile{
+
+}
+.ShopNowMobile i{
+    font-size:16px;
+}
+.ShopNowMobile a{
+    font-size:15px;
+    font-weight: 500;
+    margin: 15px 15px;
+
+
+
+}
+
+.web_site_navbar_nav i {
+    margin-left: 3px;
+    margin-right: 2px;
+}
+
+@media only screen and (max-width: 767px) {
+    .web_site_navbar_nav {
+        padding: 10px 10px !important;
+        background-color: #1D1E20!important;
+
+    }
+
+    .web_site_navbar_nav i {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .web_site_navbar_nav li {
+        display: block;
+        color: #777;
+        position: relative;
+        border-bottom: 1px solid #242527;
+    }
+
+    .web_site_navbar_nav .call_us {
+        display: block;
+        width: 100%;
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: 500;
+
+        text-align: center;
+        color: #FFF;
+    }
+
+    .web_site_navbar_nav .call_us .header_phone_number{
+        font-size: 18px!important;
+        letter-spacing: 2px;
+    }
+
+    .web_site_navbar_nav .menu_social_icons{
+        width: 100%;
+        margin-top: 20px;
+        padding-top: 15px;
+        border-top: 1px solid #242527;
+    }
+
+    .web_site_navbar_nav .menu_social_icons a{
+        display:inline-block;
+        width: 35px!important;
+        height: 35px!important;
+        border-radius: 50%;
+        font-size: 22px;
+        margin: 2px 3px;
+        line-height: 37px!important;
+
+
+    }
+
+}
+
+.sub_banner img{
+    display: inline-block;
+    max-width: 100%;
+}
+

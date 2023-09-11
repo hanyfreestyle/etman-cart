@@ -6,7 +6,7 @@
 @endsection
 @section('content')
 
-    <div class="section faqcat_list pt-0 pt-lg-3">
+    <div class="section faqcat_list pt-0 pt-lg-0">
 
         <div class="container">
 

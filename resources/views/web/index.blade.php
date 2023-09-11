@@ -1,118 +1,101 @@
 @extends('web.layouts.app')
 
 @section('content')
-
-    <div class="section small_pb small_pt MainCategory_Home_Slider">
+<div class="section AboutUs">
         <div class="container">
 
-            <div class="row align-items-center">
-                <div class="col-12">
-                    <div class="cat_slider cat_style1 mt-4 mt-md-0 carousel_slider owl-carousel owl-theme nav_style5" data-loop="true" data-dots="false" data-nav="true" data-margin="30" data-responsive='{"0":{"items": "2"}, "480":{"items": "3"}, "576":{"items": "4"}, "768":{"items": "5"}, "991":{"items": "6"}, "1199":{"items": "7"}}'>
-                        @foreach($MenuCategory as $MainCategory)
-                            <div class="item">
-                                <div class="categories_box">
-                                    <a href="#">
-                                        <img  class="slider_icon" src="{{ getPhotoPath($MainCategory->icon ,'faq-icon') }}" alt="cat_img1"/>
-                                        <span>{{$MainCategory->name}}</span>
-                                    </a>
-                                </div>
-                            </div>
-                        @endforeach
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-{{--        {{ $MainCategory->name }} {{count($MainCategory->recursiveProduct)}}--}}
-{{--        <br>--}}
-
-
-
-
-    @foreach($MainCategoryPro as $MainCategory)
-
-    <div class="section MainCategoryList">
-        <div class="container">
             <div class="row">
-                @if($loop->index == 0 or $loop->index == 2 )
-                    <div class="col-xl-3 d-none d-xl-block">
-                        <div class="sale-banner">
-                            <a class="hover_effect1 HomeImageCat" href="{{route('Page_WebCategoryView',$MainCategory->slug)}}">
-                                <img src="{{getPhotoPath($MainCategory->photo)}}" alt="shop_banner_img10">
-                            </a>
-                        </div>
-                    </div>
-                @endif
+                <div class="col-lg-12">
+                    <h1 class="def_h1 def_border" >{{__('web/menu.About_Us')}}</h1>
 
-                <div class="col-xl-9 ">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="heading_tab_header">
-                                <div class="heading_s2">
-                                    <h4>{{$MainCategory->name}}</h4>
-                                </div>
-                                <div class="view_all">
-                                    <a href="{{route('Page_WebCategoryView',$MainCategory->slug)}}" class="text_default"><i class="linearicons-power"></i> <span>{{__('web/def.View_All')}}</span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="product_slider carousel_slider owl-carousel owl-theme dot_style1" data-loop="true" data-margin="5" data-responsive='{"0":{"items": "2"}, "481":{"items": "2"}, "768":{"items": "3"}, "991":{"items": "4"}}'>
+                </div>
+            </div>
 
-                                @foreach($MainCategory->recursiveProduct as $Product)
-                                    <div class="item">
-                                        <div class="product_wrap">
-                                            <div class="product_img">
-                                                <a href="{{route('Page_WebProductView',$Product->slug)}}">
-                                                    <img src="{{ getPhotoPath($Product->photo ,'categorie') }}" alt="el_img2">
-                                                </a>
-                                                <div class="product_action_box">
-                                                    <ul class="list_none pr_action_btn">
-                                                        <li><a href="{{route('Page_WebPro_Qview',$Product->slug)}}" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="product_info">
-                                                <h6 class="product_title"><a href="{{route('Page_WebProductView',$Product->slug)}}">{{$Product->name}}</a></h6>
-
-
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-
-
-                            </div>
-                        </div>
-                    </div>
+            <div class="row">
+                <div class="col-lg-7">
+                    <p>{!! __('web/about.text_1') !!}</p>
+                    <p>{!! __('web/about.text_2') !!}</p>
+                    <p>{!! __('web/about.text_3') !!}</p>
                 </div>
 
-                    @if($loop->index ==1 or $loop->index == 3 )
-                        <div class="col-xl-3 d-none d-xl-block">
-                            <div class="sale-banner">
-                                <a class="hover_effect1 HomeImageCat" href="{{route('Page_WebCategoryView',$MainCategory->slug)}}">
-                                    <img src="{{getPhotoPath($MainCategory->photo)}}" alt="shop_banner_img10">
-                                </a>
-                            </div>
-                        </div>
-                    @endif
+                <div class="col-lg-5">
+                    <div class="about_img scene mt-2 mb-4 mb-lg-0">
+                        <img src="{{getDefPhotoPath($DefPhotoList,'about-1')}}" alt="about_img"/>
+                    </div>
 
+                </div>
 
             </div>
         </div>
+
+
+
     </div>
 
-    @endforeach
+
+<div class="section small_pt">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="heading_tab_header">
+                    <div class="heading_s2">
+                        <h2 class="def_h2">{{__('web/def.Main_Categories')}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="client_logo carousel_slider owl-carousel owl-theme nav_style3" data-dots="false" data-nav="true" data-margin="30" data-loop="true" data-autoplay="true" data-responsive='{"0":{"items": "2"}, "480":{"items": "3"}, "767":{"items": "4"}, "991":{"items": "5"}}'>
+                    @foreach($MenuCategory as $MainCategory)
+
+                        <a href="">
+
+                            <div class="item">
+                                <div class="cl_logoX">
+                                    <img src="{{ getPhotoPath($MainCategory->photo ,'faq-icon') }}" alt="cl_logo"/>
+
+                                </div>
+
+                                <h3 class="def_h4 text-center mt-3">{{$MainCategory->name}}</h3>
+                            </div>
+                        </a>
 
 
-    <x-website.block-our-client/>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="sectionX small_pt pb_70 mt-lg-0">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 mb-lg-3">
+                <div class="heading_s1 text-center">
+                    <h2>{{__('web/menu.Latest_News')}}</h2>
+                </div>
+
+            </div>
+        </div>
+        <div class="row justify-content-center">
+
+            @foreach($BlogPosts as $Post)
+                <div class="col-lg-4 col-md-6">
+                    <x-website.card-last-news  :post-data="$Post"/>
+                </div>
+            @endforeach
+
+
+        </div>
+    </div>
+</div>
+
+
+<x-website.block-our-client/>
 
 @endsection
 

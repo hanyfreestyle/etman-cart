@@ -8,6 +8,7 @@ use App\Models\admin\config\WebPrivacy;
 use App\Models\admin\FaqCategory;
 use App\Models\admin\OurClient;
 use App\Models\admin\Product;
+use App\Models\User;
 
 
 class WebPageController extends WebMainController
@@ -49,9 +50,10 @@ class WebPageController extends WebMainController
             ->get();
 
 
+        $BlogPosts =  BlogPost::defWeb()->limit(3)->get();
 
 
-        return view('web.index',compact('SinglePageView','MainCategoryPro'));
+        return view('web.index',compact('SinglePageView','MainCategoryPro','BlogPosts'));
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -108,6 +110,25 @@ class WebPageController extends WebMainController
             ->get();
         return view('web.page_contact_us',compact('SinglePageView','PageMeta','FaqCategories'));
     }
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #    ContactUs
+    public function Careers ()
+    {
+        $PageMeta = parent::getMeatByCatId('ContactUs');
+        parent::printSeoMeta($PageMeta);
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['SelMenu'] = 'Careers' ;
+        $SinglePageView['banner_id'] = $PageMeta->banner_id ;
+        $SinglePageView['banner_count'] = $PageMeta->page_banner_count ;
+        $SinglePageView['banner_list'] = $PageMeta->PageBanner ;
+        $SinglePageView['breadcrumb'] = "ContactUs" ;
+
+        $FaqCategories = FaqCategory::defWeb()
+            ->get();
+        return view('web.page_contact_us',compact('SinglePageView','PageMeta','FaqCategories'));
+    }
+
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #    TermsConditions

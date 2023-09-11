@@ -9,8 +9,10 @@ return
 	'More_Categories' => 'More Categories',
 	'New_Category' => 'New  Category',
 	'Our_Client' => 'Our Client',
+	'Shop_Now' => 'Shop Now',
+	'Terms' => 'Terms &amp; Conditions',
 	'contatc_us' => 'Contatc Us',
 	'home' => 'Home',
 	'home_page' => 'Home Pgae',
-	'Terms' => 'Terms &amp; Conditions',
+	'Careers' => 'Careers',
 ];
