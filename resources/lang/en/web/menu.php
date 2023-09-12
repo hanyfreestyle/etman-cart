@@ -4,6 +4,7 @@ return
 [
 	'About_Us' => 'About Us',
 	'All_Categories' => 'All Categories',
+	'Careers' => 'Careers',
 	'Faq' => 'FAQ',
 	'Latest_News' => 'Latest News',
 	'More_Categories' => 'More Categories',
@@ -14,5 +15,7 @@ return
 	'contatc_us' => 'Contatc Us',
 	'home' => 'Home',
 	'home_page' => 'Home Pgae',
-	'Careers' => 'Careers',
+	'recently_arrived' => 'recently arrived',
+	'week_offer' => 'week_offer',
+	'client_offer' => 'client_offer',
 ];

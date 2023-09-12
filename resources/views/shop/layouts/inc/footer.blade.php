@@ -1,53 +1,57 @@
-<x-website.footer-news-letter/>
+<x-website.footer-news-letter type="shop"/>
 
 <footer class="bg_gray webSiteFooter">
+
+
     <div class="footer_top small_pt pb_20">
         <div class="container">
             <div class="row accordion accordion_style1" id="accordion"  >
 
 
+                @if($agent->isMobile())
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <x-website.footer-col-row title="{{ __('web/footer.menu_main') }}" prefix="Three" >
+                            <ul class="widget_links">
+                                <li><a class="" href="{{ route('Shop_HomePage') }}">{{__('web/menu.home')}} </a></li>
+                                <li><a class="" href="{{ route('Page_AboutUs') }}">{{ __('web/menu.About_Us') }}</a></li>
+                                <li><a class="" href="{{ route('Page_OurClient') }}">{{ __('web/menu.Our_Client') }}</a></li>
+                                <li><a class="" href="{{ route('Page_LatestNews') }}">{{  __('web/menu.Latest_News')}}</a></li>
+                                <li><a class="" href="{{ route('Page_FaqList') }}">{{ __('web/menu.Faq') }}</a></li>
+                                <li><a class="" href="{{ route('Page_TermsConditions') }}">{{ __('web/menu.Terms') }}</a></li>
+                                <li><a class="" href="{{ route('Page_ContactUs') }}">{{  __('web/menu.contatc_us')}}</a></li>
+                            </ul>
+                        </x-website.footer-col-row>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <x-website.footer-col-row title="{{__('web/footer.menu_Categories')}}" prefix="Four" >
+                            <ul class="widget_links">
 
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <x-website.footer-col-row title="{{ __('web/footer.menu_main') }}" prefix="Three" >
-                        <ul class="widget_links">
-                            <li><a class="" href="{{ route('Page_HomePage') }}">{{__('web/menu.home')}} </a></li>
-                            <li><a class="" href="{{ route('Page_AboutUs') }}">{{ __('web/menu.About_Us') }}</a></li>
-                            <li><a class="" href="{{ route('Page_OurClient') }}">{{ __('web/menu.Our_Client') }}</a></li>
-                            <li><a class="" href="{{ route('Page_LatestNews') }}">{{  __('web/menu.Latest_News')}}</a></li>
-                            <li><a class="" href="{{ route('Page_FaqList') }}">{{ __('web/menu.Faq') }}</a></li>
-                            <li><a class="" href="{{ route('Page_TermsConditions') }}">{{ __('web/menu.Terms') }}</a></li>
-                            <li><a class="" href="{{ route('Page_ContactUs') }}">{{  __('web/menu.contatc_us')}}</a></li>
-                        </ul>
-                    </x-website.footer-col-row>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <x-website.footer-col-row title="{{__('web/footer.menu_Categories')}}" prefix="Four" >
-                        <ul class="widget_links">
+                                @if($agent->isMobile())
+                                    @foreach($MenuCategory as $MainCategory)
+                                        <li><a href="#">{{$MainCategory->name}}</a></li>
+                                    @endforeach
 
-                            @if($agent->isMobile())
-                                @foreach($MenuCategory as $MainCategory)
-                                    <li><a href="#">{{$MainCategory->name}}</a></li>
-                                @endforeach
-
-                            @else
-                                @foreach($MenuCategory as $MainCategory)
-                                    @if($loop->index < 7)
-                                    <li><a href="#">{{$MainCategory->name}}</a></li>
-                                    @endif
-                                @endforeach
+                                @else
+                                    @foreach($MenuCategory as $MainCategory)
+                                        @if($loop->index < 7)
+                                            <li><a href="#">{{$MainCategory->name}}</a></li>
+                                        @endif
+                                    @endforeach
 
 
+                                @endif
+
+                            </ul>
+                            @if(count($MenuCategory) > 7)
+                                <p class="footer_about_more">
+                                    <a href="{{route('Page_MainCategory')}}">{{__('web/def.View_All')}}</a>
+                                </p>
                             @endif
 
-                        </ul>
-                        @if(count($MenuCategory) > 7)
-                            <p class="footer_about_more">
-                                <a href="{{route('Page_MainCategory')}}">{{__('web/def.View_All')}}</a>
-                            </p>
-                        @endif
+                        </x-website.footer-col-row>
+                    </div>
+                @endif
 
-                    </x-website.footer-col-row>
-                </div>
 
             </div>
         </div>

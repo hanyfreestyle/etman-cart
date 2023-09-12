@@ -43,7 +43,7 @@ class WebMainController extends Controller
         $CartList = Product::inRandomOrder()->limit(2)->get();
         View::share('CartList', $CartList);
 
-        $RecentProduct = Product::inRandomOrder()->limit(3)->get();
+        $RecentProduct = Product::where('category_id',39)->inRandomOrder()->limit(4)->get();
         View::share('RecentProduct', $RecentProduct);
 
 

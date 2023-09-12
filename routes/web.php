@@ -17,6 +17,7 @@ Auth::viaRemember();
 Route::group(['prefix' => LaravelLocalization::setLocale()], function(){
     Route::get('/', [WebPageController::class, 'HomePage'])->name('Page_HomePage');
     Route::get('/web/Qview/{slug}', [WebPageController::class, 'WebPro_Qview'])->name('Page_WebPro_Qview');
+    Route::get('/shop/Qview/{slug}', [ShopPageController::class, 'Pro_Qview'])->name('Shop_Pro_Qview');
 
 });
 
@@ -73,7 +74,35 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 Route::group(['prefix' => 'EtmanShop'], function(){
     Route::get('/', [ShopPageController::class, 'Shop_HomePage'])->name('Shop_HomePage');
 
+    Route::get(LaravelLocalization::transRoute('routes.MainCategory'),[ShopPageController::class, 'MainCategory'])
+        ->name('Shop_MainCategory');
 
+    Route::get(LaravelLocalization::transRoute('routes.WebCategoryView'),[ShopPageController::class, 'ShopCategoryView'])
+        ->name('Shop_CategoryView');
+
+    Route::get(LaravelLocalization::transRoute('routes.WebProductView'),[ShopPageController::class, 'ShopProductView'])
+        ->name('Shop_ProductView');
+
+    Route::get(LaravelLocalization::transRoute('routes.WebProductView'),[ShopPageController::class, 'ShopProductView'])
+        ->name('Shop_ProductView');
+
+
+    Route::get(LaravelLocalization::transRoute('routes.FaqList'),[ShopPageController::class, 'FaqList'])
+        ->name('Shop_FaqList');
+
+    Route::get(LaravelLocalization::transRoute('routes.FaqCatView'),[ShopPageController::class, 'FaqCatView'])
+        ->name('Shop_FaqCatView');
+
+
+
+    Route::get('/recently',[ShopPageController::class, 'Recently'])
+        ->name('Shop_Recently');
+
+    Route::get('/week-offers',[ShopPageController::class, 'WeekOffers'])
+        ->name('Shop_WeekOffers');
+
+    Route::get('/best-deals',[ShopPageController::class, 'BestDeals'])
+        ->name('Shop_BestDeals');
 });
 
 

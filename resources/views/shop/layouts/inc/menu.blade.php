@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-4 col-sm-6 col-3">
-                @include('web.layouts.inc.categories-wrap')
+                @include('shop.layouts.inc.categories-wrap')
             </div>
 
             <div class="col-lg-9 col-md-8 col-sm-6 col-9">
@@ -13,20 +13,22 @@
                     </button>
                     <div class="collapse navbar-collapse mobile_side_menu" id="navbarSidetoggle">
                         <ul class="navbar-nav">
-                            <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'HomePage' ) setActive @endif" href="{{ route('Page_HomePage') }}">{{__('web/menu.home_page')}} </a></li>
-                            <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'MainCategory' ) setActive @endif" href="{{ route('Page_MainCategory') }}">{{__('web/def.Main_Categories')}} </a></li>
-                            <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'AboutUs' ) setActive @endif" href="{{ route('Page_AboutUs') }}">{{ __('web/menu.About_Us') }}</a></li>
-                            <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'OurClient' ) setActive @endif" href="{{ route('Page_OurClient') }}">{{ __('web/menu.Our_Client') }}</a></li>
-                            <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'LatestNews' ) setActive @endif" href="{{ route('Page_LatestNews') }}">{{ __('web/menu.Latest_News')}}</a></li>
-                            <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'FaqList' ) setActive @endif" href="{{ route('Page_FaqList') }}">{{ __('web/menu.Faq') }}</a></li>
+                            <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'HomePage' ) setActive @endif" href="{{ route('Shop_HomePage') }}">{{__('web/menu.home_page')}} </a></li>
+                            <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'MainCategory' ) setActive @endif" href="{{ route('Shop_MainCategory') }}">{{__('web/def.Main_Categories')}} </a></li>
+                            <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'Shop_Recently' ) setActive @endif" href="{{ route('Shop_Recently') }}">{{ __('web/menu.recently_arrived')}} </a></li>
+                            <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'Shop_WeekOffers' ) setActive @endif" href="{{ route('Shop_WeekOffers') }}">{{ __('web/menu.week_offer') }} </a></li>
+                            <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'Shop_BestDeals' ) setActive @endif" href="{{ route('Shop_BestDeals') }}">{{ __('web/menu.client_offer') }} </a></li>
+
+
+
+
+{{--                            <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'FaqList' ) setActive @endif" href="{{ route('Shop_FaqList') }}">{{ __('web/menu.Faq') }}</a></li>--}}
                             <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'ContactUs' ) setActive @endif" href="{{ route('Page_ContactUs') }}">{{ __('web/menu.contatc_us')}}</a></li>
                         </ul>
                     </div>
 
                     <ul class="navbar-nav attr-nav align-items-center">
-                        <li><a href="{{ LaravelLocalization::getLocalizedURL(webChangeLocale(), null, [], true) }}" class="nav-link changeLangMobile">
-                                <span> <img src="{{ defWebAssets('img/'.webChangeLocale().'.png') }}" alt=""></span>
-                            </a></li>
+
                         <li><a href="#" class="nav-link"><i class="linearicons-user"></i></a></li>
                         <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="#" data-bs-toggle="dropdown"><i class="linearicons-cart"></i><span class="cart_count">2</span></a>
 

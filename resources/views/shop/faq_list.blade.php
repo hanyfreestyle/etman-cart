@@ -1,4 +1,4 @@
-@extends('web.layouts.app')
+@extends('shop.layouts.app')
 @section('breadcrumb')
     <x-website.breadcrumb >
         {{ Breadcrumbs::render($SinglePageView['breadcrumb']) }}
@@ -6,7 +6,7 @@
 @endsection
 @section('content')
 
-    <div class="section faqcat_list pt-0 pt-lg-0">
+    <div class="section faqcat_list pt-0 pt-lg-3">
 
         <div class="container">
 
@@ -27,17 +27,17 @@
                                     <div class="icon_box icon_box_style2">
 
                                         <div class="icon faq_icon">
-                                            <a href="{{route('Page_FaqCatView',$Category->slug)}}">
+                                            <a href="{{route('Shop_FaqCatView',$Category->slug)}}">
                                                 <img src="{!! getPhotoPath($Category->photo_thum_1,"faq-icon") !!}">
                                             </a>
                                         </div>
 
                                         <div class="icon_box_content">
-                                            <h2><a href="{{route('Page_FaqCatView',$Category->slug)}}">{{ $Category->name }}</a>
+                                            <h2><a href="{{route('Shop_FaqCatView',$Category->slug)}}">{{ $Category->name }}</a>
                                                 <span class="cat_count">({{$Category->faq_to_cat_count}})</span></h2>
                                             <p>{{ $Category->g_des }}</p>
                                             <span class="readmore">
-                                                <a href="{{route('Page_FaqCatView',$Category->slug)}}">{{__('web/def.read_more')}}</a>
+                                                <a href="{{route('Shop_FaqCatView',$Category->slug)}}">{{__('web/def.read_more')}}</a>
                                             </span>
                                         </div>
                                     </div>

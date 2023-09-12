@@ -10,14 +10,16 @@ class BlockFaqCarousel extends Component
 {
     public $faqCategories ;
     public $lable;
+    public $url;
     public function __construct(
         $faqCategories = array(),
         $lable = '',
+        $url = 'Page_FaqCatView',
     )
     {
         $this->faqCategories = $faqCategories;
 
-
+        $this->url = $url;
 
         if( $lable != null){
             $this->lable = $lable;

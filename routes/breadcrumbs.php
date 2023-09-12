@@ -80,3 +80,57 @@ Breadcrumbs::for('WebProductView', function (BreadcrumbTrail $trail, $trees,$Pro
 });
 
 
+
+Breadcrumbs::for('Shop_home', function (BreadcrumbTrail $trail) {
+    $trail->push('<i class="fa fa-home"></i>', route('Shop_HomePage'));
+});
+
+
+Breadcrumbs::for('Shop_MainCategory', function (BreadcrumbTrail $trail) {
+    $trail->parent('Shop_home');
+    $trail->push(__('web/def.Main_Categories'), route('Shop_MainCategory'));
+});
+
+Breadcrumbs::for('Shop_CategoryView', function (BreadcrumbTrail $trail, $trees) {
+    $trail->parent('Shop_MainCategory');
+    foreach($trees as $tree){
+        $trail->push($tree->name, route('Shop_CategoryView', $tree->slug));
+    }
+});
+
+Breadcrumbs::for('Shop_ProductView', function (BreadcrumbTrail $trail, $trees,$Product) {
+    $trail->parent('Shop_MainCategory');
+    foreach($trees as $tree){
+        $trail->push($tree->name, route('Shop_CategoryView', $tree->slug));
+    }
+    $trail->push($Product->name, route('Shop_ProductView', $Product->slug));
+});
+
+
+Breadcrumbs::for('Shop_FaqList', function (BreadcrumbTrail $trail) {
+    $trail->parent('Shop_home');
+    $trail->push(__('web/menu.Faq'), route('Shop_FaqList'));
+});
+
+Breadcrumbs::for('Shop_FaqCatView', function (BreadcrumbTrail $trail, $FaqCategory) {
+    $trail->parent('Shop_FaqList');
+    $trail->push($FaqCategory->name, route('Shop_FaqCatView', $FaqCategory->slug));
+});
+
+
+Breadcrumbs::for('Shop_Recently', function (BreadcrumbTrail $trail) {
+    $trail->parent('Shop_home');
+    $trail->push(__('web/menu.recently_arrived'), route('Shop_Recently'));
+});
+
+Breadcrumbs::for('Shop_BestDeals', function (BreadcrumbTrail $trail) {
+    $trail->parent('Shop_home');
+    $trail->push(__('web/menu.client_offer'), route('Shop_BestDeals'));
+});
+Breadcrumbs::for('Shop_WeekOffers', function (BreadcrumbTrail $trail) {
+    $trail->parent('Shop_home');
+    $trail->push(__('web/menu.week_offer'), route('Shop_WeekOffers'));
+});
+
+
+

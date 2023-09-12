@@ -7,7 +7,7 @@
          class="@if($SinglePageView['banner_id']  and $SinglePageView['banner_count'] > 0) nav_cat @endif navbar collapse">
         <ul>
             @foreach($MenuCategory as $MainCategory)
-                @if($loop->index < 9)
+                @if($loop->index < 8)
                     @if($MainCategory->children_count <= 0 )
                         <li><a class="dropdown-item nav-link nav_item" href="{{route('Page_WebCategoryView',$MainCategory->slug)}}">
                                 <span class="cat_icon_span"><img class="cat_icon" width="30" src="{{getPhotoPath($MainCategory->icon ,"faq-icon")}}"></span>
@@ -57,9 +57,9 @@
 
             <li>
                 <ul class="more_slide_open">
-                    @if(count($MenuCategory) > 9)
+                    @if(count($MenuCategory) > 8)
                         @foreach($MenuCategory as $MainCategory)
-                            @if($loop->index > 9)
+                            @if($loop->index > 8)
                                 <li><a class="dropdown-item nav-link nav_item" href="{{route('Page_WebCategoryView',$MainCategory->slug)}}">
                                         <span class="cat_icon_span"><img class="cat_icon" width="30" src="{{getPhotoPath($MainCategory->icon ,"faq-icon")}}"></span>
                                         <span>{{$MainCategory->name}}</span></a></li>

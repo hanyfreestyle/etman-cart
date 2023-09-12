@@ -1,7 +1,7 @@
 <div class="middle-header dark_skin">
     <div class="container">
         <div class="nav_block">
-            <a class="navbar-brand" href="{{route('Page_HomePage')}}">
+            <a class="navbar-brand" href="{{route('Shop_HomePage')}}">
                 <img class="logo_dark header_logo" src=" {{getDefPhotoPath($DefPhotoList,'dark-logo')}}" alt="logo" />
             </a>
             <div class="contact_phone order-md-last forcDir">

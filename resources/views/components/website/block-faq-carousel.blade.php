@@ -12,7 +12,7 @@
                 @foreach($faqCategories as $FaqCategory)
                     @if($FaqCategory->photo)
                         <div class="item">
-                            <a href="{{route('Page_FaqCatView',$FaqCategory->slug)}}">
+                            <a href="{{route($url,$FaqCategory->slug)}}">
                                 <div class="">
                                     <img src="{{getPhotoPath($FaqCategory->photo)}}" alt="cl_logo"/>
                                 </div>
