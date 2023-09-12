@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 23, 2023 at 05:11 PM
+-- Generation Time: Sep 12, 2023 at 03:41 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -58,7 +58,12 @@ INSERT INTO `products` (`id`, `category_id`, `photo`, `photo_thum_1`, `is_active
 (51, 16, 'images/product/51/mr-foil-oven-2.webp', 'images/product/51/mr-foil-oven-2_1.webp', 1, '2023-08-23 10:35:06', '2023-08-23 12:07:11'),
 (52, 16, 'images/product/52/mr-foil-oven.webp', 'images/product/52/mr-foil-oven_1.webp', 1, '2023-08-23 10:35:06', '2023-08-23 12:07:11'),
 (53, 17, 'images/product/53/aluminium-foil-king.webp', 'images/product/53/aluminium-foil-king_1.webp', 1, '2023-08-23 10:35:06', '2023-08-23 12:07:11'),
-(55, 37, '', '', 1, '2023-08-23 10:35:06', '2023-08-23 10:35:06');
+(55, 37, '', '', 1, '2023-08-23 10:35:06', '2023-08-23 10:35:06'),
+(56, 39, 'images/product/56/مسدس-شمع-بسلك-كهرباء-من-يوني-تي-موديل-eh430-27KFKArcIK.webp', 'images/product/56/مسدس-شمع-بسلك-كهرباء-من-يوني-تي-موديل-eh430-2PI1TFWSZe.webp', 1, '2023-09-11 17:04:54', '2023-09-11 17:09:56'),
+(57, 39, 'images/product/57/مسدس-شمع-st-03-20w-حجم-صغير-ازرق-RIJhHKr9RU.webp', 'images/product/57/مسدس-شمع-st-03-20w-حجم-صغير-ازرق-0BiTOSAKTw.webp', 1, '2023-09-11 17:11:43', '2023-09-11 17:11:44'),
+(58, 39, 'images/product/58/مسدس-شمع-برو-جلو-من-ستانلي-gr100-1RhDP71AO3.webp', 'images/product/58/مسدس-شمع-برو-جلو-من-ستانلي-gr100-WGykuxK7pV.webp', 1, '2023-09-11 17:13:31', '2023-09-11 17:13:31'),
+(59, 39, 'images/product/59/مسدس-شمع-من-عتمان-جروب-متعدد-الألوان-tRbKwi2gQE.webp', 'images/product/59/مسدس-شمع-من-عتمان-جروب-متعدد-الألوان-ttXSIKzJjo.webp', 1, '2023-09-11 17:14:46', '2023-09-11 17:14:47'),
+(60, 39, 'images/product/60/مسدس-غراء-احترافي-220-وات-من-توتال-tt301116-PrHOfI9xQ1.webp', 'images/product/60/مسدس-غراء-احترافي-220-وات-من-توتال-tt301116-PHcLFwh2p0.webp', 1, '2023-09-11 17:18:06', '2023-09-11 18:55:43');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

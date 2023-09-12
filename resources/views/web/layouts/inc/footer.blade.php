@@ -67,13 +67,13 @@
 
                             @if($agent->isMobile())
                                 @foreach($MenuCategory as $MainCategory)
-                                    <li><a href="#">{{$MainCategory->name}}</a></li>
+                                    <li><a href="{{route('Page_WebCategoryView',$MainCategory->slug)}}">{{$MainCategory->name}}</a></li>
                                 @endforeach
 
                             @else
                                 @foreach($MenuCategory as $MainCategory)
                                     @if($loop->index < 7)
-                                    <li><a href="#">{{$MainCategory->name}}</a></li>
+                                    <li><a href="{{route('Page_WebCategoryView',$MainCategory->slug)}}">{{$MainCategory->name}}</a></li>
                                     @endif
                                 @endforeach
 

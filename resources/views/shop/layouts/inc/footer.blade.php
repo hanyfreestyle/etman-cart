@@ -13,11 +13,11 @@
                         <x-website.footer-col-row title="{{ __('web/footer.menu_main') }}" prefix="Three" >
                             <ul class="widget_links">
                                 <li><a class="" href="{{ route('Shop_HomePage') }}">{{__('web/menu.home')}} </a></li>
-                                <li><a class="" href="{{ route('Page_AboutUs') }}">{{ __('web/menu.About_Us') }}</a></li>
-                                <li><a class="" href="{{ route('Page_OurClient') }}">{{ __('web/menu.Our_Client') }}</a></li>
-                                <li><a class="" href="{{ route('Page_LatestNews') }}">{{  __('web/menu.Latest_News')}}</a></li>
-                                <li><a class="" href="{{ route('Page_FaqList') }}">{{ __('web/menu.Faq') }}</a></li>
-                                <li><a class="" href="{{ route('Page_TermsConditions') }}">{{ __('web/menu.Terms') }}</a></li>
+{{--                                <li><a class="" href="{{ route('Page_AboutUs') }}">{{ __('web/menu.About_Us') }}</a></li>--}}
+{{--                                <li><a class="" href="{{ route('Page_OurClient') }}">{{ __('web/menu.Our_Client') }}</a></li>--}}
+{{--                                <li><a class="" href="{{ route('Page_LatestNews') }}">{{  __('web/menu.Latest_News')}}</a></li>--}}
+                                <li><a class="" href="{{ route('Shop_FaqList') }}">{{ __('web/menu.Faq') }}</a></li>
+{{--                                <li><a class="" href="{{ route('Page_TermsConditions') }}">{{ __('web/menu.Terms') }}</a></li>--}}
                                 <li><a class="" href="{{ route('Page_ContactUs') }}">{{  __('web/menu.contatc_us')}}</a></li>
                             </ul>
                         </x-website.footer-col-row>
@@ -28,13 +28,13 @@
 
                                 @if($agent->isMobile())
                                     @foreach($MenuCategory as $MainCategory)
-                                        <li><a href="#">{{$MainCategory->name}}</a></li>
+                                        <li><a href="{{route('Shop_CategoryView',$MainCategory->slug)}}">{{$MainCategory->name}}</a></li>
                                     @endforeach
 
                                 @else
                                     @foreach($MenuCategory as $MainCategory)
                                         @if($loop->index < 7)
-                                            <li><a href="#">{{$MainCategory->name}}</a></li>
+                                            <li><a href="{{route('Shop_CategoryView',$MainCategory->slug)}}">{{$MainCategory->name}}</a></li>
                                         @endif
                                     @endforeach
 
@@ -84,7 +84,7 @@
                             @endif
 
                             @if($WebConfig->linkedin)
-                                    <li><a href="{{$WebConfig->linkedin}}" target="_blank" class="sc_linkedin"><i class="ion-social-linkedin"></i></a></li>
+                                <li><a href="{{$WebConfig->linkedin}}" target="_blank" class="sc_linkedin"><i class="ion-social-linkedin"></i></a></li>
                             @endif
 
 

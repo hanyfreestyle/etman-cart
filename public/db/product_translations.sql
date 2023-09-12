@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 23, 2023 at 04:41 PM
+-- Generation Time: Sep 12, 2023 at 03:42 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -91,7 +91,17 @@ INSERT INTO `product_translations` (`id`, `product_id`, `locale`, `slug`, `name`
 (63, 53, 'ar', 'الومنيوم-فويل-كينك', 'الومنيوم فويل كينك', 'العلامة التجارية رقم 1 لرقائق الألمنيوم المصنوعة في مصر ، الومنيوم فويل كينك بالقوة والجودة الموثوق بها التي يمكنك الاعتماد عليها لطهي وجبات لذيذة مع سهولة التنظيف\r\nسميكة جدًا للطبخ في الفرن أو على الشواية أو على النار ؛ يسمح للطهي لفترة أطول من أجل شواء اللحوم بشكل أفضل.يساعدك صندوق الورق المقوى المزود بقاطع معدني على تمزيق ورق القصدير بشكل أكثر كفاءة وراحة. ', 'الومنيوم فويل استخدام منزلى | الومنيوم فويل كينك', 'العلامة التجارية رقم 1 لرقائق الألمنيوم المصنوعة في مصر ، الومنيوم فويل كينك بالقوة والجودة الموثوق بها التي يمكنك الاعتماد عليها لطهي وجبات لذيذة مع سهولة '),
 (64, 53, 'en', 'Aluminium-foil-King', 'Aluminium foil King', 'The number 1 brand of aluminum foil made in the Egypt, MR. FOIL has the trusted strength and quality you can count on for cooking delicious meals with easy cleanup \r\nExtra thickened for cooking in the oven, on the grill or over a fire; allows for longer cooking limiting to better broil the meats.\r\nPaper board box with metal cutter help you to tear off the foil paper more efficiently and conveniently.', 'Aluminium foil for House Hold | Aluminium foil King', 'The number 1 brand of aluminum foil made in the Egypt, King has the trusted strength and quality you can count on for cooking delicious meals'),
 (65, 55, 'ar', 'جامبو-رول', 'جامبو رول ', 'جامبو رول ', 'جامبو رول ', 'جامبو رول '),
-(66, 55, 'en', 'Jumbo-Roll', ' Jumbo Roll', 'جامبو رول ', ' Jumbo Roll', 'جامبو رول ');
+(66, 55, 'en', 'Jumbo-Roll', ' Jumbo Roll', 'جامبو رول ', ' Jumbo Roll', 'جامبو رول '),
+(67, 56, 'ar', 'مسدس-شمع-بسلك-كهرباء-من-يوني-تي-موديل-eh430', 'مسدس شمع بسلك كهرباء من يوني-تي موديل EH430', 'العلامة التجارية: يوني-تي\r\nمصدر الطاقة: سلك كهربائي\r\nنوع المنتج: مسدس شمع\r\nرقم الموديل: EH430\r\nهل يعمل المنتج بالبطارية أم المنتج بطارية: لا\r\nهل يعتبر هذا المنتج خطر أو مصنوع من خامة أو مادة خطيرة ولكن يصلح للنقل أو التخزين و/أو التخلص منه؟: لا', '350', NULL),
+(68, 56, 'en', 'مسدس-شمع-بسلك-كهرباء-من-يوني-تي-موديل-eh430', 'مسدس شمع بسلك كهرباء من يوني-تي موديل EH430', NULL, NULL, NULL),
+(69, 57, 'ar', 'مسدس-شمع-st-03-20w-حجم-صغير-ازرق', 'مسدس شمع ST-03 20W، حجم صغير - ازرق', NULL, '221', NULL),
+(70, 57, 'en', 'مسدس-شمع-st-03-20w-حجم-صغير-ازرق', 'مسدس شمع ST-03 20W، حجم صغير - ازرق', NULL, NULL, NULL),
+(71, 58, 'ar', 'مسدس-شمع-برو-جلو-من-ستانلي-gr100', 'مسدس شمع برو جلو من ستانلي GR100', NULL, '475', NULL),
+(72, 58, 'en', 'مسدس-شمع-برو-جلو-من-ستانلي-gr100', 'مسدس شمع برو جلو من ستانلي GR100', NULL, NULL, NULL),
+(73, 59, 'ar', 'مسدس-شمع-من-عتمان-جروب-متعدد-الألوان', 'مسدس شمع من عتمان جروب، متعدد الألوان', NULL, '138', NULL),
+(74, 59, 'en', 'مسدس-شمع-من-عتمان-جروب-متعدد-الألوان', 'مسدس شمع من عتمان جروب، متعدد الألوان', NULL, NULL, NULL),
+(75, 60, 'ar', 'مسدس-غراء-احترافي-220-وات-من-توتال-tt301116', 'مسدس غراء احترافي 220 وات من توتال TT301116', 'اللون 	أزرق/أحمر/أبيض\r\nاسم العلامة التجارية 	توتال تولز\r\nالنمط 	زناد\r\nأبعاد السلعة 	34,5 x 24 x 6 سم\r\nمصدر الطاقة 	سلك كهربائي\r\nالقوة الكهربائية 	220 واط\r\nأبعاد المنتج الطول × العرض × الارتفاع 	35,4L x 6W x 24H سم', '334', NULL),
+(76, 60, 'en', 'مسدس-غراء-احترافي-220-وات-من-توتال-tt301116', 'مسدس غراء احترافي 220 وات من توتال TT301116', NULL, NULL, NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

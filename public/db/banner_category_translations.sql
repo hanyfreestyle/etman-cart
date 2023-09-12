@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 26, 2023 at 09:02 PM
+-- Generation Time: Sep 12, 2023 at 03:38 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -31,7 +31,9 @@ INSERT INTO `banner_category_translations` (`id`, `category_id`, `locale`, `name
 (3, 2, 'ar', 'سلايد 2'),
 (4, 2, 'en', 'سلايد 2'),
 (5, 3, 'ar', 'Dark'),
-(6, 3, 'en', 'Dark');
+(6, 3, 'en', 'Dark'),
+(7, 4, 'ar', 'رئيسية الموقع'),
+(8, 4, 'en', 'رئيسية الموقع');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

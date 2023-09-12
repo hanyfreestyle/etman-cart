@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 23, 2023 at 09:51 PM
+-- Generation Time: Sep 12, 2023 at 03:41 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -125,7 +125,12 @@ INSERT INTO `product_photos` (`id`, `product_id`, `photo`, `photo_thum_1`, `phot
 (107, 18, 'images/product/18/gift-accessories-metallic-pp-ribbon_6.webp', 'images/product/18/gift-accessories-metallic-pp-ribbon_7.webp', NULL, NULL, NULL, NULL, NULL, 0, 0, '2023-08-23 15:48:12', '2023-08-23 16:47:55'),
 (108, 19, 'images/product/19/gift-accessories-metallic-paper_2.webp', 'images/product/19/gift-accessories-metallic-paper_3.webp', NULL, NULL, NULL, NULL, NULL, 0, 0, '2023-08-23 15:48:12', '2023-08-23 16:47:56'),
 (109, 19, 'images/product/19/gift-accessories-metallic-paper_4.webp', 'images/product/19/gift-accessories-metallic-paper_5.webp', NULL, NULL, NULL, NULL, NULL, 0, 0, '2023-08-23 15:48:12', '2023-08-23 16:47:56'),
-(110, 19, 'images/product/19/gift-accessories-metallic-paper_6.webp', 'images/product/19/gift-accessories-metallic-paper_7.webp', NULL, NULL, NULL, NULL, NULL, 0, 0, '2023-08-23 15:48:12', '2023-08-23 16:47:57');
+(110, 19, 'images/product/19/gift-accessories-metallic-paper_6.webp', 'images/product/19/gift-accessories-metallic-paper_7.webp', NULL, NULL, NULL, NULL, NULL, 0, 0, '2023-08-23 15:48:12', '2023-08-23 16:47:57'),
+(111, 60, 'images/product/60/مسدس-غراء-احترافي-220-وات-من-توتال-tt301116-Ug0rtMuM0K.webp', 'images/product/60/مسدس-غراء-احترافي-220-وات-من-توتال-tt301116-oWfEZ7pSHs.webp', NULL, NULL, NULL, NULL, NULL, 0, 0, '2023-09-11 18:39:32', '2023-09-11 18:39:32'),
+(112, 60, 'images/product/60/مسدس-غراء-احترافي-220-وات-من-توتال-tt301116-ebXBwXIB80.webp', 'images/product/60/مسدس-غراء-احترافي-220-وات-من-توتال-tt301116-cLdWjkMrUi.webp', NULL, NULL, NULL, NULL, NULL, 0, 0, '2023-09-11 18:39:32', '2023-09-11 18:39:32'),
+(113, 60, 'images/product/60/مسدس-غراء-احترافي-220-وات-من-توتال-tt301116-W0gbOwdt50.webp', 'images/product/60/مسدس-غراء-احترافي-220-وات-من-توتال-tt301116-ZUSacY0tn7.webp', NULL, NULL, NULL, NULL, NULL, 0, 0, '2023-09-11 18:39:32', '2023-09-11 18:39:32'),
+(114, 60, 'images/product/60/مسدس-غراء-احترافي-220-وات-من-توتال-tt301116-vqscq3MCxq.webp', 'images/product/60/مسدس-غراء-احترافي-220-وات-من-توتال-tt301116-GfZfc2duJg.webp', NULL, NULL, NULL, NULL, NULL, 0, 0, '2023-09-11 18:39:32', '2023-09-11 18:39:32'),
+(115, 60, 'images/product/60/مسدس-غراء-احترافي-220-وات-من-توتال-tt301116-IWsw70hgkv.webp', 'images/product/60/مسدس-غراء-احترافي-220-وات-من-توتال-tt301116-XAfMawrsM2.webp', NULL, NULL, NULL, NULL, NULL, 0, 0, '2023-09-11 18:39:32', '2023-09-11 18:39:32');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

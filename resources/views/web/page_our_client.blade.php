@@ -4,6 +4,16 @@
         {{ Breadcrumbs::render($SinglePageView['breadcrumb']) }}
     </x-website.breadcrumb>
 @endsection
+
+@section('AddStyle')
+    <style>
+        .web_site_navbar_nav i{
+            display: none!important;
+        }
+    </style>
+@endsection
+
+
 @section('content')
 
     <div class="section">

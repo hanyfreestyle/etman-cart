@@ -34,6 +34,7 @@
 
     <link rel="stylesheet" href="{{ defWebAssets('css/custom_style.css') }}">
     <link rel="stylesheet" href="{{ defWebAssets('css/custom_'.thisCurrentLocale().'.css') }}">
+    @yield('AddStyle')
 </head>
 <body {!! htmlArDir() !!}>
 

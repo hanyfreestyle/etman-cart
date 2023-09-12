@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 09, 2023 at 01:44 PM
+-- Generation Time: Sep 12, 2023 at 03:41 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -43,7 +43,11 @@ INSERT INTO `page_translations` (`id`, `page_id`, `locale`, `slug`, `name`, `g_t
 (15, 8, 'ar', 'من-نحن', 'من نحن', 'عتمان جروب هي شركة محلية منذ عام 1967 | الاسكندرية 01006180117', 'عتمان جروب هي شركة محلية أسسها السيد حسن عتمان منذ عام 1967. بدأت رحلة السيد عتمان نحو النجاح بفضل تطور شركته من خلال إنتاج شرائط البولي بروبلين وشرائط الزينة', 'من نحن', 'من نحن'),
 (16, 8, 'en', 'about-us', 'About Us', 'Etman Group is a local company since 1967 | Alexandria 01006180117', 'Etman Group is a local company founded and operated by Mr Hassan Etman in 1967. Mr Etman’s journey to success started due to the development of his company by', 'About Us', 'About Us'),
 (17, 9, 'ar', 'قائمة-المنتجات', 'قائمة المنتجات', 'قائمة المنتجات', 'قائمة المنتجات', 'قائمة المنتجات', 'قائمة المنتجات'),
-(18, 9, 'en', 'category-list', 'Category List', 'Category List', 'Category List', 'Category List', 'Category List');
+(18, 9, 'en', 'category-list', 'Category List', 'Category List', 'Category List', 'Category List', 'Category List'),
+(19, 10, 'ar', 'تسوق-الان-مع-عتمان', 'تسوق الان مع عتمان', 'تسوق الان مع عتمان', 'تسوق الان مع عتمان', 'تسوق الان مع عتمان', 'تسوق الان مع عتمان'),
+(20, 10, 'en', 'shop-now', 'Shop Now', 'Shop Now', 'Shop Now', 'Shop Now', 'Shop Now'),
+(21, 11, 'ar', 'عروض-تجار-الجملة', 'عروض تجار الجملة', 'عروض تجار الجملة', 'عروض تجار الجملة', 'عروض تجار الجملة', 'عروض تجار الجملة'),
+(22, 11, 'en', 'عروض-تجار-الجملة', 'عروض تجار الجملة', 'عروض تجار الجملة', 'عروض تجار الجملة', 'عروض تجار الجملة', 'عروض تجار الجملة');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

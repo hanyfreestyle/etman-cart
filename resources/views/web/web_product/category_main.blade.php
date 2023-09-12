@@ -5,6 +5,8 @@
         {{ Breadcrumbs::render($SinglePageView['breadcrumb']) }}
     </x-website.breadcrumb>
 @endsection
+
+
 @section('content')
     <div class="section MainCategoryList">
         <div class="container">
