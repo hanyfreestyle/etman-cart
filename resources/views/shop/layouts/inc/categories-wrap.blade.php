@@ -9,12 +9,12 @@
             @foreach($MenuCategory as $MainCategory)
                 @if($loop->index < 8)
                     @if($MainCategory->children_count <= 0 )
-                        <li><a class="dropdown-item nav-link nav_item" href="{{route('Page_WebCategoryView',$MainCategory->slug)}}">
+                        <li><a class="dropdown-item nav-link nav_item" href="{{route('Shop_CategoryView',$MainCategory->slug)}}">
                                 <span class="cat_icon_span"><img class="cat_icon" width="30" src="{{getPhotoPath($MainCategory->icon ,"faq-icon")}}"></span>
                                 <span>{{$MainCategory->name}}</span></a></li>
                     @else
                         <li class="dropdown dropdown-mega-menu">
-                            <a class="dropdown-item nav-link dropdown-toggler" href="{{route('Page_WebCategoryView',$MainCategory->slug)}}" data-bs-toggle="dropdown">
+                            <a class="dropdown-item nav-link dropdown-toggler" href="{{route('Shop_CategoryView',$MainCategory->slug)}}" data-bs-toggle="dropdown">
                                 <span class="cat_icon_span"><img class="cat_icon" width="30" src="{{getPhotoPath($MainCategory->icon ,"faq-icon")}}"></span>
                                 <span>{{$MainCategory->name}}</span></a>
                             <div class="dropdown-menu">
@@ -26,10 +26,10 @@
                                                     @if($loop->index < 2)
                                                         <li class="mega-menu-col col-lg-6">
                                                             <ul>
-                                                                <li class="dropdown-header sub_catName"><a href="{{route('Page_WebCategoryView',$SubCategory->slug)}}">{{$SubCategory->name}}</a></li>
+                                                                <li class="dropdown-header sub_catName"><a href="{{route('Shop_CategoryView',$SubCategory->slug)}}">{{$SubCategory->name}}</a></li>
                                                                 @if(count($SubCategory->CatProduct) > 0 )
                                                                     @foreach($SubCategory->CatProduct as $Product)
-                                                                        <li class="Product_name"><a class="dropdown-item nav-link nav_item" href="{{route('Page_WebProductView',$Product->slug)}}">{{$Product->name}}</a></li>
+                                                                        <li class="Product_name"><a class="dropdown-item nav-link nav_item" href="{{route('Shop_ProductView',$Product->slug)}}">{{$Product->name}}</a></li>
                                                                     @endforeach
                                                                 @endif
                                                             </ul>
@@ -41,9 +41,9 @@
                                     </li>
                                     <li class="mega-menu-col col-lg-5 d-none d-md-block">
                                         <div class="header-banner2">
-                                            <a href="{{route('Page_WebCategoryView',$MainCategory->slug)}}"> <img  class="img_cat" src="{{getPhotoPath($MainCategory->photo,"blog")}}" class="rounded" alt="menu_banner1"></a>
+                                            <a href="{{route('Shop_CategoryView',$MainCategory->slug)}}"> <img  class="img_cat" src="{{getPhotoPath($MainCategory->photo,"blog")}}" class="rounded" alt="menu_banner1"></a>
                                             <div class="readMore_but">
-                                            <a href="{{route('Page_WebCategoryView',$MainCategory->slug)}}">{{__('web/def.Load_More')}}</a>
+                                            <a href="{{route('Shop_CategoryView',$MainCategory->slug)}}">{{__('web/def.Load_More')}}</a>
                                             </div>
 
                                         </div>
@@ -60,7 +60,7 @@
                     @if(count($MenuCategory) > 8)
                         @foreach($MenuCategory as $MainCategory)
                             @if($loop->index > 8)
-                                <li><a class="dropdown-item nav-link nav_item" href="{{route('Page_WebCategoryView',$MainCategory->slug)}}">
+                                <li><a class="dropdown-item nav-link nav_item" href="{{route('Shop_CategoryView',$MainCategory->slug)}}">
                                         <span class="cat_icon_span"><img class="cat_icon" width="30" src="{{getPhotoPath($MainCategory->icon ,"faq-icon")}}"></span>
                                         <span>{{$MainCategory->name}}</span></a></li>
                             @endif

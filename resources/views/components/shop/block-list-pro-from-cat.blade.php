@@ -5,12 +5,7 @@
         <a href="{{route('Shop_ProductView',$product->slug)}}">
             <img src="{{getPhotoPath($product->photo,'categorie')}}" alt="product_img3">
         </a>
-        <div class="product_action_box">
-            <ul class="list_none pr_action_btn">
-                <li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i>{{__('web/cart.Add To Cart')}}</a></li>
-                <li><a href="{{route('Shop_Pro_Qview',$product->slug)}}" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-            </ul>
-        </div>
+
     </div>
     <div class="product_info">
         <h6 class="product_title"><a href="{{route('Shop_ProductView',$product->slug)}}">{{$product->name}}</a></h6>
@@ -33,7 +28,16 @@
 
 
 
-        <div class="rating_wrap">
+
+        <div class="rating_wrap rating_wrap_new">
+            <div class="add_to_cart_new quantity_new" >
+
+                <input type="button" value="-" class="minus">
+                <input type="text" name="quantity" value="1" title="Qty" class="qty" size="4">
+                <input type="button" value="+" class="plus">
+
+            </div>
+<span class="add_to_cart_new"><a href="#" ><i class="icon-basket-loaded"></i></a></span>
 
         </div>
 
@@ -47,13 +51,13 @@
 
 
 
-        <div class="list_product_action_box">
-            <ul class="list_none pr_action_btn">
-                <li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i></a></li>
+{{--        <div class="list_product_action_box">--}}
+{{--            <ul class="list_none pr_action_btn">--}}
+{{--                <li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i></a></li>--}}
 
-                <li><a href="{{route('Shop_Pro_Qview',$product->slug)}}" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
+{{--                <li><a href="{{route('Shop_Pro_Qview',$product->slug)}}" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>--}}
 
-            </ul>
-        </div>
+{{--            </ul>--}}
+{{--        </div>--}}
     </div>
 </div>

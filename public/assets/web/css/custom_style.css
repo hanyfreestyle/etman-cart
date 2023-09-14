@@ -328,3 +328,59 @@
     max-width: 100%;
 }
 
+
+.rating_wrap_new{
+    margin-top: 0px;
+
+}
+.add_to_cart_new a {
+    font-size: 18px;
+    width: auto;
+    height: auto;
+    padding: 0px 8px;
+    background-color: #FF324D;
+    border: 1px solid #FF324D;
+    color: #fff;
+    border-radius: 4px;
+
+}
+
+.add_to_cart_new i {
+    font-size: 16px;
+
+    line-height: 30px;
+}
+
+
+.quantity_new {
+    /*display: table;*/
+}
+.quantity_new .minus, .quantity_new .plus {
+    background:none!important;
+    display: block;
+    float: left;
+    border-radius: 0px;
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    font-size: 25px;
+
+    margin: 4px;
+}
+.quantity_new .minus {
+    padding-left: 4px;
+}
+.quantity_new .qty {
+    float: left;
+    width: 30px;
+    height: 25px;
+    border: 1px solid #ddd;
+    background-color: transparent;
+    text-align: center;
+    padding: 0;
+    margin: 3px;
+}
