@@ -9,6 +9,7 @@ use App\Models\admin\Faq;
 use App\Models\admin\FaqCategory;
 use App\Models\admin\FaqTranslation;
 use Cache;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
@@ -83,7 +84,10 @@ class FaqController extends AdminMainController
         $pageData = $this->pageData;
         $pageData['ViewType'] = "List";
         $pageData['ConfigUrl'] = route('FAQ.Config');
-        $Faqs = self::getSelectQuery(Faq::defquery()->orderBy('category_id'));
+
+        $Faqs = Faq::with('FaqToCategories')
+            ->paginate(10);
+
         return view('admin.faq.faq_index',compact('pageData','Faqs'));
     }
 
@@ -93,8 +97,11 @@ class FaqController extends AdminMainController
     {
         $pageData = $this->pageData;
         $pageData['ViewType'] = "List";
-        $Category = FaqCategory::findOrFail($id);
-        $Faqs = self::getSelectQuery(Faq::defquery()->where('category_id',$Category->id));
+
+        $Faqs = Faq::whereHas('FaqToCategories', function ($query) use ($id) {
+            $query->where('category_id', $id);
+        })->paginate(10);
+
         return view('admin.faq.faq_index',compact('pageData','Faqs'));
     }
 
@@ -106,7 +113,8 @@ class FaqController extends AdminMainController
         $pageData['ViewType'] = "Add";
         $Faq =  Faq::findOrNew(0);
         $FaqCategory = FaqCategory::all();
-        return view('admin.faq.faq_form',compact('pageData','Faq','FaqCategory'));
+        $selCat = [];
+        return view('admin.faq.faq_form',compact('pageData','Faq','FaqCategory','selCat'));
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -115,9 +123,11 @@ class FaqController extends AdminMainController
     {
         $pageData = $this->pageData;
         $pageData['ViewType'] = "Edit";
-        $Faq =  Faq::findOrFail($id);
+
         $FaqCategory = FaqCategory::all();
-        return view('admin.faq.faq_form',compact('pageData','Faq','FaqCategory'));
+        $Faq =  Faq::where('id',$id)->with('FaqToCategories')->firstOrFail();
+        $selCat = $Faq->FaqToCategories()->pluck('category_id')->toArray();
+        return view('admin.faq.faq_form',compact('pageData','Faq','FaqCategory','selCat'));
     }
 
 
@@ -125,12 +135,14 @@ class FaqController extends AdminMainController
 #|||||||||||||||||||||||||||||||||||||| #     storeUpdate
     public function storeUpdate(FaqRequest $request, $id=0)
     {
+        $categories = $request->input('categories');
 
         $saveData =  Faq::findOrNew($id);
-        $saveData->category_id =  $request->input( 'category_id');
         $saveData->is_active = intval((bool) $request->input( 'is_active'));
         $saveData->url_type = intval((bool) $request->input( 'url_type'));
         $saveData->save();
+        $saveData->FaqToCategories()->sync($categories);
+
 
         foreach ( config('app.lang_file') as $key=>$lang) {
             $saveTranslation = FaqTranslation::where('faq_id',$saveData->id)->where('locale',$key)->firstOrNew();
@@ -167,30 +179,61 @@ class FaqController extends AdminMainController
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     Sort
     public  function Sort($Categoryid){
-        $Category = FaqCategory::findOrFail($Categoryid);
+
         $pageData = $this->pageData;
         $pageData['ViewType'] = "List";
 
-        $Banners = Faq::with('translation')
-            ->where('category_id',$Category->id)
-            ->orderBy('postion','asc')
-            ->get();
-        return view('admin.faq.sort',compact('Banners','Category','pageData'));
+        $Category = FaqCategory::with(['faqs' => function ($query) {
+            $query->orderBy('postion','ASC');
+        }])->where('id',$Categoryid)->firstOrFail();
+
+//        $Category = FaqCategory::findOrFail($Categoryid);
+//        $pageData = $this->pageData;
+//        $pageData['ViewType'] = "List";
+//
+//        $Banners = Faq::with('translation')
+//            ->where('category_id',$Category->id)
+//            ->orderBy('postion','asc')
+//            ->get();
+        return view('admin.faq.sort',compact('Category','pageData'));
     }
+
+//#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//#|||||||||||||||||||||||||||||||||||||| #     SaveSort
+//    public function SaveSort(Request $request){
+//        $positions = $request->positions;
+//        foreach($positions as $position) {
+//            $id = $position[0];
+//            $newPosition = $position[1];
+//            $saveData =  Faq::findOrFail($id) ;
+//            $saveData->postion = $newPosition;
+//            $saveData->save();
+//        }
+//        self::ClearCash();
+//        return response()->json(['success'=>$positions]);
+//    }
+
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     SaveSort
     public function SaveSort(Request $request){
         $positions = $request->positions;
+        $categoryid = $request->categoryid;
+
         foreach($positions as $position) {
             $id = $position[0];
             $newPosition = $position[1];
-            $saveData =  Faq::findOrFail($id) ;
-            $saveData->postion = $newPosition;
-            $saveData->save();
+
+            DB::table('faqcategory_faq')
+                ->where('category_id',$categoryid)
+                ->where('faq_id',$id)
+                ->update(['postion' => $newPosition]);
+
+
         }
         self::ClearCash();
         return response()->json(['success'=>$positions]);
     }
+
 
 }

@@ -27,6 +27,7 @@ use Database\Seeders\admin\DeveloperSeeder;
 use Database\Seeders\admin\DeveloperTranslationSeeder;
 use Database\Seeders\admin\FaqCategorySeeder;
 use Database\Seeders\admin\FaqCategoryTranslationSeeder;
+use Database\Seeders\admin\FaqPivotSeeder;
 use Database\Seeders\admin\FaqSeeder;
 use Database\Seeders\admin\FaqTranslationSeeder;
 use Database\Seeders\admin\ListingSeeder;
@@ -113,6 +114,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call(FaqSeeder::class);
         $this->call(FaqTranslationSeeder::class);
+
+        $this->call(FaqPivotSeeder::class);
 
         $this->call(PageSeeder::class);
         $this->call(PageTranslationSeeder::class);

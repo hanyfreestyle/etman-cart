@@ -19,12 +19,14 @@
     <x-html-section>
 
         <div class="row mt-3">
-            @if(count($Banners)>0)
+            <input type="hidden" id="category_id" value="{{ $Category->id }}">
+            @if(count($Category->faqs)>0)
                 <div class="row col-lg-12 hanySort">
-                    @foreach($Banners as $row)
+
+                    @foreach($Category->faqs as $row)
                         <div class="col-lg-12"  data-index="{{$row->id}}" data-position="{{$row->postion}}" >
                             <p class="ListItem-12">
-                            <span class="sort_banner_name"> {{$row->name}}</span>
+                                <span class="sort_banner_name"> {{$row->name}}</span>
                             </p>
                         </div>
                     @endforeach
@@ -43,5 +45,7 @@
 @push('JsCode')
     <script src="{{defAdminAssets('plugins/bootstrap/js/jquery-ui.min.js')}}"></script>
     <x-sort-ajax-code url="{{ route($PrefixRoute.'.SaveSort') }}"/>
+
+
 @endpush
 

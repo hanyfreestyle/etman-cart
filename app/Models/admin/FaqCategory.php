@@ -34,6 +34,13 @@ class FaqCategory extends Model implements TranslatableContract , LocalizedUrlRo
         });
     }
 
+
+    public function faqs()
+    {
+        return $this->belongsToMany(Faq::class,'faqcategory_faq','category_id','faq_id')
+            ->withPivot('postion');
+    }
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #
     public function scopeDefquery(Builder $query): Builder

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 16, 2023 at 05:31 PM
+-- Generation Time: Sep 16, 2023 at 05:37 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -22,13 +22,18 @@ SET time_zone = "+00:00";
 --
 
 --
--- Dumping data for table `faqs`
+-- Dumping data for table `faqcategory_faq`
 --
 
-INSERT INTO `faqs` (`id`, `is_active`, `url_type`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 1, 0, NULL, '2023-09-16 10:39:37', '2023-09-16 10:39:37'),
-(2, 1, 0, NULL, '2023-09-16 11:02:10', '2023-09-16 11:02:10'),
-(3, 1, 0, NULL, '2023-09-16 11:02:57', '2023-09-16 11:02:57');
+INSERT INTO `faqcategory_faq` (`id`, `category_id`, `faq_id`, `postion`) VALUES
+(1, 4, 1, 1),
+(2, 5, 1, 0),
+(3, 6, 1, 0),
+(4, 4, 2, 2),
+(7, 10, 3, 1),
+(8, 4, 3, 3),
+(9, 10, 2, 3),
+(10, 10, 1, 2);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

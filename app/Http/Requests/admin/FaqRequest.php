@@ -17,17 +17,15 @@ class FaqRequest extends FormRequest
     public function rules(Request $request): array
     {
 
+       // dd($request->all());
+
         $id = $this->route('id');
 
         $rules = [
-
+            'categories'  => 'required|array|min:1',
         ];
 
-        if($id == 0){
-            $rules = [
-                "category_id"    => "required",
-            ];
-        }
+
         foreach(config('app.lang_file') as $key=>$lang){
             $rules[$key.".name"] =   'required';
             $rules[$key.".des"] =   'required';

@@ -12,10 +12,14 @@
                 @csrf
 
                 <div class="row">
-                    <x-form-select-arr name="category_id"
-                                       label="{{__('admin/def.Category')}}"
-                                       :sendvalue="old('category_id',$Faq->category_id)"
-                                       :required-span="true" colrow="col-lg-3 " :send-arr="$FaqCategory"/>
+                    <x-form-select-multiple name="categories" label="{{__('admin/def.Category')}}">
+                        @foreach($FaqCategory as $Category )
+                            <option  value="{{$Category->id}}"
+                                {{ (collect(old('categories'))->contains($Category->id)) ? 'selected':'' }}
+                                {{ (in_array($Category->id,$selCat)) ? 'selected' : ''}}
+                            >{{$Category->name}}</option>
+                        @endforeach
+                    </x-form-select-multiple>
                 </div>
 
                 <div class="row">
@@ -35,7 +39,6 @@
                                 name="{{ $key }}[des]"
                                 dir="{{ $key }}"
                                 reqname="{{ $key }}.des"
-                                :reqspan="false"
                                 value="{!! old($key.'.des',$Faq->translateOrNew($key)->des) !!}"
                             />
 
@@ -61,6 +64,7 @@
                                 label="{{__('admin/form.banner_url_but')}} ({{ $key}})"
                                 name="{{ $key }}[url_but]"
                                 dir="{{ $key }}"
+                                :reqspan="false"
                                 reqname="{{ $key }}.url_but"
                                 value="{{old($key.'.url_but',$Faq->translateOrNew($key)->url_but)}}"
                             />

@@ -163,3 +163,21 @@ div.dataTables_wrapper div.dataTables_filter input {
 .Div_Container .div_title{width:25%!important;float:right;font-weight:700;color:#1b5dab}
 .Div_Container .div_span{width:75%!important;float:right;font-size:1.2em!important;line-height:1.9em!important}
 */
+
+
+.cat_table_name{
+    font-size: 12px;
+    padding: 4px 6px;
+    max-width: 100px;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+
+    display: inline-block;
+
+    text-overflow: ellipsis;
+    white-space: nowrap!important;
+    overflow: hidden!important;
+    border-radius: 0.2rem;
+
+}

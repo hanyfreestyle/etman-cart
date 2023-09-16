@@ -66,6 +66,9 @@
         @if($errors->has([]) and $addFormError == true)
             <div class="alert alert-danger alert-dismissible">
                 {{__('admin/alertMass.formHasError')}}
+{{--                @foreach($errors->all() as $err)--}}
+{{--                    <li>{{ $err }}</li>--}}
+{{--                @endforeach--}}
             </div>
         @endif
         {{$slot}}

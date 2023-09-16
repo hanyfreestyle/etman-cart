@@ -30,6 +30,7 @@
                                 @can($PrefixRole.'_edit')
                                     <th class="tbutaction TD_50"></th>
                                     <th class="tbutaction TD_50"></th>
+                                    <th class="tbutaction TD_50"></th>
                                 @endcan
                                 @can($PrefixRole.'_delete')
                                     <th class="tbutaction TD_50"></th>
@@ -51,7 +52,9 @@
                                     <td class="tc"><x-action-button url="#" id="{{route($PrefixRoute.'.force',$Category->id)}}" type="deleteSweet"/></td>
                                 @else
                                     @can($PrefixRole.'_edit')
+
                                         <td class="tc" >{!! is_active($Category->is_active) !!}</td>
+                                        <td class="tc" ><x-action-button url="{{route($PrefixRoute.'.Sort',$Category->id)}}" type="sort" :tip="true" /></td>
                                         <td class="tc"><x-action-button url="{{route($PrefixRoute.'.edit',$Category->id)}}" type="edit" :tip="true" /></td>
                                     @endcan
                                     @can($PrefixRole.'_delete')

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 27, 2023 at 05:08 PM
+-- Generation Time: Sep 16, 2023 at 05:32 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -26,14 +26,12 @@ SET time_zone = "+00:00";
 --
 
 INSERT INTO `faq_translations` (`id`, `faq_id`, `locale`, `name`, `des`, `other`, `url`, `url_but`) VALUES
-(9, 5, 'ar', 'السؤال 1', 'الاجابة 1', NULL, NULL, NULL),
-(10, 5, 'en', 'Question 1', 'Answer 1', NULL, NULL, NULL),
-(11, 6, 'ar', 'السؤال 2', 'الاجابة 2', NULL, NULL, NULL),
-(12, 6, 'en', 'Question 2', 'Answer 2', NULL, NULL, NULL),
-(13, 7, 'ar', 'السؤال 3', 'الاجابة 3', NULL, NULL, NULL),
-(14, 7, 'en', 'Question 3', 'Answer 3', NULL, NULL, NULL),
-(15, 8, 'ar', 'السؤال الاول المجموعة 2', 'الاجابة 1 المجموعة 2', NULL, NULL, NULL),
-(16, 8, 'en', 'Question 1 for Category 1', 'Answer 1 for Category 1', NULL, NULL, NULL);
+(1, 1, 'ar', 'السؤال الاول', 'السؤال الاول', NULL, NULL, NULL),
+(2, 1, 'en', 'السؤال الاول', 'السؤال الاول', NULL, NULL, NULL),
+(3, 2, 'ar', 'السؤال الثانى', 'السؤال الثانى', NULL, NULL, NULL),
+(4, 2, 'en', 'السؤال الثانى', 'السؤال الثانى', NULL, NULL, NULL),
+(5, 3, 'ar', 'السؤال الثالث', 'السؤال الثالث', NULL, NULL, NULL),
+(6, 3, 'en', 'السؤال الثالث', 'السؤال الثالث', NULL, NULL, NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

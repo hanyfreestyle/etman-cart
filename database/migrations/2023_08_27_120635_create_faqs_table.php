@@ -11,13 +11,11 @@ return new class extends Migration
     {
         Schema::create('faqs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('category_id');
             $table->boolean("is_active")->default(true);
-            $table->integer('postion')->default(0);
             $table->integer('url_type')->default(0);
             $table->softDeletes();
             $table->timestamps();
-            $table->foreign('category_id')->references('id')->on('faq_categories')->onDelete('cascade');
+
         });
     }
 

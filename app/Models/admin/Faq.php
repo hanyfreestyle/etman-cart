@@ -25,6 +25,17 @@ class Faq extends Model implements TranslatableContract
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #
+    public function FaqToCategories()
+    {
+        return $this->belongsToMany(FaqCategory::class,'faqcategory_faq','faq_id','category_id')
+            ->withPivot(['postion','id'])
+            ;
+    }
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #
     public function scopeDefquery(Builder $query): Builder
     {
         return $query->with('translations');

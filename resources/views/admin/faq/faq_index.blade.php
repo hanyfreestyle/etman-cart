@@ -26,10 +26,9 @@
                             <th class="TD_20">#</th>
                             <th>{{__('admin/def.form_name_ar')}}</th>
                             <th>{{__('admin/def.form_name_en')}}</th>
-                            <th>{{__('admin/def.Category')}}</th>
+                            <th class="TD_250">{{__('admin/def.Category')}}</th>
                             <th class="tbutaction TD_50"></th>
                             @can($PrefixRole.'_edit')
-                                <th class="tbutaction TD_50"></th>
                                 <th class="tbutaction TD_50"></th>
                             @endcan
                             @can($PrefixRole.'_delete')
@@ -43,10 +42,17 @@
                                 <td>{{$row->id}}</td>
                                 <td>{{ $row->translate('ar')->name}}</td>
                                 <td>{{ $row->translate('en')->name}}</td>
-                                <td><a href="{{route($PrefixRoute.'.ListCategory',$row->categoryName->id)}}">{{ $row->categoryName->name }}</a></td>
+                                <td>
+                                    @foreach($row->FaqToCategories as $Category )
+                                        <a href="{{route($PrefixRoute.'.ListCategory',$Category->id)}}">
+                                            <span class="cat_table_name">{{$Category->name}}</span>
+                                        </a>
+
+                                    @endforeach
+                                </td>
                                 <td class="tc" >{!! is_active($row->is_active) !!}</td>
                                 @can($PrefixRole.'_edit')
-                                    <td class="tc"><x-action-button url="{{route($PrefixRoute.'.Sort',$row->category_id)}}" type="sort" :tip="true" /></td>
+
                                     <td class="tc"><x-action-button url="{{route($PrefixRoute.'.edit',$row->id)}}" type="edit" :tip="true" /></td>
                                 @endcan
 
