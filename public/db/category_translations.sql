@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 17, 2023 at 04:18 PM
+-- Generation Time: Sep 17, 2023 at 06:01 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -76,7 +76,7 @@ INSERT INTO `category_translations` (`id`, `category_id`, `locale`, `slug`, `nam
 (48, 42, 'en', 'birthday-supplies', 'Birthday supplies', 'Birthday supplies', 'Birthday supplies', 'Birthday supplies', NULL, NULL),
 (49, 43, 'ar', 'ورق-تصوير', 'ورق تصوير', 'ورق تصوير', 'ورق تصوير', 'ورق تصوير', NULL, NULL),
 (50, 43, 'en', 'photocopy-paper', 'Photocopy paper', 'Photocopy paper', 'Photocopy paper', 'Photocopy paper', NULL, NULL),
-(51, 44, 'ar', 'قطر', 'قطر', 'قطر', 'قطر', 'قطر', NULL, NULL),
+(51, 44, 'ar', 'اسلحة-الكتر', 'اسلحة الكتر', 'اسلحة الكتر', 'اسلحة الكتر', 'اسلحة الكتر', NULL, NULL),
 (52, 44, 'en', 'cutter', 'Cutter', 'Cutter', 'Cutter', 'Cutter', NULL, NULL),
 (53, 45, 'ar', 'اطباق-بلاستيك', 'اطباق بلاستيك', 'اطباق بلاستيك', 'اطباق بلاستيك', 'اطباق بلاستيك', NULL, NULL),
 (54, 45, 'en', 'plastic-dishes', 'Plastic dishes', 'Plastic dishes', 'Plastic dishes', 'Plastic dishes', NULL, NULL);

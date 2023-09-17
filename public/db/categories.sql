@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 17, 2023 at 04:18 PM
+-- Generation Time: Sep 17, 2023 at 06:01 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -45,14 +45,14 @@ INSERT INTO `categories` (`id`, `parent_id`, `cat_shop`, `cat_web`, `cat_web_dat
 (26, 23, 1, 1, 1, 'images/category/26/gift-accessories-crepe-paper.webp', 'images/category/26/gift-accessories-crepe-paper_1.webp', NULL, 1, '2023-08-20 13:21:00', '2023-08-20 15:14:46'),
 (36, 1, 1, 1, 1, 'images/category/36/self-adhesive-tape-laser-tape.webp', 'images/category/36/self-adhesive-tape-laser-tape_1.webp', NULL, 1, '2023-08-20 13:21:00', '2023-08-20 15:14:49'),
 (37, 1, 1, 1, 1, 'images/category/37/jumbo-roll.webp', 'images/category/37/jumbo-roll_1.webp', NULL, 1, '2023-08-20 13:21:00', '2023-08-20 15:14:52'),
-(38, NULL, 1, 1, 1, 'images/category/38/stationary-LSf9eFzlLO.webp', 'images/category/38/stationary-s2AtrupIj3.webp', 'images/category/38/stationary-Y3SRRYgLJ9.webp', 1, '2023-09-03 15:42:03', '2023-09-09 08:15:29'),
-(39, NULL, 1, 1, 1, 'images/category/39/glue-gun-lqgSvBfiND.webp', 'images/category/39/glue-gun-VMr0U5SiOh.webp', 'images/category/39/glue-gun-07y8xnLwBp.webp', 1, '2023-09-07 15:55:59', '2023-09-09 07:58:57'),
-(40, NULL, 1, 1, 1, 'images/category/40/paper-cups-xd451a1MAj.webp', 'images/category/40/paper-cups-DsssGJh2az.webp', 'images/category/40/paper-cups-JWm1JaYCez.webp', 1, '2023-09-07 16:00:11', '2023-09-09 08:40:52'),
-(41, NULL, 1, 1, 1, 'images/category/41/cash-stick-VaTB5aLJHi.webp', 'images/category/41/cash-stick-SiCwhEuF0G.webp', NULL, 1, '2023-09-07 16:06:27', '2023-09-09 08:39:17'),
-(42, NULL, 1, 1, 1, 'images/category/42/birthday-supplies-dQl2qee3g7.webp', 'images/category/42/birthday-supplies-dGbjUbvFW0.webp', 'images/category/42/birthday-supplies-6ZaxAeFhMm.webp', 1, '2023-09-07 16:10:07', '2023-09-09 08:37:04'),
-(43, NULL, 1, 1, 1, 'images/category/43/photocopy-paper-gDw6TlkkkY.webp', 'images/category/43/photocopy-paper-H3eTuEfs25.webp', 'images/category/43/photocopy-paper-UvO32h4Hqf.webp', 1, '2023-09-07 16:18:33', '2023-09-09 08:07:35'),
-(44, NULL, 1, 1, 1, 'images/category/44/cutter-JJNb5LIhwh.webp', 'images/category/44/cutter-96ESreLAj4.webp', 'images/category/44/cutter-Uo6KScRpEf.webp', 1, '2023-09-07 16:19:43', '2023-09-09 08:34:43'),
-(45, NULL, 1, 1, 1, 'images/category/45/plastic-dishes-FvI5iLqFv4.webp', 'images/category/45/plastic-dishes-eXoZPJ4s32.webp', 'images/category/45/plastic-dishes-ViXVB2m2a6.webp', 1, '2023-09-07 16:29:48', '2023-09-09 08:36:27');
+(38, NULL, 1, 0, 1, 'images/category/38/stationary-LSf9eFzlLO.webp', 'images/category/38/stationary-s2AtrupIj3.webp', 'images/category/38/stationary-Y3SRRYgLJ9.webp', 1, '2023-09-03 15:42:03', '2023-09-17 13:00:44'),
+(39, NULL, 1, 0, 1, 'images/category/39/glue-gun-lqgSvBfiND.webp', 'images/category/39/glue-gun-VMr0U5SiOh.webp', 'images/category/39/glue-gun-07y8xnLwBp.webp', 1, '2023-09-07 15:55:59', '2023-09-17 13:00:40'),
+(40, NULL, 1, 0, 1, 'images/category/40/paper-cups-xd451a1MAj.webp', 'images/category/40/paper-cups-DsssGJh2az.webp', 'images/category/40/paper-cups-JWm1JaYCez.webp', 1, '2023-09-07 16:00:11', '2023-09-17 13:00:36'),
+(41, NULL, 1, 0, 1, 'images/category/41/cash-stick-VaTB5aLJHi.webp', 'images/category/41/cash-stick-SiCwhEuF0G.webp', NULL, 1, '2023-09-07 16:06:27', '2023-09-17 13:00:32'),
+(42, NULL, 1, 0, 1, 'images/category/42/birthday-supplies-dQl2qee3g7.webp', 'images/category/42/birthday-supplies-dGbjUbvFW0.webp', 'images/category/42/birthday-supplies-6ZaxAeFhMm.webp', 1, '2023-09-07 16:10:07', '2023-09-17 13:00:28'),
+(43, NULL, 1, 0, 1, 'images/category/43/photocopy-paper-gDw6TlkkkY.webp', 'images/category/43/photocopy-paper-H3eTuEfs25.webp', 'images/category/43/photocopy-paper-UvO32h4Hqf.webp', 1, '2023-09-07 16:18:33', '2023-09-17 13:00:23'),
+(44, NULL, 1, 0, 1, 'images/category/44/cutter-JJNb5LIhwh.webp', 'images/category/44/cutter-96ESreLAj4.webp', 'images/category/44/cutter-Uo6KScRpEf.webp', 1, '2023-09-07 16:19:43', '2023-09-17 13:00:18'),
+(45, NULL, 1, 0, 1, 'images/category/45/plastic-dishes-FvI5iLqFv4.webp', 'images/category/45/plastic-dishes-eXoZPJ4s32.webp', 'images/category/45/plastic-dishes-ViXVB2m2a6.webp', 1, '2023-09-07 16:29:48', '2023-09-17 13:00:14');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
