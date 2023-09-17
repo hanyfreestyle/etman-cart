@@ -149,15 +149,15 @@
 
         [
             'view'=>true,
-            'sel_routs'=>'shop',
+            'sel_routs'=>'Shop',
             'type'=>'many',
             'text'=> 'admin/menu.shop_product_menu',
             'icon'=>'fas fa-shopping-cart',
             'roleView'=>'shopProduct_view',
             'submenu'=>[
                 [
-                    'sel_routs'=> 'Shop',
-                    'url'=> 'Shop.category.index',
+                    'sel_routs'=> 'shopCategory',
+                    'url'=> 'Shop.shopCategory.index',
                     'roleView'=>'shopCategory_view',
                     'text'=> 'admin/menu.web_category',
                     'icon'=>'fas fa-sitemap'
@@ -170,8 +170,8 @@
                     'icon'=>'fas fa-shopping-cart'
                 ],
                 [
-                    'sel_routs'=> 'ShopcategoryConfig',
-                    'url'=> 'Shop.categoryConfig.Config',
+                    'sel_routs'=> 'shopCategoryConfig',
+                    'url'=> 'Shop.shopCategoryConfig.Config',
                     'roleView'=>'category_edit',
                     'text'=> 'admin/menu.setting',
                     'icon'=>'fas fa-cogs'

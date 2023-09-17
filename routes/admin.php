@@ -14,6 +14,7 @@ use App\Http\Controllers\admin\OurClientController;
 use App\Http\Controllers\admin\PageController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ProductTableController;
+use App\Http\Controllers\admin\ShopCategoryController;
 use App\Http\Controllers\AdminMainController;
 
 
@@ -168,16 +169,27 @@ Route::post('/Pages/SaveSort', [PageController::class,'SaveSort'])->name('Pages.
 
 
 
-Route::get('/ShopCategory',[CategoryController::class,'index'])->name('Shop.category.index');
-//Route::get('/ShopCategory/Main',[CategoryController::class,'index'])->name('webPro.category.index_Main');
-//Route::get('/ShopCategory/SubCategory/{id}',[CategoryController::class,'SubCategory'])->name('webPro.category.SubCategory');
-//Route::get('/ShopCategory/create',[CategoryController::class,'create'])->name('webPro.category.create');
-//Route::get('/ShopCategory/edit/{id}',[CategoryController::class,'edit'])->name('webPro.category.edit');
-//Route::get('/ShopCategory/destroy/{id}',[CategoryController::class,'destroy'])->name('webPro.category.destroy');
-//Route::post('/ShopCategory/update/{id}',[CategoryController::class,'storeUpdate'])->name('webPro.category.update');
-//Route::get('/ShopCategory/emptyPhoto/{id}', [CategoryController::class,'emptyPhoto'])->name('webPro.category.emptyPhoto');
-//Route::get('/ShopCategory/emptyIcon/{id}', [CategoryController::class,'emptyIcon'])->name('webPro.category.emptyIcon');
-Route::get('/ShopCategory/Config',[CategoryController::class,'config'])->name('Shop.categoryConfig.Config');
+Route::get('/ShopCategory',[ShopCategoryController::class,'index'])->name('Shop.shopCategory.index');
+Route::get('/ShopCategory/Main',[ShopCategoryController::class,'index'])->name('Shop.shopCategory.index_Main');
+Route::get('/ShopCategory/SubCategory/{id}',[ShopCategoryController::class,'SubCategory'])->name('Shop.shopCategory.SubCategory');
+Route::get('/ShopCategory/create',[ShopCategoryController::class,'create'])->name('Shop.shopCategory.create');
+Route::get('/ShopCategory/edit/{id}',[ShopCategoryController::class,'edit'])->name('Shop.shopCategory.edit');
+Route::get('/ShopCategory/destroy/{id}',[ShopCategoryController::class,'destroy'])->name('Shop.shopCategory.destroy');
+Route::post('/ShopCategory/update/{id}',[ShopCategoryController::class,'storeUpdate'])->name('Shop.shopCategory.update');
+Route::get('/ShopCategory/emptyPhoto/{id}', [ShopCategoryController::class,'emptyPhoto'])->name('Shop.shopCategory.emptyPhoto');
+Route::get('/ShopCategory/emptyIcon/{id}', [ShopCategoryController::class,'emptyIcon'])->name('Shop.shopCategory.emptyIcon');
+Route::get('/ShopCategory/Config',[ShopCategoryController::class,'config'])->name('Shop.shopCategoryConfig.Config');
+
+
+
+Route::get('/ShopCategory/TableList/{id}',[ShopCategoryController::class,'TableList'])->name('Shop.shopCategory.Table_list');
+Route::get('/ShopCategory/Table/edit/{id}',[ShopCategoryController::class,'TableEdit'])->name('Shop.shopCategory.Table_edit');
+Route::post('/ShopCategory/Table/update/{id}',[ShopCategoryController::class,'TableStoreUpdate'])->name('Shop.shopCategory.Table_update');
+Route::get('/ShopCategory/Table/destroy/{id}',[ShopCategoryController::class,'TableDestroy'])->name('Shop.shopCategory.Table_destroy');
+Route::get('/ShopCategory/Table/Sort/{project_id}',[ShopCategoryController::class,'TableSort'])->name('Shop.shopCategory.Table_Sort');
+Route::post('/ShopCategory/Table/SaveSort', [ShopCategoryController::class,'TableSortSave'])->name('Shop.shopCategory.TableSortSave');
+
+
 
 
 
