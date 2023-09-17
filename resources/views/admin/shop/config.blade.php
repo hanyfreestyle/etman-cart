@@ -21,7 +21,7 @@
             <div class="alert alert-dark alert-dismissible">
                 {{ __('admin/menu.web_product') }}
             </div>
-            <x-def-settings modelname="shopProduct" :more-photo-filterid="true">
+            <x-def-settings modelname="ShopProduct" :more-photo-filterid="true">
 
             </x-def-settings>
 

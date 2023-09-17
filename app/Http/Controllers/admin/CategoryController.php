@@ -81,9 +81,15 @@ class CategoryController extends AdminMainController
         $pageData['ViewType'] = "List";
         $pageData['SubView'] = false;
         if( Route::currentRouteName()== 'webPro.category.index_Main'){
-            $Categories = self::getSelectQuery(Category::defSitequery()->where('parent_id',null)->where('cat_web',true)->where('cat_web_data',true));
+            $Categories = self::getSelectQuery(Category::defSitequery()
+                ->where('parent_id',null)
+                ->where('cat_web',true)
+                ->where('cat_web_data',true)
+            );
         }else{
-            $Categories = self::getSelectQuery(Category::defSitequery()->where('cat_web',true)->where('cat_web_data',true));
+            $Categories = self::getSelectQuery(Category::defSitequery()
+                ->where('cat_web',true)
+                ->where('cat_web_data',true));
         }
         return view('admin.product.category_index',compact('pageData','Categories'));
     }

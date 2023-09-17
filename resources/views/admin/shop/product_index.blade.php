@@ -7,6 +7,14 @@
     <x-breadcrumb-def :pageData="$pageData"/>
 
     <x-html-section>
+        <div class="row mb-3">
+            <div class="col-12 text-left">
+                <x-action-button url="{{route('Shop.ShopProduct.AddProToShop')}}"  bg="p"  print-lable="{{ __('admin/shop.pro_addshop') }}"  icon="fas fa-plus-square"  />
+            </div>
+        </div>
+    </x-html-section>
+
+    <x-html-section>
         <x-ui-card  :page-data="$pageData" >
             <x-mass.confirm-massage/>
 
@@ -18,12 +26,12 @@
                             <th class="TD_20">#</th>
                             <th class="TD_20"></th>
                             <th>{{__('admin/def.form_name_ar')}}</th>
-                            <th>{{__('admin/def.form_name_en')}}</th>
+
                             <th>{{__('admin/def.Category')}}</th>
 
                             <th class="tbutaction TD_50"></th>
                             @can($PrefixRole.'_edit')
-                                <th class="tbutaction TD_50"></th>
+
                                 <th class="tbutaction TD_50"></th>
                                 <th class="tbutaction TD_50"></th>
                             @endcan
@@ -37,14 +45,14 @@
                         @foreach($Products as $Product)
                             <tr>
                                 <td>{{$Product->id}}</td>
-                                <td class="tc">{!!  \App\Helpers\AdminHelper::printTableImage($Product,'photo') !!} </td>
+                                <td class="tc">{!!  \App\Helpers\AdminHelper::printTableImage($Product,'photo_thum_1') !!} </td>
                                 <td>{{ $Product->translate('ar')->name}}</td>
-                                <td>{{ $Product->translate('en')->name}}</td>
+
                                 <td><a href="{{route($PrefixRoute.'.ListCategory',$Product->categoryName->id)}}">{{ $Product->categoryName->name }}</a></td>
 
                                 <td class="tc" >{!! is_active($Product->is_active) !!}</td>
                                 @can($PrefixRole.'_edit')
-                                    <td class="tc"><x-action-button url="{{route($PrefixRoute.'.Table_list',$Product->id)}}" count="{{$Product->table_data_count}}"  print-lable="{{__('admin/def.table_info')}}"  icon="fas fa-info-circle" :tip="true" /></td>
+
                                     <td class="tc"><x-action-button url="{{route($PrefixRoute.'.More_Photos',$Product->id)}}"  count="{{$Product->more_photos_count}}" type="morePhoto" :tip="true" /></td>
                                     <td class="tc"><x-action-button url="{{route($PrefixRoute.'.edit',$Product->id)}}" type="edit" :tip="true" /></td>
                                 @endcan

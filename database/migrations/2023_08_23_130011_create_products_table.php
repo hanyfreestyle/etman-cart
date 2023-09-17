@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('category_id');
+            $table->integer('pro_shop')->default(1);
+            $table->integer('pro_web')->default(0);
+            $table->integer('pro_web_data')->default(0);
             $table->string("photo")->nullable();
             $table->string("photo_thum_1")->nullable();
             $table->boolean("is_active")->default(true);

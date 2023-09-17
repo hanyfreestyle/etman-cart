@@ -21,7 +21,7 @@
                 <div class="row col-lg-12 hanySort">
                     @foreach($ProductPhotos as $Photo)
                         <div class="col-lg-2 ListThisItam"  data-index="{{$Photo->id}}" data-position="{{$Photo->postion}}" >
-                            <p class="PhotoImageCard"><img src="{{ defImagesDir($Photo->photo) }}"></p>
+                            <p class="PhotoImageCard"><img src="{{ defImagesDir($Photo->photo_thum_1) }}"></p>
                             <div class="buttons mb-3" >
                                 @can('product_delete')
                                     <td class="tc"><x-action-button url="#" id="{{route($PrefixRoute.'.More_PhotosDestroy',$Photo->id)}}"  type="deleteSweet"/></td>
@@ -45,7 +45,7 @@
                 <form  class="mainForm" action="{{route($PrefixRoute.'.More_PhotosAdd')}}" method="post"  enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="product_id" value="{{intval($Product->id)}}">
-                    <input type="hidden" name="name" value="{{ $Product->translate('en')->slug }}">
+                    <input type="hidden" name="name" value="{{ $Product->slug }}">
                     <x-form-upload-file view-type="Add" :row-data="$Product"
                                         :multiple="true"
                                         thisfilterid="{{ \App\Helpers\AdminHelper::arrIsset($modelSettings,$controllerName.'_morephoto_filterid',0) }}"

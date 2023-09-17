@@ -12,7 +12,6 @@
                 </div>
                 <div class="col-3 text-left">
                     <x-action-button url="{{route($PrefixRoute.'.More_Photos',$Product->id)}}" type="morePhoto"/>
-                    <x-action-button url="{{route($PrefixRoute.'.Table_list',$Product->id)}}" type="data_table"/>
                 </div>
             </div>
         </x-html-section>
@@ -24,42 +23,39 @@
 
             <form  class="mainForm" action="{{route($PrefixRoute.'.update',intval($Product->id))}}" method="post"  enctype="multipart/form-data">
                 @csrf
-                <x-form-select-category
-                    name="category_id"
-                    label="{{__('admin/def.form_Categories')}}"
-                    :sendvalue="old('category_id',$Product->category_id)"
-                    :required-span="true"
-                    print-val-name="name"
-                    colrow="col-lg-6 "
-                    :send-arr="$Categories"
-                    forcategory="false"
-                />
 
                 <div class="row">
-                    @foreach ( config('app.lang_file') as $key=>$lang )
-                        <div class="col-lg-6 {{getColDir($key)}}">
-                            <x-trans-input
-                                label="{{__('admin/def.form_name_'.$key)}} ({{ $key}})"
-                                name="{{ $key }}[name]"
-                                inputid="name_{{ $key }}"
-                                dir="{{ $key }}"
-                                reqname="{{ $key }}.name"
-                                value="{{old($key.'.name',$Product->translateOrNew($key)->name)}}"
-                            />
 
-                            <x-trans-text-area
-                                label="{{ __('admin/form.des_'.$key)}} ({{ ($key) }})"
-                                name="{{ $key }}[des]"
-                                dir="{{ $key }}"
-                                reqname="{{ $key }}.des"
-                                newstyle="big_text"
-                                value="{!! old($key.'.des',$Product->translateOrNew($key)->des) !!}"
-                            />
-                        </div>
-                    @endforeach
+                    <x-form-select-category
+                        name="category_id"
+                        label="{{__('admin/def.form_Categories')}}"
+                        :sendvalue="old('category_id',$Product->category_id)"
+                        :required-span="true"
+                        print-val-name="name"
+                        colrow="col-lg-6 "
+                        :send-arr="$Categories"
+                        forcategory="false"
+                    />
+
+                    @if($pageData['ViewType'] == 'Edit')
+                        <x-form-select-arr  label="{{__('admin/shop.pro_addshop')}}" name="pro_shop" colrow="col-lg-3"
+                                            sendvalue="{{old('pro_shop',$Product->pro_shop)}}" select-type="selActive"/>
+
+                        <x-form-select-arr  label="{{__('admin/shop.pro_addweb')}}" name="pro_web" colrow="col-lg-3"
+                                            sendvalue="{{old('pro_web',$Product->pro_web)}}" select-type="selActive"/>
+                    @else
+                        <input type="hidden" name="pro_shop" value="1">
+                        <input type="hidden" name="pro_web" value="0">
+                    @endif
+
                 </div>
 
-                <x-meta-tage-filde :old-data="$Product" :placeholder="false" />
+
+                <hr>
+                <div class="row">
+                    <x-basic-name-with-slug :row-data="$Product" :page-data="$pageData" col="col-lg-6" />
+                </div>
+
 
                 <hr>
 
@@ -75,7 +71,7 @@
                                     :emptyphotourl="$PrefixRoute.'.emptyPhoto'"  />
 
                 <div class="container-fluid">
-                    <x-form-submit text="{{$pageData['ViewType']}}" />
+                    <x-form-submit-new  :page-data="$pageData" />
                 </div>
             </form>
         </x-ui-card>

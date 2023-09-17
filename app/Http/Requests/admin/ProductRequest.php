@@ -32,13 +32,15 @@ class ProductRequest extends FormRequest
 
         $rules =[
             'category_id'=> "required",
+            'pro_shop'=> "required",
+            'pro_web'=> "required",
         ];
 
         foreach(config('app.lang_file') as $key=>$lang){
             $rules[$key.".name"] =   'required';
-//            $rules[$key.".des"] =   'required';
-//            $rules[$key.".g_title"] =   'required';
-//            $rules[$key.".g_des"] =   'required';
+            $rules[$key.".des"] =   'required';
+            $rules[$key.".g_title"] =   'required';
+            $rules[$key.".g_des"] =   'required';
             if($id == '0'){
                 $rules[$key.".slug"] = 'required|unique:product_translations,slug';
             }else{

@@ -163,8 +163,8 @@
                     'icon'=>'fas fa-sitemap'
                 ],
                 [
-                    'sel_routs'=> 'shopProduct',
-                    'url'=> 'Shop.Product.index',
+                    'sel_routs'=> 'ShopProduct',
+                    'url'=> 'Shop.ShopProduct.index',
                     'roleView'=>'shopProduct_view',
                     'text'=> 'admin/menu.web_product',
                     'icon'=>'fas fa-shopping-cart'

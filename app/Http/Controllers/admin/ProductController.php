@@ -82,9 +82,30 @@ class ProductController extends AdminMainController
         $pageData = $this->pageData;
         $pageData['ViewType'] = "List";
         $pageData['SubView'] = false;
-        $Products = self::getSelectQuery(Product::defquery()->withCount('more_photos'));
+        $Products = self::getSelectQuery(Product::defquery()
+            ->withCount('more_photos')
+            ->where('pro_web',true)
+            ->where('pro_web_data',true)
+        );
         return view('admin.product.product_index',compact('pageData','Products'));
     }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     AddProToWeb
+    public function AddProToWeb()
+    {
+        $pageData = $this->pageData;
+        $pageData['ViewType'] = "List";
+        $pageData['SubView'] = false;
+        $Products = self::getSelectQuery(Product::defquery()
+            ->withCount('more_photos')
+            ->where('pro_web',false)
+            ->Orwhere('pro_web_data',false)
+        );
+        return view('admin.product.product_index',compact('pageData','Products'));
+    }
+
+
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     SubCategory
@@ -129,6 +150,9 @@ class ProductController extends AdminMainController
 
         $saveData->category_id = $request->input('category_id');
         $saveData->setActive((bool) request('is_active', false));
+        $saveData->pro_shop = $request->input('pro_shop');
+        $saveData->pro_web = $request->input('pro_web');
+        $saveData->pro_web_data = 1;
         $saveData->save();
 
         $saveImgData = new PuzzleUploadProcess();
@@ -153,7 +177,13 @@ class ProductController extends AdminMainController
 
         self::ClearCash();
         if($id == '0'){
-            return redirect(route($this->PrefixRoute.'.index'))->with('Add.Done',"");
+
+            if($request->input('AddNewSet') !== null){
+                return redirect()->back();
+            }else{
+                return redirect(route($this->PrefixRoute.'.index'))->with('Add.Done',"");
+            }
+
         }else{
             return redirect(route($this->PrefixRoute.'.index'))->with('Edit.Done',"");
         }

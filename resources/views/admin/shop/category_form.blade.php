@@ -86,8 +86,6 @@
 
                 <div class="container-fluid">
                     <x-form-submit-new  :page-data="$pageData" />
-
-
                 </div>
             </form>
         </x-ui-card>

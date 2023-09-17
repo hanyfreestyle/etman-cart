@@ -7,6 +7,14 @@
     <x-breadcrumb-def :pageData="$pageData"/>
 
     <x-html-section>
+        <div class="row mb-3">
+            <div class="col-12 text-left">
+                <x-action-button url="{{route('webPro.Product.AddProToWeb')}}"  bg="p"  print-lable="{{ __('admin/shop.pro_addweb') }}"  icon="fas fa-plus-square"  />
+            </div>
+        </div>
+    </x-html-section>
+
+    <x-html-section>
         <x-ui-card  :page-data="$pageData" >
             <x-mass.confirm-massage/>
 
@@ -38,8 +46,8 @@
                             <tr>
                                 <td>{{$Product->id}}</td>
                                 <td class="tc">{!!  \App\Helpers\AdminHelper::printTableImage($Product,'photo') !!} </td>
-                                <td>{{ $Product->translate('ar')->name}}</td>
-                                <td>{{ $Product->translate('en')->name}}</td>
+                                <td>{{ $Product->translate('ar')->name ?? ''}}</td>
+                                <td>{{ $Product->translate('en')->name ?? '' }}</td>
                                 <td><a href="{{route($PrefixRoute.'.ListCategory',$Product->categoryName->id)}}">{{ $Product->categoryName->name }}</a></td>
 
                                 <td class="tc" >{!! is_active($Product->is_active) !!}</td>

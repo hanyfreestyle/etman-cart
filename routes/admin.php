@@ -15,6 +15,7 @@ use App\Http\Controllers\admin\PageController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ProductTableController;
 use App\Http\Controllers\admin\ShopCategoryController;
+use App\Http\Controllers\admin\ShopProductController;
 use App\Http\Controllers\AdminMainController;
 
 
@@ -56,6 +57,8 @@ Route::post('/Category/Table/SaveSort', [CategoryTableController::class,'TableSo
 
 
 Route::get('/Product',[ProductController::class,'index'])->name('webPro.Product.index');
+Route::get('/Product/AddToWeb',[ProductController::class,'AddProToWeb'])->name('webPro.Product.AddProToWeb');
+
 Route::get('/Product/ListCategory/{Categoryid}',[ProductController::class,'ListCategory'])->name('webPro.Product.ListCategory');
 Route::get('/Product/create',[ProductController::class,'create'])->name('webPro.Product.create');
 Route::get('/Product/edit/{id}',[ProductController::class,'edit'])->name('webPro.Product.edit');
@@ -196,26 +199,26 @@ Route::post('/ShopCategory/Table/SaveSort', [ShopCategoryController::class,'Tabl
 
 
 
-Route::get('/ShopProduct',[ProductController::class,'index'])->name('Shop.Product.index');
-//Route::get('/ShopProduct/ListCategory/{Categoryid}',[ProductController::class,'ListCategory'])->name('webPro.Product.ListCategory');
-//Route::get('/ShopProduct/create',[ProductController::class,'create'])->name('webPro.Product.create');
-//Route::get('/ShopProduct/edit/{id}',[ProductController::class,'edit'])->name('webPro.Product.edit');
-//Route::get('/ShopProduct/destroy/{id}',[ProductController::class,'destroy'])->name('webPro.Product.destroy');
-//Route::post('/ShopProduct/update/{id}',[ProductController::class,'storeUpdate'])->name('webPro.Product.update');
-//Route::get('/ShopProduct/emptyPhoto/{id}', [ProductController::class,'emptyPhoto'])->name('webPro.Product.emptyPhoto');
-//
-//Route::get('/ShopProduct/photos/{id}',[ProductController::class,'ListMorePhoto'])->name('webPro.Product.More_Photos');
-//Route::post('/ShopProduct/saveSort', [ProductController::class,'sortPhotoSave'])->name('webPro.Product.sortPhotoSave');
-//Route::post('/ShopProduct/AddMore',[ProductController::class,'AddMorePhotos'])->name('webPro.Product.More_PhotosAdd');
-//Route::get('/ShopProduct/PhotoDel/{id}',[ProductController::class,'More_PhotosDestroy'])->name('webPro.Product.More_PhotosDestroy');
-//
-//
-//Route::get('/ShopProduct/TableList/{id}',[ProductTableController::class,'TableList'])->name('webPro.Product.Table_list');
-//Route::get('/ShopProduct/Table/edit/{id}',[ProductTableController::class,'TableEdit'])->name('webPro.Product.Table_edit');
-//Route::post('/ShopProduct/Table/update/{id}',[ProductTableController::class,'TableStoreUpdate'])->name('webPro.Product.Table_update');
-//Route::get('/ShopProduct/Table/destroy/{id}',[ProductTableController::class,'TableDestroy'])->name('webPro.Product.Table_destroy');
-//Route::get('/ShopProduct/Table/Sort/{project_id}',[ProductTableController::class,'TableSort'])->name('webPro.Product.Table_Sort');
-//Route::post('/ShopProduct/Table/SaveSort', [ProductTableController::class,'TableSortSave'])->name('webPro.Product.TableSortSave');
+Route::get('/ShopProduct',[ShopProductController::class,'index'])->name('Shop.ShopProduct.index');
+Route::get('/ShopProduct/AddToShop',[ShopProductController::class,'AddProToShop'])->name('Shop.ShopProduct.AddProToShop');
+Route::get('/ShopProduct/ListCategory/{Categoryid}',[ShopProductController::class,'ListCategory'])->name('Shop.ShopProduct.ListCategory');
+Route::get('/ShopProduct/create',[ShopProductController::class,'create'])->name('Shop.ShopProduct.create');
+Route::get('/ShopProduct/edit/{id}',[ShopProductController::class,'edit'])->name('Shop.ShopProduct.edit');
+Route::get('/ShopProduct/destroy/{id}',[ShopProductController::class,'destroy'])->name('Shop.ShopProduct.destroy');
+Route::post('/ShopProduct/update/{id}',[ShopProductController::class,'storeUpdate'])->name('Shop.ShopProduct.update');
+Route::get('/ShopProduct/emptyPhoto/{id}', [ShopProductController::class,'emptyPhoto'])->name('Shop.ShopProduct.emptyPhoto');
+
+Route::get('/ShopProduct/photos/{id}',[ShopProductController::class,'ListMorePhoto'])->name('Shop.ShopProduct.More_Photos');
+Route::post('/ShopProduct/saveSort', [ShopProductController::class,'sortPhotoSave'])->name('Shop.ShopProduct.sortPhotoSave');
+Route::post('/ShopProduct/AddMore',[ShopProductController::class,'AddMorePhotos'])->name('Shop.ShopProduct.More_PhotosAdd');
+Route::get('/ShopProduct/PhotoDel/{id}',[ShopProductController::class,'More_PhotosDestroy'])->name('Shop.ShopProduct.More_PhotosDestroy');
+
+//Route::get('/ShopProduct/TableList/{id}',[ShopProductController::class,'TableList'])->name('Shop.ShopProduct.Table_list');
+//Route::get('/ShopProduct/Table/edit/{id}',[ShopProductController::class,'TableEdit'])->name('Shop.ShopProduct.Table_edit');
+//Route::post('/ShopProduct/Table/update/{id}',[ShopProductController::class,'TableStoreUpdate'])->name('Shop.ShopProduct.Table_update');
+//Route::get('/ShopProduct/Table/destroy/{id}',[ShopProductController::class,'TableDestroy'])->name('Shop.ShopProduct.Table_destroy');
+//Route::get('/ShopProduct/Table/Sort/{project_id}',[ShopProductController::class,'TableSort'])->name('Shop.ShopProduct.Table_Sort');
+//Route::post('/ShopProduct/Table/SaveSort', [ShopProductController::class,'TableSortSave'])->name('Shop.ShopProduct.TableSortSave');
 //
 
 

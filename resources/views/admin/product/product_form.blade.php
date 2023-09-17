@@ -24,16 +24,27 @@
 
             <form  class="mainForm" action="{{route($PrefixRoute.'.update',intval($Product->id))}}" method="post"  enctype="multipart/form-data">
                 @csrf
-                <x-form-select-category
-                    name="category_id"
-                    label="{{__('admin/def.form_Categories')}}"
-                    :sendvalue="old('category_id',$Product->category_id)"
-                    :required-span="true"
-                    print-val-name="name"
-                    colrow="col-lg-6 "
-                    :send-arr="$Categories"
-                    forcategory="false"
-                />
+
+                <div class="row">
+                    <x-form-select-category
+                        name="category_id"
+                        label="{{__('admin/def.form_Categories')}}"
+                        :sendvalue="old('category_id',$Product->category_id)"
+                        :required-span="true"
+                        print-val-name="name"
+                        colrow="col-lg-6 "
+                        :send-arr="$Categories"
+                        forcategory="false"
+                    />
+
+                    <x-form-select-arr  label="{{__('admin/shop.pro_addshop')}}" name="pro_shop" colrow="col-lg-3"
+                                        sendvalue="{{old('pro_shop',$Product->pro_shop)}}" select-type="selActive"/>
+
+                    <x-form-select-arr  label="{{__('admin/shop.pro_addweb')}}" name="pro_web" colrow="col-lg-3"
+                                        sendvalue="{{old('pro_web',$Product->pro_web)}}" select-type="selActive"/>
+
+                </div>
+
 
                 <div class="row">
                     @foreach ( config('app.lang_file') as $key=>$lang )
@@ -59,7 +70,7 @@
                     @endforeach
                 </div>
 
-                <x-meta-tage-filde :old-data="$Product" :placeholder="false" />
+                <x-meta-tage-filde :old-data="$Product" :placeholder="false" :page-data="$pageData" />
 
                 <hr>
 
@@ -75,7 +86,7 @@
                                     :emptyphotourl="$PrefixRoute.'.emptyPhoto'"  />
 
                 <div class="container-fluid">
-                    <x-form-submit text="{{$pageData['ViewType']}}" />
+                    <x-form-submit-new  :page-data="$pageData" />
                 </div>
             </form>
         </x-ui-card>

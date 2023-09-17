@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('product_id')->unsigned();
             $table->string('locale')->index();
-            $table->string('slug');
+            $table->string('slug')->nullable();
             $table->string('name')->nullable();
             $table->longText('des')->nullable();
 
