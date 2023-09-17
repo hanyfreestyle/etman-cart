@@ -35,6 +35,8 @@ Route::post('/OurClient/SaveSort', [OurClientController::class,'SaveSort'])->nam
 Route::get('/OurClient/Config',[OurClientController::class,'config'])->name('OurClient.Config');
 
 Route::get('/Category',[CategoryController::class,'index'])->name('webPro.category.index');
+Route::get('/Category/AddToWeb',[CategoryController::class,'AddCatToWeb'])->name('webPro.category.AddCatToWeb');
+
 Route::get('/Category/Main',[CategoryController::class,'index'])->name('webPro.category.index_Main');
 Route::get('/Category/SubCategory/{id}',[CategoryController::class,'SubCategory'])->name('webPro.category.SubCategory');
 Route::get('/Category/create',[CategoryController::class,'create'])->name('webPro.category.create');
@@ -170,6 +172,7 @@ Route::post('/Pages/SaveSort', [PageController::class,'SaveSort'])->name('Pages.
 
 
 Route::get('/ShopCategory',[ShopCategoryController::class,'index'])->name('Shop.shopCategory.index');
+Route::get('/Category/AddToShop',[ShopCategoryController::class,'AddCatToShop'])->name('Shop.shopCategory.AddCatToShop');
 Route::get('/ShopCategory/Main',[ShopCategoryController::class,'index'])->name('Shop.shopCategory.index_Main');
 Route::get('/ShopCategory/SubCategory/{id}',[ShopCategoryController::class,'SubCategory'])->name('Shop.shopCategory.SubCategory');
 Route::get('/ShopCategory/create',[ShopCategoryController::class,'create'])->name('Shop.shopCategory.create');

@@ -73,8 +73,7 @@ class Category extends Model implements TranslatableContract
 #|||||||||||||||||||||||||||||||||||||| #
     public function scopeDefSitequery(Builder $query): Builder
     {
-        return $query->where('cat_web',true)
-            ->with('translations')
+        return $query->with('translations')
             ->withCount('children')
             ->withCount('table_data');
     }
@@ -84,8 +83,7 @@ class Category extends Model implements TranslatableContract
 #|||||||||||||||||||||||||||||||||||||| #
     public function scopeDefShopquery(Builder $query): Builder
     {
-        return $query->where('cat_shop',true)
-            ->with('translations')
+        return $query->with('translations')
             ->withCount('children')
             ->withCount('table_data');
     }

@@ -6,6 +6,16 @@
 @section('content')
     <x-breadcrumb-def :pageData="$pageData"/>
 
+
+    <x-html-section>
+            <div class="row mb-3">
+                <div class="col-12 text-left">
+                    <x-action-button url="{{route('webPro.category.AddCatToWeb')}}"  bg="p"  print-lable="{{__('admin/shop.cat_addweb')}}"  icon="fas fa-plus-square"  />
+                </div>
+            </div>
+    </x-html-section>
+
+
     <x-html-section>
         <ol class="breadcrumb breadcrumb_menutree">
             <li class="breadcrumb-item"><a href="{{route($PrefixRoute.'.index_Main')}}">{{__('admin/def.main_category')}}</a></li>

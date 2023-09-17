@@ -84,13 +84,13 @@ class DatabaseSeeder extends Seeder
         $this->call(WebPrivacyTranslationSeeder::class);
 
 
-//        $this->call(CategorySeeder::class);
-//        $this->call(CategoryTranslationSeeder::class);
+        $this->call(CategorySeeder::class);
+        $this->call(CategoryTranslationSeeder::class);
         $this->call(AttributeTableSeeder::class);
         $this->call(AttributeTableTranslationSeeder::class);
 
-//        $this->call(CategoryTableSeeder::class);
-//        $this->call(CategoryTableTranslationSeeder::class);
+        $this->call(CategoryTableSeeder::class);
+        $this->call(CategoryTableTranslationSeeder::class);
 
 //        $this->call(ProductSeeder::class);
 //        $this->call(ProductTranslationSeeder::class);

@@ -81,12 +81,28 @@ class CategoryController extends AdminMainController
         $pageData['ViewType'] = "List";
         $pageData['SubView'] = false;
         if( Route::currentRouteName()== 'webPro.category.index_Main'){
-            $Categories = self::getSelectQuery(Category::defSitequery()->where('parent_id',null));
+            $Categories = self::getSelectQuery(Category::defSitequery()->where('parent_id',null)->where('cat_web',true)->where('cat_web_data',true));
         }else{
-            $Categories = self::getSelectQuery(Category::defSitequery());
+            $Categories = self::getSelectQuery(Category::defSitequery()->where('cat_web',true)->where('cat_web_data',true));
         }
         return view('admin.product.category_index',compact('pageData','Categories'));
     }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     index
+    public function AddCatToWeb()
+    {
+        $pageData = $this->pageData;
+        $pageData['ViewType'] = "List";
+        $pageData['SubView'] = false;
+        $Categories = self::getSelectQuery(Category::defSitequery()->where('cat_web',false)->orWhere('cat_web_data',
+            false));
+        return view('admin.product.category_index',compact('pageData','Categories'));
+    }
+
+
+
+
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     SubCategory
@@ -95,7 +111,7 @@ class CategoryController extends AdminMainController
         $pageData = $this->pageData;
         $pageData['ViewType'] = "List";
         $pageData['SubView'] = true;
-        $Categories = self::getSelectQuery(Category::defSitequery()->where('parent_id',$id));
+        $Categories = self::getSelectQuery(Category::defSitequery()->where('parent_id',$id)->where('cat_web',true)->where('cat_web_data',true));
         $trees = Category::find($id)->ancestorsAndSelf()->orderBy('depth','asc')->get() ;
         return view('admin.product.category_index',compact('pageData','Categories','trees'));
     }
@@ -129,10 +145,13 @@ class CategoryController extends AdminMainController
     {
 
         $saveData =  Category::findOrNew($id);
-        if($request->input('parent_id') != 0){
+        if($request->input('parent_id') != 0 and $request->input('parent_id') != $saveData->id){
             $saveData->parent_id = $request->input('parent_id');
         }
         $saveData->setActive((bool) request('is_active', false));
+        $saveData->cat_shop = $request->input('cat_shop');
+        $saveData->cat_web = $request->input('cat_web');
+        $saveData->cat_web_data =1;
         $saveData->save();
 
         $saveImgData = new PuzzleUploadProcess();

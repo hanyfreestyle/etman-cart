@@ -7,6 +7,15 @@
     <x-breadcrumb-def :pageData="$pageData"/>
 
     <x-html-section>
+        <div class="row mb-3">
+            <div class="col-12 text-left">
+                <x-action-button url="{{route('Shop.shopCategory.AddCatToShop')}}"  bg="p"  print-lable="{{ __('admin/shop.cat_addshop') }}"  icon="fas fa-plus-square"  />
+            </div>
+        </div>
+    </x-html-section>
+
+
+    <x-html-section>
         <ol class="breadcrumb breadcrumb_menutree">
             <li class="breadcrumb-item"><a href="{{route($PrefixRoute.'.index_Main')}}">{{__('admin/def.main_category')}}</a></li>
             @if($pageData['SubView'])
@@ -30,7 +39,7 @@
                             <th class="TD_20"></th>
                             <th>{{__('admin/def.form_name_ar')}}</th>
                             <th class="tbutaction TD_50"></th>
-                            <th class="tbutaction TD_50"></th>
+{{--                            <th class="tbutaction TD_50"></th>--}}
 
                             @can($PrefixRole.'_edit')
                                 <th class="tbutaction TD_50"></th>
@@ -49,7 +58,7 @@
 
                                 <td class="tc" >{!! is_active($Category->is_active) !!}</td>
                                 @can($PrefixRole.'_edit')
-                                    <td class="tc"><x-action-button url="{{route($PrefixRoute.'.Table_list',$Category->id)}}" count="{{$Category->table_data_count}}"  print-lable="{{__('admin/def.table_info')}}"  icon="fas fa-info-circle" :tip="true" /></td>
+{{--                                    <td class="tc"><x-action-button url="{{route($PrefixRoute.'.Table_list',$Category->id)}}" count="{{$Category->table_data_count}}"  print-lable="{{__('admin/def.table_info')}}"  icon="fas fa-info-circle" :tip="true" /></td>--}}
                                     <td class="tc"><x-action-button url="{{route($PrefixRoute.'.edit',$Category->id)}}" type="edit" :tip="true" /></td>
                                 @endcan
 

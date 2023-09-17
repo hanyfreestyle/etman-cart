@@ -24,15 +24,26 @@
 
             <form  class="mainForm" action="{{route($PrefixRoute.'.update',intval($Category->id))}}" method="post"  enctype="multipart/form-data">
                 @csrf
-                <x-form-select-category
-                    name="parent_id"
-                    label="{{__('admin/def.form_Categories')}}"
-                    :sendvalue="old('parent_id',$Category->parent_id)"
-                    :required-span="false"
-                    print-val-name="name"
-                    colrow="col-lg-6 "
-                    :send-arr="$Categories"
-                />
+
+                <div class="row">
+
+                    <x-form-select-category
+                        name="parent_id"
+                        label="{{__('admin/def.form_Categories')}}"
+                        :sendvalue="old('parent_id',$Category->parent_id)"
+                        :required-span="false"
+                        print-val-name="name"
+                        colrow="col-lg-6 "
+                        :send-arr="$Categories"
+                    />
+
+                    <x-form-select-arr  label="{{__('admin/shop.cat_addshop')}}" name="cat_shop" colrow="col-lg-3"
+                                        sendvalue="{{old('cat_shop',$Category->cat_shop)}}" select-type="selActive"/>
+
+                    <x-form-select-arr  label="{{__('admin/shop.cat_addweb')}}" name="cat_web" colrow="col-lg-3"
+                                        sendvalue="{{old('cat_web',$Category->cat_web)}}" select-type="selActive"/>
+                </div>
+
 
                 <div class="row">
                     @foreach ( config('app.lang_file') as $key=>$lang )

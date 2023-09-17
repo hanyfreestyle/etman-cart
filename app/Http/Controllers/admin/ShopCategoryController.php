@@ -85,26 +85,40 @@ class ShopCategoryController extends AdminMainController
         $pageData['ViewType'] = "List";
         $pageData['SubView'] = false;
         if( Route::currentRouteName()== 'webPro.category.index_Main'){
-            $Categories = self::getSelectQuery(Category::defShopquery()->where('parent_id',null));
+            $Categories = self::getSelectQuery(Category::defShopquery()->where('parent_id',null)->where('cat_shop',true));
         }else{
-            $Categories = self::getSelectQuery(Category::defShopquery());
+            $Categories = self::getSelectQuery(Category::defShopquery()->where('cat_shop',true));
         }
         return view('admin.shop.category_index',compact('pageData','Categories'));
     }
-//
-//#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//#|||||||||||||||||||||||||||||||||||||| #     SubCategory
-//    public function SubCategory($id)
-//    {
-//        $pageData = $this->pageData;
-//        $pageData['ViewType'] = "List";
-//        $pageData['SubView'] = true;
-//        $Categories = self::getSelectQuery(Category::defquery()->where('parent_id',$id));
-//        $trees = Category::find($id)->ancestorsAndSelf()->orderBy('depth','asc')->get() ;
-//        return view('admin.product.category_index',compact('pageData','Categories','trees'));
-//    }
-//
-//
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     AddCatToShop
+    public function AddCatToShop()
+    {
+        $pageData = $this->pageData;
+        $pageData['ViewType'] = "List";
+        $pageData['SubView'] = false;
+        $Categories = self::getSelectQuery(Category::defShopquery()->where('cat_shop',false));
+        return view('admin.shop.category_index',compact('pageData','Categories'));
+    }
+
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     SubCategory
+    public function SubCategory($id)
+    {
+        $pageData = $this->pageData;
+        $pageData['ViewType'] = "List";
+        $pageData['SubView'] = true;
+        $Categories = self::getSelectQuery(Category::defShopquery()->where('cat_shop',true)->where('parent_id',$id));
+        $trees = Category::find($id)->ancestorsAndSelf()->orderBy('depth','asc')->get() ;
+        return view('admin.product.category_index',compact('pageData','Categories','trees'));
+    }
+
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     create
     public function create()
@@ -134,7 +148,7 @@ class ShopCategoryController extends AdminMainController
     {
 
         $saveData =  Category::findOrNew($id);
-        if($request->input('parent_id') != 0){
+        if($request->input('parent_id') != 0 and $request->input('parent_id') != $saveData->id){
             $saveData->parent_id = $request->input('parent_id');
         }
         $saveData->setActive((bool) request('is_active', false));
@@ -193,39 +207,37 @@ class ShopCategoryController extends AdminMainController
         }
     }
 
-//#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//#|||||||||||||||||||||||||||||||||||||| #     destroy
-//    public function destroy($id)
-//    {
-//        $deleteRow = Category::findOrFail($id);
-//        $deleteRow = AdminHelper::DeleteAllPhotos($deleteRow);
-//        $deleteRow->delete();
-//        self::ClearCash();
-//        return back()->with('confirmDelete',"");
-//    }
-//
-//#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//#|||||||||||||||||||||||||||||||||||||| #     EmptyPhoto
-//    public function emptyPhoto($id){
-//        $rowData = Category::findOrFail($id);
-//        $rowData = AdminHelper::DeleteAllPhotos($rowData,true);
-//        $rowData->save();
-//        self::ClearCash();
-//        return back();
-//    }
-//
-//
-//#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//#|||||||||||||||||||||||||||||||||||||| #     EmptyPhoto
-//    public function emptyIcon ($id){
-//        $rowData = Category::findOrFail($id);
-//        $rowData = AdminHelper::DeleteAllPhotos($rowData,true,['icon']);
-//        $rowData->save();
-//        self::ClearCash();
-//        return back();
-//    }
-//
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     destroy
+    public function destroy($id)
+    {
+        $deleteRow = Category::findOrFail($id);
+        $deleteRow = AdminHelper::DeleteAllPhotos($deleteRow);
+        $deleteRow->delete();
+        self::ClearCash();
+        return back()->with('confirmDelete',"");
+    }
 
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     EmptyPhoto
+    public function emptyPhoto($id){
+        $rowData = Category::findOrFail($id);
+        $rowData = AdminHelper::DeleteAllPhotos($rowData,true);
+        $rowData->save();
+        self::ClearCash();
+        return back();
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     EmptyPhoto
+    public function emptyIcon ($id){
+        $rowData = Category::findOrFail($id);
+        $rowData = AdminHelper::DeleteAllPhotos($rowData,true,['icon']);
+        $rowData->save();
+        self::ClearCash();
+        return back();
+    }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     config
