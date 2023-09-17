@@ -175,7 +175,7 @@ Route::post('/Pages/SaveSort', [PageController::class,'SaveSort'])->name('Pages.
 
 
 Route::get('/ShopCategory',[ShopCategoryController::class,'index'])->name('Shop.shopCategory.index');
-Route::get('/Category/AddToShop',[ShopCategoryController::class,'AddCatToShop'])->name('Shop.shopCategory.AddCatToShop');
+Route::get('/ShopCategory/AddToShop',[ShopCategoryController::class,'AddCatToShop'])->name('Shop.shopCategory.AddCatToShop');
 Route::get('/ShopCategory/Main',[ShopCategoryController::class,'index'])->name('Shop.shopCategory.index_Main');
 Route::get('/ShopCategory/SubCategory/{id}',[ShopCategoryController::class,'SubCategory'])->name('Shop.shopCategory.SubCategory');
 Route::get('/ShopCategory/create',[ShopCategoryController::class,'create'])->name('Shop.shopCategory.create');

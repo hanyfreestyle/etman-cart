@@ -5,9 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Helpers\AdminHelper;
 use App\Helpers\PuzzleUploadProcess;
 use App\Http\Controllers\AdminMainController;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\admin\ProductPhotoRequest;
-use App\Http\Requests\admin\ProductRequest;
 use App\Http\Requests\admin\ShopProductRequest;
 use App\Models\admin\Category;
 use App\Models\admin\Product;
@@ -82,7 +80,6 @@ class ShopProductController extends AdminMainController
         $pageData['ViewType'] = "List";
         $pageData['SubView'] = false;
         $Products = self::getSelectQuery(Product::defquery()
-            ->withCount('more_photos')
             ->where('pro_shop',true)
         );
         return view('admin.shop.product_index',compact('pageData','Products'));
@@ -96,7 +93,6 @@ class ShopProductController extends AdminMainController
         $pageData['ViewType'] = "List";
         $pageData['SubView'] = false;
         $Products = self::getSelectQuery(Product::defquery()
-            ->withCount('more_photos')
             ->where('pro_shop',false)
         );
         return view('admin.shop.product_index',compact('pageData','Products'));
@@ -107,18 +103,24 @@ class ShopProductController extends AdminMainController
 
 
 
-//#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//#|||||||||||||||||||||||||||||||||||||| #     SubCategory
-//    public function ListCategory($id)
-//    {
-//        $pageData = $this->pageData;
-//        $pageData['ViewType'] = "List";
-//        $pageData['SubView'] = true;
-//        $Category = Category::findOrFail($id);
-//        $Products = self::getSelectQuery(Product::defquery()->where('category_id',$Category->id));
-//        return view('admin.shop.product_index',compact('pageData','Products'));
-//    }
-//
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     SubCategory
+    public function ListCategory($id)
+    {
+        $pageData = $this->pageData;
+        $pageData['ViewType'] = "List";
+        $pageData['SubView'] = true;
+        $Category = Category::findOrFail($id);
+
+
+        $Products = Product::defquery()->whereHas('ProductWithCategory', function ($query) use ($id) {
+            $query->where('category_id', $id);
+        })->paginate(10);
+
+
+        return view('admin.shop.product_index',compact('pageData','Products'));
+    }
+
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     create
@@ -126,9 +128,11 @@ class ShopProductController extends AdminMainController
     {
         $pageData = $this->pageData;
         $pageData['ViewType'] = "Add";
-        $Categories = Category::tree()->with('translation')->get()->toTree();
+        //$Categories = Category::tree()->with('translation')->get()->toTree();
+        $Categories = Category::all();
         $Product = Product::findOrNew(0);
-        return view('admin.shop.product_form',compact('pageData','Product','Categories'));
+        $selCat = [];
+        return view('admin.shop.product_form',compact('pageData','Product','Categories','selCat'));
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -137,9 +141,11 @@ class ShopProductController extends AdminMainController
     {
         $pageData = $this->pageData;
         $pageData['ViewType'] = "Edit";
-        $Categories = Category::tree()->get()->toTree();
-        $Product = Product::findOrFail($id);
-        return view('admin.shop.product_form',compact('Product','pageData','Categories'));
+
+        $Categories = Category::all();
+        $Product = Product::where('id',$id)->with('ProductWithCategory')->firstOrFail();
+        $selCat = $Product->ProductWithCategory()->pluck('category_id')->toArray();
+        return view('admin.shop.product_form',compact('Product','pageData','Categories','selCat'));
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -147,14 +153,18 @@ class ShopProductController extends AdminMainController
     public function storeUpdate(ShopProductRequest $request, $id=0)
     {
 
+        $categories = $request->input('categories');
 
         $saveData =  Product::findOrNew($id);
 
         $saveData->category_id = $request->input('category_id');
-        $saveData->setActive((bool) request('is_active', false));
+        $saveData->is_active = intval((bool) $request->input( 'is_active'));
+        $saveData->is_archived = intval((bool) $request->input( 'is_archived'));
+
         $saveData->pro_shop = $request->input('pro_shop');
         $saveData->pro_web = $request->input('pro_web');
         $saveData->save();
+        $saveData->ProductWithCategory()->sync($categories);
 
         $saveImgData = new PuzzleUploadProcess();
         $saveImgData->setCountOfUpload('2');

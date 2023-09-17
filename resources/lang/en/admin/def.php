@@ -19,9 +19,10 @@ return
 	'model_config' => 'Model Settings',
 	'photo' => 'Photo',
 	'post' => 'Post',
+	'published_at' => 'Published at',
 	'status' => 'Status',
 	'status_active' => 'Active',
 	'status_unactive' => 'UnActive',
 	'table_info' => 'Information Table',
-	'published_at' => 'Published at',
+	'status_archived' => 'Archived',
 ];

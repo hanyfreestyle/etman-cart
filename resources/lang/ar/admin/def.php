@@ -19,9 +19,10 @@ return
 	'model_config' => 'اعدادات القسم',
 	'photo' => 'صورة',
 	'post' => 'مقال',
+	'published_at' => 'تاريخ النشر',
 	'status' => 'الحالة',
 	'status_active' => 'فعال',
 	'status_unactive' => 'غير فعال',
 	'table_info' => 'جدول البيانات',
-	'published_at' => 'تاريخ النشر',
+	'status_archived' => 'مؤرشف',
 ];

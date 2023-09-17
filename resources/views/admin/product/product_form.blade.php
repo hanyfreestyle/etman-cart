@@ -26,6 +26,18 @@
                 @csrf
 
                 <div class="row">
+                    <x-form-select-multiple name="categories" label="{{__('admin/def.Category')}}">
+                        @foreach($Categories as $Category )
+                            <option  value="{{$Category->id}}"
+                                {{ (in_array($Category->id,$selCat)) ? 'selected' : ''}}
+                                {{ (collect(old('categories'))->contains($Category->id)) ? 'selected':'' }}
+                            >{{$Category->name}}</option>
+                        @endforeach
+                    </x-form-select-multiple>
+                </div>
+
+
+                <div class="row">
                     <x-form-select-category
                         name="category_id"
                         label="{{__('admin/def.form_Categories')}}"

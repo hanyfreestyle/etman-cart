@@ -22,18 +22,20 @@ class Product extends Model implements TranslatableContract
     protected $translationForeignKey = 'product_id';
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     setActive
-    public function setActive(bool $status = true): self
+#|||||||||||||||||||||||||||||||||||||| #  ProductWithCategory
+    public function ProductWithCategory()
     {
-        return $this->setAttribute('is_active', $status);
+        return $this->belongsToMany(Category::class,'product_category','product_id','category_id');
     }
-
-
-    public function categoryName(): BelongsTo
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #
+    public function scopeDefquery(Builder $query): Builder
     {
-        return $this->belongsTo(Category::class,'category_id','id')->with('translation');
+        return $query->with('translations')
+            ->with('ProductWithCategory')
+            ->withCount('table_data')
+            ->withCount('more_photos');
     }
-
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     table_data
@@ -41,24 +43,51 @@ class Product extends Model implements TranslatableContract
     {
         return $this->hasMany(ProductTable::class , 'product_id', 'id' );
     }
-
-
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #
-    public function scopeDefquery(Builder $query): Builder
-    {
-        return $query->with('translations')
-            ->with('categoryName')
-            ->withCount('table_data')
-            ->withCount('more_photos')
-            ;
-    }
-
-
+#|||||||||||||||||||||||||||||||||||||| # more_photos
     public function more_photos(): HasMany
     {
         return $this->hasMany(ProductPhoto::class,'product_id','id');
     }
+
+
+//#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//#|||||||||||||||||||||||||||||||||||||| #     setActive
+//    public function setActive(bool $status = true): self
+//    {
+//        return $this->setAttribute('is_active', $status);
+//    }
+//
+//
+//    public function categoryName(): BelongsTo
+//    {
+//        return $this->belongsTo(Category::class,'category_id','id')->with('translation');
+//    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #

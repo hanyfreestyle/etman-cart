@@ -25,9 +25,14 @@
                         <tr>
                             <th class="TD_20">#</th>
                             <th class="TD_20"></th>
-                            <th>{{__('admin/def.form_name_ar')}}</th>
+                            <th class="TD_200">{{__('admin/def.form_name_ar')}}</th>
+                            <th class="TD_250">{{__('admin/def.Category')}}</th>
 
-                            <th>{{__('admin/def.Category')}}</th>
+
+                            <th class="TD_50">{{ __('admin/shop.pro_price') }}</th>
+                            <th class="TD_50">{{ __('admin/shop.pro_discount_price') }}</th>
+                            <th class="TD_50">{{ __('admin/shop.pro_qty') }}</th>
+
 
                             <th class="tbutaction TD_50"></th>
                             @can($PrefixRole.'_edit')
@@ -48,7 +53,19 @@
                                 <td class="tc">{!!  \App\Helpers\AdminHelper::printTableImage($Product,'photo_thum_1') !!} </td>
                                 <td>{{ $Product->translate('ar')->name}}</td>
 
-                                <td><a href="{{route($PrefixRoute.'.ListCategory',$Product->categoryName->id)}}">{{ $Product->categoryName->name }}</a></td>
+                                <td>
+                                    @foreach($Product->ProductWithCategory as $Category )
+                                        <a href="{{route($PrefixRoute.'.ListCategory',$Category->id)}}">
+                                            <span class="cat_table_name">{{$Category->name}}</span>
+                                        </a>
+                                    @endforeach
+                                </td>
+
+
+
+                                <td class="tc"></td>
+                                <td class="tc"></td>
+                                <td class="tc"></td>
 
                                 <td class="tc" >{!! is_active($Product->is_active) !!}</td>
                                 @can($PrefixRole.'_edit')

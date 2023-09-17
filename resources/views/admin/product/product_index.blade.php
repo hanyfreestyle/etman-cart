@@ -25,9 +25,9 @@
                         <tr>
                             <th class="TD_20">#</th>
                             <th class="TD_20"></th>
-                            <th>{{__('admin/def.form_name_ar')}}</th>
-                            <th>{{__('admin/def.form_name_en')}}</th>
-                            <th>{{__('admin/def.Category')}}</th>
+                            <th class="TD_150">{{__('admin/def.form_name_ar')}}</th>
+                            <th class="TD_150">{{__('admin/def.form_name_en')}}</th>
+                            <th class="TD_250">{{__('admin/def.Category')}}</th>
 
                             <th class="tbutaction TD_50"></th>
                             @can($PrefixRole.'_edit')
@@ -45,10 +45,18 @@
                         @foreach($Products as $Product)
                             <tr>
                                 <td>{{$Product->id}}</td>
-                                <td class="tc">{!!  \App\Helpers\AdminHelper::printTableImage($Product,'photo') !!} </td>
+                                <td class="tc">{!!  \App\Helpers\AdminHelper::printTableImage($Product,'photo_thum_1') !!} </td>
                                 <td>{{ $Product->translate('ar')->name ?? ''}}</td>
                                 <td>{{ $Product->translate('en')->name ?? '' }}</td>
-                                <td><a href="{{route($PrefixRoute.'.ListCategory',$Product->categoryName->id)}}">{{ $Product->categoryName->name }}</a></td>
+
+                                <td>
+                                    @foreach($Product->ProductWithCategory as $Category )
+                                        <a href="{{route($PrefixRoute.'.ListCategory',$Category->id)}}">
+                                            <span class="cat_table_name">{{$Category->name}}</span>
+                                        </a>
+                                    @endforeach
+                                </td>
+
 
                                 <td class="tc" >{!! is_active($Product->is_active) !!}</td>
                                 @can($PrefixRole.'_edit')

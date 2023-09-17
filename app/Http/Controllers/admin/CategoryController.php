@@ -101,8 +101,7 @@ class CategoryController extends AdminMainController
         $pageData = $this->pageData;
         $pageData['ViewType'] = "List";
         $pageData['SubView'] = false;
-        $Categories = self::getSelectQuery(Category::defSitequery()->where('cat_web',false)->orWhere('cat_web_data',
-            false));
+        $Categories = self::getSelectQuery(Category::defSitequery()->where('cat_web',false)->orWhere('cat_web_data', false));
         return view('admin.product.category_index',compact('pageData','Categories'));
     }
 

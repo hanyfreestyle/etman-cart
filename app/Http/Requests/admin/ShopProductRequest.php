@@ -32,6 +32,7 @@ class ShopProductRequest extends FormRequest
         $id = $this->route('id');
 
         $rules =[
+            'categories'  => 'required|array|min:1',
             'category_id'=> "required",
             'pro_shop'=> "required",
             'pro_web'=> "required",

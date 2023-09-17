@@ -47,7 +47,6 @@
                                         <a href="{{route($PrefixRoute.'.ListCategory',$Category->id)}}">
                                             <span class="cat_table_name">{{$Category->name}}</span>
                                         </a>
-
                                     @endforeach
                                 </td>
                                 <td class="tc" >{!! is_active($row->is_active) !!}</td>

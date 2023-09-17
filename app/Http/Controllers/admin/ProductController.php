@@ -83,7 +83,6 @@ class ProductController extends AdminMainController
         $pageData['ViewType'] = "List";
         $pageData['SubView'] = false;
         $Products = self::getSelectQuery(Product::defquery()
-            ->withCount('more_photos')
             ->where('pro_web',true)
             ->where('pro_web_data',true)
         );
@@ -98,7 +97,6 @@ class ProductController extends AdminMainController
         $pageData['ViewType'] = "List";
         $pageData['SubView'] = false;
         $Products = self::getSelectQuery(Product::defquery()
-            ->withCount('more_photos')
             ->where('pro_web',false)
             ->Orwhere('pro_web_data',false)
         );
@@ -115,7 +113,15 @@ class ProductController extends AdminMainController
         $pageData['ViewType'] = "List";
         $pageData['SubView'] = true;
         $Category = Category::findOrFail($id);
-        $Products = self::getSelectQuery(Product::defquery()->where('category_id',$Category->id));
+
+        $Products = Product::defquery()
+            ->where('pro_web',true)
+            ->where('pro_web_data',true)
+            ->whereHas('ProductWithCategory', function ($query) use ($id) {
+            $query->where('category_id', $id);
+        })->paginate(10);
+
+
         return view('admin.product.product_index',compact('pageData','Products'));
     }
 
@@ -125,9 +131,10 @@ class ProductController extends AdminMainController
     {
         $pageData = $this->pageData;
         $pageData['ViewType'] = "Add";
-        $Categories = Category::tree()->with('translation')->get()->toTree();
+        $Categories = Category::all();
         $Product = Product::findOrNew(0);
-        return view('admin.product.product_form',compact('pageData','Product','Categories'));
+        $selCat = [];
+        return view('admin.product.product_form',compact('pageData','Product','Categories','selCat'));
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -136,9 +143,10 @@ class ProductController extends AdminMainController
     {
         $pageData = $this->pageData;
         $pageData['ViewType'] = "Edit";
-        $Categories = Category::tree()->get()->toTree();
-        $Product = Product::findOrFail($id);
-        return view('admin.product.product_form',compact('Product','pageData','Categories'));
+        $Categories = Category::all();
+        $Product = Product::where('id',$id)->with('ProductWithCategory')->firstOrFail();
+        $selCat = $Product->ProductWithCategory()->pluck('category_id')->toArray();
+        return view('admin.product.product_form',compact('Product','pageData','Categories','selCat'));
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -146,14 +154,19 @@ class ProductController extends AdminMainController
     public function storeUpdate(ProductRequest $request, $id=0)
     {
 
+
+        $categories = $request->input('categories');
+
         $saveData =  Product::findOrNew($id);
 
         $saveData->category_id = $request->input('category_id');
-        $saveData->setActive((bool) request('is_active', false));
+        $saveData->is_active = intval((bool) $request->input( 'is_active'));
+        $saveData->is_archived = intval((bool) $request->input( 'is_archived'));
         $saveData->pro_shop = $request->input('pro_shop');
         $saveData->pro_web = $request->input('pro_web');
         $saveData->pro_web_data = 1;
         $saveData->save();
+        $saveData->ProductWithCategory()->sync($categories);
 
         $saveImgData = new PuzzleUploadProcess();
         $saveImgData->setCountOfUpload('2');
@@ -176,14 +189,13 @@ class ProductController extends AdminMainController
         }
 
         self::ClearCash();
-        if($id == '0'){
 
+        if($id == '0'){
             if($request->input('AddNewSet') !== null){
                 return redirect()->back();
             }else{
                 return redirect(route($this->PrefixRoute.'.index'))->with('Add.Done',"");
             }
-
         }else{
             return redirect(route($this->PrefixRoute.'.index'))->with('Edit.Done',"");
         }

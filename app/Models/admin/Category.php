@@ -26,6 +26,15 @@ class Category extends Model implements TranslatableContract
     protected $translationForeignKey = 'category_id';
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #  CategoryWithProduct
+    public function CategoryWithProduct()
+    {
+        return $this->belongsToMany(Product::class,'product_category','category_id','product_id');
+    }
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     setActive
     public function setActive(bool $status = true): self
     {

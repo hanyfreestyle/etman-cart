@@ -25,6 +25,17 @@
                 @csrf
 
                 <div class="row">
+                    <x-form-select-multiple name="categories" label="{{__('admin/def.Category')}}">
+                        @foreach($Categories as $Category )
+                            <option  value="{{$Category->id}}"
+                                {{ (in_array($Category->id,$selCat)) ? 'selected' : ''}}
+                                {{ (collect(old('categories'))->contains($Category->id)) ? 'selected':'' }}
+                            >{{$Category->name}}</option>
+                        @endforeach
+                    </x-form-select-multiple>
+                </div>
+
+                <div class="row">
 
                     <x-form-select-category
                         name="category_id"
@@ -61,6 +72,7 @@
 
                 <div class="row">
                     <x-form-check-active :row="$Product" name="is_active" page-view="{{$pageData['ViewType']}}"/>
+                    <x-form-check-active :row="$Product" name="is_archived" :defstatus="false" lable="{{__('admin/def.status_archived')}}"  page-view="{{$pageData['ViewType']}}"/>
                 </div>
 
                 <hr>
