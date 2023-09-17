@@ -157,7 +157,7 @@ class ShopProductController extends AdminMainController
 
         $saveData =  Product::findOrNew($id);
 
-        $saveData->category_id = $request->input('category_id');
+
         $saveData->is_active = intval((bool) $request->input( 'is_active'));
         $saveData->is_archived = intval((bool) $request->input( 'is_archived'));
 
