@@ -34,7 +34,7 @@
 
                                         <div class="icon_box_content">
                                             <h2><a href="{{route('Page_FaqCatView',$Category->slug)}}">{{ $Category->name }}</a>
-                                                <span class="cat_count">({{$Category->faq_to_cat_count}})</span></h2>
+                                                <span class="cat_count">({{$Category->faqs_count}})</span></h2>
                                             <p>{{ $Category->g_des }}</p>
                                             <span class="readmore">
                                                 <a href="{{route('Page_FaqCatView',$Category->slug)}}">{{__('web/def.read_more')}}</a>

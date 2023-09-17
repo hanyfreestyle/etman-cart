@@ -82,135 +82,119 @@ class FaqCategoryController extends AdminMainController
         $FaqCategories = self::getSelectQuery(FaqCategory::defquery());
         return view('admin.faq.category_index',compact('pageData','FaqCategories'));
     }
-//
-//
-//#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//#|||||||||||||||||||||||||||||||||||||| #     SoftDeletes
-//    public function SoftDeletes()
-//    {
-//        $pageData = $this->pageData ;
-//        $pageData['ViewType'] = "deleteList";
-//        $FaqCategories = self::getSelectQuery(FaqCategory::onlyTrashed());
-//        self::ClearCash();
-//        return view('admin.faq.category_index',compact('pageData','FaqCategories'));
-//    }
-//
-//
-//#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//#|||||||||||||||||||||||||||||||||||||| #     create
-//    public function create()
-//    {
-//        $pageData = $this->pageData;
-//        $pageData['ViewType'] = "Add";
-//        $Category = FaqCategory::findOrNew(0);
-//        return view('admin.faq.category_form',compact('pageData','Category'));
-//    }
-//
-//#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//#|||||||||||||||||||||||||||||||||||||| #     edit
-//    public function edit($id)
-//    {
-//        $pageData = $this->pageData;
-//        $pageData['ViewType'] = "Edit";
-//        $Category = FaqCategory::findOrFail($id);
-//        return view('admin.faq.category_form',compact('pageData','Category'));
-//    }
-//
-//
-//#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//#|||||||||||||||||||||||||||||||||||||| #     storeUpdate
-//    public function storeUpdate(FaqCategoryRequest $request, $id=0)
-//    {
-//        $saveData =  FaqCategory::findOrNew($id);
-//        $saveData->is_active = intval((bool) $request->input( 'is_active'));
-//        $saveData->save();
-//
-//        $saveImgData = new PuzzleUploadProcess();
-//        $saveImgData->setCountOfUpload('2');
-//        $saveImgData->setUploadDirIs('faq/'.$saveData->id);
-//        $saveImgData->setnewFileName($request->input('en.slug'));
-//        $saveImgData->UploadOne($request);
-//        $saveData = AdminHelper::saveAndDeletePhoto($saveData,$saveImgData);
-//        $saveData->save();
-//
-//        foreach ( config('app.lang_file') as $key=>$lang) {
-//            $saveTranslation = FaqCategoryTranslation::where('category_id',$saveData->id)->where('locale',$key)->firstOrNew();
-//            $saveTranslation->category_id = $saveData->id;
-//            $saveTranslation->locale = $key;
-//            $saveTranslation->name = $request->input($key.'.name');
-//            $saveTranslation->slug = AdminHelper::Url_Slug($request->input($key.'.slug'));
-//            $saveTranslation->des = $request->input($key.'.des');
-//            $saveTranslation->g_title = $request->input($key.'.g_title');
-//            $saveTranslation->g_des = $request->input($key.'.g_des');
-//            $saveTranslation->save();
-//        }
-//
-//        self::ClearCash();
-//
-//       if($id == '0'){
-//            return redirect(route($this->PrefixRoute.'.index'))->with('Add.Done',"");
-//        }else{
-//            return redirect(route($this->PrefixRoute.'.index'))->with('Edit.Done',"");
-//        }
-//
-//    }
-//
-//#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//#|||||||||||||||||||||||||||||||||||||| #     EmptyPhoto
-//    public function emptyPhoto($id){
-//        $rowData = FaqCategory::findOrFail($id);
-//        $rowData = AdminHelper::DeleteAllPhotos($rowData,true);
-//        $rowData->save();
-//        self::ClearCash();
-//        return back();
-//    }
-//
-//#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//#|||||||||||||||||||||||||||||||||||||| #     destroy
-//    public function destroy($id)
-//    {
-//        $deleteRow = FaqCategory::findOrFail($id);
-//        $deleteRow->delete();
-//        self::ClearCash();
-//        return back()->with('confirmDelete',"");
-//    }
-//
-//
-//#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//#|||||||||||||||||||||||||||||||||||||| #     Restore
-//    public function restored($id)
-//    {
-//        $subList = FaqCategory::where('id',$id)
-//            ->with('get_trashed_list')
-//            ->withTrashed()->firstOrFail();
-//        if(count($subList->get_trashed_list) > 0){
-//            foreach ($subList->get_trashed_list as $list ){
-//                Faq::onlyTrashed()->where('id',$list->id)->restore();
-//            }
-//        }
-//        FaqCategory::onlyTrashed()->where('id',$id)->restore();
-//        self::ClearCash();
-//        return back()->with('restore',"");
-//    }
-//
-//#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//#|||||||||||||||||||||||||||||||||||||| #     ForceDeletes
-//    public function ForceDeletes($id)
-//    {
-//        $deleteRow =  FaqCategory::onlyTrashed()->where('id',$id)
-//            ->with('get_trashed_list')
-//            ->firstOrFail();
-//
-//        if(count($deleteRow->get_trashed_list) > 0){
-//            foreach ($deleteRow->get_trashed_list as $del_photo ){
-//                AdminHelper::DeleteAllPhotos($del_photo);
-//            }
-//        }
-//        $deleteRow = AdminHelper::DeleteAllPhotos($deleteRow);
-//        $deleteRow->forceDelete();
-//        self::ClearCash();
-//        return back()->with('confirmDelete',"");
-//    }
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     SoftDeletes
+    public function SoftDeletes()
+    {
+        $pageData = $this->pageData ;
+        $pageData['ViewType'] = "deleteList";
+        $FaqCategories = self::getSelectQuery(FaqCategory::onlyTrashed());
+        self::ClearCash();
+        return view('admin.faq.category_index',compact('pageData','FaqCategories'));
+    }
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     create
+    public function create()
+    {
+        $pageData = $this->pageData;
+        $pageData['ViewType'] = "Add";
+        $Category = FaqCategory::findOrNew(0);
+        return view('admin.faq.category_form',compact('pageData','Category'));
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     edit
+    public function edit($id)
+    {
+        $pageData = $this->pageData;
+        $pageData['ViewType'] = "Edit";
+        $Category = FaqCategory::findOrFail($id);
+        return view('admin.faq.category_form',compact('pageData','Category'));
+    }
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     storeUpdate
+    public function storeUpdate(FaqCategoryRequest $request, $id=0)
+    {
+        $saveData =  FaqCategory::findOrNew($id);
+        $saveData->is_active = intval((bool) $request->input( 'is_active'));
+        $saveData->save();
+
+        $saveImgData = new PuzzleUploadProcess();
+        $saveImgData->setCountOfUpload('2');
+        $saveImgData->setUploadDirIs('faq/'.$saveData->id);
+        $saveImgData->setnewFileName($request->input('en.slug'));
+        $saveImgData->UploadOne($request);
+        $saveData = AdminHelper::saveAndDeletePhoto($saveData,$saveImgData);
+        $saveData->save();
+
+        foreach ( config('app.lang_file') as $key=>$lang) {
+            $saveTranslation = FaqCategoryTranslation::where('category_id',$saveData->id)->where('locale',$key)->firstOrNew();
+            $saveTranslation->category_id = $saveData->id;
+            $saveTranslation->locale = $key;
+            $saveTranslation->name = $request->input($key.'.name');
+            $saveTranslation->slug = AdminHelper::Url_Slug($request->input($key.'.slug'));
+            $saveTranslation->des = $request->input($key.'.des');
+            $saveTranslation->g_title = $request->input($key.'.g_title');
+            $saveTranslation->g_des = $request->input($key.'.g_des');
+            $saveTranslation->save();
+        }
+
+        self::ClearCash();
+
+       if($id == '0'){
+            return redirect(route($this->PrefixRoute.'.index'))->with('Add.Done',"");
+        }else{
+            return redirect(route($this->PrefixRoute.'.index'))->with('Edit.Done',"");
+        }
+
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     EmptyPhoto
+    public function emptyPhoto($id){
+        $rowData = FaqCategory::findOrFail($id);
+        $rowData = AdminHelper::DeleteAllPhotos($rowData,true);
+        $rowData->save();
+        self::ClearCash();
+        return back();
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     destroy
+    public function destroy($id)
+    {
+        $deleteRow = FaqCategory::findOrFail($id);
+        $deleteRow->delete();
+        self::ClearCash();
+        return back()->with('confirmDelete',"");
+    }
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     Restore
+    public function restored($id)
+    {
+        FaqCategory::onlyTrashed()->where('id',$id)->restore();
+        self::ClearCash();
+        return back()->with('restore',"");
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     ForceDeletes
+    public function ForceDeletes($id)
+    {
+        $deleteRow =  FaqCategory::onlyTrashed()->where('id',$id)->firstOrFail();
+        $deleteRow = AdminHelper::DeleteAllPhotos($deleteRow);
+        $deleteRow->forceDelete();
+        self::ClearCash();
+        return back()->with('confirmDelete',"");
+    }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     config

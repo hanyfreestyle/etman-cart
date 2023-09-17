@@ -24,21 +24,12 @@ class FaqCategory extends Model implements TranslatableContract , LocalizedUrlRo
     protected $primaryKey = 'id';
     protected $translationForeignKey = 'category_id';
 
-
-
-    protected static function boot()
-    {
-        parent::boot();
-        static::deleted(function($account) {
-            $account->get_trashed_list()->delete();
-        });
-    }
-
-
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #
     public function faqs()
     {
         return $this->belongsToMany(Faq::class,'faqcategory_faq','category_id','faq_id')
-            ->withPivot('postion');
+            ->withPivot('postion')->orderBy('postion');
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -48,47 +39,29 @@ class FaqCategory extends Model implements TranslatableContract , LocalizedUrlRo
         return $query->with('translations');
     }
 
-
-    public function get_trashed_list(): HasMany
-    {
-        return $this->hasMany(Faq::class,'category_id','id')->withTrashed();
-    }
-
-
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #
 
     public function scopeDefWeb(Builder $query): Builder
     {
         return $query->where('is_active',true)
             ->with('translation')
-            ->withCount('FaqToCat')
-            ->with('FaqToCat')
-            ->orderBy('faq_to_cat_count','DESC')
+            ->with('faqs')
+            ->withCount('faqs')
+            ->orderBy('faqs_count','DESC')
             ;
     }
-
-
-    public function FaqToCat(): HasMany
-    {
-        return $this->hasMany(Faq::class,'category_id','id');
-    }
-
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #
     public function slugs(): HasMany
     {
         return $this->hasMany(FaqCategoryTranslation::class,'category_id','id');
     }
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #
     public function getLocalizedRouteKey($locale)
     {
-
-
-
         return $this->slugs()->where('locale',$locale)->first()->slug;
-
-
-
-
-        //return $this->FaqCatSlug->where('locale','=',$locale)->first() ;
-       //return $this->FaqCatSlug->first()->slug;
-
     }
 }

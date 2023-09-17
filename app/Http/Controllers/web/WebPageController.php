@@ -171,6 +171,7 @@ class WebPageController extends WebMainController
 
         $FaqCategories = FaqCategory::defWeb()->paginate(12);
 
+
         return view('web.faq_list',compact('SinglePageView','PageMeta','FaqCategories'));
     }
 
@@ -189,6 +190,9 @@ class WebPageController extends WebMainController
         }
 
 
+//        dd($FaqCategory);
+//
+
         $PageMeta = $FaqCategory ;
         parent::printSeoMeta($PageMeta);
 
@@ -201,6 +205,9 @@ class WebPageController extends WebMainController
         $FaqCategories = FaqCategory::defWeb()
             ->where('id','!=',$FaqCategory->id)
             ->get();
+
+
+
 
         return view('web.faq_cat_view',compact('SinglePageView','PageMeta','FaqCategory','FaqCategories'));
 

@@ -30,7 +30,7 @@
                                 </div>
                                 <div class="row accordion accordion_style1" id="accordion"  >
                                     <div class="col-lg-12">
-                                        @foreach($FaqCategory->FaqToCat as $Faq )
+                                        @foreach($FaqCategory->faqs as $Faq )
                                             <x-website.faq-slider :title="$Faq->name" :prefix="$Faq->id">
                                                 {{$Faq->des}}
                                             </x-website.faq-slider>
