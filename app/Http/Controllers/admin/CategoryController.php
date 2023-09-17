@@ -81,9 +81,9 @@ class CategoryController extends AdminMainController
         $pageData['ViewType'] = "List";
         $pageData['SubView'] = false;
         if( Route::currentRouteName()== 'webPro.category.index_Main'){
-            $Categories = self::getSelectQuery(Category::defquery()->where('parent_id',null));
+            $Categories = self::getSelectQuery(Category::defSitequery()->where('parent_id',null));
         }else{
-            $Categories = self::getSelectQuery(Category::defquery());
+            $Categories = self::getSelectQuery(Category::defSitequery());
         }
         return view('admin.product.category_index',compact('pageData','Categories'));
     }
@@ -95,7 +95,7 @@ class CategoryController extends AdminMainController
         $pageData = $this->pageData;
         $pageData['ViewType'] = "List";
         $pageData['SubView'] = true;
-        $Categories = self::getSelectQuery(Category::defquery()->where('parent_id',$id));
+        $Categories = self::getSelectQuery(Category::defSitequery()->where('parent_id',$id));
         $trees = Category::find($id)->ancestorsAndSelf()->orderBy('depth','asc')->get() ;
         return view('admin.product.category_index',compact('pageData','Categories','trees'));
     }

@@ -68,11 +68,26 @@ class Category extends Model implements TranslatableContract
             ->orderBy('postion');
     }
 
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #
-    public function scopeDefquery(Builder $query): Builder
+    public function scopeDefSitequery(Builder $query): Builder
     {
-        return $query->with('translations')->withCount('children')->withCount('table_data');
+        return $query->where('cat_web',true)
+            ->with('translations')
+            ->withCount('children')
+            ->withCount('table_data');
+    }
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #
+    public function scopeDefShopquery(Builder $query): Builder
+    {
+        return $query->where('cat_shop',true)
+            ->with('translations')
+            ->withCount('children')
+            ->withCount('table_data');
     }
 
 

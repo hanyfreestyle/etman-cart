@@ -29,8 +29,6 @@
                             <th class="TD_20">#</th>
                             <th class="TD_20"></th>
                             <th>{{__('admin/def.form_name_ar')}}</th>
-                            <th>{{__('admin/def.form_name_en')}}</th>
-
                             <th class="tbutaction TD_50"></th>
                             <th class="tbutaction TD_50"></th>
 
@@ -48,7 +46,7 @@
                                 <td>{{$Category->id}}</td>
                                 <td class="tc">{!!  \App\Helpers\AdminHelper::printTableImage($Category,'photo') !!} </td>
                                 <td>{!! \App\Helpers\AdminHelper::print_count_name('ar',$Category,$PrefixRoute.".SubCategory") !!}</td>
-                                <td>{!!  \App\Helpers\AdminHelper::print_count_name('en',$Category,$PrefixRoute.".SubCategory") !!}</td>
+
                                 <td class="tc" >{!! is_active($Category->is_active) !!}</td>
                                 @can($PrefixRole.'_edit')
                                     <td class="tc"><x-action-button url="{{route($PrefixRoute.'.Table_list',$Category->id)}}" count="{{$Category->table_data_count}}"  print-lable="{{__('admin/def.table_info')}}"  icon="fas fa-info-circle" :tip="true" /></td>

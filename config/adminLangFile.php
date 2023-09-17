@@ -11,7 +11,8 @@ return [
        '7'=> ['id'=> '7' , 'group'=>'admin' , 'sub_dir'=> 'config' , 'file_name'=> 'upFilter','name'=>'فلاتر الصور' ],
        '8'=> ['id'=> '8' , 'group'=>'admin' , 'sub_dir'=> 'config' , 'file_name'=> 'roles','name'=>'الصلاحيات' ],
        '9'=> ['id'=> '9' , 'group'=>'admin' , 'sub_dir'=> 'config' , 'file_name'=> 'settings','name'=>'الاعدادات' ],
-       '10'=> ['id'=> '10' , 'group'=>'admin' , 'sub_dir'=> null , 'file_name'=> 'project','name'=>'المشروعات' ],
+       '10'=> ['id'=> '10' , 'group'=>'admin' , 'sub_dir'=> null , 'file_name'=> 'shop','name'=>'Shop' ],
+
 
     ],
 

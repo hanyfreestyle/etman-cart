@@ -35,6 +35,8 @@ class CategoryRequest extends FormRequest
 
         $rules =[
             'parent_id'=> "required",
+            'cat_shop'=> "required",
+            'cat_web'=> "required",
         ];
 
         foreach(config('app.lang_file') as $key=>$lang){

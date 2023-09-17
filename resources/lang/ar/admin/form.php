@@ -23,6 +23,7 @@ return
 	'faq_answer_ar' => 'الاجابة',
 	'faq_answer_en' => 'Answer',
 	'faq_answer_full_ar' => 'اجابة اضافية',
+	'faq_answer_full_en' => 'Additional Answer',
 	'faq_question_ar' => 'السؤال',
 	'faq_question_en' => 'Question',
 	'is_published' => 'منشور',
@@ -38,5 +39,5 @@ return
 	'password_confirm' => 'تاكيد كلمة المرور',
 	'title_ar' => 'العنوان',
 	'title_en' => 'Title',
-	'faq_answer_full_en' => 'Additional Answer',
+	'button_add_anther' => 'حفظ واضافة جديدة',
 ];

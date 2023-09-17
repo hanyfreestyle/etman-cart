@@ -7,6 +7,7 @@ use App\Helpers\PuzzleUploadProcess;
 use App\Http\Controllers\AdminMainController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\admin\CategoryRequest;
+use App\Http\Requests\admin\ShopCategoryRequest;
 use App\Models\admin\Category;
 use App\Models\admin\CategoryTranslation;
 use Cache;
@@ -84,9 +85,9 @@ class ShopCategoryController extends AdminMainController
         $pageData['ViewType'] = "List";
         $pageData['SubView'] = false;
         if( Route::currentRouteName()== 'webPro.category.index_Main'){
-            $Categories = self::getSelectQuery(Category::defquery()->where('parent_id',null));
+            $Categories = self::getSelectQuery(Category::defShopquery()->where('parent_id',null));
         }else{
-            $Categories = self::getSelectQuery(Category::defquery());
+            $Categories = self::getSelectQuery(Category::defShopquery());
         }
         return view('admin.shop.category_index',compact('pageData','Categories'));
     }
@@ -115,76 +116,83 @@ class ShopCategoryController extends AdminMainController
         return view('admin.shop.category_form',compact('pageData','Category','Categories'));
     }
 
-//#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//#|||||||||||||||||||||||||||||||||||||| #     edit
-//    public function edit($id)
-//    {
-//        $pageData = $this->pageData;
-//        $pageData['ViewType'] = "Edit";
-//        $Categories = Category::tree()->get()->toTree();
-//        $Category = Category::findOrFail($id);
-//        return view('admin.product.category_form',compact('Category','pageData','Categories'));
-//    }
-//
-//#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//#|||||||||||||||||||||||||||||||||||||| #     storeUpdate
-//    public function storeUpdate(CategoryRequest $request, $id=0)
-//    {
-//
-//        $saveData =  Category::findOrNew($id);
-//        if($request->input('parent_id') != 0){
-//            $saveData->parent_id = $request->input('parent_id');
-//        }
-//        $saveData->setActive((bool) request('is_active', false));
-//        $saveData->save();
-//
-//        $saveImgData = new PuzzleUploadProcess();
-//        $saveImgData->setCountOfUpload('2');
-//        $saveImgData->setUploadDirIs('category/'.$saveData->id);
-//        //$saveImgData->setfileUploadName('photo');
-//        $saveImgData->setnewFileName($request->input('en.slug'));
-//        $saveImgData->UploadOne($request);
-//        $saveData = AdminHelper::saveAndDeletePhoto($saveData,$saveImgData);
-//        $saveData->save();
-//
-//        $saveImgData_icon = new PuzzleUploadProcess();
-//        $saveImgData_icon->setUploadDirIs('category/'.$saveData->id);
-//        $saveImgData_icon->setnewFileName($request->input('en.slug'));
-//        $saveImgData_icon->setfileUploadName('icon');
-//        $saveImgData_icon->UploadOneNofilter($request,'4',60,60);
-//        $saveData = AdminHelper::saveAndDeletePhotoByOne($saveData,$saveImgData_icon,'icon');
-//        $saveData->save();
-//
-//        foreach ( config('app.lang_file') as $key=>$lang) {
-//            $saveTranslation = CategoryTranslation::where('category_id',$saveData->id)->where('locale',$key)->firstOrNew();
-//            $saveTranslation->category_id = $saveData->id;
-//            $saveTranslation->locale = $key;
-//            $saveTranslation->name = $request->input($key.'.name');
-//            $saveTranslation->slug = AdminHelper::Url_Slug($request->input($key.'.slug'));
-//            $saveTranslation->des = $request->input($key.'.des');
-//            $saveTranslation->g_title = $request->input($key.'.g_title');
-//            $saveTranslation->g_des = $request->input($key.'.g_des');
-//            $saveTranslation->save();
-//        }
-//
-//        if($saveData->is_active == false){
-//            $trees = Category::find($id)->descendants()->pluck('id')->toArray()  ;
-//            if(count($trees) > 0 ){
-//                Category::whereIn("id", $trees)
-//                    ->update([
-//                        'is_active' => 0,
-//                    ]);
-//            }
-//        }
-//
-//        self::ClearCash();
-//        if($id == '0'){
-//            return redirect(route($this->PrefixRoute.'.index'))->with('Add.Done',"");
-//        }else{
-//            return redirect(route($this->PrefixRoute.'.index'))->with('Edit.Done',"");
-//        }
-//    }
-//
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     edit
+    public function edit($id)
+    {
+        $pageData = $this->pageData;
+        $pageData['ViewType'] = "Edit";
+        $Categories = Category::tree()->get()->toTree();
+        $Category = Category::findOrFail($id);
+        return view('admin.shop.category_form',compact('Category','pageData','Categories'));
+    }
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     storeUpdate
+    public function storeUpdate(ShopCategoryRequest $request, $id=0)
+    {
+
+        $saveData =  Category::findOrNew($id);
+        if($request->input('parent_id') != 0){
+            $saveData->parent_id = $request->input('parent_id');
+        }
+        $saveData->setActive((bool) request('is_active', false));
+        $saveData->cat_shop = $request->input('cat_shop');
+        $saveData->cat_web = $request->input('cat_web');
+        $saveData->save();
+
+        $saveImgData = new PuzzleUploadProcess();
+        $saveImgData->setCountOfUpload('2');
+        $saveImgData->setUploadDirIs('category/'.$saveData->id);
+        //$saveImgData->setfileUploadName('photo');
+        $saveImgData->setnewFileName($request->input('en.slug'));
+        $saveImgData->UploadOne($request);
+        $saveData = AdminHelper::saveAndDeletePhoto($saveData,$saveImgData);
+        $saveData->save();
+
+        $saveImgData_icon = new PuzzleUploadProcess();
+        $saveImgData_icon->setUploadDirIs('category/'.$saveData->id);
+        $saveImgData_icon->setnewFileName($request->input('en.slug'));
+        $saveImgData_icon->setfileUploadName('icon');
+        $saveImgData_icon->UploadOneNofilter($request,'4',60,60);
+        $saveData = AdminHelper::saveAndDeletePhotoByOne($saveData,$saveImgData_icon,'icon');
+        $saveData->save();
+
+        foreach ( config('app.shop_lang') as $key=>$lang) {
+            $saveTranslation = CategoryTranslation::where('category_id',$saveData->id)->where('locale',$key)->firstOrNew();
+            $saveTranslation->category_id = $saveData->id;
+            $saveTranslation->locale = $key;
+            $saveTranslation->name = $request->input($key.'.name');
+            $saveTranslation->slug = AdminHelper::Url_Slug($request->input($key.'.slug'));
+            $saveTranslation->des = $request->input($key.'.des');
+            $saveTranslation->save();
+        }
+
+        if($saveData->is_active == false){
+            $trees = Category::find($id)->descendants()->pluck('id')->toArray()  ;
+            if(count($trees) > 0 ){
+                Category::whereIn("id", $trees)
+                    ->update([
+                        'is_active' => 0,
+                    ]);
+            }
+        }
+
+        self::ClearCash();
+        if($id == '0'){
+
+            if($request->input('AddNewSet') !== null){
+                return redirect()->back();
+            }else{
+                return redirect(route($this->PrefixRoute.'.index'))->with('Add.Done',"");
+            }
+
+        }else{
+            return redirect(route($this->PrefixRoute.'.index'))->with('Edit.Done',"");
+        }
+    }
+
 //#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //#|||||||||||||||||||||||||||||||||||||| #     destroy
 //    public function destroy($id)

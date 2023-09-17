@@ -23,6 +23,7 @@ return
 	'faq_answer_ar' => 'Answer',
 	'faq_answer_en' => 'Answer',
 	'faq_answer_full_ar' => 'Additional Answer',
+	'faq_answer_full_en' => 'Additional Answer',
 	'faq_question_ar' => 'Question',
 	'faq_question_en' => 'Question',
 	'is_published' => 'Published',
@@ -38,5 +39,5 @@ return
 	'password_confirm' => 'Confirm Password',
 	'title_ar' => 'Title',
 	'title_en' => 'Title',
-	'faq_answer_full_en' => 'Additional Answer',
+	'button_add_anther' => 'Save &amp; add New',
 ];

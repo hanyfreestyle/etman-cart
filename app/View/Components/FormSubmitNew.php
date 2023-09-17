@@ -7,8 +7,9 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
+class FormSubmitNew extends Component
+{
 
-class FormSubmit extends Component{
     public $type ;
     public $name ;
     public $text ;
@@ -17,6 +18,8 @@ class FormSubmit extends Component{
     public $outline ;
     public $buttonBackGround ;
     public $dir ;
+    public $pageData ;
+    public $addNew  ;
 
 
     public function __construct
@@ -28,6 +31,8 @@ class FormSubmit extends Component{
         $bg = 'primary',
         $outline = false,
         $dir = '',
+        $pageData = array(),
+        $addNew = true,
     )
     {
         $this->type = $type;
@@ -35,13 +40,15 @@ class FormSubmit extends Component{
         $this->size = $size ;
         $this->bg = $bg ;
         $this->dir = $dir ;
+        $this->pageData = $pageData ;
+        $this->addNew = $addNew ;
 
 
-        if($text == 'Add') {
+        if($this->pageData['ViewType'] == 'Add') {
             $this->text = __('admin/form.button_add');
-        }elseif ($text == 'Edit'){
+        }elseif ($this->pageData['ViewType'] == 'Edit'){
             $this->text = __('admin/form.button_edit');
-        }elseif ($text == 'Update'){
+        }elseif ($this->pageData['ViewType'] == 'Update'){
             $this->text = __('admin/form.button_update');
         }else{
             $this->text = $text;
@@ -66,10 +73,8 @@ class FormSubmit extends Component{
 
 
     }
-
-
     public function render(): View|Closure|string
     {
-        return view('components.form-submit');
+        return view('components.form-submit-new');
     }
 }
