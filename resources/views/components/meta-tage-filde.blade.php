@@ -29,16 +29,32 @@
 
 
             @if($slug == true)
-                <x-trans-input
-                    :placeholder="$placeholder"
-                    label="Slug ({{ ($key) }})"
-                    inputid="slug_{{ $key }}"
-                    name="{{ $key }}[slug]"
-                    dir="{{ $key }}"
-                    reqname="{{ $key }}.slug"
-                    value="{{old($key.'.slug',$oldData->translateOrNew($key)->slug)}}"
-                    :reqspan="false"
-                />
+                @if($pageData['ViewType'] == 'Add' )
+                    <x-trans-input
+                        :placeholder="$placeholder"
+                        label="Slug ({{ ($key) }})"
+                        inputid="slug_{{ $key }}"
+                        name="{{ $key }}[slug]"
+                        dir="{{ $key }}"
+                        reqname="{{ $key }}.slug"
+                        value="{{old($key.'.slug',$oldData->translateOrNew($key)->slug)}}"
+                        :reqspan="true"
+                    />
+                @elseif($pageData['ViewType'] == 'Edit' and  auth()->user()->can($PrefixRole."_edit_slug"))
+                    <x-trans-input
+                        :placeholder="$placeholder"
+                        label="Slug ({{ ($key) }})"
+                        inputid="slug_{{ $key }}"
+                        name="{{ $key }}[slug]"
+                        dir="{{ $key }}"
+                        reqname="{{ $key }}.slug"
+                        value="{{old($key.'.slug',$oldData->translateOrNew($key)->slug)}}"
+                        :reqspan="true"
+                    />
+                @else
+                    <input type="hidden" name="{{ $key }}[slug]" value="{{$oldData->translateOrNew($key)->slug}}">
+                @endif
+
             @endif
 
             @if($bodyH1 == true)

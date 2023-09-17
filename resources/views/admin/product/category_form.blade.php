@@ -58,7 +58,7 @@
                     @endforeach
                 </div>
 
-                <x-meta-tage-filde :old-data="$Category" :placeholder="false" />
+                <x-meta-tage-filde :old-data="$Category" :placeholder="false" :page-data="$pageData" />
 
                 <hr>
 

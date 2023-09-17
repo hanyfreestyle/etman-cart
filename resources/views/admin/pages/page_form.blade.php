@@ -39,7 +39,7 @@
 
 
 
-                <x-meta-tage-filde :body-h1="true" :breadcrumb="true"  :old-data="$Page" :placeholder="false"  />
+                <x-meta-tage-filde :body-h1="true" :breadcrumb="true"  :old-data="$Page" :placeholder="false" :page-data="$pageData"  />
                 <hr>
 
                 <div class="row">

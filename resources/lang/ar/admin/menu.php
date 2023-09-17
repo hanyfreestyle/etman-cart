@@ -24,7 +24,8 @@ return
 	'web_attribute_Table' => 'جدول البيانات',
 	'web_banner' => 'البانر',
 	'web_category' => 'المجموعات',
+	'web_pages' => 'ادارة الصفحات',
 	'web_product' => 'المنتجات',
 	'web_product_menu' => 'منتجات الموقع',
-	'web_pages' => 'ادارة الصفحات',
+	'shop_product_menu' => 'المتجر',
 ];

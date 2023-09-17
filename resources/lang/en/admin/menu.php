@@ -24,7 +24,8 @@ return
 	'web_attribute_Table' => 'Attribute Table',
 	'web_banner' => 'Banner',
 	'web_category' => 'Categories',
+	'web_pages' => 'Manage Pages',
 	'web_product' => 'Product',
 	'web_product_menu' => 'Web Product',
-	'web_pages' => 'Manage Pages',
+	'shop_product_menu' => 'Shop',
 ];

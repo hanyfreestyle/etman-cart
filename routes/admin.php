@@ -163,3 +163,44 @@ Route::post('/Pages/SaveSort', [PageController::class,'SaveSort'])->name('Pages.
 
 
 
+
+
+
+
+
+Route::get('/ShopCategory',[CategoryController::class,'index'])->name('Shop.category.index');
+//Route::get('/ShopCategory/Main',[CategoryController::class,'index'])->name('webPro.category.index_Main');
+//Route::get('/ShopCategory/SubCategory/{id}',[CategoryController::class,'SubCategory'])->name('webPro.category.SubCategory');
+//Route::get('/ShopCategory/create',[CategoryController::class,'create'])->name('webPro.category.create');
+//Route::get('/ShopCategory/edit/{id}',[CategoryController::class,'edit'])->name('webPro.category.edit');
+//Route::get('/ShopCategory/destroy/{id}',[CategoryController::class,'destroy'])->name('webPro.category.destroy');
+//Route::post('/ShopCategory/update/{id}',[CategoryController::class,'storeUpdate'])->name('webPro.category.update');
+//Route::get('/ShopCategory/emptyPhoto/{id}', [CategoryController::class,'emptyPhoto'])->name('webPro.category.emptyPhoto');
+//Route::get('/ShopCategory/emptyIcon/{id}', [CategoryController::class,'emptyIcon'])->name('webPro.category.emptyIcon');
+Route::get('/ShopCategory/Config',[CategoryController::class,'config'])->name('Shop.categoryConfig.Config');
+
+
+
+Route::get('/ShopProduct',[ProductController::class,'index'])->name('Shop.Product.index');
+//Route::get('/ShopProduct/ListCategory/{Categoryid}',[ProductController::class,'ListCategory'])->name('webPro.Product.ListCategory');
+//Route::get('/ShopProduct/create',[ProductController::class,'create'])->name('webPro.Product.create');
+//Route::get('/ShopProduct/edit/{id}',[ProductController::class,'edit'])->name('webPro.Product.edit');
+//Route::get('/ShopProduct/destroy/{id}',[ProductController::class,'destroy'])->name('webPro.Product.destroy');
+//Route::post('/ShopProduct/update/{id}',[ProductController::class,'storeUpdate'])->name('webPro.Product.update');
+//Route::get('/ShopProduct/emptyPhoto/{id}', [ProductController::class,'emptyPhoto'])->name('webPro.Product.emptyPhoto');
+//
+//Route::get('/ShopProduct/photos/{id}',[ProductController::class,'ListMorePhoto'])->name('webPro.Product.More_Photos');
+//Route::post('/ShopProduct/saveSort', [ProductController::class,'sortPhotoSave'])->name('webPro.Product.sortPhotoSave');
+//Route::post('/ShopProduct/AddMore',[ProductController::class,'AddMorePhotos'])->name('webPro.Product.More_PhotosAdd');
+//Route::get('/ShopProduct/PhotoDel/{id}',[ProductController::class,'More_PhotosDestroy'])->name('webPro.Product.More_PhotosDestroy');
+//
+//
+//Route::get('/ShopProduct/TableList/{id}',[ProductTableController::class,'TableList'])->name('webPro.Product.Table_list');
+//Route::get('/ShopProduct/Table/edit/{id}',[ProductTableController::class,'TableEdit'])->name('webPro.Product.Table_edit');
+//Route::post('/ShopProduct/Table/update/{id}',[ProductTableController::class,'TableStoreUpdate'])->name('webPro.Product.Table_update');
+//Route::get('/ShopProduct/Table/destroy/{id}',[ProductTableController::class,'TableDestroy'])->name('webPro.Product.Table_destroy');
+//Route::get('/ShopProduct/Table/Sort/{project_id}',[ProductTableController::class,'TableSort'])->name('webPro.Product.Table_Sort');
+//Route::post('/ShopProduct/Table/SaveSort', [ProductTableController::class,'TableSortSave'])->name('webPro.Product.TableSortSave');
+//
+
+

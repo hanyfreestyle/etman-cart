@@ -56,6 +56,7 @@ class PermissionSeeder extends Seeder
             ['cat_id'=> '9', 'name' => 'Pages_edit','name_ar'=>'تعديل','name_en'=>'Edit'],
             ['cat_id'=> '9', 'name' => 'Pages_delete','name_ar'=>'حذف','name_en'=>'Delete'],
             ['cat_id'=> '9', 'name' => 'Pages_restore','name_ar'=>'استعادة المحذوف','name_en'=>'Restore'],
+            ['cat_id'=> '9', 'name' => 'Pages_edit_slug','name_ar'=>'Edit Slug','name_en'=>'Edit Slug'],
 
 
             ['cat_id'=> '10', 'name' => 'category_view','name_ar'=>'عرض','name_en'=>'View'],
@@ -63,11 +64,13 @@ class PermissionSeeder extends Seeder
             ['cat_id'=> '10', 'name' => 'category_edit','name_ar'=>'تعديل','name_en'=>'Edit'],
             ['cat_id'=> '10', 'name' => 'category_delete','name_ar'=>'حذف','name_en'=>'Delete'],
             ['cat_id'=> '10', 'name' => 'category_restore','name_ar'=>'استعادة المحذوف','name_en'=>'Restore'],
+            ['cat_id'=> '10', 'name' => 'category_edit_slug','name_ar'=>'Edit Slug','name_en'=>'Edit Slug'],
 
             ['cat_id'=> '11', 'name' => 'product_view','name_ar'=>'عرض','name_en'=>'View'],
             ['cat_id'=> '11', 'name' => 'product_add','name_ar'=>'اضافة','name_en'=>'Add'],
             ['cat_id'=> '11', 'name' => 'product_edit','name_ar'=>'تعديل','name_en'=>'Edit'],
             ['cat_id'=> '11', 'name' => 'product_delete','name_ar'=>'حذف','name_en'=>'Delete'],
+            ['cat_id'=> '11', 'name' => 'product_edit_slug','name_ar'=>'Edit Slug','name_en'=>'Edit Slug'],
 
 
             ['cat_id'=> '12', 'name' => 'OurClient_view','name_ar'=>'عرض','name_en'=>'View'],
@@ -81,6 +84,7 @@ class PermissionSeeder extends Seeder
             ['cat_id'=> '13', 'name' => 'BlogPost_edit','name_ar'=>'تعديل','name_en'=>'Edit'],
             ['cat_id'=> '13', 'name' => 'BlogPost_delete','name_ar'=>'حذف','name_en'=>'Delete'],
             ['cat_id'=> '13', 'name' => 'BlogPost_restore','name_ar'=>'استعادة المحذوف','name_en'=>'Restore'],
+            ['cat_id'=> '13', 'name' => 'BlogPost_edit_slug','name_ar'=>'Edit Slug','name_en'=>'Edit Slug'],
 
             ['cat_id'=> '14', 'name' => 'Banner_view','name_ar'=>'عرض','name_en'=>'View'],
             ['cat_id'=> '14', 'name' => 'Banner_add','name_ar'=>'اضافة','name_en'=>'Add'],
@@ -93,6 +97,7 @@ class PermissionSeeder extends Seeder
             ['cat_id'=> '15', 'name' => 'Faq_edit','name_ar'=>'تعديل','name_en'=>'Edit'],
             ['cat_id'=> '15', 'name' => 'Faq_delete','name_ar'=>'حذف','name_en'=>'Delete'],
             ['cat_id'=> '15', 'name' => 'Faq_restore','name_ar'=>'استعادة المحذوف','name_en'=>'Restore'],
+            ['cat_id'=> '15', 'name' => 'Faq_edit_slug','name_ar'=>'Edit Slug','name_en'=>'Edit Slug'],
 
 
             ['cat_id'=> '16', 'name' => 'meta_view','name_ar'=>'عرض','name_en'=>'View'],
@@ -101,6 +106,21 @@ class PermissionSeeder extends Seeder
             ['cat_id'=> '16', 'name' => 'meta_delete','name_ar'=>'حذف','name_en'=>'Delete'],
             ['cat_id'=> '16', 'name' => 'meta_restore','name_ar'=>'استعادة المحذوف','name_en'=>'Restore'],
 
+
+            ['cat_id'=> '17', 'name' => 'shopProduct_view','name_ar'=>'عرض','name_en'=>'View'],
+            ['cat_id'=> '17', 'name' => 'shopProduct_add','name_ar'=>'اضافة','name_en'=>'Add'],
+            ['cat_id'=> '17', 'name' => 'shopProduct_edit','name_ar'=>'تعديل','name_en'=>'Edit'],
+            ['cat_id'=> '17', 'name' => 'shopProduct_delete','name_ar'=>'حذف','name_en'=>'Delete'],
+            ['cat_id'=> '17', 'name' => 'shopProduct_restore','name_ar'=>'استعادة المحذوف','name_en'=>'Restore'],
+            ['cat_id'=> '17', 'name' => 'shopProduct_edit_slug','name_ar'=>'Edit Slug','name_en'=>'Edit Slug'],
+
+
+            ['cat_id'=> '18', 'name' => 'shopCategory_view','name_ar'=>'عرض','name_en'=>'View'],
+            ['cat_id'=> '18', 'name' => 'shopCategory_add','name_ar'=>'اضافة','name_en'=>'Add'],
+            ['cat_id'=> '18', 'name' => 'shopCategory_edit','name_ar'=>'تعديل','name_en'=>'Edit'],
+            ['cat_id'=> '18', 'name' => 'shopCategory_delete','name_ar'=>'حذف','name_en'=>'Delete'],
+            ['cat_id'=> '18', 'name' => 'shopCategory_restore','name_ar'=>'استعادة المحذوف','name_en'=>'Restore'],
+            ['cat_id'=> '18', 'name' => 'shopCategory_edit_slug','name_ar'=>'Edit Slug','name_en'=>'Edit Slug'],
 
 
         ];

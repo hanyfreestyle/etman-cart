@@ -54,7 +54,7 @@
                     @endforeach
                 </div>
 
-                <x-meta-tage-filde :old-data="$BlogPost" :placeholder="false" />
+                <x-meta-tage-filde :old-data="$BlogPost" :placeholder="false" :page-data="$pageData" />
 
                 <hr>
 
