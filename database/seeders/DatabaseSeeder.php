@@ -92,10 +92,10 @@ class DatabaseSeeder extends Seeder
         $this->call(CategoryTableSeeder::class);
         $this->call(CategoryTableTranslationSeeder::class);
 
-//        $this->call(ProductSeeder::class);
-//        $this->call(ProductTranslationSeeder::class);
-//        $this->call(ProductTableSeeder::class);
-//        $this->call(ProductTableTranslationSeeder::class);
+        $this->call(ProductSeeder::class);
+        $this->call(ProductTranslationSeeder::class);
+        $this->call(ProductTableSeeder::class);
+        $this->call(ProductTableTranslationSeeder::class);
 //        $this->call(ProductPhotoSeeder::class);
 
         $this->call(OurClientSeeder::class);

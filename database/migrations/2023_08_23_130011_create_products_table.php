@@ -21,7 +21,7 @@ return new class extends Migration
             $table->decimal('qty', 10, 6)->nullable();
 
             $table->integer('pro_shop')->nullable()->default(1);
-            $table->integer('pro_web')->nullable()->default(0);
+            $table->integer('pro_web')->nullable()->default(1);
             $table->integer('pro_web_data')->nullable()->default(0);
             $table->string("photo")->nullable();
             $table->string("photo_thum_1")->nullable();

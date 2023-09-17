@@ -67,7 +67,7 @@
                                 inputid="name_{{ $key }}"
                                 dir="{{ $key }}"
                                 reqname="{{ $key }}.name"
-                                value="{{old($key.'.name',$Product->translateOrNew($key)->name)}}"
+                                value="{!! old($key.'.name',$Product->translateOrNew($key)->name) !!}"
                             />
 
                             <x-trans-text-area

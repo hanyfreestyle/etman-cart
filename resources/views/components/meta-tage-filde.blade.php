@@ -15,7 +15,7 @@
                 reqname="{{ $key }}.g_title"
                 googlespan="true"
                 inputid="g_title_{{ $key }}"
-                value="{{old($key.'.g_title',$oldData->translateOrNew($key)->g_title)}}"
+                value="{!! old($key.'.g_title',$oldData->translateOrNew($key)->g_title) !!}"
             />
             <x-trans-text-area :placeholder="$placeholder"
                 label="{{__('admin/form.meta_g_des_'.$key)}} ({{ ($key) }})"
@@ -24,7 +24,7 @@
                 reqname="{{ $key }}.g_des"
                 googlespan="true"
                 inputid="g_des_{{ $key }}"
-                value="{{old($key.'.g_des',$oldData->translateOrNew($key)->g_des)}}"
+                value="{!! old($key.'.g_des',$oldData->translateOrNew($key)->g_des) !!}"
             />
 
 
