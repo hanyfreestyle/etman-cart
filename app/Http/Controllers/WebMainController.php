@@ -43,10 +43,11 @@ class WebMainController extends Controller
         $CartList = Product::inRandomOrder()->limit(2)->get();
         View::share('CartList', $CartList);
 
-        $RecentProduct = Product::where('category_id',39)->inRandomOrder()->limit(4)->get();
+//        $RecentProduct = Product::where('category_id',39)->inRandomOrder()->limit(4)->get();
+//        View::share('RecentProduct', $RecentProduct);
+
+        $RecentProduct = Product::inRandomOrder()->limit(4)->get();
         View::share('RecentProduct', $RecentProduct);
-
-
 
 
 //        $PagesList  = self::getPagesList();
@@ -205,12 +206,12 @@ class WebMainController extends Controller
                 ->get();
         }else{
             $MenuCategory = Cache::remember('MenuCategory_Cash_'.app()->getLocale(),config('app.def_24h_cash'), function (){
-                return   Category::Defquery()->root()
+                return   Category::defquery()->root()
                     ->with('translation')
-                    ->withCount('children')
-                    ->with('children')
-                    ->with('CatProduct')
-                    ->orderBy('children_count','desc')
+//                    ->withCount('children')
+//                    ->with('children')
+                 //   ->with('CatProduct')
+                //    ->orderBy('children_count','desc')
                     ->get();
             });
         }

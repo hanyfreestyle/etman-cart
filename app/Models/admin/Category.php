@@ -119,4 +119,16 @@ class Category extends Model implements TranslatableContract
         return $this->hasManyOfDescendantsAndSelf(Product::class ,'category_id', 'id')
             ->inRandomOrder();
     }
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #
+    public function scopeDefquery(Builder $query): Builder
+    {
+        return $query->with('translations')
+            ->withCount('children')
+            ->withCount('table_data');
+    }
+
 }

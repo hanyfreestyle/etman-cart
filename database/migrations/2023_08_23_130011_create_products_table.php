@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
-//            $table->unsignedBigInteger('category_id')->nullable();
+            $table->unsignedBigInteger('category_id')->nullable();
 
             $table->integer('ref_code')->nullable()->default(null);
             $table->decimal('price', 10, 6)->nullable()->default(null);
