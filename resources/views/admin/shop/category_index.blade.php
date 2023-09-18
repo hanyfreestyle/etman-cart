@@ -53,7 +53,7 @@
                         @foreach($Categories as $Category)
                             <tr>
                                 <td>{{$Category->id}}</td>
-                                <td class="tc">{!!  \App\Helpers\AdminHelper::printTableImage($Category,'photo') !!} </td>
+                                <td class="tc">{!!  \App\Helpers\AdminHelper::printTableImage($Category,'photo_thum_1') !!} </td>
                                 <td>{!! \App\Helpers\AdminHelper::print_count_name('ar',$Category,$PrefixRoute.".SubCategory") !!}</td>
 
                                 <td class="tc" >{!! is_active($Category->is_active) !!}</td>
