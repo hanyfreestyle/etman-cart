@@ -1,0 +1,23 @@
+body{
+ padding: 50px;
+    padding-right: 150px;
+}
+
+body li{
+
+    margin-bottom: 5px;
+
+}
+
+.ProLi{
+    margin-right: 40px;
+    color: red;
+    list-style-type: square;
+
+}
+
+.hany_r{
+    margin-right: 30px;
+}
+
+

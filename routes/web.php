@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\web\ShopPageController;
+use App\Http\Controllers\web\TestController;
 use App\Http\Controllers\web\WebPageController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,8 @@ Auth::viaRemember();
 
 Route::group(['prefix' => LaravelLocalization::setLocale()], function(){
     Route::get('/', [WebPageController::class, 'HomePage'])->name('Page_HomePage');
+    Route::get('/Test', [TestController::class, 'Test'])->name('Page_HomePageTest');
+
     Route::get('/web/Qview/{slug}', [WebPageController::class, 'WebPro_Qview'])->name('Page_WebPro_Qview');
     Route::get('/shop/Qview/{slug}', [ShopPageController::class, 'Pro_Qview'])->name('Shop_Pro_Qview');
 

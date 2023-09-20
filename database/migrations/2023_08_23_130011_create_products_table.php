@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('category_id')->nullable();
+         //   $table->unsignedBigInteger('category_id')->nullable();
 
             $table->integer('ref_code')->nullable()->default(null);
-            $table->decimal('price', 10, 6)->nullable()->default(null);
-            $table->decimal('discount_price', 10, 6)->nullable()->default(null);
-            $table->decimal('qty', 10, 6)->nullable();
+            $table->decimal('price', 10, 2)->nullable()->default(null);
+            $table->decimal('discount_price', 10, 2)->nullable()->default(null);
+            $table->decimal('qty', 10, 2)->nullable();
 
             $table->integer('pro_shop')->nullable()->default(1);
             $table->integer('pro_web')->nullable()->default(1);

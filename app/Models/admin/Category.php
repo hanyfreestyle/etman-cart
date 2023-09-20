@@ -3,6 +3,7 @@
 namespace App\Models\admin;
 
 
+use DB;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,6 +11,7 @@ use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Collection;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 class Category extends Model implements TranslatableContract
@@ -25,12 +27,29 @@ class Category extends Model implements TranslatableContract
     protected $primaryKey = 'id';
     protected $translationForeignKey = 'category_id';
 
+
+    public function getParentKeyName()
+    {
+        return 'parent_id';
+    }
+    public function getLocalKeyName()
+    {
+        return 'id';
+    }
+
+    public function getDepthName()
+    {
+        return 'depth';
+    }
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #  CategoryWithProduct
     public function CategoryWithProduct()
     {
         return $this->belongsToMany(Product::class,'product_category','category_id','product_id');
     }
+
+
 
 
 
@@ -53,8 +72,10 @@ class Category extends Model implements TranslatableContract
     public function children():hasMany
     {
        return $this->hasMany(Category::class , 'parent_id', 'id' )
-           ->with('CatProduct')
+          // ->where('cat_shop',true)
            ->with('translation')
+           ->withCount('CategoryWithProduct')
+           ->with('CategoryWithProduct')
            ;
     }
 
@@ -114,11 +135,7 @@ class Category extends Model implements TranslatableContract
             ;
     }
 
-    public function recursiveProduct()
-    {
-        return $this->hasManyOfDescendantsAndSelf(Product::class ,'category_id', 'id')
-            ->inRandomOrder();
-    }
+
 
 
 
@@ -131,4 +148,107 @@ class Category extends Model implements TranslatableContract
             ->withCount('table_data');
     }
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #  category_with_product_shop
+    public function category_with_product_shop()
+    {
+        return $this->belongsToMany(Product::class,'product_category','category_id','product_id')
+            ->where('is_active',true)
+            ->where('is_archived',false)
+           // ->where('price','!=',null)
+            ->with('translation')
+            ;
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     children
+    public function children_shop():hasMany
+    {
+        return $this->hasMany(Category::class , 'parent_id', 'id' )
+            ->where('cat_shop',true)
+            ->with('translation')
+            ->withCount('category_with_product_shop')
+            ->with('category_with_product_shop')
+            ;
+    }
+
+
+
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     scopeRoot
+    public function scopeRootCategory(Builder $query): Builder
+    {
+        return $query->whereNull('parent_id');
+    }
+
+
+
+    public function recursiveProduct()
+    {
+        return $this->hasManyOfDescendantsAndSelf(Product::class ,'category_id', 'id');
+
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     children
+    public function children_new():hasMany
+    {
+        return $this->hasMany(Category::class , 'parent_id', 'id' )->with('children_new')
+
+            ;
+    }
+
+
+    #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #
+    public function recursive_product_shop()
+    {
+
+
+
+        return $this->belongsToManyOfDescendantsAndSelf(Product::class,
+            'product_category',
+//            'category_id',
+//            'product_id',
+
+
+
+
+
+
+
+
+
+        );
+
+
+
+    }
+
+
+
+    public function countTotalProducts()
+    {
+        $query = DB::table('categories')->selectRaw('categories.*')->where('id', $this->id)->unionAll(
+            DB::table('categories')->selectRaw('categories.*')->join('tree', 'tree.id', '=', 'categories.parent_id')
+        );
+
+        $tree = DB::table('products')->withRecursiveExpression('tree', $query)
+            ->join('product_category', 'product_category.product_id', '=', 'products.id')
+            ->whereIn(
+                'product_category.category_id',
+                DB::table('tree')->select('id')
+            )
+            ->count('products.id');
+
+        return $tree;
+    }
+
+
+
 }
+
+
