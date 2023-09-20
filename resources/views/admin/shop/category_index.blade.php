@@ -10,6 +10,7 @@
         <div class="row mb-3">
             <div class="col-12 text-left">
                 <x-action-button url="{{route('Shop.shopCategory.AddCatToShop')}}"  bg="p"  print-lable="{{ __('admin/shop.cat_addshop') }}"  icon="fas fa-plus-square"  />
+                <x-action-button url="{{route('Shop.shopCategory.CatSort',0)}}"  type="sort"  />
             </div>
         </div>
     </x-html-section>
@@ -39,9 +40,8 @@
                             <th class="TD_20"></th>
                             <th>{{__('admin/def.form_name_ar')}}</th>
                             <th class="tbutaction TD_50"></th>
-{{--                            <th class="tbutaction TD_50"></th>--}}
-
                             @can($PrefixRole.'_edit')
+                                <th class="tbutaction TD_50"></th>
                                 <th class="tbutaction TD_50"></th>
                             @endcan
                             @can($PrefixRole.'_delete')
@@ -54,11 +54,15 @@
                             <tr>
                                 <td>{{$Category->id}}</td>
                                 <td class="tc">{!!  \App\Helpers\AdminHelper::printTableImage($Category,'photo_thum_1') !!} </td>
-                                <td>{!! \App\Helpers\AdminHelper::print_count_name('ar',$Category,$PrefixRoute.".SubCategory") !!}</td>
+                                <td>{!! \App\Helpers\AdminHelper::print_count_name_shop('ar',$Category,$PrefixRoute.".SubCategory") !!}</td>
 
                                 <td class="tc" >{!! is_active($Category->is_active) !!}</td>
                                 @can($PrefixRole.'_edit')
-{{--                                    <td class="tc"><x-action-button url="{{route($PrefixRoute.'.Table_list',$Category->id)}}" count="{{$Category->table_data_count}}"  print-lable="{{__('admin/def.table_info')}}"  icon="fas fa-info-circle" :tip="true" /></td>--}}
+                                    <td class="tc">
+                                        @if($Category->children_shop_count > 0)
+                                            <x-action-button url="{{route('Shop.shopCategory.CatSort',$Category->id)}}" :tip="true"  type="sort"    />
+                                        @endif
+                                    </td>
                                     <td class="tc"><x-action-button url="{{route($PrefixRoute.'.edit',$Category->id)}}" type="edit" :tip="true" /></td>
                                 @endcan
 

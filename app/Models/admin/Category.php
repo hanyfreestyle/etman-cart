@@ -28,36 +28,46 @@ class Category extends Model implements TranslatableContract
     protected $translationForeignKey = 'category_id';
 
 
-    public function getParentKeyName()
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #
+    public function scopeDefShopquery(Builder $query): Builder
     {
-        return 'parent_id';
-    }
-    public function getLocalKeyName()
-    {
-        return 'id';
+        return $query->with('translations')
+            ->withCount('children_shop')
+            ;
+
     }
 
-    public function getDepthName()
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     children
+    public function children_shop():hasMany
     {
-        return 'depth';
+        return $this->hasMany(Category::class , 'parent_id', 'id' )
+            ->where('cat_shop',true)
+            ->with('translation')
+//            ->withCount('category_with_product_shop')
+//            ->with('category_with_product_shop')
+            ;
     }
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #  category_with_product_shop
+    public function category_with_product_shop()
+    {
+        return $this->belongsToMany(Product::class,'product_category','category_id','product_id')
+            ->where('is_active',true)
+            ->where('is_archived',false)
+            ->with('translation')
+            ;
+    }
+
+/*
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #  CategoryWithProduct
     public function CategoryWithProduct()
     {
         return $this->belongsToMany(Product::class,'product_category','category_id','product_id');
-    }
-
-
-
-
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     setActive
-    public function setActive(bool $status = true): self
-    {
-        return $this->setAttribute('is_active', $status);
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -77,14 +87,6 @@ class Category extends Model implements TranslatableContract
            ->withCount('CategoryWithProduct')
            ->with('CategoryWithProduct')
            ;
-    }
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     children
-    public function CatProduct():hasMany
-    {
-        return $this->hasMany(Product::class , 'category_id', 'id' )
-            ->with('translation');
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -109,14 +111,7 @@ class Category extends Model implements TranslatableContract
     }
 
 
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #
-    public function scopeDefShopquery(Builder $query): Builder
-    {
-        return $query->with('translations')
-            ->withCount('children')
-            ->withCount('table_data');
-    }
+
 
 
 
@@ -148,29 +143,9 @@ class Category extends Model implements TranslatableContract
             ->withCount('table_data');
     }
 
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #  category_with_product_shop
-    public function category_with_product_shop()
-    {
-        return $this->belongsToMany(Product::class,'product_category','category_id','product_id')
-            ->where('is_active',true)
-            ->where('is_archived',false)
-           // ->where('price','!=',null)
-            ->with('translation')
-            ;
-    }
 
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     children
-    public function children_shop():hasMany
-    {
-        return $this->hasMany(Category::class , 'parent_id', 'id' )
-            ->where('cat_shop',true)
-            ->with('translation')
-            ->withCount('category_with_product_shop')
-            ->with('category_with_product_shop')
-            ;
-    }
+
+
 
 
 
@@ -202,30 +177,13 @@ class Category extends Model implements TranslatableContract
     }
 
 
-    #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #
     public function recursive_product_shop()
     {
-
-
-
         return $this->belongsToManyOfDescendantsAndSelf(Product::class,
             'product_category',
-//            'category_id',
-//            'product_id',
-
-
-
-
-
-
-
-
-
         );
-
-
-
     }
 
 
@@ -247,7 +205,7 @@ class Category extends Model implements TranslatableContract
         return $tree;
     }
 
-
+*/
 
 }
 

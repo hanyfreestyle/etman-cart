@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\admin\CategoryRequest;
 use App\Http\Requests\admin\ShopCategoryRequest;
 use App\Models\admin\Category;
+use App\Models\admin\CategoryTable;
 use App\Models\admin\CategoryTranslation;
 use Cache;
 use Illuminate\Http\Request;
@@ -76,20 +77,25 @@ class ShopCategoryController extends AdminMainController
         }
     }
 
-
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     index
-    public function index()
+    public function index($id=null)
     {
         $pageData = $this->pageData;
         $pageData['ViewType'] = "List";
         $pageData['SubView'] = false;
-        if( Route::currentRouteName()== 'webPro.category.index_Main'){
-            $Categories = self::getSelectQuery(Category::defShopquery()->where('parent_id',null)->where('cat_shop',true));
+        $trees = [];
+        if( Route::currentRouteName()== 'Shop.shopCategory.index_Main')
+        {
+            $Categories = self::getSelectQuery(Category::defShopquery()->where('parent_id', null)->where('cat_shop', true));
+        }elseif (Route::currentRouteName()== 'Shop.shopCategory.SubCategory'){
+            $Categories = self::getSelectQuery(Category::defShopquery()->where('parent_id',$id)->where('cat_shop',true));
+            $trees = Category::find($id)->ancestorsAndSelf()->orderBy('depth','asc')->get() ;
+            $pageData['SubView'] = true;
         }else{
             $Categories = self::getSelectQuery(Category::defShopquery()->where('cat_shop',true));
         }
-        return view('admin.shop.category_index',compact('pageData','Categories'));
+        return view('admin.shop.category_index',compact('pageData','Categories','trees'));
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -101,21 +107,6 @@ class ShopCategoryController extends AdminMainController
         $pageData['SubView'] = false;
         $Categories = self::getSelectQuery(Category::defShopquery()->where('cat_shop',false));
         return view('admin.shop.category_index',compact('pageData','Categories'));
-    }
-
-
-
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     SubCategory
-    public function SubCategory($id)
-    {
-        $pageData = $this->pageData;
-        $pageData['ViewType'] = "List";
-        $pageData['SubView'] = true;
-        $Categories = self::getSelectQuery(Category::defShopquery()->where('cat_shop',true)->where('parent_id',$id));
-        $trees = Category::find($id)->ancestorsAndSelf()->orderBy('depth','asc')->get() ;
-        return view('admin.product.category_index',compact('pageData','Categories','trees'));
     }
 
 
@@ -151,7 +142,8 @@ class ShopCategoryController extends AdminMainController
         if($request->input('parent_id') != 0 and $request->input('parent_id') != $saveData->id){
             $saveData->parent_id = $request->input('parent_id');
         }
-        $saveData->setActive((bool) request('is_active', false));
+
+        $saveData->is_active = intval((bool) $request->input( 'is_active'));
         $saveData->cat_shop = $request->input('cat_shop');
         $saveData->cat_web = $request->input('cat_web');
         $saveData->save();
@@ -192,6 +184,18 @@ class ShopCategoryController extends AdminMainController
                     ]);
             }
         }
+
+        if($saveData->cat_shop == false){
+            $trees = Category::find($id)->descendants()->pluck('id')->toArray()  ;
+            if(count($trees) > 0 ){
+                Category::whereIn("id", $trees)
+                    ->update([
+                        'cat_shop' => 0,
+                    ]);
+            }
+        }
+
+
 
         self::ClearCash();
         if($id == '0'){
@@ -251,6 +255,36 @@ class ShopCategoryController extends AdminMainController
         return view('admin.shop.config',compact('pageData'));
     }
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     CategorySort
+    public function CategorySort($id)
+    {
+        $sendArr = ['TitlePage' => $this->PageTitle ,'selMenu'=> $this->selMenu  ];
+        $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
+        $pageData['ViewType'] = "List";
+        $Category = [];
+        if($id == 0){
+            $Categories = self::getSelectQuery(Category::defShopquery()->where('parent_id', null)->where('cat_shop', true)->orderBy('postion_shop'));
+        }else{
+            $Category =  Category::findOrNew($id);
+            $Categories = self::getSelectQuery(Category::defShopquery()->where('parent_id', $Category->id)->where('cat_shop', true)->orderBy('postion_shop'));
+        }
+        return view('admin.shop.category_sort',compact('pageData','Categories','Category'));
+    }
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     TableSortSave
+    public function CategorySaveSort(Request $request){
+        $positions = $request->positions;
+        foreach($positions as $position) {
+            $id = $position[0];
+            $newPosition = $position[1];
+            $saveData =  Category::findOrFail($id) ;
+            $saveData->postion_shop = $newPosition;
+            $saveData->save();
+        }
+        self::ClearCash();
+        return response()->json(['success'=>$positions]);
+    }
 
 }

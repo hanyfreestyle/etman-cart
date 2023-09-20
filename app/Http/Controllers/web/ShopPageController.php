@@ -53,7 +53,7 @@ class ShopPageController extends WebMainController
 
 
         $MainCategoryPro  = Category::where('parent_id',null)
-            ->with('recursiveProduct')
+         //   ->with('recursiveProduct')
             ->limit(4)
             ->get();
 

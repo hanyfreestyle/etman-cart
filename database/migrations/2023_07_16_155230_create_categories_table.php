@@ -21,8 +21,9 @@ return new class extends Migration
             $table->string("photo_thum_1")->nullable();
             $table->string("icon")->nullable();
             $table->boolean("is_active")->default(true);
+            $table->integer('postion_shop')->default(0);
+            $table->integer('postion_web')->default(0);
             $table->timestamps();
-
             $table->foreign('parent_id')->references('id')->on('categories')->onDelete('RESTRICT');
         });
     }

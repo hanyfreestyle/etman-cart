@@ -38,11 +38,14 @@
                     @if($pageData['ViewType'] == 'Edit')
                         <x-form-select-arr  label="{{__('admin/shop.cat_addshop')}}" name="cat_shop" colrow="col-lg-3"
                                             sendvalue="{{old('cat_shop',$Category->cat_shop)}}" select-type="selActive"/>
+
+                        <x-form-select-arr  label="{{__('admin/shop.cat_addweb')}}" name="cat_web" colrow="col-lg-3"
+                                            sendvalue="{{old('cat_web',$Category->cat_web)}}" select-type="selActive"/>
                     @else
                         <input type="hidden" name="cat_shop" value="1">
+                        <input type="hidden" name="cat_web" value="0">
                     @endif
-                    <x-form-select-arr  label="{{__('admin/shop.cat_addweb')}}" name="cat_web" colrow="col-lg-3"
-                                        sendvalue="{{old('cat_web',$Category->cat_web)}}" select-type="selActive"/>
+
 
 
                 </div>

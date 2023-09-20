@@ -43,7 +43,7 @@
 <header class="header_wrap">
     @include('shop.layouts.inc.header_top')
     @include('shop.layouts.inc.header_middle')
-    @include('shop.layouts.inc.menu')
+{{--    @include('shop.layouts.inc.menu')--}}
 </header>
 
 @if( $SinglePageView['banner_id']  and $SinglePageView['banner_count'] > 0)

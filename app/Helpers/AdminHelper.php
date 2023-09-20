@@ -511,6 +511,17 @@ class AdminHelper{
     }
 
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #  print_count_name_shop
+    static function print_count_name_shop($lang,$row,$url)
+    {
+        if($row->children_shop_count > 0){
+            return '<a href="'.route($url,$row->id).'">'.optional($row->translate($lang))->name.' ('.$row->children_shop_count.')</a>' ;
+        }else{
+            return $row->translate($lang)->name ?? '';
+        }
+    }
+
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #  print_count_name
