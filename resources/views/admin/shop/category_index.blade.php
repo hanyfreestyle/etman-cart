@@ -59,7 +59,7 @@
                                 <td class="tc" >{!! is_active($Category->is_active) !!}</td>
                                 @can($PrefixRole.'_edit')
                                     <td class="tc">
-                                        @if($Category->children_shop_count > 0)
+                                        @if($Category->admin_children_shop_count > 0)
                                             <x-action-button url="{{route('Shop.shopCategory.CatSort',$Category->id)}}" :tip="true"  type="sort"    />
                                         @endif
                                     </td>

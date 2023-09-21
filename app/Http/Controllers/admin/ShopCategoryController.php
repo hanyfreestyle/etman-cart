@@ -82,19 +82,21 @@ class ShopCategoryController extends AdminMainController
 #|||||||||||||||||||||||||||||||||||||| #     index
     public function index($id=null)
     {
+
+
         $pageData = $this->pageData;
         $pageData['ViewType'] = "List";
         $pageData['SubView'] = false;
         $trees = [];
         if( Route::currentRouteName()== 'Shop.shopCategory.index_Main')
         {
-            $Categories = self::getSelectQuery(Category::defShopquery()->where('parent_id', null)->where('cat_shop', true));
+            $Categories = self::getSelectQuery(Category::Admin_Def_Shop_query()->where('parent_id', null)->where('cat_shop', true));
         }elseif (Route::currentRouteName()== 'Shop.shopCategory.SubCategory'){
-            $Categories = self::getSelectQuery(Category::defShopquery()->where('parent_id',$id)->where('cat_shop',true));
+            $Categories = self::getSelectQuery(Category::Admin_Def_Shop_query()->where('parent_id',$id)->where('cat_shop',true));
             $trees = Category::find($id)->ancestorsAndSelf()->orderBy('depth','asc')->get() ;
             $pageData['SubView'] = true;
         }else{
-            $Categories = self::getSelectQuery(Category::defShopquery()->where('cat_shop',true));
+            $Categories = self::getSelectQuery(Category::Admin_Def_Shop_query()->where('cat_shop',true));
         }
         return view('admin.shop.category_index',compact('pageData','Categories','trees'));
     }
@@ -106,7 +108,7 @@ class ShopCategoryController extends AdminMainController
         $pageData = $this->pageData;
         $pageData['ViewType'] = "List";
         $pageData['SubView'] = false;
-        $Categories = self::getSelectQuery(Category::defShopquery()->where('cat_shop',false));
+        $Categories = self::getSelectQuery(Category::Admin_Def_Shop_query()->where('cat_shop',false));
         return view('admin.shop.category_index',compact('pageData','Categories'));
     }
 
@@ -265,10 +267,10 @@ class ShopCategoryController extends AdminMainController
         $pageData['ViewType'] = "List";
         $Category = [];
         if($id == 0){
-            $Categories = self::getSelectQuery(Category::defShopquery()->where('parent_id', null)->where('cat_shop', true)->orderBy('postion_shop'));
+            $Categories = self::getSelectQuery(Category::Admin_Def_Shop_query()->where('parent_id', null)->where('cat_shop', true)->orderBy('postion_shop'));
         }else{
             $Category =  Category::findOrNew($id);
-            $Categories = self::getSelectQuery(Category::defShopquery()->where('parent_id', $Category->id)->where('cat_shop', true)->orderBy('postion_shop'));
+            $Categories = self::getSelectQuery(Category::Admin_Def_Shop_query()->where('parent_id', $Category->id)->where('cat_shop', true)->orderBy('postion_shop'));
         }
         return view('admin.shop.category_sort',compact('pageData','Categories','Category'));
     }

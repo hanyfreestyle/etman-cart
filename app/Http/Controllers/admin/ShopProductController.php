@@ -68,7 +68,8 @@ class ShopProductController extends AdminMainController
 #|||||||||||||||||||||||||||||||||||||| # ClearCash
     public function ClearCash(){
         foreach ( config('app.lang_file') as $key=>$lang){
-            Cache::forget('MenuCategory_Cash_'.$key);
+            Cache::forget('ShopMenuCategory_Cash_'.$key);
+            Cache::forget('WebsiteMenuCategory_Cash_'.$key);
         }
     }
 
@@ -76,12 +77,23 @@ class ShopProductController extends AdminMainController
 #|||||||||||||||||||||||||||||||||||||| #     index
     public function index()
     {
+
+
+//        $Products = Product::defquery()->where('pro_shop',true)->get();
+//        foreach ($Products as $Product){
+//            $Product->qty =  rand(0,50);
+//            $Product->save();
+//        }
+
+
         $pageData = $this->pageData;
         $pageData['ViewType'] = "List";
         $pageData['SubView'] = false;
         $Products = self::getSelectQuery(Product::defquery()
             ->where('pro_shop',true)
         );
+
+
         return view('admin.shop.product_index',compact('pageData','Products'));
     }
 

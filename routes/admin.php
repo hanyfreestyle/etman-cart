@@ -48,6 +48,11 @@ Route::get('/Category/emptyPhoto/{id}', [CategoryController::class,'emptyPhoto']
 Route::get('/Category/emptyIcon/{id}', [CategoryController::class,'emptyIcon'])->name('webPro.category.emptyIcon');
 Route::get('/Category/Config',[CategoryController::class,'config'])->name('webPro.categoryConfig.Config');
 
+Route::get('/Category/CatSort/{id}',[CategoryController::class,'CategorySort'])->name('webPro.category.CatSort');
+Route::post('/Category/SaveSort',[CategoryController::class,'CategorySaveSort'])->name('webPro.category.CategorySaveSort');
+
+
+
 Route::get('/Category/TableList/{id}',[CategoryTableController::class,'TableList'])->name('webPro.category.Table_list');
 Route::get('/Category/Table/edit/{id}',[CategoryTableController::class,'TableEdit'])->name('webPro.category.Table_edit');
 Route::post('/Category/Table/update/{id}',[CategoryTableController::class,'TableStoreUpdate'])->name('webPro.category.Table_update');

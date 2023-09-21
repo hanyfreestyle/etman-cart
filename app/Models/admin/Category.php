@@ -83,30 +83,6 @@ class Category extends Model implements TranslatableContract
             ->where('is_archived',false);
     }
 
-
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #
-    public function scopeDefShopquery(Builder $query): Builder
-    {
-        return $query->with('translations')
-               ->withCount('children_shop')
-            ;
-
-    }
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     children
-    public function children_shop():hasMany
-    {
-        return $this->hasMany(Category::class , 'parent_id', 'id' )
-           // ->where('cat_shop',true)
-            ->with('translations');
-    }
-
-
-
-
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #  Web_Shop_Def_Query
     public function scopeWebSite_Def_Query(Builder $query): Builder
@@ -162,138 +138,68 @@ class Category extends Model implements TranslatableContract
 
 
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #
+    public function scopeAdmin_Def_Shop_query(Builder $query): Builder
+    {
+        return $query->with('translations')
+            ->withCount('admin_children_shop');
+
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     children
+    public function admin_children_shop():hasMany
+    {
+        return $this->hasMany(Category::class , 'parent_id', 'id' )
+            ->where('cat_shop',true)
+            ->with('translations');
+    }
 
 
-    /*
-    #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    #|||||||||||||||||||||||||||||||||||||| #  CategoryWithProduct
-        public function CategoryWithProduct()
-        {
-            return $this->belongsToMany(Product::class,'product_category','category_id','product_id');
-        }
-
-
-
-    #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    #|||||||||||||||||||||||||||||||||||||| #     children
-        public function children():hasMany
-        {
-           return $this->hasMany(Category::class , 'parent_id', 'id' )
-              // ->where('cat_shop',true)
-               ->with('translation')
-               ->withCount('CategoryWithProduct')
-               ->with('CategoryWithProduct')
-               ;
-        }
-
-
-
-
-    #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    #|||||||||||||||||||||||||||||||||||||| #
-        public function scopeDefSitequery(Builder $query): Builder
-        {
-            return $query->with('translations')
-                ->withCount('children')
-                ->withCount('table_data');
-        }
-
-
-
-
-
-
-
-        public function scopeDefWeb(Builder $query): Builder
-        {
-            return $query->where('is_active',true)
-                ->with('translation')
-                ->withCount('children')
-                ->with('children')
-                ->withCount('CatProduct')
-                ->with('CatProduct')
-                ->withCount('table_data')
-                ->with('table_data')
-
-                ;
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public function recursiveProduct()
-        {
-            return $this->hasManyOfDescendantsAndSelf(Product::class ,'category_id', 'id');
-
-        }
-
-    #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    #|||||||||||||||||||||||||||||||||||||| #     children
-        public function children_new():hasMany
-        {
-            return $this->hasMany(Category::class , 'parent_id', 'id' )->with('children_new')
-
-                ;
-        }
-
-
-
-
-
-        public function countTotalProducts()
-        {
-            $query = DB::table('categories')->selectRaw('categories.*')->where('id', $this->id)->unionAll(
-                DB::table('categories')->selectRaw('categories.*')->join('tree', 'tree.id', '=', 'categories.parent_id')
-            );
-
-            $tree = DB::table('products')->withRecursiveExpression('tree', $query)
-                ->join('product_category', 'product_category.product_id', '=', 'products.id')
-                ->whereIn(
-                    'product_category.category_id',
-                    DB::table('tree')->select('id')
-                )
-                ->count('products.id');
-
-            return $tree;
-        }
-
-    */
-/*
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #   scopeDefquery
-    public function scopeDefquery(Builder $query): Builder
+#|||||||||||||||||||||||||||||||||||||| #
+    public function scopeAdmin_Def_Web_Query(Builder $query): Builder
     {
-        return $query->with('translations');
-    }
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     scopeRoot
-    public function scopeRoot(Builder $query): Builder
-    {
-        return $query->whereNull('parent_id');
+        return $query->with('translations')
+            ->withCount('admin_children_web');
+
     }
 
-*/
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     children
+    public function admin_children_web():hasMany
+    {
+        return $this->hasMany(Category::class , 'parent_id', 'id' )
+            ->where('cat_web',true)
+            ->where('cat_web_data',true)
+            ->with('translations');
+    }
+
+
 
 }
 
 
+/*
 
+     public function countTotalProducts()
+      {
+          $query = DB::table('categories')->selectRaw('categories.*')->where('id', $this->id)->unionAll(
+              DB::table('categories')->selectRaw('categories.*')->join('tree', 'tree.id', '=', 'categories.parent_id')
+          );
+
+          $tree = DB::table('products')->withRecursiveExpression('tree', $query)
+              ->join('product_category', 'product_category.product_id', '=', 'products.id')
+              ->whereIn(
+                  'product_category.category_id',
+                  DB::table('tree')->select('id')
+              )
+              ->count('products.id');
+
+          return $tree;
+      }
+*/
 

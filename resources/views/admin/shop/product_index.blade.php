@@ -63,9 +63,9 @@
 
 
 
-                                <td class="tc"></td>
-                                <td class="tc"></td>
-                                <td class="tc"></td>
+                                <td class="tc">{{ $Product->price}}</td>
+                                <td class="tc">{{ $Product->discount_price}}</td>
+                                <td class="tc">{{$Product->qty}}</td>
 
                                 <td class="tc" >{!! is_active($Product->is_active) !!}</td>
                                 @can($PrefixRole.'_edit')

@@ -69,7 +69,8 @@ class CategoryController extends AdminMainController
 #|||||||||||||||||||||||||||||||||||||| # ClearCash
     public function ClearCash(){
         foreach ( config('app.lang_file') as $key=>$lang){
-            Cache::forget('MenuCategory_Cash_'.$key);
+            Cache::forget('ShopMenuCategory_Cash_'.$key);
+            Cache::forget('WebsiteMenuCategory_Cash_'.$key);
         }
     }
 
@@ -81,13 +82,13 @@ class CategoryController extends AdminMainController
         $pageData['ViewType'] = "List";
         $pageData['SubView'] = false;
         if( Route::currentRouteName()== 'webPro.category.index_Main'){
-            $Categories = self::getSelectQuery(Category::defSitequery()
+            $Categories = self::getSelectQuery(Category::Admin_Def_Web_Query()
                 ->where('parent_id',null)
                 ->where('cat_web',true)
                 ->where('cat_web_data',true)
             );
         }else{
-            $Categories = self::getSelectQuery(Category::defSitequery()
+            $Categories = self::getSelectQuery(Category::Admin_Def_Web_Query()
                 ->where('cat_web',true)
                 ->where('cat_web_data',true));
         }
@@ -101,7 +102,7 @@ class CategoryController extends AdminMainController
         $pageData = $this->pageData;
         $pageData['ViewType'] = "List";
         $pageData['SubView'] = false;
-        $Categories = self::getSelectQuery(Category::defSitequery()->where('cat_web',false)->orWhere('cat_web_data', false));
+        $Categories = self::getSelectQuery(Category::Admin_Def_Web_Query()->where('cat_web',false)->orWhere('cat_web_data', false));
         return view('admin.product.category_index',compact('pageData','Categories'));
     }
 
@@ -252,6 +253,43 @@ class CategoryController extends AdminMainController
         return view('admin.product.config',compact('pageData'));
     }
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     CategorySort
+    public function CategorySort($id)
+    {
+        $sendArr = ['TitlePage' => $this->PageTitle ,'selMenu'=> $this->selMenu  ];
+        $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
+        $pageData['ViewType'] = "List";
+        $Category = [];
+        if($id == 0){
+            $Categories = self::getSelectQuery(Category::Admin_Def_Web_Query()->where('parent_id', null)
+                ->where('cat_web', true)
+                ->where('cat_web_data', true)
+                ->orderBy('postion_web'));
+        }else{
+            $Category =  Category::findOrNew($id);
+            $Categories = self::getSelectQuery(Category::Admin_Def_Shop_query()->where('parent_id', $Category->id)
+                ->where('cat_web', true)
+                ->where('cat_web_data', true)
+                ->orderBy('postion_web'));
+        }
+        return view('admin.product.category_sort',compact('pageData','Categories','Category'));
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     TableSortSave
+    public function CategorySaveSort(Request $request){
+        $positions = $request->positions;
+        foreach($positions as $position) {
+            $id = $position[0];
+            $newPosition = $position[1];
+            $saveData =  Category::findOrFail($id) ;
+            $saveData->postion_web = $newPosition;
+            $saveData->save();
+        }
+        self::ClearCash();
+        return response()->json(['success'=>$positions]);
+    }
 
 
 }

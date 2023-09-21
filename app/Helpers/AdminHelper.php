@@ -515,8 +515,8 @@ class AdminHelper{
 #|||||||||||||||||||||||||||||||||||||| #  print_count_name_shop
     static function print_count_name_shop($lang,$row,$url)
     {
-        if($row->children_shop_count > 0){
-            return '<a href="'.route($url,$row->id).'">'.optional($row->translate($lang))->name.' ('.$row->children_shop_count.')</a>' ;
+        if($row->admin_children_shop_count > 0){
+            return '<a href="'.route($url,$row->id).'">'.optional($row->translate($lang))->name.' ('.$row->admin_children_shop_count.')</a>' ;
         }else{
             return $row->translate($lang)->name ?? '';
         }
@@ -527,8 +527,8 @@ class AdminHelper{
 #|||||||||||||||||||||||||||||||||||||| #  print_count_name
     static function print_count_name($lang,$row,$url)
     {
-        if($row->children_count > 0){
-            return '<a href="'.route($url,$row->id).'">'.optional($row->translate($lang))->name.' ('.$row->children_count.')</a>' ;
+        if($row->admin_children_web_count > 0){
+            return '<a href="'.route($url,$row->id).'">'.optional($row->translate($lang))->name.' ('.$row->admin_children_web_count.')</a>' ;
         }else{
             return $row->translate($lang)->name ?? '';
         }

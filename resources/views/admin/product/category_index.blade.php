@@ -11,6 +11,7 @@
             <div class="row mb-3">
                 <div class="col-12 text-left">
                     <x-action-button url="{{route('webPro.category.AddCatToWeb')}}"  bg="p"  print-lable="{{__('admin/shop.cat_addweb')}}"  icon="fas fa-plus-square"  />
+                    <x-action-button url="{{route('webPro.category.CatSort',0)}}"  type="sort"  />
                 </div>
             </div>
     </x-html-section>
@@ -46,6 +47,7 @@
 
                             @can($PrefixRole.'_edit')
                                 <th class="tbutaction TD_50"></th>
+                                <th class="tbutaction TD_50"></th>
                             @endcan
                             @can($PrefixRole.'_delete')
                                 <th class="tbutaction TD_50"></th>
@@ -61,6 +63,11 @@
                                 <td>{!!  \App\Helpers\AdminHelper::print_count_name('en',$Category,$PrefixRoute.".SubCategory") !!}</td>
                                 <td class="tc" >{!! is_active($Category->is_active) !!}</td>
                                 @can($PrefixRole.'_edit')
+                                    <td class="tc">
+                                        @if($Category->admin_children_web_count > 0)
+                                            <x-action-button url="{{route('webPro.category.CatSort',$Category->id)}}" :tip="true"  type="sort"    />
+                                        @endif
+                                    </td>
                                     <td class="tc"><x-action-button url="{{route($PrefixRoute.'.Table_list',$Category->id)}}" count="{{$Category->table_data_count}}"  print-lable="{{__('admin/def.table_info')}}"  icon="fas fa-info-circle" :tip="true" /></td>
                                     <td class="tc"><x-action-button url="{{route($PrefixRoute.'.edit',$Category->id)}}" type="edit" :tip="true" /></td>
                                 @endcan
