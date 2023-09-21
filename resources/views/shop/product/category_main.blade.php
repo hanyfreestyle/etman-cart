@@ -9,46 +9,46 @@
     <div class="section MainCategoryList">
         <div class="container">
 
-            <div class="row">
+            <div class="row mb-3 mb-lg-4 mt-3 pb-1">
                 <div class="col-lg-12">
                     <h1 class="def_h1 text-center" >{{$PageMeta->body_h1}}</h1>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-12">
-                    <div class="row align-items-center mb-4 pb-1">
-                        <div class="col-12">
-                            <div class="product_header">
-                                <div class="product_header_right">
-                                    <div class="products_view">
-                                        <a href="javascript:void(0);" class="shorting_icon shorting_icon_new grid active"><i class="ti-view-grid"></i></a>
-                                        <a href="javascript:void(0);" class="shorting_icon shorting_icon_new list"><i class="ti-layout-list-thumb"></i></a>
-                                    </div>
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-12">
+
+
+                    @if($agent->isMobile())
+                        {{--                        <div class="row align-items-center mb-4">--}}
+                        {{--                            <div class="col-12">--}}
+                        {{--                                <div class="product_header">--}}
+                        {{--                                    <div class="product_header_right">--}}
+                        {{--                                        <div class="products_view">--}}
+                        {{--                                            <a href="javascript:void(0);" class="shorting_icon shorting_icon_new grid active"><i class="ti-view-grid"></i></a>--}}
+                        {{--                                            <a href="javascript:void(0);" class="shorting_icon shorting_icon_new list"><i class="ti-layout-list-thumb"></i></a>--}}
+                        {{--                                        </div>--}}
+
+                        {{--                                    </div>--}}
+                        {{--                                </div>--}}
+                        {{--                            </div>--}}
+                        {{--                        </div>--}}
+                    @endif
+
+
                     <div class="row shop_container shop_container_50">
                         @foreach($MainCategoryProduct as $MainCategory)
                             <div class="col-lg-3 col-md-4 col-6 grid_item">
 
                                 <div class="product">
-
-                                    <div class="product_img">
-                                        <a href="{{route('Shop_CategoryView',$MainCategory->slug)}}">
+                                    <a href="{{route('Shop_CategoryView',$MainCategory->slug)}}">
+                                        <div class="product_img">
                                             <img src="{{getPhotoPath($MainCategory->photo,'categorie')}}" alt="product_img1">
-                                        </a>
-                                        <div class="product_action_box">
-                                            <ul class="list_none pr_action_btn">
-                                                <li><a href="{{route('Shop_CategoryView',$MainCategory->slug)}}" ><i class="icon-magnifier-add"></i></a></li>
-                                            </ul>
                                         </div>
-                                    </div>
-
+                                    </a>
                                     <div class="product_info">
-                                        <h2 class="product_title"><a href="{{route('Shop_CategoryView',$MainCategory->slug)}}">{{$MainCategory->name}} <span class="">({{count($MainCategory->recursiveProduct) }})</span> </a></h2>
+                                        <h2 class="product_title"><a href="{{route('Shop_CategoryView',$MainCategory->slug)}}">{{$MainCategory->name}} <span class="">({{count($MainCategory->recursive_product_shop) }})</span> </a></h2>
                                         <div class="pr_desc">
                                             <p>
                                                 {{$MainCategory->g_des}}

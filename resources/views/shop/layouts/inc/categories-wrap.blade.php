@@ -6,47 +6,59 @@
     <div id="navCatContent"
          class="@if($SinglePageView['banner_id']  and $SinglePageView['banner_count'] > 0) nav_cat @endif navbar collapse">
         <ul>
-            @foreach($MenuCategory as $MainCategory)
+            @foreach($ShopMenuCategory as $MainCategory)
                 @if($loop->index < 8)
-                    @if($MainCategory->children_count <= 0 )
-                        <li><a class="dropdown-item nav-link nav_item" href="{{route('Shop_CategoryView',$MainCategory->slug)}}">
+                    @if($MainCategory->web_shop_children_count <= 0 )
+                        <li><a class="dropdown-item nav-link nav_item main_nav" href="{{route('Shop_CategoryView',$MainCategory->slug)}}">
                                 <span class="cat_icon_span"><img class="cat_icon" width="30" src="{{getPhotoPath($MainCategory->icon ,"faq-icon")}}"></span>
                                 <span>{{$MainCategory->name}}</span></a></li>
                     @else
                         <li class="dropdown dropdown-mega-menu">
-                            <a class="dropdown-item nav-link dropdown-toggler" href="{{route('Shop_CategoryView',$MainCategory->slug)}}" data-bs-toggle="dropdown">
+                            <a class="dropdown-item nav-link dropdown-toggler main_nav" href="{{route('Shop_CategoryView',$MainCategory->slug)}}" data-bs-toggle="dropdown">
                                 <span class="cat_icon_span"><img class="cat_icon" width="30" src="{{getPhotoPath($MainCategory->icon ,"faq-icon")}}"></span>
                                 <span>{{$MainCategory->name}}</span></a>
                             <div class="dropdown-menu">
                                 <ul class="mega-menu d-lg-flex">
-                                    <li class="mega-menu-col col-lg-7">
-                                        @if($MainCategory->children_count > 0 )
-                                            <ul class="d-lg-flex">
-                                                @foreach($MainCategory->children  as $SubCategory)
-                                                    @if($loop->index < 2)
-                                                        <li class="mega-menu-col col-lg-6">
-                                                            <ul>
-                                                                <li class="dropdown-header sub_catName"><a href="{{route('Shop_CategoryView',$SubCategory->slug)}}">{{$SubCategory->name}}</a></li>
-                                                                @if(count($SubCategory->CatProduct) > 0 )
-                                                                    @foreach($SubCategory->CatProduct as $Product)
-                                                                        <li class="Product_name"><a class="dropdown-item nav-link nav_item" href="{{route('Shop_ProductView',$Product->slug)}}">{{$Product->name}}</a></li>
-                                                                    @endforeach
-                                                                @endif
-                                                            </ul>
-                                                        </li>
-                                                    @endif
-                                                @endforeach
-                                            </ul>
-                                        @endif
-                                    </li>
-                                    <li class="mega-menu-col col-lg-5 d-none d-md-block">
-                                        <div class="header-banner2">
-                                            <a href="{{route('Shop_CategoryView',$MainCategory->slug)}}"> <img  class="img_cat" src="{{getPhotoPath($MainCategory->photo,"blog")}}" class="rounded" alt="menu_banner1"></a>
-                                            <div class="readMore_but">
-                                            <a href="{{route('Shop_CategoryView',$MainCategory->slug)}}">{{__('web/def.Load_More')}}</a>
-                                            </div>
+                                    <li class="mega-menu-col col-lg-12">
 
-                                        </div>
+                                        <ul class="d-lg-flex">
+
+                                            <li class="mega-menu-col col-lg-4 mega_h ">
+                                                <ul>
+                                                    @foreach($MainCategory->web_shop_children  as $SubCategory)
+                                                        @if($loop->index <7)
+                                                            <li class="dropdown-header Product_name"><a href="{{route('Shop_CategoryView',$SubCategory->slug)}}">{{$SubCategory->name}}</a></li>
+                                                        @endif
+                                                    @endforeach
+                                                    @if($MainCategory->web_shop_children_count > 6 )
+                                                        <li class="dropdown-header view_all"> <a href="{{route('Shop_CategoryView',$MainCategory->slug)}}">{{__('web/def.View_All')}}</a></li>
+                                                    @endif
+
+                                                </ul>
+                                            </li>
+
+                                            <li class="mega-menu-col col-lg-4 mega_h d-none d-md-block">
+                                                <ul>
+                                                    <li class="dropdown-header sub_catName">{{__('web/menu.recently_arrived')}}</li>
+                                                    @foreach($MainCategory->recursive_product_shop  as $product)
+                                                        @if($loop->index <7)
+                                                            <li class="dropdown-header Product_name"><a href="{{route('Shop_ProductView',$product->slug)}}">{{$product->name}}</a></li>
+                                                        @endif
+                                                    @endforeach
+                                                </ul>
+                                            </li>
+
+                                            <li class="mega-menu-col col-lg-4 mega_h d-none d-md-block">
+                                                <ul>
+                                                    <li class="dropdown-header sub_catName">{{__('web/menu.best_seller')}}</li>
+                                                    @foreach($MainCategory->recursive_product_shop  as $product)
+                                                        @if($loop->index <7)
+                                                            <li class="dropdown-header Product_name"><a href="{{route('Shop_ProductView',$product->slug)}}">{{$product->name}}</a></li>
+                                                        @endif
+                                                    @endforeach
+                                                </ul>
+                                            </li>
+                                        </ul>
                                     </li>
                                 </ul>
                             </div>
@@ -57,8 +69,8 @@
 
             <li>
                 <ul class="more_slide_open">
-                    @if(count($MenuCategory) > 8)
-                        @foreach($MenuCategory as $MainCategory)
+                    @if(count($ShopMenuCategory) > 8)
+                        @foreach($ShopMenuCategory as $MainCategory)
                             @if($loop->index > 8)
                                 <li><a class="dropdown-item nav-link nav_item" href="{{route('Shop_CategoryView',$MainCategory->slug)}}">
                                         <span class="cat_icon_span"><img class="cat_icon" width="30" src="{{getPhotoPath($MainCategory->icon ,"faq-icon")}}"></span>
@@ -69,10 +81,9 @@
                 </ul>
             </li>
         </ul>
-        @if(count($MenuCategory) > 9)
+        @if(count($ShopMenuCategory) > 9)
             <div class="more_categories">{{__('web/menu.More_Categories')}}</div>
         @endif
 
     </div>
 </div>
-

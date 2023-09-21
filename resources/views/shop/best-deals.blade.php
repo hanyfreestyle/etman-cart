@@ -83,7 +83,7 @@
                                             <div class="progress-bar" role="progressbar" aria-valuenow="{{$avr}}" aria-valuemin="0" aria-valuemax="100" style="width:{{$avr}}%"> 46% </div>
                                         </div>
                                     </div>
-                                    <div class="countdown_time countdown_style4 mb-4" data-time="2023/09/15 12:30:15"></div>
+                                    <div class="countdown_time countdown_style4 mb-4" data-time="2023/09/30 12:30:15"></div>
                                 </div>
                             </div>
                         </div>

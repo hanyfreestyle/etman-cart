@@ -12,10 +12,11 @@ return
 	'Our_Client' => 'عملائنا',
 	'Shop_Now' => 'تسوق الان',
 	'Terms' => 'سياسية الاستخدام',
+	'best_seller' => 'الاكثر مبيعا',
+	'client_offer' => 'عروض تجار الجملة',
 	'contatc_us' => 'اتصل بنا',
 	'home' => 'الرئيسية',
 	'home_page' => 'الصفحة الرئيسية',
 	'recently_arrived' => 'وصل حديثا',
 	'week_offer' => 'عروض الاسبوع',
-	'client_offer' => 'عروض تجار الجملة',
 ];

@@ -13,5 +13,5 @@ return [
 
     'MainCategory' => 'category-list',
     'WebCategoryView' => 'category/{slug}',
-    'WebProductView' => 'product/{slug}',
+    'WebProductView' => 'product/{catid}/{slug}',
 ];

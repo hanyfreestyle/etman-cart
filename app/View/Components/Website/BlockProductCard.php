@@ -9,11 +9,14 @@ use Illuminate\View\Component;
 class BlockProductCard extends Component
 {
     public $product ;
+    public $category ;
     public function __construct(
         $product,
+        $category,
     )
     {
         $this->product = $product ;
+        $this->category = $category;
     }
 
     /**

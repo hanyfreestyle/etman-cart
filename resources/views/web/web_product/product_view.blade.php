@@ -1,7 +1,7 @@
 @extends('web.layouts.app')
 @section('breadcrumb')
     <x-website.breadcrumb>
-        {{ Breadcrumbs::render($SinglePageView['breadcrumb'],$trees,$Product) }}
+        {{ Breadcrumbs::render($SinglePageView['breadcrumb'],$trees,$Product,$Category) }}
     </x-website.breadcrumb>
 @endsection
 @section('content')
@@ -31,7 +31,7 @@
                         <div id="pr_item_gallery" class="product_gallery_item slick_slider" data-vertical="true" data-vertical-swiping="true" data-slides-to-show="5" data-slides-to-scroll="1" data-infinite="false">
                             @foreach($Product->more_photos as $photo)
                                 <div class="item">
-                                    <a href="#" class="product_gallery_item  @if($loop->index == 0) active @endif" data-image="{{getPhotoPath($photo->photo_thum_1)}}" data-zoom-image="{{getPhotoPath($photo->photo_thum_1)}}">
+                                    <a href="#" class="product_gallery_item  @if($loop->index == 0) active @endif" data-image="{{getPhotoPath($photo->photo)}}" data-zoom-image="{{getPhotoPath($photo->photo)}}">
                                         <img src="{{getPhotoPath($photo->photo_thum_1)}}" alt="product_small_img1" />
                                     </a>
                                 </div>
@@ -40,7 +40,7 @@
                         <div class="product_img_box">
                             @foreach($Product->more_photos as $photo)
                                 @if($loop->index == 0)
-                                    <img id="product_img" src='{{getPhotoPath($photo->photo_thum_1)}}' data-zoom-image="{{getPhotoPath($photo->photo_thum_1)}}" alt="product_img1" />
+                                    <img id="product_img" src='{{getPhotoPath($photo->photo_thum_1)}}' data-zoom-image="{{getPhotoPath($photo->photo)}}" alt="product_img1" />
                                     <a href="#" class="product_img_zoom" title="Zoom">
                                         <span class="linearicons-zoom-in"></span>
                                     </a>
@@ -64,8 +64,17 @@
 
 
                             <ul class="product-meta">
-                                <li> {{__('web/def.lable_SKU')}} <a href="#">  <span>5041315101040</span> </a></li>
-                                <li> {{__('web/def.lable_Category')}}<a href="{{ route('Page_WebCategoryView',$Product->categoryName->slug)}}"><span> {{$Product->categoryName->name}}</span></a></li>
+
+                                @if($Product->ref_code)
+                                    <li> {{__('web/def.lable_SKU')}} <a href="#">  <span>{{$Product->ref_code}}</span> </a></li>
+                                @endif
+
+                                <li> {{__('web/def.lable_Category')}}
+                                    @foreach($Product->website_product_with_category as $category )
+                                        <a href="{{ route('Page_WebCategoryView',$category->slug)}}"><span> {{$category->name}}</span></a>
+                                    @endforeach
+
+                                </li>
 
                             </ul>
 
@@ -85,7 +94,7 @@
 
 
             @if(count($ReletedProducts) > 0)
-                <div class="row mt-lg-3 MainCategoryList">
+                <div class="row mt-lg-3 MainCategoryList ">
                     <div class="col-12">
                     <h3 class="ReletedProducts">{{__('web/def.Releted_Products')}}</h3>
                         <hr>
@@ -94,7 +103,7 @@
 
                             @foreach($ReletedProducts as $Product)
                                 <div class="item">
-                                    <x-website.block-product-card :product="$Product"/>
+                                    <x-website.block-product-card :product="$Product" :category="$Category"/>
                                 </div>
                             @endforeach
                         </div>

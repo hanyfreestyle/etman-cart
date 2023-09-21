@@ -83,11 +83,11 @@ Route::group(['prefix' => 'EtmanShop'], function(){
     Route::get(LaravelLocalization::transRoute('routes.WebCategoryView'),[ShopPageController::class, 'ShopCategoryView'])
         ->name('Shop_CategoryView');
 
-    Route::get(LaravelLocalization::transRoute('routes.WebProductView'),[ShopPageController::class, 'ShopProductView'])
+    Route::get('product/{slug}/{catid?}',[ShopPageController::class, 'ShopProductView'])
         ->name('Shop_ProductView');
 
-    Route::get(LaravelLocalization::transRoute('routes.WebProductView'),[ShopPageController::class, 'ShopProductView'])
-        ->name('Shop_ProductView');
+//    Route::get(LaravelLocalization::transRoute('routes.WebProductView'),[ShopPageController::class, 'ShopProductView'])
+//        ->name('Shop_ProductView');
 
 
     Route::get(LaravelLocalization::transRoute('routes.FaqList'),[ShopPageController::class, 'FaqList'])
@@ -98,7 +98,7 @@ Route::group(['prefix' => 'EtmanShop'], function(){
 
 
 
-    Route::get('/recently',[ShopPageController::class, 'Recently'])
+    Route::get('/وصل-حديثا',[ShopPageController::class, 'Recently'])
         ->name('Shop_Recently');
 
     Route::get('/week-offers',[ShopPageController::class, 'WeekOffers'])

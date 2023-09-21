@@ -1,4 +1,5 @@
 
+
 <div class="product">
 
     <div class="product_img">
@@ -8,7 +9,7 @@
 
     </div>
     <div class="product_info">
-        <h6 class="product_title"><a href="{{route('Shop_ProductView',$product->slug)}}">{{$product->name}}</a></h6>
+        <h6 class="product_title"><a href="{{route('Shop_ProductView',[$product->slug,$category->id])}}">{{$product->name}}</a></h6>
 
 
         @if(intval($product->g_title) > 0 )

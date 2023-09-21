@@ -16,49 +16,37 @@
                         </div>
                     </div>
 
-                    @if($Category->id == '23')
 
-                        <div class="row shop_container shop_container_50  mt-lg-3">
-                            @foreach($Category->recursiveProduct as $Product )
-                                <div class="col-lg-4 col-md-4 col-6">
-                                    <x-shop.block-list-pro-from-cat  :product="$Product" />
-                                </div>
-                            @endforeach
-                        </div>
-
-                    @else
-                        @if($Category->children_count > 0)
-                            <div class="row MainCategoryList mt-lg-3">
-                                <div class="col-12">
-                                    <div class="row shop_container shop_container_50">
-                                        @foreach($Category->children as $SubCategory)
-                                            <div class="col-lg-4 col-md-4 col-6 grid_item">
-                                                <div class="product">
+                    @if($Category->children_shop_count > 0)
+                        <div class="row MainCategoryList mt-lg-3">
+                            <div class="col-12">
+                                <div class="row shop_container shop_container_50">
+                                    @foreach($Category->children_shop as $SubCategory)
+                                        <div class="col-lg-4 col-md-4 col-6 grid_item">
+                                            <div class="product">
+                                                <a href="{{route('Shop_CategoryView',$SubCategory->slug)}}">
                                                     <div class="product_img">
-                                                        <a href="{{route('Shop_CategoryView',$SubCategory->slug)}}">
-                                                            <img src="{{getPhotoPath($SubCategory->photo,'categorie')}}" alt="product_img1">
-                                                        </a>
-                                                        <div class="product_action_box">
-                                                            <ul class="list_none pr_action_btn">
-                                                                <li><a href="{{route('Shop_CategoryView',$SubCategory->slug)}}" ><i class="icon-magnifier-add"></i></a></li>
-                                                            </ul>
-                                                        </div>
+
+                                                        <img src="{{getPhotoPath($SubCategory->photo,'categorie')}}" alt="product_img1">
+
+
                                                     </div>
-                                                    <div class="product_info">
-                                                        <h3 class="product_title"><a href="{{route('Shop_CategoryView',$SubCategory->slug)}}">{{$SubCategory->name}}</a></h3>
-                                                    </div>
+                                                </a>
+                                                <div class="product_info">
+                                                    <h3 class="product_title"><a href="{{route('Shop_CategoryView',$SubCategory->slug)}}">{{$SubCategory->name}}  ({{ count($SubCategory->recursive_product_shop) }})</a></h3>
                                                 </div>
                                             </div>
-                                        @endforeach
-                                    </div>
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
-                        @endif
+                        </div>
                     @endif
 
 
-                    @if($Category->cat_product_count > 0)
-                        @if($Category->children_count > 0 )
+
+                    @if($Category->category_with_product_shop_count > 0)
+                        @if($Category->children_shop_count > 0 )
                             <div class="row">
                                 <div class="col-12">
                                     <h2 class="def_h2">{{__('web/def.products')}}</h2>
@@ -86,9 +74,9 @@
 
 
                                 <div class="row shop_container shop_container_50  mt-lg-3">
-                                    @foreach($Category->CatProduct as $Product )
+                                    @foreach($Category->category_with_product_shop as $Product )
                                         <div class="col-lg-4 col-md-4 col-6">
-                                            <x-shop.block-list-pro-from-cat  :product="$Product" />
+                                            <x-shop.block-list-pro-from-cat  :product="$Product" :category="$Category"  />
                                         </div>
                                     @endforeach
                                 </div>
@@ -100,7 +88,7 @@
 
                 </div>
                 @if($agent->isMobile() == false )
-                    @include('shop.product.category_view_sidebar')
+                   @include('shop.product.category_view_sidebar')
                 @endif
             </div>
         </div>

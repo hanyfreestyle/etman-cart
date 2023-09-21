@@ -12,10 +12,11 @@ return
 	'Our_Client' => 'Our Client',
 	'Shop_Now' => 'Shop Now',
 	'Terms' => 'Terms &amp; Conditions',
+	'best_seller' => 'Best Seller',
+	'client_offer' => 'client_offer',
 	'contatc_us' => 'Contatc Us',
 	'home' => 'Home',
-	'home_page' => 'Home Pgae',
+	'home_page' => 'Home',
 	'recently_arrived' => 'recently arrived',
 	'week_offer' => 'week_offer',
-	'client_offer' => 'client_offer',
 ];

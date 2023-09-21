@@ -40,22 +40,12 @@ class WebMainController extends Controller
         View::share('DefPhotoList', $DefPhotoList);
 
 
-        $CartList = Product::inRandomOrder()->limit(2)->get();
-        View::share('CartList', $CartList);
-
-//        $RecentProduct = Product::where('category_id',39)->inRandomOrder()->limit(4)->get();
-//        View::share('RecentProduct', $RecentProduct);
-
-        $RecentProduct = Product::inRandomOrder()->limit(4)->get();
-        View::share('RecentProduct', $RecentProduct);
-
 
 //        $PagesList  = self::getPagesList();
 //        View::share('PagesList', $PagesList);
 
 
-        $MenuCategory = self::getMenuCategory($stopCash);
-        View::share('MenuCategory', $MenuCategory);
+
 
 
 
@@ -197,29 +187,64 @@ class WebMainController extends Controller
     static function getMenuCategory($stopCash=0){
 
         if($stopCash){
-            $MenuCategory = Category::Defquery()->root()
+            $MenuCategory = Category::WebSite_Def_Query()
+                ->RootCategory()
+                ->withCount('website_children')
+                ->with('website_children')
+                ->withCount('category_with_product_website')
+                ->with('category_with_product_website')
                 ->with('translation')
-                ->withCount('children')
-                ->with('children')
-                ->with('CatProduct')
-                ->orderBy('children_count','desc')
+                ->orderBy('postion_web','ASC')
                 ->get();
+
         }else{
-            $MenuCategory = Cache::remember('MenuCategory_Cash_'.app()->getLocale(),config('app.def_24h_cash'), function (){
-                return   Category::defquery()->root()
+            $MenuCategory = Cache::remember('WebsiteMenuCategory_Cash_'.app()->getLocale(),config('app.def_24h_cash'),
+                function (){
+                return    Category::WebSite_Def_Query()
+                    ->RootCategory()
+                    ->withCount('website_children')
+                    ->with('website_children')
+                    ->withCount('category_with_product_website')
+                    ->with('category_with_product_website')
                     ->with('translation')
-//                    ->withCount('children')
-//                    ->with('children')
-                 //   ->with('CatProduct')
-                //    ->orderBy('children_count','desc')
+                    ->orderBy('postion_web','ASC')
                     ->get();
             });
         }
 
+
+
         return $MenuCategory ;
     }
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     getMenuCategory
+    static function getShopMenuCategory($stopCash=0){
 
+        if($stopCash){
+            $MenuCategory = Category::Web_Shop_Def_Query()->RootCategory()
+                ->withCount('web_shop_children')
+                ->with('web_shop_children')
+                ->with('recursive_product_shop')
+//                ->withCount('category_with_product_shop')
+//                ->with('category_with_product_shop')
+                ->orderBy('postion_shop','ASC')
+                ->get();
+        }else{
+            $MenuCategory = Cache::remember('ShopMenuCategory_Cash_'.app()->getLocale(),config('app.def_24h_cash'),
+                function (){ return   Category::Web_Shop_Def_Query()->RootCategory()
+                    ->withCount('web_shop_children')
+                    ->with('web_shop_children')
+                    ->with('recursive_product_shop')
+//                    ->with('category_with_product_shop')
+//                    ->withCount('category_with_product_shop')
+                    ->orderBy('postion_shop','ASC')
+                    ->get();
+                });
+        }
+
+        return $MenuCategory ;
+    }
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     text
 

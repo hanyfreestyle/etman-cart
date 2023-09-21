@@ -8,6 +8,7 @@ use App\Models\admin\Category;
 use App\Models\admin\FaqCategory;
 use App\Models\admin\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class ShopPageController extends WebMainController
 {
@@ -17,6 +18,17 @@ class ShopPageController extends WebMainController
     )
     {
         parent::__construct();
+
+        $stopCash = 0 ;
+        $ShopMenuCategory = self::getShopMenuCategory($stopCash);
+        View::share('ShopMenuCategory', $ShopMenuCategory);
+
+        $CartList = Product::with('translation')->inRandomOrder()->limit(2)->get();
+        View::share('CartList', $CartList);
+
+        $RecentProduct = Product::with('translation')->inRandomOrder()->limit(4)->get();
+        View::share('RecentProduct', $RecentProduct);
+
         $SinglePageView = [
             'SelMenu' => '',
             'slug' => null,
@@ -53,16 +65,13 @@ class ShopPageController extends WebMainController
 
 
         $MainCategoryPro  = Category::where('parent_id',null)
-         //   ->with('recursiveProduct')
+            ->with('recursive_product_shop')
             ->limit(4)
             ->get();
 
 
-
-
         return view('shop.index',compact('SinglePageView','MainCategoryPro'));
     }
-
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #    MainCategory
@@ -80,11 +89,9 @@ class ShopPageController extends WebMainController
         $SinglePageView['SelMenu'] = 'MainCategory' ;
 
         $MainCategoryProduct  = Category::where('parent_id',null)
-            ->with('recursiveProduct')
-            //->withCount('recursiveProduct')
+            ->with('recursive_product_shop')
+            ->orderBy('postion_shop')
             ->get();
-
-       // dd($MainCategoryProduct);
 
         return view('shop.product.category_main',compact('SinglePageView','PageMeta','MainCategoryProduct'));
     }
@@ -95,16 +102,13 @@ class ShopPageController extends WebMainController
     {
 
         $slug = \AdminHelper::Url_Slug($slug);
-
-        $Category  = Category::defWeb()
-            ->withCount('CatProduct')
-            ->with('CatProduct')
-            ->whereTranslation('slug', $slug)
+        $Category  = Category::whereTranslation('slug', $slug)
+            ->where('cat_shop',true)
+            ->withCount('children_shop')
+            ->with('children_shop')
+            ->withCount('category_with_product_shop')
+            ->with('category_with_product_shop')
             ->firstOrFail();
-
-        if ($Category->translate()->where('slug', $slug)->first()->locale != app()->getLocale()) {
-            return redirect()->route('Page_WebCategoryView', $Category->translate()->slug);
-        }
 
 
         $PageMeta = $Category ;
@@ -117,40 +121,62 @@ class ShopPageController extends WebMainController
 
         $trees = Category::find($Category->id)->ancestorsAndSelf()->orderBy('depth','asc')->get() ;
 
-
-        $MainCategoryPro  = Category::where('parent_id',null)
-            ->with('recursiveProduct')
-            ->get();
-
-
-        $CategoryWithPro  = Category::where('id',$Category->id)
-            ->with('recursiveProduct')
-            ->get();
-
-
-
-
-
-        return view('shop.product.category_view',compact('SinglePageView','PageMeta','Category','trees','MainCategoryPro','CategoryWithPro'));
+        return view('shop.product.category_view',compact('SinglePageView','PageMeta','Category','trees'));
 
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     ShopProductView
-    public function ShopProductView ($slug){
+    public function ShopProductView ($slug,$catid='lastProducts'){
+
         $slug = \AdminHelper::Url_Slug($slug);
 
-        $Product  = Product::defWeb()
+        $catList = ['lastProducts'];
+
+
+
+
+
+
+//        if( !in_array($catid,$catList)){
+//
+////            dd( !in_array($catid,$catList));
+////
+//            ///$cat = \AdminHelper::Url_Slug($cat);
+//            $Category  = Category::where('id',$catid)
+//                ->where('cat_shop',true)
+//                ->withCount('children_shop')
+//                ->with('children_shop')
+//                ->withCount('category_with_product_shop')
+//                ->with('category_with_product_shop')
+//                ->firstOrFail();
+//
+//
+//
+//        }else{
+//            $Category = null;
+//        }
+
+
+        $Product  = Product::Web_Shop_Def_Query()
             ->whereTranslation('slug', $slug)
+            ->withCount('product_with_category')
+            ->with('product_with_category')
+            ->withCount('more_photos')
+            ->with('more_photos')
             ->firstOrFail();
 
-        $ReletedProducts = Product::with('translation')
-            ->where('category_id',$Product->category_id)
-            ->where('id','!=',$Product->id)
-            ->limit(8)
-            ->get();
 
-        ;
+
+
+
+//        $ReletedProducts = Product::with('translation')
+//            ->where('category_id',$Product->category_id)
+//            ->where('id','!=',$Product->id)
+//            ->limit(8)
+//            ->get();
+//more_photos_count
+//        ;
 
         $PageMeta = $Product ;
         parent::printSeoMeta($PageMeta);
@@ -158,57 +184,32 @@ class ShopPageController extends WebMainController
         $SinglePageView = $this->SinglePageView ;
         $SinglePageView['SelMenu'] = 'MainCategory' ;
         $SinglePageView['breadcrumb'] = "Shop_ProductView" ;
-        $SinglePageView['slug'] = 'product/'.$Product->translate(webChangeLocale())->slug;
+        $SinglePageView['slug'] = 'product/'.$Product->slug;
 
-        $trees = Category::find($Product->category_id)->ancestorsAndSelf()->orderBy('depth','asc')->get() ;
-
+       // $trees = Category::find($Product->category_id)->ancestorsAndSelf()->orderBy('depth','asc')->get() ;
+        $trees = [];
+        $ReletedProducts = [];
         return view('shop.product.product_view',compact('SinglePageView','PageMeta','Product','trees','ReletedProducts'));
     }
-
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     Recently
     public function Recently ()
     {
-
-        $Category  = Category::defWeb()
-            ->withCount('CatProduct')
-            ->with('CatProduct')
-            ->whereTranslation('id',1 )
-            ->firstOrFail();
-
-
-
-
-        $PageMeta = $Category ;
+        $PageMeta = parent::getMeatByCatId('MainCategory');
         parent::printSeoMeta($PageMeta);
 
         $SinglePageView = $this->SinglePageView ;
         $SinglePageView['SelMenu'] = 'Shop_Recently' ;
         $SinglePageView['breadcrumb'] = "Shop_Recently" ;
 
+        $Recently = Product::Web_Shop_Def_Query()->inRandomOrder()->limit(9)->get();
+        $Category = ['id'=>'وصل-حديثا'];
+        $Category = ['id'=>'hany'];
 
-        $trees = Category::find($Category->id)->ancestorsAndSelf()->orderBy('depth','asc')->get() ;
-
-
-        $MainCategoryPro  = Category::where('parent_id',null)
-            ->with('recursiveProduct')
-            ->get();
-
-
-        $CategoryWithPro  = Category::where('id',$Category->id)
-            ->with('recursiveProduct')
-            ->get();
-
-
-
-
-
-        return view('shop.product.recently_arrived',compact('SinglePageView','PageMeta','Category','trees','MainCategoryPro','CategoryWithPro'));
+        return view('shop.product.recently_arrived',compact('SinglePageView','PageMeta','Recently','Category'));
 
     }
-
-
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #    BestDeals
@@ -222,24 +223,10 @@ class ShopPageController extends WebMainController
         $SinglePageView['breadcrumb'] = "Shop_BestDeals" ;
 
 
-        $MainCategoryPro  = Category::where('parent_id',null)
-            ->with('recursiveProduct')
-            ->limit(4)
-            ->get();
-
-        $BestDeals = Product::where('photo','!=',null)
-//            ->where('category_id',39)
-            ->inRandomOrder()
-            ->limit(6)
-            ->get();
-
-
-
-
+        $BestDeals = Product::Web_Shop_Def_Query()->inRandomOrder()->limit(6)->get();
 
         return view('shop.best-deals',compact('SinglePageView','BestDeals'));
     }
-
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #    BestDeals
@@ -252,29 +239,14 @@ class ShopPageController extends WebMainController
         $SinglePageView['SelMenu'] = 'Shop_WeekOffers' ;
         $SinglePageView['breadcrumb'] = "Shop_WeekOffers" ;
 
-
-        $MainCategoryPro  = Category::where('parent_id',null)
-            ->with('recursiveProduct')
-            ->limit(4)
-            ->get();
-
-        $BestDeals = Product::where('photo','!=',null)
-//            ->where('category_id',39)
-            ->inRandomOrder()
-            ->limit(12)
-            ->get();
-
-
-
-
+        $BestDeals=Product::whereHas('product_with_category',function($query){
+            $query->where('category_id',39);
+        })->get();
 
         return view('shop.product.week',compact('SinglePageView','BestDeals'));
     }
 
-
-
-
-    #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #    FaqList
     public function FaqList ()
     {

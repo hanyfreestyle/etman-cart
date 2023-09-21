@@ -73,7 +73,8 @@ class ShopCategoryController extends AdminMainController
 #|||||||||||||||||||||||||||||||||||||| # ClearCash
     public function ClearCash(){
         foreach ( config('app.lang_file') as $key=>$lang){
-            Cache::forget('MenuCategory_Cash_'.$key);
+            Cache::forget('ShopMenuCategory_Cash_'.$key);
+            Cache::forget('WebsiteMenuCategory_Cash_'.$key);
         }
     }
 

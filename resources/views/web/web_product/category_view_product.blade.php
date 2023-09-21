@@ -24,9 +24,10 @@
                 @endif
 
                 <div class="row shop_container shop_container_50  mt-lg-3">
-                    @foreach($Category->CatProduct as $Product )
+                    @foreach($Category->category_with_product_website as $Product )
                         <div class="col-lg-3 col-md-4 col-6 grid_item">
-                            <x-website.block-product-card :product="$Product"/>
+
+                            <x-website.block-product-card :product="$Product" :category="$Category" />
                         </div>
                     @endforeach
                 </div>

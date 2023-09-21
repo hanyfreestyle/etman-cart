@@ -21,18 +21,60 @@
 
 .mega-menu-col .sub_catName{
     overflow: hidden;
+    font-size: 16px;
+    padding-top: 0!important;
+    padding-bottom: 5px!important;
+
     text-transform:none!important;
 }
-.mega-menu-col .sub_catName a{
+.mega-menu-col .sub_catName {
     color: var(--red)!important;
 }
 
 .mega-menu-col .Product_name {
-    border-bottom: 1px solid rgba(0,0,0,.1);
+    border-bottom: 1px dotted  rgba(0,0,0,.1);
     overflow: hidden;
     text-transform:none!important;
     color: var(--red)!important;
+    margin-right: 5px;
+    margin-left: 5px;
+
 }
+
+
+
+.mega_h{
+    min-height: 350px;
+}
+.mega_h .view_all  {
+    margin-top: 8px;
+    text-align: left!important;
+
+}
+.mega_h .view_all a{
+    color: var(--red)!important;
+}
+
+
+@media only screen and (max-width: 600px) {
+
+
+
+    .main_nav{
+        font-size: 15px!important;
+        /*font-weight: bold!important;*/
+    }
+    .mega-menu-col .Product_name {
+        font-weight: normal!important;
+    }
+
+
+    .mega_h{
+        min-height: 20px;
+        padding-bottom: 15px!important;
+    }
+}
+
 
 .mega-menu-col .header-banner2{
     text-align: center;
@@ -194,8 +236,8 @@
 
 .HomeImageCat{
     margin-top: 70px;
-    border-radius : 200px 200px 200px 200px;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    /*border-radius : 200px 200px 200px 200px;*/
+    /*box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;*/
 }
 
 .BestDeal_img {

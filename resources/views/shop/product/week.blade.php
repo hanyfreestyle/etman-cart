@@ -13,10 +13,10 @@
                 <div class="col-md-12">
                     <div class="heading_tab_header">
                         <div class="heading_s2">
-                            <h2>Deal Of The Days</h2>
+                            <h2>{{__('web/menu.week_offer')}}</h2>
                         </div>
                         <div class="deal_timer">
-                            <div class="countdown_time countdown_style1" data-time="2023/09/16 13:22:15"></div>
+                            <div class="countdown_time countdown_style1" data-time="2023/09/30 13:22:15"></div>
                         </div>
                     </div>
                 </div>

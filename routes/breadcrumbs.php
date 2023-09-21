@@ -71,12 +71,15 @@ Breadcrumbs::for('WebCategoryView', function (BreadcrumbTrail $trail, $trees) {
     }
 });
 
-Breadcrumbs::for('WebProductView', function (BreadcrumbTrail $trail, $trees,$Product) {
+Breadcrumbs::for('WebProductView', function (BreadcrumbTrail $trail, $trees,$Product,$Category) {
+
+
     $trail->parent('MainCategory');
     foreach($trees as $tree){
+
         $trail->push($tree->name, route('Page_WebCategoryView', $tree->slug));
     }
-    $trail->push($Product->name, route('Page_WebProductView', $Product->slug));
+    $trail->push($Product->name, route('Page_WebProductView', [$Category->id,$Product->slug]));
 });
 
 

@@ -10,11 +10,14 @@ class BlockListProFromCat extends Component
 {
 
     public $product;
+    public $category;
     public function __construct(
         $product = array(),
+        $category = ['id'=>null],
     )
     {
         $this->product = $product ;
+        $this->category = json_decode(json_encode($category), FALSE); ;
     }
 
     /**

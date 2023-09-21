@@ -9,6 +9,7 @@ use App\Models\admin\FaqCategory;
 use App\Models\admin\OurClient;
 use App\Models\admin\Product;
 use App\Models\User;
+use Illuminate\Support\Facades\View;
 
 
 class WebPageController extends WebMainController
@@ -19,6 +20,11 @@ class WebPageController extends WebMainController
     )
     {
         parent::__construct();
+        $stopCash =0;
+        $MenuCategory = self::getMenuCategory($stopCash);
+        View::share('MenuCategory', $MenuCategory);
+
+
         $SinglePageView = [
             'SelMenu' => '',
             'slug' => null,
@@ -26,6 +32,7 @@ class WebPageController extends WebMainController
             'breadcrumb' => 'home',
 
         ];
+
 
         $this->SinglePageView = $SinglePageView ;
     }
@@ -44,21 +51,11 @@ class WebPageController extends WebMainController
         $SinglePageView['banner_list'] = $PageMeta->PageBanner ;
 
 
-//        $MainCategoryPro  = Category::where('parent_id',null)
-//            ->with('recursiveProduct')
-//            ->limit(4)
-//            ->get();
-
-
-        $MainCategoryPro  = Category::where('parent_id',null)
-            ->limit(4)
-            ->get();
-
 
         $BlogPosts =  BlogPost::defWeb()->limit(3)->get();
 
 
-        return view('web.index',compact('SinglePageView','MainCategoryPro','BlogPosts'));
+        return view('web.index',compact('SinglePageView','BlogPosts'));
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -115,6 +112,7 @@ class WebPageController extends WebMainController
             ->get();
         return view('web.page_contact_us',compact('SinglePageView','PageMeta','FaqCategories'));
     }
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #    ContactUs
     public function Careers ()
@@ -133,7 +131,6 @@ class WebPageController extends WebMainController
             ->get();
         return view('web.page_contact_us',compact('SinglePageView','PageMeta','FaqCategories'));
     }
-
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #    TermsConditions
@@ -157,7 +154,6 @@ class WebPageController extends WebMainController
 
         return view('web.page_term_conditions',compact('SinglePageView','PageMeta','Terms'));
     }
-
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #    FaqList
@@ -265,7 +261,6 @@ class WebPageController extends WebMainController
         return view('web.blog_view',compact('SinglePageView','PageMeta','Post','BlogPosts'));
     }
 
-
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #    MainCategory
     public function MainCategory ()
@@ -290,11 +285,21 @@ class WebPageController extends WebMainController
     {
         $slug = \AdminHelper::Url_Slug($slug);
 
-        $Category  = Category::defWeb()
-            ->withCount('CatProduct')
-            ->with('CatProduct')
+        $Category  = Category::WebSite_Def_Query()
             ->whereTranslation('slug', $slug)
+            ->withCount('website_children')
+            ->with('website_children')
+            ->withCount('category_with_product_website')
+            ->with('category_with_product_website')
+            ->withCount('table_data')
+            ->with('table_data')
+
+            ->with('translation')
+
             ->firstOrFail();
+
+
+      //  dd($Category);
 
         if ($Category->translate()->where('slug', $slug)->first()->locale != app()->getLocale()) {
             return redirect()->route('Page_WebCategoryView', $Category->translate()->slug);
@@ -317,20 +322,22 @@ class WebPageController extends WebMainController
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     WebProductView
-    public function WebProductView($slug){
+    public function WebProductView($catid,$slug){
+        $catid = intval($catid);
         $slug = \AdminHelper::Url_Slug($slug);
 
-        $Product  = Product::defWeb()
-            ->whereTranslation('slug', $slug)
+        $Category = Category::WebSite_Def_Query()
+            ->where('id',$catid)
             ->firstOrFail();
 
-        $ReletedProducts = Product::with('translation')
-            ->where('category_id',$Product->category_id)
-            ->where('id','!=',$Product->id)
-            ->limit(8)
-            ->get();
+       $Product  = Product::Website_Shop_Def_Query()
+            ->whereTranslation('slug', $slug)
+            ->with('website_product_with_category')
+            ->with('table_data')
+            ->withCount('table_data')
+            ->firstOrFail();
 
-        ;
+
 
         $PageMeta = $Product ;
         parent::printSeoMeta($PageMeta);
@@ -338,11 +345,18 @@ class WebPageController extends WebMainController
         $SinglePageView = $this->SinglePageView ;
         $SinglePageView['SelMenu'] = 'MainCategory' ;
         $SinglePageView['breadcrumb'] = "WebProductView" ;
-        $SinglePageView['slug'] = 'product/'.$Product->translate(webChangeLocale())->slug;
+        $SinglePageView['slug'] = 'product/'.$catid.'/'.$Product->translate(webChangeLocale())->slug;
 
-        $trees = Category::find($Product->category_id)->ancestorsAndSelf()->orderBy('depth','asc')->get() ;
+//        $trees = Category::find($catid)->ancestorsAndSelf()->orderBy('depth','asc')->get() ;
+        $trees = $Category->ancestorsAndSelf()->orderBy('depth','asc')->get() ;
 
-        return view('web.web_product.product_view',compact('SinglePageView','PageMeta','Product','trees','ReletedProducts'));
+        $ReletedProducts=Product::Website_Shop_Def_Query()
+            ->where('id','!=',$Product->id)
+            ->whereHas('website_product_with_category',function($query) use ($catid){
+            $query->where('category_id',$catid);
+        })->limit(8)->get();
+
+        return view('web.web_product.product_view',compact('SinglePageView','PageMeta','Product','trees','ReletedProducts','Category'));
     }
 
 

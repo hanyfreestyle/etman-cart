@@ -21,12 +21,36 @@ class Product extends Model implements TranslatableContract
     protected $primaryKey = 'id';
     protected $translationForeignKey = 'product_id';
 
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #  Web_Shop_Def_Query
+    public function scopeWeb_Shop_Def_Query(Builder $query): Builder
+    {
+        return $query
+            ->where('pro_shop',true)
+            ->where('is_active',true)
+            ->where('is_archived',false)
+            ->with('translations');
+
+    }
+
+
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #  ProductWithCategory
+    public function product_with_category()
+    {
+        return $this->belongsToMany(Category::class,'product_category','product_id','category_id')
+            ->where('is_active',true)
+            ->where('cat_shop',true);
+
+    }
     public function ProductWithCategory()
     {
         return $this->belongsToMany(Category::class,'product_category','product_id','category_id');
     }
+
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #
     public function scopeDefquery(Builder $query): Builder
@@ -37,12 +61,7 @@ class Product extends Model implements TranslatableContract
             ->withCount('more_photos');
     }
 
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     table_data
-    public function table_data(): HasMany
-    {
-        return $this->hasMany(ProductTable::class , 'product_id', 'id' );
-    }
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| # more_photos
     public function more_photos(): HasMany
@@ -50,59 +69,41 @@ class Product extends Model implements TranslatableContract
         return $this->hasMany(ProductPhoto::class,'product_id','id');
     }
 
-
-//#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//#|||||||||||||||||||||||||||||||||||||| #     setActive
-//    public function setActive(bool $status = true): self
-//    {
-//        return $this->setAttribute('is_active', $status);
-//    }
-//
-//
-//    public function categoryName(): BelongsTo
-//    {
-//        return $this->belongsTo(Category::class,'category_id','id')->with('translation');
-//    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #
-    public function scopeDefWeb(Builder $query): Builder
+#|||||||||||||||||||||||||||||||||||||| #  Web_Shop_Def_Query
+    public function scopeWebsite_Shop_Def_Query(Builder $query): Builder
     {
-        return $query->where('is_active',true)
-            ->with('translations')
-            ->with('categoryName')
-            ->withCount('table_data')
-            ->with('table_data')
-            ->withCount('more_photos')
-            ->with('more_photos')
-            ;
+        return $query
+            ->where('pro_web',true)
+            ->where('pro_web_data',true)
+            ->where('is_active',true)
+            ->where('is_archived',false)
+            ->with('translations');
+
     }
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #  website_product_with_category
+    public function website_product_with_category()
+    {
+        return $this->belongsToMany(Category::class,'product_category','product_id','category_id')
+            ->where('is_active',true)
+            ->where('cat_web',true);
 
+    }
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     table_data
+    public function table_data(): HasMany
+    {
+        return $this->hasMany(ProductTable::class , 'product_id', 'id' );
+    }
 }
