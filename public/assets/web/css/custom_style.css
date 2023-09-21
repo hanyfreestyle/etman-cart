@@ -426,3 +426,29 @@
     padding: 0;
     margin: 3px;
 }
+
+
+.product_price del{
+    text-decoration: line-through;
+    font-family: 'Poppins', sans-serif!important;
+}
+
+.product_price .price{
+    font-family: 'Poppins', sans-serif!important;
+    font-size:14px;
+
+}
+
+.product_price .price .currency {
+
+}
+.product_price .currency{
+    font-family: 'Tajawal', sans-serif !important;
+    font-size: 13px;
+    font-weight: normal!important;
+}
+
+
+
+
+

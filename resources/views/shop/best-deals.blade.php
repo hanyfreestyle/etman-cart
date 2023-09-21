@@ -49,10 +49,13 @@
                                 <div class="deal_content">
 
                                     @php
-                                        $thisprice = rand(100,500);
-                                        $newprice = $thisprice + 60 ;
+                                        if(intval($product->price) > 0){
+                                             $discount = $product->price - $product->discount_price   ;
 
-                                        $avr =intval( (60 /  $newprice) * 100) ;
+
+                                            $avr =intval( ($discount /  $product->price ) * 100) ;
+                                                    }
+
 
                                     @endphp
 
@@ -60,13 +63,20 @@
 
                                     <div class="product_info best_deal_div">
                                         <h5 class="product_title crop_text_1"><a href="#" class="">{{$product->name}}</a></h5>
-                                        <div class="product_price">
-                                            <span class="price">{{ $thisprice }}{{__('web/cart.EGP')}}</span>
-                                            <del>{{ $newprice }}{{__('web/cart.EGP')}}</del>
-                                            <div class="on_sale">
-                                                <span>{{$avr}}% {{__('web/cart.off')}}</span>
+
+                                        @if(intval($product->price) > 0 )
+                                            <div class="product_price">
+                                                <span class="price">{{number_format($product->price)}} <span class="currency">{{__('web/cart.EGP')}}</span></span>
+                                                @if(intval($product->discount_price) > 0 and  $product->discount_price < $product->price )
+                                                    <del>{{number_format($product->discount_price)}} <span class="currency">{{__('web/cart.EGP')}}</span></del>
+                                                @endif
+                                                <div class="on_sale">
+                                                    <span>{{$avr}}% {{__('web/cart.off')}}</span>
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endif
+
+
                                     </div>
 
                                     @php

@@ -654,10 +654,25 @@ PAGE JS
 	/*===================================*
     17. COUNTDOWN JS
     *===================================*/
+    // $('.countdown_time').each(function() {
+    //     var endTime = $(this).data('time');
+    //     $(this).countdown(endTime, function(tm) {
+    //         $(this).html(tm.strftime('<div class="countdown_box"><div class="countdown-wrap"><span class="countdown days">%D </span><span class="cd_text">Days</span></div></div><div class="countdown_box"><div class="countdown-wrap"><span class="countdown hours">%H</span><span class="cd_text">Hours</span></div></div><div class="countdown_box"><div class="countdown-wrap"><span class="countdown minutes">%M</span><span class="cd_text">Minutes</span></div></div><div class="countdown_box"><div class="countdown-wrap"><span class="countdown seconds">%S</span><span class="cd_text">Seconds</span></div></div>'));
+    //     });
+    // });
+
+
     $('.countdown_time').each(function() {
         var endTime = $(this).data('time');
         $(this).countdown(endTime, function(tm) {
-            $(this).html(tm.strftime('<div class="countdown_box"><div class="countdown-wrap"><span class="countdown days">%D </span><span class="cd_text">Days</span></div></div><div class="countdown_box"><div class="countdown-wrap"><span class="countdown hours">%H</span><span class="cd_text">Hours</span></div></div><div class="countdown_box"><div class="countdown-wrap"><span class="countdown minutes">%M</span><span class="cd_text">Minutes</span></div></div><div class="countdown_box"><div class="countdown-wrap"><span class="countdown seconds">%S</span><span class="cd_text">Seconds</span></div></div>'));
+            $(this).html(tm.strftime('<div class="countdown_box"><div class="countdown-wrap"><span class="countdown days">%D </span>' +
+                '<span class="cd_text">يوم</span></div>' +
+                '</div><div class="countdown_box"><div class="countdown-wrap">' +
+                '<span class="countdown hours">%H</span><span class="cd_text">ساعة</span></div></div>' +
+                '<div class="countdown_box"><div class="countdown-wrap"><span class="countdown minutes">%M</span>' +
+                '<span class="cd_text">دقيقة</span></div></div><div class="countdown_box">' +
+                '<div class="countdown-wrap"><span class="countdown seconds">%S</span>' +
+                '<span class="cd_text">ثانية</span></div></div>'));
         });
     });
 

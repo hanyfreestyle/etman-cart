@@ -104,12 +104,12 @@ class ShopPageController extends WebMainController
         $slug = \AdminHelper::Url_Slug($slug);
         $Category  = Category::whereTranslation('slug', $slug)
             ->where('cat_shop',true)
-            ->withCount('children_shop')
-            ->with('children_shop')
+            ->withCount('web_shop_children')
+            ->with('web_shop_children')
             ->withCount('category_with_product_shop')
             ->with('category_with_product_shop')
             ->firstOrFail();
-
+#dd($Category);
 
         $PageMeta = $Category ;
         parent::printSeoMeta($PageMeta);
@@ -223,7 +223,7 @@ class ShopPageController extends WebMainController
         $SinglePageView['breadcrumb'] = "Shop_BestDeals" ;
 
 
-        $BestDeals = Product::Web_Shop_Def_Query()->inRandomOrder()->limit(6)->get();
+        $BestDeals = Product::Web_Shop_Def_Query()->limit(6)->get();  #->inRandomOrder()
 
         return view('shop.best-deals',compact('SinglePageView','BestDeals'));
     }

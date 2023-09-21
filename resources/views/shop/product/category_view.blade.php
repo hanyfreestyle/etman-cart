@@ -17,11 +17,11 @@
                     </div>
 
 
-                    @if($Category->children_shop_count > 0)
+                    @if($Category->web_shop_children_count > 0)
                         <div class="row MainCategoryList mt-lg-3">
                             <div class="col-12">
                                 <div class="row shop_container shop_container_50">
-                                    @foreach($Category->children_shop as $SubCategory)
+                                    @foreach($Category->web_shop_children as $SubCategory)
                                         <div class="col-lg-4 col-md-4 col-6 grid_item">
                                             <div class="product">
                                                 <a href="{{route('Shop_CategoryView',$SubCategory->slug)}}">
