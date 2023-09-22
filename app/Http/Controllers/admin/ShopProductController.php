@@ -86,6 +86,15 @@ class ShopProductController extends AdminMainController
 //        }
 
 
+//        $Products = Product::defquery()->where('pro_shop',true)->get();
+//        foreach ($Products as $Product){
+//            $Product->ref_code =  rand(10000000,99999999);
+//            $Product->save();
+//        }
+
+
+
+
         $pageData = $this->pageData;
         $pageData['ViewType'] = "List";
         $pageData['SubView'] = false;
