@@ -77,17 +77,29 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 Route::group(['prefix' => 'EtmanShop'], function(){
     Route::get('/', [ShopPageController::class, 'Shop_HomePage'])->name('Shop_HomePage');
 
-    Route::get(LaravelLocalization::transRoute('routes.MainCategory'),[ShopPageController::class, 'MainCategory'])
+    Route::get(__('routes.ShopMainCategory'),[ShopPageController::class, 'MainCategory'])
         ->name('Shop_MainCategory');
 
-    Route::get(LaravelLocalization::transRoute('routes.WebCategoryView'),[ShopPageController::class, 'ShopCategoryView'])
+
+    Route::get(__('routes.ShopCategoryView'),[ShopPageController::class, 'ShopCategoryView'])
         ->name('Shop_CategoryView');
 
-    Route::get('product/{slug}/{catid?}',[ShopPageController::class, 'ShopProductView'])
+    Route::get(__('routes.ShopProductView'),[ShopPageController::class, 'ShopProductView'])
         ->name('Shop_ProductView');
 
-//    Route::get(LaravelLocalization::transRoute('routes.WebProductView'),[ShopPageController::class, 'ShopProductView'])
-//        ->name('Shop_ProductView');
+
+
+
+
+    Route::get(__('routes.Recently'),[ShopPageController::class, 'Recently'])
+        ->name('Shop_Recently');
+
+    Route::get(__('routes.WeekOffers'),[ShopPageController::class, 'WeekOffers'])
+        ->name('Shop_WeekOffers');
+
+    Route::get(__('routes.BestDeals'),[ShopPageController::class, 'BestDeals'])
+        ->name('Shop_BestDeals');
+
 
 
     Route::get(LaravelLocalization::transRoute('routes.FaqList'),[ShopPageController::class, 'FaqList'])
@@ -98,14 +110,6 @@ Route::group(['prefix' => 'EtmanShop'], function(){
 
 
 
-    Route::get('/وصل-حديثا',[ShopPageController::class, 'Recently'])
-        ->name('Shop_Recently');
-
-    Route::get('/week-offers',[ShopPageController::class, 'WeekOffers'])
-        ->name('Shop_WeekOffers');
-
-    Route::get('/best-deals',[ShopPageController::class, 'BestDeals'])
-        ->name('Shop_BestDeals');
 });
 
 

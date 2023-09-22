@@ -18,5 +18,5 @@ return
 	'home' => 'الرئيسية',
 	'home_page' => 'الصفحة الرئيسية',
 	'recently_arrived' => 'وصل حديثا',
-	'week_offer' => 'عروض الاسبوع',
+	'week_offer' => 'العروض الاسبوعية',
 ];

@@ -428,27 +428,22 @@
 }
 
 
-.product_price del{
-    text-decoration: line-through;
-    font-family: 'Poppins', sans-serif!important;
+.product_price .pro_price{font-family:'Poppins',sans-serif!important;font-size:17px;font-weight:700;color:var(--red)!important}
+.product_price .pro_discount{font-family:'Poppins',sans-serif!important;font-size:14px;text-decoration:line-through;margin-right:5px;margin-left:5px}
+.product_price .currency{font-family:'Tajawal',sans-serif!important;font-size:14px;font-weight:400!important}
+.product_view_page .product_price .pro_price{font-size:25px}
+.product_view_page .product_price .pro_discount{font-size:20px}
+.product_view_page .product_price .currency{font-size:18px}
+
+
+.Shop_CategoryList .Shop_CategoryI{margin-bottom:20px}
+.Shop_CategoryList .product{margin-bottom:15px}
+.Shop_CategoryList .product .product_img{text-align:center}
+.Shop_CategoryList .product .product_img img{max-height:220px}
+.Shop_CategoryList .cat_name{padding-right:10px;padding-left:10px;text-align:center;font-size:16px;font-weight:700}
+.Shop_CategoryList .cat_name a{color:var(--red)!important}
+.Shop_CategoryList .cat_name span{font-size:14px;color:grey;font-weight:400}
+@media only screen and (max-width: 600px) {
+    .Shop_CategoryList .cat_name{font-size:14px}
 }
-
-.product_price .price{
-    font-family: 'Poppins', sans-serif!important;
-    font-size:14px;
-
-}
-
-.product_price .price .currency {
-
-}
-.product_price .currency{
-    font-family: 'Tajawal', sans-serif !important;
-    font-size: 13px;
-    font-weight: normal!important;
-}
-
-
-
-
 

@@ -47,36 +47,9 @@
                                     </a>
                                 </div>
                                 <div class="deal_content">
-
-                                    @php
-                                        if(intval($product->price) > 0){
-                                             $discount = $product->price - $product->discount_price   ;
-
-
-                                            $avr =intval( ($discount /  $product->price ) * 100) ;
-                                                    }
-
-
-                                    @endphp
-
-
-
                                     <div class="product_info best_deal_div">
                                         <h5 class="product_title crop_text_1"><a href="#" class="">{{$product->name}}</a></h5>
-
-                                        @if(intval($product->price) > 0 )
-                                            <div class="product_price">
-                                                <span class="price">{{number_format($product->price)}} <span class="currency">{{__('web/cart.EGP')}}</span></span>
-                                                @if(intval($product->discount_price) > 0 and  $product->discount_price < $product->price )
-                                                    <del>{{number_format($product->discount_price)}} <span class="currency">{{__('web/cart.EGP')}}</span></del>
-                                                @endif
-                                                <div class="on_sale">
-                                                    <span>{{$avr}}% {{__('web/cart.off')}}</span>
-                                                </div>
-                                            </div>
-                                        @endif
-
-
+                                        <x-shop.print-product-price :product="$product" :show-avr="true"/>
                                     </div>
 
                                     @php

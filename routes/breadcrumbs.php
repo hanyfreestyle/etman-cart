@@ -106,7 +106,7 @@ Breadcrumbs::for('Shop_ProductView', function (BreadcrumbTrail $trail, $trees,$P
     foreach($trees as $tree){
         $trail->push($tree->name, route('Shop_CategoryView', $tree->slug));
     }
-    $trail->push($Product->name, route('Shop_ProductView', $Product->slug));
+    $trail->push($Product->name, "#");
 });
 
 

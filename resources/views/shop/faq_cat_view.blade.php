@@ -30,7 +30,7 @@
                                 </div>
                                 <div class="row accordion accordion_style1" id="accordion"  >
                                     <div class="col-lg-12">
-                                        @foreach($FaqCategory->FaqToCat as $Faq )
+                                        @foreach($FaqCategory->faqs as $Faq )
                                             <x-website.faq-slider :title="$Faq->name" :prefix="$Faq->id">
                                                 {{$Faq->des}}
                                             </x-website.faq-slider>
@@ -51,7 +51,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="section mt-3 mt-lg-3 pb-5">
         <x-website.block-faq-carousel :faq-categories="$FaqCategories" lable="{{__('web/def.read_more')}}" url="Shop_FaqCatView" />

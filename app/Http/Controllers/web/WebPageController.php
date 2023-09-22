@@ -190,10 +190,6 @@ class WebPageController extends WebMainController
             return redirect()->route('Page_FaqCatView', $FaqCategory->translate()->slug);
         }
 
-
-//        dd($FaqCategory);
-//
-
         $PageMeta = $FaqCategory ;
         parent::printSeoMeta($PageMeta);
 
@@ -202,13 +198,9 @@ class WebPageController extends WebMainController
         $SinglePageView['breadcrumb'] = "FaqCatView" ;
         $SinglePageView['slug'] = 'faq/'.$FaqCategory->translate(webChangeLocale())->slug;
 
-
         $FaqCategories = FaqCategory::defWeb()
             ->where('id','!=',$FaqCategory->id)
             ->get();
-
-
-
 
         return view('web.faq_cat_view',compact('SinglePageView','PageMeta','FaqCategory','FaqCategories'));
 
@@ -293,13 +285,8 @@ class WebPageController extends WebMainController
             ->with('category_with_product_website')
             ->withCount('table_data')
             ->with('table_data')
-
             ->with('translation')
-
             ->firstOrFail();
-
-
-      //  dd($Category);
 
         if ($Category->translate()->where('slug', $slug)->first()->locale != app()->getLocale()) {
             return redirect()->route('Page_WebCategoryView', $Category->translate()->slug);
@@ -330,8 +317,11 @@ class WebPageController extends WebMainController
             ->where('id',$catid)
             ->firstOrFail();
 
-       $Product  = Product::Website_Shop_Def_Query()
+        $Product  = Product::Website_Shop_Def_Query()
             ->whereTranslation('slug', $slug)
+            ->whereHas('product_with_category',function($query) use ($catid){
+                $query->where('category_id',$catid);
+            })
             ->with('website_product_with_category')
             ->with('table_data')
             ->withCount('table_data')

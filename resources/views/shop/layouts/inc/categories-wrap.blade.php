@@ -42,7 +42,7 @@
                                                     <li class="dropdown-header sub_catName">{{__('web/menu.recently_arrived')}}</li>
                                                     @foreach($MainCategory->recursive_product_shop  as $product)
                                                         @if($loop->index <7)
-                                                            <li class="dropdown-header Product_name"><a href="{{route('Shop_ProductView',$product->slug)}}">{{$product->name}}</a></li>
+                                                            <li class="dropdown-header Product_name"><a href="#">{{$product->name}}</a></li>
                                                         @endif
                                                     @endforeach
                                                 </ul>
@@ -53,7 +53,8 @@
                                                     <li class="dropdown-header sub_catName">{{__('web/menu.best_seller')}}</li>
                                                     @foreach($MainCategory->recursive_product_shop  as $product)
                                                         @if($loop->index <7)
-                                                            <li class="dropdown-header Product_name"><a href="{{route('Shop_ProductView',$product->slug)}}">{{$product->name}}</a></li>
+                                                            <li class="dropdown-header Product_name"><a href="#">{{$product->name}}</a></li>
+{{--                                                            <li class="dropdown-header Product_name"><a href="{{route('Shop_ProductView',$product->slug)}}">{{$product->name}}</a></li>--}}
                                                         @endif
                                                     @endforeach
                                                 </ul>

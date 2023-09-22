@@ -17,4 +17,11 @@ return [
     'WebProductView' => 'product/{catid}/{slug}',
 
 
+    'ShopMainCategory' => 'قائمة-المنتجات',
+    'ShopCategoryView' => 'category/{slug}',
+    'ShopProductView' => 'product/{catid}/{slug}',
+    'Recently' => 'وصل-حديثا',
+    'WeekOffers' => 'العروض-الاسبوعية',
+    'BestDeals' => 'عروض-تجار-الجملة',
+
 ];

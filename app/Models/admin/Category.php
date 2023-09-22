@@ -78,6 +78,7 @@ class Category extends Model implements TranslatableContract
     {
         return $this->belongsToManyOfDescendantsAndSelf(Product::class, 'product_category')
             ->with('translation')
+            ->with('product_with_category')
             ->where('pro_shop',true)
             ->where('is_active',true)
             ->where('is_archived',false);

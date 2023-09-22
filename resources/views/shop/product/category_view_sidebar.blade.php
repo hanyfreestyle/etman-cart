@@ -20,13 +20,12 @@
                 @foreach($RecentProduct as $RProduct)
                     <li>
                         <div class="post_img">
-                            <a href="#"><img src="{{getPhotoPath($RProduct->photo)}}" alt="shop_small1"></a>
+                            <a href="#"><img src="{{getPhotoPath($RProduct->photo_thum_1)}}" alt="shop_small1"></a>
                         </div>
                         <div class="post_content">
                             <h6 class="product_title"><a href="#">{{$RProduct->name}}</a></h6>
-                            <div class="product_price"><span class="price">{{(intval($RProduct->g_title))}}{{__('web/cart.EGP')}}</span>
-                                <del>{{intval($RProduct->g_title)+10}} {{__('web/cart.EGP')}}</del>
-                            </div>
+                            <x-shop.print-product-price :product="$RProduct"/>
+                        </div>
                     </li>
                 @endforeach
             </ul>

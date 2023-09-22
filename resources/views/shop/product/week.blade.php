@@ -26,7 +26,7 @@
             <div class="row shop_container shop_container_50  mt-lg-3">
                 @foreach($BestDeals as $Product )
                     <div class="col-lg-3 col-md-3 col-6">
-                        <x-shop.block-list-pro-from-cat  :product="$Product" />
+                        <x-shop.block-list-pro-from-cat  :product="$Product"  :category="$Product->product_with_category->first()" />
                     </div>
                 @endforeach
             </div>

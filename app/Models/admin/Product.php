@@ -106,4 +106,18 @@ class Product extends Model implements TranslatableContract
     {
         return $this->hasMany(ProductTable::class , 'product_id', 'id' );
     }
+
+    public function print_price()
+    {
+       return number_format($this->price).' <span class="currency">'.__('web/cart.EGP').'</span>' ;
+    }
+
+    public function discount_price()
+    {
+        if(intval($this->price) > 0 and intval($this->discount_price) <  intval($this->price) ){
+            return  '<del>'.number_format($this->discount_price).' <span class="currency">'.__('web/cart.EGP').'</span></del>' ;
+        }
+    }
+
+
 }

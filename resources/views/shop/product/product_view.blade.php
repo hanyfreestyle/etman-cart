@@ -9,14 +9,7 @@
     <div class="section ProductViewPage pt-lg-5 pt-4 pb-5">
         <div class="container">
             <div class="row">
-                @if($agent->isMobile())
-
-                @endif
-
-
-
                 <div class="col-lg-5 col-md-6">
-
                     @if($Product->more_photos_count > 0 )
                         <div class="product-image vertical_gallery">
                             <div id="pr_item_gallery" class="product_gallery_item slick_slider" data-vertical="true" data-vertical-swiping="true" data-slides-to-show="5" data-slides-to-scroll="1" data-infinite="false">
@@ -48,38 +41,9 @@
 
                 <div class="col-lg-7 col-md-6">
                     <div class="pr_detail">
-                        <div class="product_description">
+                        <div class="product_description product_view_page">
                             <h2 class="product_title def_h2" style="line-height: 40px!important;">{{$Product->name}}</h2>
-
-                            @if(intval($Product->g_title) > 0 )
-                                <div class="product_price">
-                                    @php
-                                        $thisprice = intval($Product->g_title) ;
-                                        $newprice = $thisprice + 60 ;
-                                        $avr =intval( (60 /  $newprice) * 100) ;
-                                    @endphp
-                                    <span class="price">{{ $thisprice}} {{__('web/cart.EGP')}}</span>
-                                    <del>{{$newprice}} {{__('web/cart.EGP')}}</del>
-                                    <div class="on_sale">
-                                        <span>{{$avr}}% {{__('web/cart.off')}}</span>
-                                    </div>
-                                </div>
-                            @else
-                                @php
-                                    $thisprice = rand(100,500);
-                                    $newprice = $thisprice + 60 ;
-                                    $avr =intval( (60 /  $newprice) * 100) ;
-                                @endphp
-                                <div class="product_price">
-                                    <span class="price">{{ $thisprice }}{{__('web/cart.EGP')}}</span>
-                                    <del>{{ $newprice }}{{__('web/cart.EGP')}}</del>
-                                    <div class="on_sale">
-                                        <span>{{$avr}}% {{__('web/cart.off')}}</span>
-                                    </div>
-                                </div>
-                            @endif
-
-
+                            <x-shop.print-product-price :product="$Product" :show-avr="true" />
 
                             <div class="clearfix"></div>
 
@@ -90,8 +54,6 @@
                             @endif
 
                             <div class="clearfix"></div>
-
-
                         </div>
                         <hr />
                         <div class="cart_extra">
@@ -111,11 +73,14 @@
                         </div>
                         <hr />
                         <ul class="product-meta">
-                            <li> {{__('web/def.lable_SKU')}} <a href="#">  <span>5041315101040</span> </a></li>
+                            @if($Product->ref_code)
+                                <li> {{__('web/def.lable_SKU')}} <a href="#">  <span>{{$Product->ref_code}}</span> </a></li>
+                            @endif
+
                             <li>{{__('web/def.lable_Category')}}
-                            @foreach($Product->product_with_category as $category )
-                                <a href="{{ route('Page_WebCategoryView',$category->slug)}}"><span> {{$category->name}}</span></a>
-                            @endforeach
+                                @foreach($Product->product_with_category as $category )
+                                    <a href="{{ route('Page_WebCategoryView',$category->slug)}}"><span> {{$category->name}}</span></a>
+                                @endforeach
                             </li>
                         </ul>
 
@@ -126,42 +91,43 @@
             </div>
 
 
-            {{--            @if(count($ReletedProducts) > 0)--}}
-            {{--                <div class="row">--}}
-            {{--                    <div class="col-12">--}}
-            {{--                        <h3 class="ReletedProducts">{{__('web/def.Releted_Products')}}</h3>--}}
-            {{--                        <hr>--}}
-            {{--                    </div>--}}
+            @if(count($ReletedProducts) > 0)
 
-            {{--                    <div class="col-12">--}}
-            {{--                        @if($agent->isMobile())--}}
-            {{--                            <div class="row align-items-center mb-4 pb-1">--}}
-            {{--                                <div class="col-12">--}}
-            {{--                                    <div class="product_header">--}}
-            {{--                                        <div class="product_header_right">--}}
-            {{--                                            <div class="products_view">--}}
-            {{--                                                <a href="javascript:void(0);" class="shorting_icon grid active"><i class="ti-view-grid"></i></a>--}}
-            {{--                                                <a href="javascript:void(0);" class="shorting_icon list"><i class="ti-layout-list-thumb"></i></a>--}}
-            {{--                                            </div>--}}
-            {{--                                        </div>--}}
-            {{--                                    </div>--}}
-            {{--                                </div>--}}
-            {{--                            </div>--}}
-            {{--                        @endif--}}
+                <div class="row mt-lg-5">
+                    <div class="col-12">
+                        <h3 class="ReletedProducts">{{__('web/def.Releted_Products')}}</h3>
+                        <hr>
+                    </div>
 
-
-            {{--                        <div class="row shop_container shop_container_50  mt-lg-3">--}}
-            {{--                            @foreach($ReletedProducts as $Product )--}}
-            {{--                                <div class="col-lg-3 col-md-4 col-6">--}}
-            {{--                                    <x-shop.block-list-pro-from-cat  :product="$Product" />--}}
-            {{--                                </div>--}}
-            {{--                            @endforeach--}}
-            {{--                        </div>--}}
+                    <div class="col-12">
+                        @if($agent->isMobile())
+                            <div class="row align-items-center mb-4 pb-1">
+                                <div class="col-12">
+                                    <div class="product_header">
+                                        <div class="product_header_right">
+                                            <div class="products_view">
+                                                <a href="javascript:void(0);" class="shorting_icon grid active"><i class="ti-view-grid"></i></a>
+                                                <a href="javascript:void(0);" class="shorting_icon list"><i class="ti-layout-list-thumb"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
 
 
-            {{--                    </div>--}}
-            {{--                </div>--}}
-            {{--            @endif--}}
+                        <div class="row shop_container shop_container_50  mt-lg-3">
+                            @foreach($ReletedProducts as $Product )
+                                <div class="col-lg-3 col-md-4 col-6">
+                                    <x-shop.block-list-pro-from-cat  :product="$Product" :category="$Category" />
+                                </div>
+                            @endforeach
+                        </div>
+
+
+                    </div>
+                </div>
+            @endif
 
 
 

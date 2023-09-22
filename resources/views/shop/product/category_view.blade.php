@@ -18,24 +18,22 @@
 
 
                     @if($Category->web_shop_children_count > 0)
-                        <div class="row MainCategoryList mt-lg-3">
+                        <div class="row mt-lg-3">
                             <div class="col-12">
-                                <div class="row shop_container shop_container_50">
+                                <div class="row Shop_CategoryList">
                                     @foreach($Category->web_shop_children as $SubCategory)
-                                        <div class="col-lg-4 col-md-4 col-6 grid_item">
+                                        <div class="col-lg-4 col-md-4 col-6  Shop_CategoryI">
                                             <div class="product">
                                                 <a href="{{route('Shop_CategoryView',$SubCategory->slug)}}">
                                                     <div class="product_img">
-
-                                                        <img src="{{getPhotoPath($SubCategory->photo,'categorie')}}" alt="product_img1">
-
-
+                                                        <img src="{{getPhotoPath($SubCategory->photo_thum_1,'categorie')}}" alt="product_img1">
                                                     </div>
                                                 </a>
-                                                <div class="product_info">
-                                                    <h3 class="product_title"><a href="{{route('Shop_CategoryView',$SubCategory->slug)}}">{{$SubCategory->name}}  ({{ count($SubCategory->recursive_product_shop) }})</a></h3>
-                                                </div>
                                             </div>
+                                            <h2 class="cat_name crop_text_1"><a href="{{route('Shop_CategoryView',$SubCategory->slug)}}">{{$SubCategory->name}}
+                                                    @if(count($SubCategory->recursive_product_shop) > 0 )
+                                                       <span> ({{ count($SubCategory->recursive_product_shop) }}) </span>
+                                                    @endif</a></h2>
                                         </div>
                                     @endforeach
                                 </div>

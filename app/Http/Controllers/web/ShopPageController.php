@@ -88,7 +88,8 @@ class ShopPageController extends WebMainController
         $SinglePageView['breadcrumb'] = "Shop_MainCategory" ;
         $SinglePageView['SelMenu'] = 'MainCategory' ;
 
-        $MainCategoryProduct  = Category::where('parent_id',null)
+        $MainCategoryProduct  = Category::Web_Shop_Def_Query()
+            ->where('parent_id',null)
             ->with('recursive_product_shop')
             ->orderBy('postion_shop')
             ->get();
@@ -100,16 +101,15 @@ class ShopPageController extends WebMainController
 #|||||||||||||||||||||||||||||||||||||| #     ShopCategoryView
     public function ShopCategoryView ($slug)
     {
-
         $slug = \AdminHelper::Url_Slug($slug);
-        $Category  = Category::whereTranslation('slug', $slug)
-            ->where('cat_shop',true)
+
+        $Category  = Category::Web_Shop_Def_Query()
+            ->whereTranslation('slug', $slug)
             ->withCount('web_shop_children')
             ->with('web_shop_children')
             ->withCount('category_with_product_shop')
             ->with('category_with_product_shop')
             ->firstOrFail();
-#dd($Category);
 
         $PageMeta = $Category ;
         parent::printSeoMeta($PageMeta);
@@ -126,6 +126,175 @@ class ShopPageController extends WebMainController
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     ShopProductView
+    public function ShopProductView ($catid,$slug){
+
+
+
+        $slug = \AdminHelper::Url_Slug($slug);
+        $catid = intval($catid);
+
+        $Category  = Category::Web_Shop_Def_Query()
+            ->where('id',$catid)
+            ->withCount('web_shop_children')
+            ->with('web_shop_children')
+            ->withCount('category_with_product_shop')
+            ->with('category_with_product_shop')
+            ->firstOrFail();
+
+        $Product  = Product::Web_Shop_Def_Query()
+            ->whereHas('product_with_category',function($query) use ($catid){
+                $query->where('category_id',$catid);
+            })
+            ->whereTranslation('slug', $slug)
+            ->withCount('product_with_category')
+            ->with('product_with_category')
+            ->withCount('more_photos')
+            ->with('more_photos')
+            ->firstOrFail();
+
+
+        $ReletedProducts = Product::Web_Shop_Def_Query()
+            ->where('id','!=',$Product->id)
+            ->whereHas('product_with_category',function($query) use ($catid){
+                $query->where('category_id',$catid);
+            })
+            ->inRandomOrder()
+            ->limit(8)
+            ->get();
+
+        $PageMeta = $Product ;
+        parent::printSeoMeta($PageMeta);
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['SelMenu'] = 'MainCategory' ;
+        $SinglePageView['breadcrumb'] = "Shop_ProductView" ;
+        $SinglePageView['slug'] = 'product/'.$Product->slug;
+
+       $trees = $Category->ancestorsAndSelf()->orderBy('depth','asc')->get() ;
+
+
+        return view('shop.product.product_view',
+            compact('SinglePageView','PageMeta','Product','trees','ReletedProducts','Category'));
+
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     Recently
+    public function Recently ()
+    {
+        $PageMeta = parent::getMeatByCatId('Shop_Recently');
+        parent::printSeoMeta($PageMeta);
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['SelMenu'] = 'Shop_Recently' ;
+        $SinglePageView['breadcrumb'] = "Shop_Recently" ;
+
+        $Recently = Product::Web_Shop_Def_Query()
+            ->with('product_with_category')
+            ->inRandomOrder()->limit(9)->get();
+
+        $Category = ['id'=>__('routes.Recently')];
+
+        return view('shop.product.recently_arrived',compact('SinglePageView','PageMeta','Recently','Category'));
+
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #    BestDeals
+    public function BestDeals()
+    {
+        $PageMeta = parent::getMeatByCatId('Shop_BestDeals');
+        parent::printSeoMeta($PageMeta);
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['SelMenu'] = 'Shop_BestDeals' ;
+        $SinglePageView['breadcrumb'] = "Shop_BestDeals" ;
+
+
+        $BestDeals = Product::Web_Shop_Def_Query()
+            ->with('product_with_category')
+            ->limit(6)->get();  #->inRandomOrder()
+
+        return view('shop.best-deals',compact('SinglePageView','BestDeals'));
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #    BestDeals
+    public function WeekOffers()
+    {
+        $PageMeta = parent::getMeatByCatId('Shop_WeekOffers');
+        parent::printSeoMeta($PageMeta);
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['SelMenu'] = 'Shop_WeekOffers' ;
+        $SinglePageView['breadcrumb'] = "Shop_WeekOffers" ;
+
+        $BestDeals=Product::Web_Shop_Def_Query()
+            ->with('product_with_category')
+            ->whereHas('product_with_category',function($query){
+            $query->where('category_id',39);
+        })->get();
+
+        return view('shop.product.week',compact('SinglePageView','BestDeals'));
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #    FaqList
+    public function FaqList ()
+    {
+
+        $PageMeta = parent::getMeatByCatId('FaqList');
+        parent::printSeoMeta($PageMeta);
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['SelMenu'] = 'FaqList' ;
+        $SinglePageView['banner_id'] = $PageMeta->banner_id ;
+        $SinglePageView['banner_count'] = $PageMeta->page_banner_count ;
+        $SinglePageView['banner_list'] = $PageMeta->PageBanner ;
+        $SinglePageView['breadcrumb'] = "Shop_FaqList" ;
+
+        $FaqCategories = FaqCategory::defWeb()->paginate(12);
+
+        return view('shop.faq_list',compact('SinglePageView','PageMeta','FaqCategories'));
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     FaqCatView
+    public function FaqCatView ($slug)
+    {
+        $slug = \AdminHelper::Url_Slug($slug);
+
+        $FaqCategory  = FaqCategory::defWeb()
+            ->whereTranslation('slug', $slug)
+            ->firstOrFail();
+
+        if ($FaqCategory->translate()->where('slug', $slug)->first()->locale != app()->getLocale()) {
+            return redirect()->route('Shop_FaqCatView', $FaqCategory->translate()->slug);
+        }
+
+
+        $PageMeta = $FaqCategory ;
+        parent::printSeoMeta($PageMeta);
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['SelMenu'] = 'FaqList' ;
+        $SinglePageView['breadcrumb'] = "Shop_FaqCatView" ;
+        $SinglePageView['slug'] = 'faq/'.$FaqCategory->translate(webChangeLocale())->slug;
+
+
+        $FaqCategories = FaqCategory::defWeb()
+            ->where('id','!=',$FaqCategory->id)
+            ->get();
+
+        return view('shop.faq_cat_view',compact('SinglePageView','PageMeta','FaqCategory','FaqCategories'));
+
+    }
+
+
+
+/*
+    #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     ShopProductView
     public function ShopProductView ($slug,$catid='lastProducts'){
 
@@ -186,117 +355,13 @@ class ShopPageController extends WebMainController
         $SinglePageView['breadcrumb'] = "Shop_ProductView" ;
         $SinglePageView['slug'] = 'product/'.$Product->slug;
 
-       // $trees = Category::find($Product->category_id)->ancestorsAndSelf()->orderBy('depth','asc')->get() ;
+        // $trees = Category::find($Product->category_id)->ancestorsAndSelf()->orderBy('depth','asc')->get() ;
         $trees = [];
         $ReletedProducts = [];
         return view('shop.product.product_view',compact('SinglePageView','PageMeta','Product','trees','ReletedProducts'));
     }
+  */
 
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     Recently
-    public function Recently ()
-    {
-        $PageMeta = parent::getMeatByCatId('MainCategory');
-        parent::printSeoMeta($PageMeta);
-
-        $SinglePageView = $this->SinglePageView ;
-        $SinglePageView['SelMenu'] = 'Shop_Recently' ;
-        $SinglePageView['breadcrumb'] = "Shop_Recently" ;
-
-        $Recently = Product::Web_Shop_Def_Query()->inRandomOrder()->limit(9)->get();
-        $Category = ['id'=>'وصل-حديثا'];
-        $Category = ['id'=>'hany'];
-
-        return view('shop.product.recently_arrived',compact('SinglePageView','PageMeta','Recently','Category'));
-
-    }
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #    BestDeals
-    public function BestDeals()
-    {
-        $PageMeta = parent::getMeatByCatId('Shop_BestDeals');
-        parent::printSeoMeta($PageMeta);
-
-        $SinglePageView = $this->SinglePageView ;
-        $SinglePageView['SelMenu'] = 'Shop_BestDeals' ;
-        $SinglePageView['breadcrumb'] = "Shop_BestDeals" ;
-
-
-        $BestDeals = Product::Web_Shop_Def_Query()->limit(6)->get();  #->inRandomOrder()
-
-        return view('shop.best-deals',compact('SinglePageView','BestDeals'));
-    }
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #    BestDeals
-    public function WeekOffers()
-    {
-        $PageMeta = parent::getMeatByCatId('Shop_BestDeals');
-        parent::printSeoMeta($PageMeta);
-
-        $SinglePageView = $this->SinglePageView ;
-        $SinglePageView['SelMenu'] = 'Shop_WeekOffers' ;
-        $SinglePageView['breadcrumb'] = "Shop_WeekOffers" ;
-
-        $BestDeals=Product::whereHas('product_with_category',function($query){
-            $query->where('category_id',39);
-        })->get();
-
-        return view('shop.product.week',compact('SinglePageView','BestDeals'));
-    }
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #    FaqList
-    public function FaqList ()
-    {
-
-        $PageMeta = parent::getMeatByCatId('FaqList');
-        parent::printSeoMeta($PageMeta);
-
-        $SinglePageView = $this->SinglePageView ;
-        $SinglePageView['SelMenu'] = 'FaqList' ;
-        $SinglePageView['banner_id'] = $PageMeta->banner_id ;
-        $SinglePageView['banner_count'] = $PageMeta->page_banner_count ;
-        $SinglePageView['banner_list'] = $PageMeta->PageBanner ;
-        $SinglePageView['breadcrumb'] = "Shop_FaqList" ;
-
-        $FaqCategories = FaqCategory::defWeb()->paginate(12);
-
-        return view('shop.faq_list',compact('SinglePageView','PageMeta','FaqCategories'));
-    }
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     FaqCatView
-    public function FaqCatView ($slug)
-    {
-        $slug = \AdminHelper::Url_Slug($slug);
-
-        $FaqCategory  = FaqCategory::defWeb()
-            ->whereTranslation('slug', $slug)
-            ->firstOrFail();
-
-        if ($FaqCategory->translate()->where('slug', $slug)->first()->locale != app()->getLocale()) {
-            return redirect()->route('Shop_FaqCatView', $FaqCategory->translate()->slug);
-        }
-
-
-        $PageMeta = $FaqCategory ;
-        parent::printSeoMeta($PageMeta);
-
-        $SinglePageView = $this->SinglePageView ;
-        $SinglePageView['SelMenu'] = 'FaqList' ;
-        $SinglePageView['breadcrumb'] = "Shop_FaqCatView" ;
-        $SinglePageView['slug'] = 'faq/'.$FaqCategory->translate(webChangeLocale())->slug;
-
-
-        $FaqCategories = FaqCategory::defWeb()
-            ->where('id','!=',$FaqCategory->id)
-            ->get();
-
-        return view('shop.faq_cat_view',compact('SinglePageView','PageMeta','FaqCategory','FaqCategories'));
-
-    }
 
 }
 
