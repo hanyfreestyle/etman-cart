@@ -34,6 +34,7 @@
 
     <link rel="stylesheet" href="{{ defWebAssets('css/custom_style.css') }}">
     <link rel="stylesheet" href="{{ defWebAssets('css/custom_'.thisCurrentLocale().'.css') }}">
+    @livewireStyles
 </head>
 {{--{!! htmlArDir() !!}--}}
 <body {!! htmlArDir() !!}>
@@ -126,5 +127,6 @@
     loadarfont_en();
 </script>
 
+@livewireScripts
 </body>
 </html>
