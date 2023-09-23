@@ -179,6 +179,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
         Phattarachai\LaravelMobileDetect\AgentServiceProvider::class,
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -209,7 +210,7 @@ return [
         'Agent' => Phattarachai\LaravelMobileDetect\Facades\Agent::class,
 
         'ProCategory' => App\Http\Controllers\admin\CategoryController::class,
-
+        'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
     ])->toArray(),
 
 
