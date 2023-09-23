@@ -30,31 +30,11 @@
                     <ul class="navbar-nav attr-nav align-items-center">
 
                         <li><a href="#" class="nav-link"><i class="linearicons-user"></i></a></li>
-                        <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="#" data-bs-toggle="dropdown"><i class="linearicons-cart"></i><span class="cart_count">2</span></a>
+                        <li class="dropdown cart_dropdown">
+                            <a class="nav-link cart_trigger" href="#" data-bs-toggle="dropdown"><i class="linearicons-cart"></i>
+                                @livewire('cart-counter')</a></a>
 
-                            <div class="cart_box dropdown-menu dropdown-menu-right">
-                                <ul class="cart_list">
-                                    @foreach($CartList as $ProductCart)
-                                        <li>
-                                            <a href="#" class="item_remove"><i class="ion-close"></i></a>
-                                            <a href="#"><img src="{{getPhotoPath($ProductCart->photo,"blog")}}" alt="cart_thumb1">
-                                                <span class="cart_item_name">
-                                            {{$ProductCart->name}}
-                                        </span>
-
-                                            </a>
-                                            <span class="cart_quantity forcDir"> 1 x <span class="cart_amount"></span>150</span>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                                <div class="cart_footer">
-                                    <p class="cart_total"><strong>{{__('web/cart.Subtotal')}}</strong>
-                                        <span class="cart_price"> <span class="price_symbole"></span></span>300.00</p>
-                                    <p class="cart_buttons">
-                                        <a href="#" class="btn btn-fill-line rounded-0 view-cart">{{__('web/cart.View_Cart')}}</a>
-                                        <a href="#" class="btn btn-fill-out rounded-0 checkout">{{__('web/cart.Confirm_Order')}}</a></p>
-                                </div>
-                            </div>
+                            @livewire('cart-menu-product-list')
                         </li>
 
                     </ul>

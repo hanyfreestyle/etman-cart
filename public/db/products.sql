@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 22, 2023 at 05:53 PM
+-- Generation Time: Sep 23, 2023 at 05:42 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -27,8 +27,8 @@ SET time_zone = "+00:00";
 
 INSERT INTO `products` (`id`, `ref_code`, `price`, `discount_price`, `qty`, `pro_shop`, `pro_web`, `pro_web_data`, `photo`, `photo_thum_1`, `is_active`, `is_archived`, `created_at`, `updated_at`) VALUES
 (1, 12590966, 200.00, 100.00, 36.00, 1, 1, 1, 'images/product/1/packaging-tape-nar-tape-pK1ZZAx1Bt.webp', 'images/product/1/packaging-tape-nar-tape-LFzfDCr9rp.webp', 1, 0, '2023-08-23 10:35:05', '2023-09-22 12:52:24'),
-(2, 91103331, 508.00, NULL, 18.00, 1, 1, 1, 'images/product/2/packaging-tape-the-best-tape-8zgUD7Hfkp.webp', 'images/product/2/packaging-tape-the-best-tape-hjyO94ihAN.webp', 1, 0, '2023-08-23 10:35:05', '2023-09-22 12:52:24'),
-(3, 42512152, 243.00, 167.00, 15.00, 1, 1, 1, 'images/product/3/packaging-tape-crystal-tape-ljwDFxKIPu.webp', 'images/product/3/packaging-tape-crystal-tape-TkKyhiYvz8.webp', 1, 0, '2023-08-23 10:35:05', '2023-09-22 12:52:24'),
+(2, 91103331, 500.00, NULL, 18.00, 1, 1, 1, 'images/product/2/packaging-tape-the-best-tape-8zgUD7Hfkp.webp', 'images/product/2/packaging-tape-the-best-tape-hjyO94ihAN.webp', 1, 0, '2023-08-23 10:35:05', '2023-09-22 12:52:24'),
+(3, 42512152, 243.00, 150.00, 15.00, 1, 1, 1, 'images/product/3/packaging-tape-crystal-tape-ljwDFxKIPu.webp', 'images/product/3/packaging-tape-crystal-tape-TkKyhiYvz8.webp', 1, 0, '2023-08-23 10:35:05', '2023-09-22 12:52:24'),
 (4, 73625246, 236.00, 175.00, 9.00, 1, 1, 1, 'images/product/4/packaging-tape-green-tape-ilUbH2ePnE.webp', 'images/product/4/packaging-tape-green-tape-yPLuJXhgFL.webp', 1, 0, '2023-08-23 10:35:05', '2023-09-22 12:52:24'),
 (7, 73571010, 513.00, 450.00, 5.00, 1, 1, 1, 'images/product/7/stationary-tape-the-best-7FWnIfoPlI.webp', 'images/product/7/stationary-tape-the-best-IbCNlBm4Uj.webp', 1, 0, '2023-08-23 10:35:05', '2023-09-22 12:52:24'),
 (9, 77297683, 569.00, 476.00, 1.00, 1, 1, 1, 'images/product/9/self-adhesive-tape-green-masking-tape-NCfPjsHDXS.webp', 'images/product/9/self-adhesive-tape-green-masking-tape-yzuVu0CJw8.webp', 1, 0, '2023-08-23 10:35:05', '2023-09-22 12:52:24'),

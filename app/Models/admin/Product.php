@@ -119,5 +119,18 @@ class Product extends Model implements TranslatableContract
         }
     }
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     CartPriceToAdd
+
+    public function CartPriceToAdd()
+    {
+        if(intval($this->price) > 0 and intval($this->discount_price) != 0
+            and intval($this->discount_price) <  intval($this->price) ){
+            return $this->discount_price ;
+        }else{
+            return $this->price ;
+        }
+    }
+
 
 }

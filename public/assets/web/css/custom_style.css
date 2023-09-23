@@ -447,3 +447,8 @@
     .Shop_CategoryList .cat_name{font-size:14px}
 }
 
+
+.empty_cart{
+    padding-top: 20px!important;
+    color: #ffffff!important;
+}
