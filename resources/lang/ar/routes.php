@@ -22,7 +22,8 @@ return [
     'ShopProductView' => 'product/{catid}/{slug}',
     //'Recently' => 'وصل-حديثا',
     'Recently' => 'Recently',
-    'WeekOffers' => 'العروض-الاسبوعية',
+    //'WeekOffers' => 'العروض-الاسبوعية',
+    'WeekOffers' => 'WeekOffers',
     'BestDeals' => 'عروض-تجار-الجملة',
 
 ];

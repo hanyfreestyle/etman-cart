@@ -69,31 +69,25 @@
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <div class="product_slider carousel_slider owl-carousel owl-theme dot_style1" data-loop="true" data-margin="5" data-responsive='{"0":{"items": "2"}, "481":{"items": "2"}, "768":{"items": "3"}, "991":{"items": "4"}}'>
-
+                                    <div class="product_slider carousel_slider owl-carousel owl-theme dot_style1" data-loop="true" data-margin="25" data-responsive='{"0":{"items": "2"}, "481":{"items": "2"}, "768":{"items": "3"}, "991":{"items": "4"}}'>
                                         @foreach($MainCategory->recursive_product_shop as $product)
-
-
                                             <div class="item">
-                                                <div class="product_wrap">
-                                                    <div class="product_img">
-                                                        <a href="#">
-                                                            <img src="{{getPhotoPath($product->photo , 'categorie') }}" alt="product_img3">
-                                                        </a>
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <h6 class="product_title text-right"><a href="{{route('Shop_ProductView',[$product->product_with_category->first()->id,$product->slug])}}">{{$product->name}}</a></h6>
+                                                <x-shop.block-product :product="$product" :category="$product->product_with_category->first()"/>
+{{--                                                <div class="product_wrap">--}}
+{{--                                                    <div class="product_img">--}}
+{{--                                                        <a href="#">--}}
+{{--                                                            <img src="{{getPhotoPath($product->photo , 'categorie') }}" alt="product_img3">--}}
+{{--                                                        </a>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="product_info">--}}
+{{--                                                        <h6 class="product_title text-right"><a href="{{route('Shop_ProductView',[$product->product_with_category->first()->id,$product->slug])}}">{{$product->name}}</a></h6>--}}
 
-                                                        <x-shop.print-product-price :product="$product"/>
+{{--                                                        <x-shop.print-product-price :product="$product"/>--}}
 
-                                                    </div>
-                                                </div>
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
                                             </div>
-
-
                                         @endforeach
-
-
                                     </div>
                                 </div>
                             </div>

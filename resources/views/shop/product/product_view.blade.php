@@ -57,17 +57,8 @@
                         </div>
                         <hr />
                         <div class="cart_extra">
-                            <div class="cart-product-quantity">
-                                <div class="quantity">
-                                    <input type="button" value="-" class="minus">
-                                    <input type="text" name="quantity" value="1" title="Qty" class="qty" size="4">
-                                    <input type="button" value="+" class="plus">
-                                </div>
-                            </div>
+                            <livewire:cart-add-button :product="$Product">
 
-                            <div class="cart_btn">
-                                <button class="btn btn-fill-out btn-addtocart" type="button"><i class="icon-basket-loaded"></i> {{__('web/cart.Add To Cart')}}</button>
-                            </div>
 
 
                         </div>
@@ -119,7 +110,8 @@
                         <div class="row shop_container shop_container_50  mt-lg-3">
                             @foreach($ReletedProducts as $Product )
                                 <div class="col-lg-3 col-md-4 col-6">
-                                    <x-shop.block-list-pro-from-cat  :product="$Product" :category="$Category" />
+{{--                                    <x-shop.block-list-pro-from-cat  :product="$Product" :category="$Category" />--}}
+                                    <x-shop.block-product :product="$Product" :category="$Product->product_with_category->first()"/>
                                 </div>
                             @endforeach
                         </div>
