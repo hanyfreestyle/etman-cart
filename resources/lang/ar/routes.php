@@ -20,7 +20,8 @@ return [
     'ShopMainCategory' => 'قائمة-المنتجات',
     'ShopCategoryView' => 'category/{slug}',
     'ShopProductView' => 'product/{catid}/{slug}',
-    'Recently' => 'وصل-حديثا',
+    //'Recently' => 'وصل-حديثا',
+    'Recently' => 'Recently',
     'WeekOffers' => 'العروض-الاسبوعية',
     'BestDeals' => 'عروض-تجار-الجملة',
 

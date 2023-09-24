@@ -109,7 +109,8 @@ Route::group(['prefix' => 'EtmanShop'], function(){
         ->name('Shop_FaqCatView');
 
 
-
+    Route::get('/test',[ShopPageController::class, 'Test'])
+        ->name('Shop_Test');
 
 
 });

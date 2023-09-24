@@ -192,9 +192,19 @@ class ShopPageController extends WebMainController
 
         $Recently = Product::Web_Shop_Def_Query()
             ->with('product_with_category')
+
             ->limit(9)->get();
 
         #->inRandomOrder()
+
+
+
+        $Recently=Product::Web_Shop_Def_Query()
+            ->with('product_with_category')
+            ->whereHas('product_with_category',function($query){
+                $query->where('category_id',39);
+            })->get();
+
 
         $Category = ['id'=>__('routes.Recently')];
 

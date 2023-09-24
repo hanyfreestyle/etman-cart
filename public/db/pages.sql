@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 12, 2023 at 03:41 AM
+-- Generation Time: Sep 23, 2023 at 05:50 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -36,7 +36,9 @@ INSERT INTO `pages` (`id`, `cat_id`, `view_name`, `banner_id`, `photo`, `photo_t
 (8, 'AboutUs', NULL, NULL, NULL, NULL, 1, 1, 1, 2, NULL, '2023-08-29 06:41:34', '2023-09-03 07:44:30'),
 (9, 'MainCategory', NULL, NULL, NULL, NULL, 1, 1, 1, 0, NULL, '2023-09-08 13:19:30', '2023-09-08 13:19:51'),
 (10, 'Shop_HomePage', NULL, 1, NULL, NULL, 1, 1, 1, 0, NULL, '2023-09-11 12:37:49', '2023-09-11 12:37:49'),
-(11, 'Shop_BestDeals', NULL, NULL, NULL, NULL, 1, 1, 1, 0, NULL, '2023-09-11 21:09:15', '2023-09-11 21:09:15');
+(11, 'Shop_BestDeals', NULL, NULL, NULL, NULL, 1, 1, 1, 0, NULL, '2023-09-11 21:09:15', '2023-09-11 21:09:15'),
+(12, 'Shop_WeekOffers', NULL, NULL, NULL, NULL, 1, 1, 1, 0, NULL, '2023-09-22 10:26:01', '2023-09-22 10:26:01'),
+(13, 'Shop_Recently', NULL, NULL, NULL, NULL, 1, 1, 1, 0, NULL, '2023-09-22 10:26:55', '2023-09-22 10:26:55');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

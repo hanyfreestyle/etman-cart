@@ -44,4 +44,17 @@ class CartAddButton extends Component
         Cart::remove($cart->where('id',$rowId)->first()->rowId);
         $this->emit('cart_updated');
     }
+
+    public function increaseProduct($rowId){
+        $cart = Cart::content();
+        Cart::update($cart->where('id',$rowId)->first()->rowId , $cart->where('id',$rowId)->first()->qty+1);
+        $this->emit('cart_updated');
+    }
+
+    public function decreaseProduct($rowId){
+        $cart = Cart::content();
+        Cart::update($cart->where('id',$rowId)->first()->rowId , $cart->where('id',$rowId)->first()->qty-1);
+        $this->emit('cart_updated');
+    }
+
 }

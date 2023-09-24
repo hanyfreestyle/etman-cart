@@ -33,8 +33,8 @@
                         <li class="dropdown cart_dropdown">
                             <a class="nav-link cart_trigger" href="#" data-bs-toggle="dropdown"><i class="linearicons-cart"></i>
                                 @livewire('cart-counter')</a></a>
-
-                            @livewire('cart-menu-product-list')
+                            <livewire:cart-menu-product-list>
+{{--                            @livewire('cart-menu-product-list')--}}
                         </li>
 
                     </ul>

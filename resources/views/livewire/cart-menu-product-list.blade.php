@@ -5,11 +5,12 @@
 
                 <li>
                     <a href="#" class="item_remove"><i class="ion-close"></i></a>
-
-                    <a href="#"><img src="{{getPhotoPath($ProductCart->options->photo,"blog")}}" alt="cart_thumb1">
+                    <a href="#">
+                        @if($showimg)
+                            <img src="{{getPhotoPath($ProductCart->options->photo,"blog")}}" alt="cart_thumb1">
+                        @endif
                         <span class="cart_item_name">{{$ProductCart->name}}</span>
                     </a>
-{{--                    <span class="cart_item_name">{{$ProductCart->name}}</span>--}}
                     <span class="cart_quantity forcDir"> {{$ProductCart->qty}} x <span class="cart_amount"></span> {{$ProductCart->price}}</span>
                 </li>
             @endforeach

@@ -8,6 +8,7 @@ use Livewire\Component;
 class CartMenuProductList extends Component
 {
     protected $listeners = ['cart_updated'=>'render'];
+    public $showimg = false ;
 
     public function render()
     {
