@@ -108,7 +108,7 @@
                             <div class="col-md-12 text-left Confirm_Order">
                                 <a href="#" class="btn btn-fill-out float-right ml-5"><i class="fas fa-shopping-cart"></i> {{__('web/cart.Confirm_Order')}}</a>
 
-                                <a href="https://api.whatsapp.com/send?phone=201208256945&text={!! $Mass !!}" class="btn btn-whatsapp float-right ml-5">
+                                <a href="https://api.whatsapp.com/send?phone=201208256945&text={!! $Mass !!}" class="btn btn-whatsapp ml-5">
                                     <i class="fab fa-whatsapp"></i> {{__('web/cart.Confirm_Order_whatsapp')}}</a>
                             </div>
 

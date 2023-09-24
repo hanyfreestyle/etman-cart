@@ -324,7 +324,7 @@ class ShopPageController extends WebMainController
 
 
         $SinglePageView = $this->SinglePageView ;
-
+        $SinglePageView['SelMenu'] = 'Shop_CartView' ;
 //        $SinglePageView['banner_id'] = $PageMeta->banner_id ;
 //        $SinglePageView['banner_count'] = $PageMeta->page_banner_count ;
 //        $SinglePageView['banner_list'] = $PageMeta->PageBanner ;

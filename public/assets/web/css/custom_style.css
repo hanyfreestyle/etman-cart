@@ -747,3 +747,86 @@
 .btn-whatsapp:hover {
     color: #25d366 !important;
 }
+
+
+
+.Confirm_Order .btn{
+
+    padding: 5px 10px;
+
+
+}
+
+.etman_sticky_navbar.fixed {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-100%);
+}
+.etman_sticky_navbar {
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 100%;
+    width: 100%;
+    background-color: #fff;
+    border-top: 1px solid #e7e7e7;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.25s;
+    z-index: 99000000000000007;
+}
+.etman_sticky_navbar .sticky-info:not(:last-child) {
+    border-left: 1px solid #e7e7e7;
+}
+
+.etman_sticky_navbar .sticky-info {
+    flex: 0 0 25%;
+    max-width: 25%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+.etman_sticky_navbar .sticky-info i {
+    font-size: 18px;
+    color: var(--red);
+
+}
+.etman_sticky_navbar .sticky-info a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    color: var(--red)!important;
+    font-size: 14px;
+
+}
+
+.sticky_a{
+    margin: auto!important;
+    width: 70%;
+    padding: 7px;
+}
+.active_footer{
+    background: var(--red)!important;
+    border-radius: 5px;
+    color: #ffffff!important;
+}
+
+
+.active_footer a{
+
+    color: #ffffff!important;
+
+}
+
+.etman_sticky_navbar .sticky-info a.active_footer {
+    color: #ffffff!important;
+
+}
+
+.etman_sticky_navbar .sticky-info .active_footer i {
+    color: #ffffff!important;
+}

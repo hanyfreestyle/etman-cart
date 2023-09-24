@@ -19,4 +19,8 @@ return
 	'home_page' => 'الصفحة الرئيسية',
 	'recently_arrived' => 'وصل حديثا',
 	'week_offer' => 'العروض الاسبوعية',
+	'footer_cart' => 'السلة',
+	'footer_home' => 'الرئيسية',
+	'footer_offer' => 'العروض',
+	'footer_account' => 'حسابى',
 ];
