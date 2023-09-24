@@ -18,11 +18,6 @@
                             <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'Shop_Recently' ) setActive @endif" href="{{ route('Shop_Recently') }}">{{ __('web/menu.recently_arrived')}} </a></li>
                             <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'Shop_WeekOffers' ) setActive @endif" href="{{ route('Shop_WeekOffers') }}">{{ __('web/menu.week_offer') }} </a></li>
                             <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'Shop_BestDeals' ) setActive @endif" href="{{ route('Shop_BestDeals') }}">{{ __('web/menu.client_offer') }} </a></li>
-
-
-
-
-{{--                            <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'FaqList' ) setActive @endif" href="{{ route('Shop_FaqList') }}">{{ __('web/menu.Faq') }}</a></li>--}}
                             <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'ContactUs' ) setActive @endif" href="{{ route('Page_ContactUs') }}">{{ __('web/menu.contatc_us')}}</a></li>
                         </ul>
                     </div>
@@ -33,8 +28,7 @@
                         <li class="dropdown cart_dropdown">
                             <a class="nav-link cart_trigger" href="#" data-bs-toggle="dropdown"><i class="linearicons-cart"></i>
                                 @livewire('cart-counter')</a></a>
-                            <livewire:cart-menu-product-list>
-{{--                            @livewire('cart-menu-product-list')--}}
+                            <livewire:cart-menu-product-list :showimg="true"/>
                         </li>
 
                     </ul>
@@ -43,9 +37,6 @@
                             <a href="javascript:void(0);" class="nav-link pr_search_trigger"><i class="linearicons-magnifier"></i></a>
                         </div>
                     @endif
-
-
-
                 </nav>
             </div>
         </div>

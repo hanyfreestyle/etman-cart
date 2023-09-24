@@ -113,6 +113,12 @@ Route::group(['prefix' => 'EtmanShop'], function(){
         ->name('Shop_Test');
 
 
+    Route::get('/CartEmpty',[ShopPageController::class, 'CartEmpty'])
+        ->name('Shop_CartEmpty');
+
+    Route::get('/CartView',[ShopPageController::class, 'CartView'])
+        ->name('Shop_CartView');
+
 });
 
 

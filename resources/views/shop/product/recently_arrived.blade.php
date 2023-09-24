@@ -10,24 +10,26 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-9 col-lg-8 set_border">
-{{--                    <div class="row">--}}
-{{--                        <div class="col-lg-12">--}}
-{{--                            <h1 class="product_title">{{ __('web/menu.recently_arrived') }}</h1>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="product_title">{{ __('web/menu.recently_arrived') }}</h1>
+                        </div>
+                    </div>
 
-                    <div class="row align-items-center mb-4 pb-1">
-                        <div class="col-12">
-                            <div class="product_header">
-                                <div class="product_header_right">
-                                    <div class="products_view">
-                                        <a href="javascript:void(0);" class="shorting_icon grid active"><i class="ti-view-grid"></i></a>
-                                        <a href="javascript:void(0);" class="shorting_icon list"><i class="ti-layout-list-thumb"></i></a>
+                    @if($agent->isMobile())
+                        <div class="row align-items-center mb-4 pb-1">
+                            <div class="col-12">
+                                <div class="product_header">
+                                    <div class="product_header_right">
+                                        <div class="products_view">
+                                            <a href="javascript:void(0);" class="shorting_icon grid active"><i class="ti-view-grid"></i></a>
+                                            <a href="javascript:void(0);" class="shorting_icon list "><i class="ti-layout-list-thumb"></i></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
 
 
                     <div class="row shop_container shop_container_50 listX mt-lg-3">

@@ -67,6 +67,8 @@ class WebMainController extends Controller
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     text
     static function printSeoMeta($row,$defPhoto="logo",$sendArr=array()){
+
+
         $lang = thisCurrentLocale();
 
         $type = AdminHelper::arrIsset($sendArr,'type','website');
@@ -124,7 +126,7 @@ class WebMainController extends Controller
         if ($PagesList->has($cat_id)) {
             return $PagesList[$cat_id] ;
         }else{
-            return $PagesList['home'] ?? '' ;
+            return $PagesList['HomePage'] ?? '' ;
         }
    }
 

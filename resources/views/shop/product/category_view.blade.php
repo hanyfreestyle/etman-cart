@@ -74,7 +74,8 @@
                                 <div class="row shop_container shop_container_50  mt-lg-3">
                                     @foreach($Category->category_with_product_shop as $Product )
                                         <div class="col-lg-4 col-md-4 col-6">
-                                            <x-shop.block-list-pro-from-cat  :product="$Product" :category="$Category"  />
+                                            <x-shop.block-product :product="$Product" :category="$Product->product_with_category->first()"/>
+{{--                                            <x-shop.block-list-pro-from-cat  :product="$Product" :category="$Category"  />--}}
                                         </div>
                                     @endforeach
                                 </div>

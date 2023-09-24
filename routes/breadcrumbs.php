@@ -130,9 +130,15 @@ Breadcrumbs::for('Shop_BestDeals', function (BreadcrumbTrail $trail) {
     $trail->parent('Shop_home');
     $trail->push(__('web/menu.client_offer'), route('Shop_BestDeals'));
 });
+
 Breadcrumbs::for('Shop_WeekOffers', function (BreadcrumbTrail $trail) {
     $trail->parent('Shop_home');
     $trail->push(__('web/menu.week_offer'), route('Shop_WeekOffers'));
+});
+
+Breadcrumbs::for('Shop_Cart', function (BreadcrumbTrail $trail) {
+    $trail->parent('Shop_home');
+    $trail->push(__('web/cart.cart_breadcrumbs'), route('Shop_CartView'));
 });
 
 

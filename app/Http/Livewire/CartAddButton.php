@@ -4,12 +4,14 @@ namespace App\Http\Livewire;
 
 use App\Models\admin\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Str;
 use Livewire\Component;
 
 class CartAddButton extends Component
 {
     public $product ;
     public array $quantity = [] ;
+    protected $listeners = ['cart_but_updated'=>'render'];
 
 
     public function mount()
@@ -29,11 +31,18 @@ class CartAddButton extends Component
         $Product  = Product::Web_Shop_Def_Query()
             ->where('id', $product_id)
             ->firstOrFail();
+
         Cart::add(
             $Product->id,
             $Product->name,
             $this->quantity[$product_id],
-            $Product->CartPriceToAdd(),['photo' => $Product->photo_thum_1]);
+            $Product->CartPriceToAdd(),
+            [
+                'photo' => $Product->photo_thum_1,
+                'ref_code' => $Product->ref_code,
+                'ref_code_name' =>Str::limit($Product->name,10).$Product->ref_code,
+            ]
+        );
         $this->emit('cart_updated');
     }
 

@@ -643,6 +643,21 @@
     border-radius: 50%;
 }
 
+.table-responsive .increaseProduct .btn-sm{
+    font-family:'Poppins',sans-serif!important;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 10px!important;
+    padding:0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+
 
 @media only screen and (max-width: 767px) {
     .shop_container.list .update_Cart_wrap{
@@ -664,3 +679,71 @@
 }
 
 
+.item_remove_but{
+    border: none;
+    background: none;
+    color: #FFFFFF;
+}
+.cart_item_list_img{
+    max-width: 50px!important;
+}
+
+.btn-fill-line:hover {
+    color: #fff !important;
+}
+
+
+.Confirm_Order a{
+    float: left!important;
+    margin-right: 20px!important;
+
+}
+
+.shop_cart_table .product-name {
+    text-align: right;
+
+}
+
+
+.shop_cart_table th.product-name {
+    text-align: right;
+}
+
+.shop_cart_table td.product-name {
+    text-align: right;
+}
+
+
+
+
+.btn-whatsapp {
+    background-color: transparent;
+    border: 1px solid #25d366;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+.btn-whatsapp::before,
+.btn-whatsapp::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #25d366;
+    z-index: -1;
+    transition: all 0.3s ease-in-out;
+    width: 51%;
+}
+.btn-whatsapp::after {
+    right: 0;
+    left: auto;
+}
+.btn-whatsapp:hover:before,
+.btn-whatsapp:hover:after {
+    width: 0;
+}
+.btn-whatsapp:hover {
+    color: #25d366 !important;
+}

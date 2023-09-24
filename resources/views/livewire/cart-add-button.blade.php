@@ -4,7 +4,7 @@
         <div class="update_Cart_wrap">
             <div class="increaseProduct">
                 <form wire:submit.prevent="increaseProduct({{$product->id}})" method="post">
-                    @csrf
+{{--                    @csrf--}}
                     <button type="submit" class="btn btn-sm btn-fill-out">+</button>
                 </form>
             </div>
@@ -14,23 +14,24 @@
 
             <div class="increaseProduct">
                 <form wire:submit.prevent="decreaseProduct({{$product->id}})" method="post">
-                    @csrf
+{{--                    @csrf--}}
                     <button type="submit" class="btn btn-sm btn-fill-out">-</button>
                 </form>
             </div>
         </div>
     @else
         <form  wire:submit.prevent="addToCart({{$product->id}})" method="post">
-            @csrf
+{{--            @csrf--}}
             <div class="add_toCart_wrap">
-{{--                <div class="add_to_cart_new quantity_new" >--}}
-{{--                    <input type="button" value="-" class="minus">--}}
-{{--                    <input wire:model="quantity.{{$product->id}}" type="text" title="Qty" class="qty" size="4">--}}
-{{--                    <input type="button" value="+" class="plus">--}}
-{{--                </div>--}}
                 <button type="submit" class="btn btn-sm btn-fill-out"> <i class="icon-basket-loaded"></i> {{__('web/cart.Add To Cart')}}</button>
 
             </div>
         </form>
     @endif
 </div>
+
+<script>
+    document.addEventListener('livewire:load', () => {
+        setInterval(function(){ window.livewire.emit('cart-add-button.blade'); }, 1800000);
+    });
+</script>

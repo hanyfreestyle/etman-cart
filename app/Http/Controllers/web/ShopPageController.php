@@ -7,7 +7,9 @@ use App\Http\Controllers\WebMainController;
 use App\Models\admin\Category;
 use App\Models\admin\FaqCategory;
 use App\Models\admin\Product;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 
 class ShopPageController extends WebMainController
@@ -244,9 +246,8 @@ class ShopPageController extends WebMainController
 
         $BestDeals=Product::Web_Shop_Def_Query()
             ->with('product_with_category')
-            ->whereHas('product_with_category',function($query){
-            $query->where('category_id',39);
-        })->get();
+            ->limit(12)
+            ->get();
 
         return view('shop.product.week',compact('SinglePageView','BestDeals'));
     }
@@ -304,75 +305,108 @@ class ShopPageController extends WebMainController
     }
 
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     CartEmpty
+    public function CartEmpty()
+    {
+        //Session::flush();
+        Cart::destroy();
+        return redirect()->back();
+    }
 
-/*
-    #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     ShopProductView
-    public function ShopProductView ($slug,$catid='lastProducts'){
-
-        $slug = \AdminHelper::Url_Slug($slug);
-
-        $catList = ['lastProducts'];
-
-
-
-
-
-
-//        if( !in_array($catid,$catList)){
-//
-////            dd( !in_array($catid,$catList));
-////
-//            ///$cat = \AdminHelper::Url_Slug($cat);
-//            $Category  = Category::where('id',$catid)
-//                ->where('cat_shop',true)
-//                ->withCount('children_shop')
-//                ->with('children_shop')
-//                ->withCount('category_with_product_shop')
-//                ->with('category_with_product_shop')
-//                ->firstOrFail();
-//
-//
-//
-//        }else{
-//            $Category = null;
-//        }
-
-
-        $Product  = Product::Web_Shop_Def_Query()
-            ->whereTranslation('slug', $slug)
-            ->withCount('product_with_category')
-            ->with('product_with_category')
-            ->withCount('more_photos')
-            ->with('more_photos')
-            ->firstOrFail();
-
-
-
-
-
-//        $ReletedProducts = Product::with('translation')
-//            ->where('category_id',$Product->category_id)
-//            ->where('id','!=',$Product->id)
-//            ->limit(8)
-//            ->get();
-//more_photos_count
-//        ;
-
-        $PageMeta = $Product ;
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     CartView
+    public function CartView()
+    {
+        $PageMeta = parent::getMeatByCatId('Shop_CartView');
         parent::printSeoMeta($PageMeta);
 
-        $SinglePageView = $this->SinglePageView ;
-        $SinglePageView['SelMenu'] = 'MainCategory' ;
-        $SinglePageView['breadcrumb'] = "Shop_ProductView" ;
-        $SinglePageView['slug'] = 'product/'.$Product->slug;
 
-        // $trees = Category::find($Product->category_id)->ancestorsAndSelf()->orderBy('depth','asc')->get() ;
-        $trees = [];
-        $ReletedProducts = [];
-        return view('shop.product.product_view',compact('SinglePageView','PageMeta','Product','trees','ReletedProducts'));
+
+        $SinglePageView = $this->SinglePageView ;
+
+//        $SinglePageView['banner_id'] = $PageMeta->banner_id ;
+//        $SinglePageView['banner_count'] = $PageMeta->page_banner_count ;
+//        $SinglePageView['banner_list'] = $PageMeta->PageBanner ;
+        $SinglePageView['breadcrumb'] = "Shop_Cart" ;
+
+        $FaqCategories = FaqCategory::defWeb()->paginate(12);
+
+        return view('shop.product.cart',compact('SinglePageView','PageMeta','FaqCategories'));
     }
-  */
+
+
+
+
+
+    /*
+        #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    #|||||||||||||||||||||||||||||||||||||| #     ShopProductView
+        public function ShopProductView ($slug,$catid='lastProducts'){
+
+            $slug = \AdminHelper::Url_Slug($slug);
+
+            $catList = ['lastProducts'];
+
+
+
+
+
+
+    //        if( !in_array($catid,$catList)){
+    //
+    ////            dd( !in_array($catid,$catList));
+    ////
+    //            ///$cat = \AdminHelper::Url_Slug($cat);
+    //            $Category  = Category::where('id',$catid)
+    //                ->where('cat_shop',true)
+    //                ->withCount('children_shop')
+    //                ->with('children_shop')
+    //                ->withCount('category_with_product_shop')
+    //                ->with('category_with_product_shop')
+    //                ->firstOrFail();
+    //
+    //
+    //
+    //        }else{
+    //            $Category = null;
+    //        }
+
+
+            $Product  = Product::Web_Shop_Def_Query()
+                ->whereTranslation('slug', $slug)
+                ->withCount('product_with_category')
+                ->with('product_with_category')
+                ->withCount('more_photos')
+                ->with('more_photos')
+                ->firstOrFail();
+
+
+
+
+
+    //        $ReletedProducts = Product::with('translation')
+    //            ->where('category_id',$Product->category_id)
+    //            ->where('id','!=',$Product->id)
+    //            ->limit(8)
+    //            ->get();
+    //more_photos_count
+    //        ;
+
+            $PageMeta = $Product ;
+            parent::printSeoMeta($PageMeta);
+
+            $SinglePageView = $this->SinglePageView ;
+            $SinglePageView['SelMenu'] = 'MainCategory' ;
+            $SinglePageView['breadcrumb'] = "Shop_ProductView" ;
+            $SinglePageView['slug'] = 'product/'.$Product->slug;
+
+            // $trees = Category::find($Product->category_id)->ancestorsAndSelf()->orderBy('depth','asc')->get() ;
+            $trees = [];
+            $ReletedProducts = [];
+            return view('shop.product.product_view',compact('SinglePageView','PageMeta','Product','trees','ReletedProducts'));
+        }
+      */
 
 
 }

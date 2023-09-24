@@ -4,10 +4,12 @@
             @foreach($CartList as $ProductCart)
 
                 <li>
-                    <a href="#" class="item_remove"><i class="ion-close"></i></a>
+                    <form wire:submit.prevent="removeFromCart({{$ProductCart->id}})" method="post">
+                        <button type="submit" class="item_remove item_remove_but"><i class="ion-close"></i></button>
+                    </form>
                     <a href="#">
                         @if($showimg)
-                            <img src="{{getPhotoPath($ProductCart->options->photo,"blog")}}" alt="cart_thumb1">
+                            <img class="cart_item_list_img"  src="{{getPhotoPath($ProductCart->options->photo,"blog")}}" alt="cart_thumb1">
                         @endif
                         <span class="cart_item_name">{{$ProductCart->name}}</span>
                     </a>
@@ -19,8 +21,8 @@
             <p class="cart_total"><strong>{{__('web/cart.Subtotal')}}</strong>
                 <span class="cart_price"> <span class="price_symbole"></span></span>{{$subtotal}}</p>
             <p class="cart_buttons">
-                <a href="#" class="btn btn-fill-line rounded-0 view-cart">{{__('web/cart.View_Cart')}}</a>
-                <a href="#" class="btn btn-fill-out rounded-0 checkout">{{__('web/cart.Confirm_Order')}}</a>
+                <a href="{{route('Shop_CartEmpty')}}" class="btn btn-fill-line rounded-0 view-cart">{{__('web/cart.empty_cart')}}</a>
+                <a href="{{route('Shop_CartView')}}" class="btn btn-fill-out rounded-0 checkout">{{__('web/cart.View_Cart')}}</a>
             </p>
         </div>
     @else
@@ -32,3 +34,11 @@
     @endif
 
 </div>
+
+<script>
+    document.addEventListener('livewire:load', () => {
+        setInterval(function(){ window.livewire.emit('cart-menu-product-list.blade'); }, 1800000);
+    });
+</script>
+
+
