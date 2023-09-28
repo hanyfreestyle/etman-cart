@@ -20,7 +20,6 @@
             ],
         ],
 
-
         [
             'view'=>true,
             'sel_routs'=>'weblang',
@@ -42,7 +41,7 @@
         ],
 
         [
-            'view'=>false,
+            'view'=>true,
             'sel_routs'=>'users',
             'type'=>'many',
             'text'=> 'admin/menu.roles',
@@ -73,7 +72,7 @@
             'type'=>'many',
             'text'=> 'admin/menu.web_product_menu',
             'icon'=>'fas fa-warehouse',
-            'roleView'=>'product_view',
+            'roleView'=>'category_view',
             'submenu'=>[
                 [
                     'sel_routs'=> 'category',
@@ -85,7 +84,7 @@
                 [
                     'sel_routs'=> 'Product',
                     'url'=> 'webPro.Product.index',
-                    'roleView'=>'category_view',
+                    'roleView'=>'product_view',
                     'text'=> 'admin/menu.web_product',
                     'icon'=>'fas fa-shopping-cart'
                 ],

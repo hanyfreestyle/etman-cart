@@ -18,7 +18,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/ar/admin/Home';
+    public const HOME = '/ar/admin/';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
@@ -37,37 +37,29 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
 
+            Route::middleware('web')
+                ->group(base_path('routes/web_shop.php'));
+
 
             Route::group(['middleware' => ['auth','status']], function() {
                 Route::group(['prefix' => LaravelLocalization::setLocale()], function(){
                     Route::group(['prefix'=>'admin'],function(){
+
                         Route::middleware('web')
                             ->group(base_path('routes/admin_roles.php'));
-                    });
-                });
-            });
 
-            Route::group(['middleware' => ['auth','status']], function() {
-                Route::group(['prefix' => LaravelLocalization::setLocale()], function(){
-                    Route::group(['prefix'=>'admin'],function(){
                         Route::middleware('web')
                             ->group(base_path('routes/admin_config.php'));
+
+                        Route::middleware('web')
+                            ->group(base_path('routes/admin.php'));
+
                     });
                 });
             });
 
-            Route::group(['middleware' => ['auth','status']], function() {
-                Route::group(['prefix' => LaravelLocalization::setLocale()], function(){
-                    Route::group(['prefix'=>'admin'],function(){
-                        Route::middleware('web')
-                            ->group(base_path('routes/admin.php'));
-                    });
-                });
-            });
 
 
         });
-
-
     }
 }

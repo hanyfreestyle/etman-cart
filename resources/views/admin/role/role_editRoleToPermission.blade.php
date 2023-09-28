@@ -7,43 +7,42 @@
     <x-ui-card :page-data="$pageData" title="{{$role->name_ar}}" >
 
         <div class="row">
-           @foreach($permissionsGroup  as $groupIndex => $permissions)
-
+            @foreach($permissionsGroup  as $groupIndex => $permissions)
 
 
                 <div class="col-lg-12 mb-3"><div class="row">
 
-                <div class="col-lg-12">
-                    <div class="alert alert-dark alert-dismissible">
-                        {{$modelsNameArr[$groupIndex]['name'] }}
-                    </div>
-                </div>
-
-                @foreach($permissions as $permission)
-                    @if( !$role->hasPermissionTo($permission) )
-
-                        <div class="col-lg-2">
-                            <label class="font-weight-light">{{$permission->name_ar}}</label>
-                            <div class="form-group">
-                                <input type="checkbox" class="status_but"
-                                       role_id="{{$role->id}}" permissionName="{{$permission->name}}" name="status"
-                                       data-bootstrap-switch data-off-color="danger" data-on-color="success">
+                        <div class="col-lg-12">
+                            <div class="alert alert-dark alert-dismissible">
+                                {{$groupIndex}} - {{$modelsNameArr[$groupIndex]['name'] }}
                             </div>
                         </div>
 
-                    @else
-                        <div class="col-lg-2">
-                            <label for="">{{$permission->name_ar}}</label>
-                            <div class="form-group">
-                                <input type="checkbox" checked class="status_but"
-                                       role_id="{{$role->id}}" permissionName="{{$permission->name}}" name="status"
-                                       data-bootstrap-switch data-off-color="danger" data-on-color="success">
-                            </div>
-                        </div>
+                        @foreach($permissions as $permission)
+                            @if( !$role->hasPermissionTo($permission) )
 
-                    @endif
+                                <div class="col-lg-2">
+                                    <label class="font-weight-light">{{$permission->name_ar}}</label>
+                                    <div class="form-group">
+                                        <input type="checkbox" class="status_but"
+                                               role_id="{{$role->id}}" permissionName="{{$permission->name}}" name="status"
+                                               data-bootstrap-switch data-off-color="danger" data-on-color="success">
+                                    </div>
+                                </div>
 
-                @endforeach
+                            @else
+                                <div class="col-lg-2">
+                                    <label for="">{{$permission->name_ar}}</label>
+                                    <div class="form-group">
+                                        <input type="checkbox" checked class="status_but"
+                                               role_id="{{$role->id}}" permissionName="{{$permission->name}}" name="status"
+                                               data-bootstrap-switch data-off-color="danger" data-on-color="success">
+                                    </div>
+                                </div>
+
+                            @endif
+
+                        @endforeach
                     </div> </div>
             @endforeach
         </div>

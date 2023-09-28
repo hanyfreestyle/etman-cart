@@ -20,14 +20,14 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Sub Admin  ',
                 'email' => 'subadmin@test.com',
-                'password' => Hash::make('12345678'),
+                'password' => Hash::make('subadmin@test.com'),
                 'roles_name' => ['editor'],
 
             ],
             [
                 'name' => 'Editor',
                 'email' => 'editor@test.com',
-                'password' => Hash::make('12345678'),
+                'password' => Hash::make('editor@test.com'),
                 'roles_name' => ['editor'],
             ],
         ];

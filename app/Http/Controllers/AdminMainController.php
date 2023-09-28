@@ -22,7 +22,7 @@ class AdminMainController extends Controller
     {
 
        // Cache::flush();
-        $this->middleware('auth');
+      //  $this->middleware('auth');
 
 
         View::share('filterTypes', UploadFilter::cash_UploadFilter());

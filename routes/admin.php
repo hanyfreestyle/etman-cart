@@ -22,8 +22,7 @@ use App\Http\Controllers\AdminMainController;
 
 
 
-Route::get('/Home',[AdminMainController::class,'Home'])->name('admin.Dashboard');
-Route::get('/Home/Update',[AdminMainController::class,'Update'])->name('admin.Dashboard.Update');
+Route::get('/',[AdminMainController::class,'Home'])->name('admin.Dashboard');
 
 Route::get('/OurClient',[OurClientController::class,'index'])->name('OurClient.index');
 Route::get('/OurClient/create',[OurClientController::class,'create'])->name('OurClient.create');
@@ -133,9 +132,6 @@ Route::get('/Banner/Sort/{Categoryid}',[BannerController::class,'Sort'])->name('
 Route::post('/Banner/SaveSort', [BannerController::class,'SaveSort'])->name('Banners.Banner.SaveSort');
 
 
-
-
-
 Route::get('/Faq/Config',[FaqCategoryController::class,'config'])->name('FAQ.Config');
 Route::get('/Faq/Category',[FaqCategoryController::class,'index'])->name('FAQ.FaqCat.index');
 Route::get('/Faq/Category/create',[FaqCategoryController::class,'create'])->name('FAQ.FaqCat.create');
@@ -155,7 +151,6 @@ Route::get('/Faq/create',[FaqController::class,'create'])->name('FAQ.FaqList.cre
 Route::get('/Faq/edit/{id}',[FaqController::class,'edit'])->name('FAQ.FaqList.edit');
 Route::get('/Faq/destroy/{id}',[FaqController::class,'destroy'])->name('FAQ.FaqList.destroy');
 Route::post('/Faq/update/{id}',[FaqController::class,'storeUpdate'])->name('FAQ.FaqList.update');
-//Route::get('/Faq/Sort/{Categoryid}',[FaqController::class,'Sort'])->name('FAQ.FaqList.Sort');
 Route::post('/Faq/SaveSort', [FaqController::class,'SaveSort'])->name('FAQ.FaqList.SaveSort');
 
 
@@ -171,13 +166,6 @@ Route::get('/Pages/force/{id}',[PageController::class,'ForceDeletes'])->name('Pa
 Route::get('/Pages/emptyPhoto/{id}', [PageController::class,'emptyPhoto'])->name('Pages.pageList.emptyPhoto');
 Route::get('/Pages/Sort',[PageController::class,'Sort'])->name('Pages.pageList.Sort');
 Route::post('/Pages/SaveSort', [PageController::class,'SaveSort'])->name('Pages.pageList.SaveSort');
-
-
-
-
-
-
-
 
 Route::get('/ShopCategory',[ShopCategoryController::class,'index'])->name('Shop.shopCategory.index');
 Route::get('/ShopCategory/Main',[ShopCategoryController::class,'index'])->name('Shop.shopCategory.index_Main');
@@ -219,13 +207,5 @@ Route::get('/ShopProduct/photos/{id}',[ShopProductController::class,'ListMorePho
 Route::post('/ShopProduct/saveSort', [ShopProductController::class,'sortPhotoSave'])->name('Shop.ShopProduct.sortPhotoSave');
 Route::post('/ShopProduct/AddMore',[ShopProductController::class,'AddMorePhotos'])->name('Shop.ShopProduct.More_PhotosAdd');
 Route::get('/ShopProduct/PhotoDel/{id}',[ShopProductController::class,'More_PhotosDestroy'])->name('Shop.ShopProduct.More_PhotosDestroy');
-
-//Route::get('/ShopProduct/TableList/{id}',[ShopProductController::class,'TableList'])->name('Shop.ShopProduct.Table_list');
-//Route::get('/ShopProduct/Table/edit/{id}',[ShopProductController::class,'TableEdit'])->name('Shop.ShopProduct.Table_edit');
-//Route::post('/ShopProduct/Table/update/{id}',[ShopProductController::class,'TableStoreUpdate'])->name('Shop.ShopProduct.Table_update');
-//Route::get('/ShopProduct/Table/destroy/{id}',[ShopProductController::class,'TableDestroy'])->name('Shop.ShopProduct.Table_destroy');
-//Route::get('/ShopProduct/Table/Sort/{project_id}',[ShopProductController::class,'TableSort'])->name('Shop.ShopProduct.Table_Sort');
-//Route::post('/ShopProduct/Table/SaveSort', [ShopProductController::class,'TableSortSave'])->name('Shop.ShopProduct.TableSortSave');
-//
 
 

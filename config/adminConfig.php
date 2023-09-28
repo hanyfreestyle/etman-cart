@@ -56,10 +56,10 @@ return [
    */
    'top_navbar_fixed' => true,
    'top_navbar_dark' => false,
-   'top_navbar_search' => false,
+   'top_navbar_search' => true,
    'top_navbar_messages' => true,
-   'top_navbar_user_menu' => true,
-   'top_navbar_notifications' => true,
+   'top_navbar_user_menu' => false,
+   'top_navbar_notifications' => false,
    'top_navbar_fullscreen' => true,
    'top_navbar_control' => true,
 

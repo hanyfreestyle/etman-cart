@@ -483,11 +483,13 @@ class AdminHelper{
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     printTableImage
     static  function printUserPhoto($fildeName='photo_thum_1'){
-        if(Auth::user()->$fildeName){
+
+        if(isset(Auth::user()->$fildeName)){
             $sendImg = defImagesDir(Auth::user()->$fildeName) ;
         }else{
             $sendImg = defAdminAssets('img/user_avatar.jpg');
         }
+
         return $sendImg ;
     }
 

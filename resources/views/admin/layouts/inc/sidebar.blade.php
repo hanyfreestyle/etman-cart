@@ -13,7 +13,7 @@
                 <img src="{!! \App\Helpers\AdminHelper::printUserPhoto() !!}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="{{route('admin.Dashboard')}}" class="d-block"> {{ Auth::user()->name }}</a>
+                <a href="{{route('admin.Dashboard')}}" class="d-block"> {{ Auth::user()->name ?? '' }}</a>
             </div>
         </div>
 
