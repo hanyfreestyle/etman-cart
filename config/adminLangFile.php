@@ -28,6 +28,7 @@ return [
         '9'=> ['id'=> '9' , 'group'=>'web' , 'sub_dir'=> null , 'file_name'=> 'contact_form','name'=>'Contact Form' ],
         '10'=> ['id'=> '10' , 'group'=>'web' , 'sub_dir'=> null , 'file_name'=> 'category','name'=>'Category' ],
         '11'=> ['id'=> '11' , 'group'=>'web' , 'sub_dir'=> null , 'file_name'=> 'product','name'=>'Product' ],
+        '12'=> ['id'=> '12' , 'group'=>'web' , 'sub_dir'=> null , 'file_name'=> 'customers','name'=>'Customers' ],
 
     ],
 

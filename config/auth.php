@@ -18,6 +18,13 @@ return [
         'passwords' => 'users',
     ],
 
+    'customer' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\UsersCustomers::class,
+    ],
+
+
+
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -40,6 +47,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'customer' => [
+            'driver' => 'session',
+            'provider' => 'customers',
+        ],
+
     ],
 
     /*
@@ -64,6 +76,12 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+
+        'customers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\UsersCustomers::class,
+        ],
+
 
         // 'users' => [
         //     'driver' => 'database',
@@ -97,6 +115,12 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+
+        'customers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\UsersCustomers::class,
+        ],
+
     ],
 
     /*

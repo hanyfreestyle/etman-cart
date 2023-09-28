@@ -24,7 +24,13 @@
 
                     <ul class="navbar-nav attr-nav align-items-center">
 
-                        <li><a href="#" class="nav-link"><i class="linearicons-user"></i></a></li>
+                        @if(Auth::guard('customer')->check())
+                            <li><a href="{{route('Customer_Profile')}}" class="nav-link"><i class="linearicons-user"></i></a></li>
+                        @else
+                            <li><a href="{{route('Customer_login')}}" class="nav-link"><i class="linearicons-user"></i></a></li>
+                        @endif
+
+
                         <li class="dropdown cart_dropdown">
                             <a class="nav-link cart_trigger" href="#" data-bs-toggle="dropdown"><i class="linearicons-cart"></i>
                                 @livewire('cart-counter')</a></a>

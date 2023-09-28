@@ -1,19 +1,30 @@
 <?php
 
+use App\Http\Controllers\AuthAdminController;
 use App\Http\Controllers\web\WebPageController;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
-Auth::routes([
-    'register' => false, // Registration Routes...
-    'reset' => false, // Password Reset Routes...
-    'verify' => false, // Email Verification Routes...
-]);
-Auth::viaRemember();
+//Auth::routes([
+//    'register' => false, // Registration Routes...
+//    'reset' => false, // Password Reset Routes...
+//    'verify' => false, // Email Verification Routes...
+//]);
+//Auth::viaRemember();
 
 
 
 Route::group(['prefix' => LaravelLocalization::setLocale()], function(){
     Route::get('/', [WebPageController::class, 'HomePage'])->name('Page_HomePage');
+});
+
+
+Route::group(['prefix' => LaravelLocalization::setLocale()], function(){
+    Route::group(['prefix'=>'admin'],function(){
+        Route::get('/login', [AuthAdminController::class, 'Adminlogin'])->name('login');
+        Route::post('/loginCheck', [AuthAdminController::class, 'AdminLoginCheck'])->name('AdminLoginCheck');
+        Route::post('/logout', [AuthAdminController::class, 'AdminLogout'])->name('logout');
+    });
 });
 
 

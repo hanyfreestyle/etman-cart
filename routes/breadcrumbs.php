@@ -142,4 +142,10 @@ Breadcrumbs::for('Shop_Cart', function (BreadcrumbTrail $trail) {
 });
 
 
+Breadcrumbs::for('Customer_Login', function (BreadcrumbTrail $trail) {
+    $trail->parent('Shop_home');
+    $trail->push(__('web/customers.login_breadcrumb'), route('Customer_login'));
+});
+
+
 

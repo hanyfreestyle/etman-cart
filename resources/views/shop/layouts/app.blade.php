@@ -128,11 +128,6 @@
 </script>
 
 @livewireScripts
-{{--<livewire:scripts />--}}
-{{--<script>--}}
-{{--    Livewire.onPageExpired((response, message) => {})--}}
-{{--</script>--}}
-
 <script>
     document.addEventListener('livewire:load', () => {
         Livewire.onPageExpired((response, message) => {})

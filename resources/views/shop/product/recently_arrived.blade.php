@@ -16,6 +16,12 @@
                         </div>
                     </div>
 
+                    jjjjjj
+                    <br>
+
+                    {{ Auth::guard('customer')->user()->name }}
+                    {{ Auth::guard('customer')->check() }}
+
                     @if($agent->isMobile())
                         <div class="row align-items-center mb-4 pb-1">
                             <div class="col-12">
