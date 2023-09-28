@@ -35,7 +35,6 @@
                     <div class="row shop_container shop_container_50 listX mt-lg-3">
                         @foreach($Recently as $Product )
                             <div class="col-lg-4 col-md-4 col-6">
-{{--                                <x-shop.block-list-pro-from-cat  :product="$Product" :category="$Product->product_with_category->first()" />--}}
                                 <x-shop.block-product :product="$Product" :category="$Product->product_with_category->first()"/>
                             </div>
                         @endforeach

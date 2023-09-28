@@ -12,6 +12,7 @@ class CartAddButton extends Component
     public $product ;
     public array $quantity = [] ;
     protected $listeners = ['cart_but_updated'=>'render'];
+    public $readyToLoad = false;
 
 
     public function mount()
@@ -23,7 +24,13 @@ class CartAddButton extends Component
     public function render()
     {
         $cart = Cart::content();
-        return view('livewire.cart-add-button',compact('cart'));
+//        return view('livewire.cart-add-button',compact('cart'));
+
+        return view('livewire.cart-add-button',[
+            'readyToLoad' => $this->readyToLoad,
+            'cart' => $cart
+        ]);
+
     }
 
     public function addToCart($product_id)
