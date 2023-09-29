@@ -25,44 +25,84 @@
                                 </h3>
                             </div>
                         </div>
-
-
                         <div class="row">
-                            <div class="col-lg-6 mt-3 mb-3">
-                                <div class="card mb-3 mb-lg-0">
-                                    <div class="card-header">
-                                        <h3>المنزل</h3>
+
+                            @if($customer->addresses_count > 0)
+                                @foreach($customer->addresses as $address)
+
+
+                                    <div class="col-lg-6 mt-3 mb-3">
+                                        <div class="card mb-3 mb-lg-0">
+                                            <div class="card-header">
+                                                <h3 class="address_h3">
+                                                    {{$address->name}}
+
+                                                    @if($address->is_default == true)
+                                                        <span>{{__('web/user_address.fr_is_default')}}</span>
+                                                    @else
+                                                        <form action="{{route('Profile_Address_UpdateDefault',$address->uuid)}}" method="post">
+                                                            @csrf
+                                                            <button class="btn btn_not badge-secondary" type="submit">
+                                                                {{__('web/user_address.fr_is_default_set')}}
+                                                            </button>
+                                                        </form>
+                                                    @endif
+
+
+                                                </h3>
+                                            </div>
+                                            <div class="card-body">
+
+                                                <p class="Addinfo">
+                                                    <span>{{__('web/user_address.fr_recipient_name')}} :</span>
+                                                    {{$address->recipient_name}}
+                                                </p>
+
+                                                <p class="Addinfo">
+                                                    <span>{{ __('web/customers.Profile_form_city') }} :</span>
+                                                    {{$address->city->name}}
+                                                </p>
+
+                                                <p class="Addinfo">
+                                                    <span>{{ __('web/user_address.fr_phone') }} :</span>
+                                                    {{$address->phone}}
+                                                </p>
+
+                                                <p class="Addinfo">
+                                                    <span>{{ __('web/user_address.fr_phone_option') }} :</span>
+                                                    {{$address->phone_option}}
+                                                </p>
+
+                                                <p class="Addinfo print_address">
+                                                    {!! nl2br($address->address) !!}
+                                                </p>
+                                                <p class="card_but">
+                                                    <a href="{{route('Profile_Address_Edit',$address->uuid)}}"
+                                                       class="btn btn-sm btn-dark">{{__('admin/form.button_edit')}}</a>
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="card-body">
-                                        <address>House #15<br>Road #1<br>Block #C <br>Angali <br> Vedora <br>1212</address>
-                                        <p>New York</p>
-                                        <a href="#" class="btn btn-fill-out">Edit</a>
+                                @endforeach
+
+                            @else
+                                <div class="col-lg-12 mt-3 mb-3">
+                                    <div class="alert alert-warning alert-dismissible">
+                                        {{__('web/user_address.no_data')}}
                                     </div>
                                 </div>
-                            </div>
-
-
-
+                            @endif
                         </div>
-
-{{--                        <div class="card-body">--}}
-{{--                            <form method="post">--}}
-{{--                                <div class="row">--}}
-{{--                                    @csrf--}}
-
-
-
-{{--                                    <div class="col-md-12 card_but">--}}
-{{--                                        <button type="submit" class="btn btn-fill-out" name="submit" value="Submit">--}}
-{{--                                            {{__('web/def.but_update')}}--}}
-{{--                                        </button>--}}
-{{--                                    </div>--}}
-
-{{--                                </div>--}}
-{{--                            </form>--}}
-{{--                        </div>--}}
-
                     </div>
+                    <hr>
+                    @if($customer->addresses_count < 4)
+
+                        <div class="row">
+                            <div class="col-12 card_but">
+                                <a href="{{route('Profile_Address_Add')}}" class="btn btn-dark rounded-0" >{{__('web/user_address.add_new')}}</a>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

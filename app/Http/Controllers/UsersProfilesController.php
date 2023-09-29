@@ -46,19 +46,7 @@ class UsersProfilesController extends WebMainController
         );
     }
 */
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     Profile_OrdersList
-    public function Profile_OrdersList()
-    {
 
-        $SinglePageView = $this->SinglePageView ;
-        $SinglePageView['profileMenu'] = "OrdersList" ;
-
-        $UserProfile = Auth::guard('customer')->user();
-        return view('shop.customer.profile_order_list',
-            compact('SinglePageView','UserProfile')
-        );
-    }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #   Profile_ChangePassword

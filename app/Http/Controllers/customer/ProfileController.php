@@ -4,12 +4,15 @@ namespace App\Http\Controllers\customer;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\WebMainController;
+use App\Http\Requests\customer\ProfileAddressAddRequest;
 use App\Http\Requests\customer\ProfileUpdateRequest;
+use App\Models\customer\UsersCustomersAddress;
 use App\Models\data\DataCity;
 use App\Models\UsersCustomers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Str;
 
 class ProfileController extends WebMainController
 {
@@ -23,6 +26,10 @@ class ProfileController extends WebMainController
         $stopCash = 0 ;
         $ShopMenuCategory = self::getShopMenuCategory($stopCash);
         View::share('ShopMenuCategory', $ShopMenuCategory);
+
+
+        $cities = DataCity::all();
+        View::share('cities', $cities);
 
         $SinglePageView = [
             'slug' => null,
@@ -47,10 +54,8 @@ class ProfileController extends WebMainController
 
         $UserProfile = Auth::guard('customer')->user();
 
-        $cities = DataCity::all();
-
         return view('shop.customer.profile',
-            compact('SinglePageView','UserProfile','cities')
+            compact('SinglePageView','UserProfile')
         );
     }
 
@@ -89,11 +94,173 @@ class ProfileController extends WebMainController
         $SinglePageView['profileMenu'] = "Address" ;
         $UserProfile = Auth::guard('customer')->user();
 
+        $customer = UsersCustomers::query()
+            ->where('id',$UserProfile->id)
+            ->where('status',1)
+            ->where('is_active',1)
+            ->withCount('addresses')
+            ->with('addresses')
+            ->firstOrFail();
+
+      //  dd($customer);
 
         return view('shop.customer.profile_address_list',
+            compact('SinglePageView','UserProfile','customer')
+        );
+    }
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     Profile_Address_Add
+    public function Profile_Address_Add(){
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['profileMenu'] = "Address" ;
+        $UserProfile = Auth::guard('customer')->user();
+
+        $customer = UsersCustomers::query()
+            ->where('id',$UserProfile->id)
+            ->where('status',1)
+            ->where('is_active',1)
+            ->withCount('addresses')
+            ->with('addresses')
+            ->firstOrFail();
+
+
+        return view('shop.customer.profile_address_form',
+            compact('SinglePageView','UserProfile','customer')
+        );
+
+
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     Profile_Address_Add
+
+   public function Profile_Address_Save(ProfileAddressAddRequest $request)
+    {
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['profileMenu'] = "profile" ;
+
+        $UserProfile = Auth::guard('customer')->user();
+        $customer = UsersCustomers::query()
+            ->where('id',$UserProfile->id)
+            ->where('status',1)
+            ->where('is_active',1)
+            ->withCount('addresses')
+            ->firstOrFail();
+
+        $saveAddress = New UsersCustomersAddress ;
+        if($customer->addresses_count == 0){
+            $saveAddress->is_default = true ;
+        }
+
+        $saveAddress->uuid = Str::uuid()->toString();
+        $saveAddress->customer_id = $customer->id ;
+        $saveAddress->name = $request->input('name');
+        $saveAddress->city_id = $request->input('city_id');
+        $saveAddress->recipient_name = $request->input('recipient_name');
+
+
+        $saveAddress->phone  = $request->input('phone');
+        $saveAddress->phone_option  = $request->input('phone_option');
+        $saveAddress->address = $request->input('address');
+        $saveAddress->save();
+
+
+        return redirect()->route('Profile_Address')->with('Update.Done',"");
+
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     Profile_Address_Edit
+    public function Profile_Address_Edit($uuid){
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['profileMenu'] = "Address" ;
+        $UserProfile = Auth::guard('customer')->user();
+
+        $address = UsersCustomersAddress::query()
+            ->where('uuid',$uuid)
+            ->where('customer_id',$UserProfile->id)
+            ->firstOrFail();
+
+        return view('shop.customer.profile_address_form_edit',
+            compact('SinglePageView','UserProfile','address')
+        );
+    }
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     Profile_Address_Edit
+    public function Profile_Address_Update(ProfileAddressAddRequest $request,$uuid){
+
+
+
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['profileMenu'] = "Address" ;
+        $UserProfile = Auth::guard('customer')->user();
+
+        $address = UsersCustomersAddress::query()
+            ->where('uuid',$uuid)
+            ->where('customer_id',$UserProfile->id)
+            ->firstOrFail();
+
+        $address->name = $request->input('name');
+        $address->city_id = $request->input('city_id');
+        $address->recipient_name = $request->input('recipient_name');
+
+
+        $address->phone  = $request->input('phone');
+        $address->phone_option  = $request->input('phone_option');
+        $address->address = $request->input('address');
+        $address->save();
+
+
+        return redirect()->route('Profile_Address')->with('Update.Done',"");
+
+   }
+
+
+    public function Profile_Address_UpdateDefault($uuid)
+    {
+        $UserProfile = Auth::guard('customer')->user();
+
+       $all_Address = UsersCustomersAddress::query()
+            ->where('customer_id',$UserProfile->id)
+            ->get();
+
+        if(count($all_Address) > 0 ){
+            foreach ($all_Address as $address){
+                if($address->uuid == $uuid ){
+                    $address->is_default = true ;
+                }else{
+                    $address->is_default = false ;
+                }
+
+
+                $address->save();
+            }
+        }
+        return redirect()->back();
+   }
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     Profile_OrdersList
+    public function Profile_OrdersList()
+    {
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['profileMenu'] = "OrdersList" ;
+
+        $UserProfile = Auth::guard('customer')->user();
+        return view('shop.customer.profile_order_list',
             compact('SinglePageView','UserProfile')
         );
     }
+
 
 
 

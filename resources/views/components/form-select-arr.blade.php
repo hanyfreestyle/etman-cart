@@ -7,7 +7,7 @@
             @endif
         </label>
 
-        <select class="form-control select2X custom-selectX is-invalidX " id="{{$name}}" name="{{$name}}" style="width: 100%;" >
+        <select class="form-control select2 custom-select is-invalid" id="{{$name}}" name="{{$name}}" style="width: 100%;" >
             <option value="">{{$label}}</option>
 
             @if($selectType == 'normal')

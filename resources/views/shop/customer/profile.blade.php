@@ -28,17 +28,8 @@
                             <div class="card-body">
                                 <form method="post" action="{{route('Customer_Profile_Update')}}">
                                     <div class="row">
-
                                         <x-mass.confirm-massage />
-{{--                                        @if(Session::has('Update'))--}}
-{{--                                            <div class="col-lg-12">--}}
-{{--                                                <div class="alert alert-success alert-dismissible">--}}
-{{--                                                    {{__('admin/alertMass.confirmAdd')}}--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        @endif--}}
                                     </div>
-
 
                                     <div class="row">
                                         @csrf

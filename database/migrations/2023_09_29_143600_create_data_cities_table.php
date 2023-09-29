@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('data_cities', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string("name")->unique();
             $table->string("name_en")->unique();
             $table->boolean("is_active")->default(true);
