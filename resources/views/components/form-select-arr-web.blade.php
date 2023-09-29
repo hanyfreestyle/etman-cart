@@ -7,7 +7,7 @@
             @endif
         </label>
 
-        <select class="form-control select2X custom-selectX is-invalidX " id="{{$name}}" name="{{$name}}" style="width: 100%;" >
+        <select class="form-control" id="{{$name}}" name="{{$name}}" style="width: 100%;" >
             <option value="">{{$label}}</option>
 
             @if($selectType == 'normal')
@@ -27,10 +27,7 @@
 
         </select>
         @error($name)
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ \App\Helpers\AdminHelper::error($message,$name,$label) }}</strong>
-        </span>
+        <span class="span_form_error">{{ \App\Helpers\AdminHelper::error($message,$name,$label) }}</span>
         @enderror
     </div>
-
 </div>

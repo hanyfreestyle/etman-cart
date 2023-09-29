@@ -42,26 +42,41 @@ class UsersCustomersController extends WebMainController
     }
 
 
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| # CustomerLogin
+    public function CustomerLogin()
+    {
+        $PageMeta = parent::getMeatByCatId('Shop_CartView');
+        parent::printSeoMeta($PageMeta);
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['breadcrumb'] = "Customer_Login" ;
+        $SinglePageView['SelMenu'] = "CustomerProfile" ;
+
+
+        return view('shop.customer.login',compact('SinglePageView','PageMeta'));
+    }
+
+    
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     CustomerCreate
     public function CustomerCreate(CustomerSignUpRequest $request)
     {
 
         $user = new UsersCustomers();
-//        $user->name = $request->input('name');
-//        $user->email =$request->input('email');
-//        $user->phone =$request->input('phone');
-//        $user->password = \Hash::make($request->password);
-//        $user->save();
 
+        $user->name = $request->input('name');
+        $user->email =$request->input('email');
+        $user->phone =$request->input('phone');
+        $user->password = \Hash::make($request->password);
+        $user->save();
 
-
-        $user->name = "hany";
-        //$user->email = rand(1000,50000)."name@email.com";
-        $user->email = "29038name@email.com";
-        $user->phone ="01221563252";
-        $user->password = \Hash::make("01221563252");
-
+//        $user->name = "hany";
+//        //$user->email = rand(1000,50000)."name@email.com";
+//        $user->email = "29038name@email.com";
+//        $user->phone ="01221563252";
+//        $user->password = \Hash::make("01221563252");
 
         try {
             $user->save();
@@ -81,20 +96,7 @@ class UsersCustomersController extends WebMainController
     }
 
 
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| # CustomerLogin
-    public function CustomerLogin()
-    {
-        $PageMeta = parent::getMeatByCatId('Shop_CartView');
-        parent::printSeoMeta($PageMeta);
 
-        $SinglePageView = $this->SinglePageView ;
-        $SinglePageView['breadcrumb'] = "Customer_Login" ;
-        $SinglePageView['SelMenu'] = "CustomerProfile" ;
-
-
-        return view('shop.customer.login',compact('SinglePageView','PageMeta'));
-    }
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

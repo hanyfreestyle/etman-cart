@@ -32,7 +32,7 @@ class UsersProfilesController extends WebMainController
         parent::printSeoMeta($PageMeta);
 
     }
-
+/*
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #  CustomerProfile
     public function CustomerProfile()
@@ -45,7 +45,7 @@ class UsersProfilesController extends WebMainController
             compact('SinglePageView','UserProfile')
         );
     }
-
+*/
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     Profile_OrdersList
     public function Profile_OrdersList()
@@ -75,20 +75,7 @@ class UsersProfilesController extends WebMainController
 
     }
 
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #   Profile_Address
-    public function Profile_Address()
-    {
 
-        $SinglePageView = $this->SinglePageView ;
-        $SinglePageView['profileMenu'] = "Address" ;
-        $UserProfile = Auth::guard('customer')->user();
-
-
-        return view('shop.customer.profile_address_list',
-            compact('SinglePageView','UserProfile')
-        );
-    }
 
 
 

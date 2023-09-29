@@ -14,16 +14,26 @@ return new class extends Migration
         Schema::create('users_customers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('company_name')->nullable();
             $table->string('email')->unique();
-            $table->string('phone')->nullable();
+            $table->string('phone')->unique();
+            $table->string('whatsapp')->nullable();
+            $table->string('land_phone')->nullable();
+
+            $table->integer('city_id')->nullable();
+
+            $table->integer('status')->default(1);
+            $table->boolean("is_active")->default(true);
+
             $table->string('photo')->nullable();
             $table->string('photo_thum_1')->nullable();
-            $table->string('roles_name')->nullable();
-            $table->integer('status')->default(1);
+
+
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

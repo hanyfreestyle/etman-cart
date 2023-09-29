@@ -33,6 +33,7 @@ use Database\Seeders\admin\ProductTableTranslationSeeder;
 use Database\Seeders\admin\ProductTranslationSeeder;
 use Database\Seeders\config\WebPrivacySeeder;
 use Database\Seeders\config\WebPrivacyTranslationSeeder;
+use Database\Seeders\data\DataCitySeeder;
 use Database\Seeders\roles\AdminUserSeeder;
 use Database\Seeders\roles\PermissionSeeder;
 use Database\Seeders\roles\RoleSeeder;
@@ -100,6 +101,8 @@ class DatabaseSeeder extends Seeder
         $this->call(PageSeeder::class);
         $this->call(PageTranslationSeeder::class);
 
+
+        $this->call(DataCitySeeder::class);
 
     }
 }

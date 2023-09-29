@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\customer;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CustomerSignUpRequest extends FormRequest
+class ProfileUpdateRequest extends FormRequest
 {
 
     public function authorize(): bool
@@ -12,15 +12,13 @@ class CustomerSignUpRequest extends FormRequest
         return true;
     }
 
-
     public function rules(): array
     {
         return [
             'name'=> "required|min:4|max:50",
             'phone'=> "numeric|min_digits:11|max_digits:11",
-            'email'=> "required|email|unique:users_customers",
-            'password'=> "required|min:8|confirmed",
-            'reg_terms'=> "accepted",
+            //'email'=> "required|email|unique:users_customers",
+            'city_id'=> "required",
         ];
 
     }
@@ -31,7 +29,6 @@ class CustomerSignUpRequest extends FormRequest
             'email.unique' => "البريد الالكترونى مسجل من قبل ",
             'phone.min_digits' => "برجاء اضافة رقم الهاتف بصورة صحيحه ",
             'phone.max_digits' => "برجاء اضافة رقم الهاتف بصورة صحيحه ",
-            'reg_terms' => "يجب الموافقة على سياسية الاستخدم ",
         ];
     }
 

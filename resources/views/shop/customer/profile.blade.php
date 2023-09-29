@@ -26,7 +26,20 @@
                                 </h3>
                             </div>
                             <div class="card-body">
-                                <form method="post">
+                                <form method="post" action="{{route('Customer_Profile_Update')}}">
+                                    <div class="row">
+
+                                        <x-mass.confirm-massage />
+{{--                                        @if(Session::has('Update'))--}}
+{{--                                            <div class="col-lg-12">--}}
+{{--                                                <div class="alert alert-success alert-dismissible">--}}
+{{--                                                    {{__('admin/alertMass.confirmAdd')}}--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        @endif--}}
+                                    </div>
+
+
                                     <div class="row">
                                         @csrf
 
@@ -64,15 +77,12 @@
                                         </div>
 
                                         <div class="form-group col-md-5 mb-3">
-                                            <label class="def_form_label col-form-label font-weight-light">
-                                                {{ __('web/customers.Profile_form_city') }}
-                                            </label>
-                                            <div class="custom_select">
-                                                <select class="form-control">
-                                                    <option value="">{{__('web/customers.Profile_form_city_sleoption')}}</option>
-                                                    <option value="ZW">الاسكندرية</option>
-                                                </select>
-                                            </div>
+                                            <x-form-select-arr-web
+                                                label="{{ __('web/customers.Profile_form_city') }}"
+                                                name="city_id" colrow="col-lg-12"
+                                                :send-arr="$cities"
+                                                :sendvalue="old('city_id',$UserProfile->city_id)" select-type="normal"
+                                            />
                                         </div>
 
                                         <div class="row">

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\customer\ProfileController;
 use App\Http\Controllers\UsersCustomersController;
 use App\Http\Controllers\UsersProfilesController;
 use App\Http\Controllers\web\ShopPageController;
@@ -54,15 +55,20 @@ Route::group(['prefix' => 'EtmanShop'], function(){
         Route::post('/logout',
             [UsersCustomersController::class, 'CustomerLogout'])->name('Customer_logout');
 
-
         Route::get('/profile',
-            [UsersProfilesController::class, 'CustomerProfile'])->name('Customer_Profile');
+            [ProfileController::class, 'ProfileView'])->name('Customer_Profile');
+
+        Route::post('/profile/update',
+            [ProfileController::class, 'ProfileUpdate'])->name('Customer_Profile_Update');
+
+
+
 
         Route::get('/profile/order',
             [UsersProfilesController::class, 'Profile_OrdersList'])->name('Profile_OrdersList');
 
         Route::get('/profile/address',
-            [UsersProfilesController::class, 'Profile_Address'])->name('Profile_Address');
+            [ProfileController::class, 'Profile_Address_List'])->name('Profile_Address');
 
         Route::get('/profile/password',
             [UsersProfilesController::class, 'Profile_ChangePassword'])->name('Profile_ChangePassword');
