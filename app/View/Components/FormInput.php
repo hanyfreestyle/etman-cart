@@ -15,6 +15,7 @@ class FormInput extends Component
     public $horizontalLabel ;
     public $colrow;
     public $dir;
+    public $passwordEdit;
 
     public function __construct(
         $type = 'text', $id = null, $name = null,
@@ -26,6 +27,7 @@ class FormInput extends Component
         $colrow ="",
         $horizontalLabel =false,
         $dir ="",
+        $passwordEdit = true,
     )
     {
         $this->type = $type;
@@ -46,6 +48,7 @@ class FormInput extends Component
         $this->horizontalLabel = $horizontalLabel;
         $this->colrow = $colrow;
         $this->dir = $dir;
+        $this->passwordEdit = $passwordEdit;
     }
 
 

@@ -147,5 +147,18 @@ Breadcrumbs::for('Customer_Login', function (BreadcrumbTrail $trail) {
     $trail->push(__('web/customers.login_breadcrumb'), route('Customer_login'));
 });
 
+Breadcrumbs::for('Customer_Register', function (BreadcrumbTrail $trail) {
+    $trail->parent('Shop_home');
+    $trail->push(__('web/customers.reg_breadcrumb'), route('Customer_Register'));
+});
+
+Breadcrumbs::for('Customer_Profile', function (BreadcrumbTrail $trail) {
+    $trail->parent('Shop_home');
+    $trail->push( __('web/customers.profile_breadcrumb'), route('Customer_Profile'));
+});
+
+
+
+
 
 

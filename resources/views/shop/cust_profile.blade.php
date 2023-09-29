@@ -5,7 +5,7 @@
         {{ Breadcrumbs::render($SinglePageView['breadcrumb']) }}
     </x-website.breadcrumb>
 @endsection
-@section('content')
+
 
 
 @section('content')
@@ -31,6 +31,8 @@
                                    @csrf
                                </form>
 
+
+                               {{ Auth::guard('customer')->user()->name }}
 
                            </div>
                        </div>

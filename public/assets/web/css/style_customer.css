@@ -1,0 +1,32 @@
+.border_top{
+    border-top: 5px solid var(--red);
+}
+
+.padding_eight_all {
+    padding: 30px 8%;
+}
+
+.def_form_label{
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.def_form_label span{
+ color: var(--red);
+}
+
+.form-note {
+    font-size: 15px!important;
+}
+
+.form-note a{
+    font-weight: bold;
+    color: var(--red);
+
+}
+.span_form_error{
+    color: var(--red);
+    font-size: 14px;
+}
+
+

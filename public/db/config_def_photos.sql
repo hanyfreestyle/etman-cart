@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 12, 2023 at 03:40 AM
+-- Generation Time: Sep 29, 2023 at 08:45 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -38,7 +38,9 @@ INSERT INTO `config_def_photos` (`id`, `cat_id`, `photo`, `photo_thum_1`, `photo
 (10, 'whatsapp', 'images/def-photo/whatsapp-rJdy3I8bAn.webp', NULL, NULL, 0, '2023-09-11 10:15:56', '2023-09-11 10:15:56'),
 (11, 'direction', 'images/def-photo/direction-HxHKFfw5Qy.webp', NULL, NULL, 0, '2023-09-11 10:36:35', '2023-09-11 10:39:29'),
 (12, 'shop_banner', 'images/def-photo/shop-banner-gkb95aTjI6.webp', NULL, NULL, 0, '2023-09-11 10:41:58', '2023-09-11 11:22:05'),
-(13, 'offer-1', 'images/def-photo/offer-1-ZEhHpqSHCu.webp', NULL, NULL, 0, '2023-09-11 21:24:36', '2023-09-11 21:28:49');
+(13, 'offer-1', 'images/def-photo/offer-1-ZEhHpqSHCu.webp', NULL, NULL, 0, '2023-09-11 21:24:36', '2023-09-11 21:28:49'),
+(14, 'form_login', 'images/def-photo/cust-login-5vzy5IZjUZ.webp', NULL, NULL, 0, '2023-09-29 00:45:03', '2023-09-29 03:16:32'),
+(15, 'form_sign_up', 'images/def-photo/form-sign-up-AlQFSq2P80.webp', NULL, NULL, 0, '2023-09-29 03:17:07', '2023-09-29 03:33:50');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

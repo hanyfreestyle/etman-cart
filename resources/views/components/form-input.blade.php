@@ -7,7 +7,6 @@
                 @endif
             </label>
         </div>
-
     @endif
     <div class="{{($horizontalLabel) ? 'col-sm-6' : '' }}">
         <input type="{{$type}}" class="{{$inputclass}} form-control @error($name) is-invalid @enderror"
@@ -28,7 +27,7 @@
                {{($required) ? 'required' : '' }}
                {{($disabled) ? 'disabled' : '' }}
                dir="auto"
-               @if($type == 'password')
+               @if($type == 'password' and $passwordEdit == true)
                autocomplete="off" readonly onfocus="this.removeAttribute('readonly');"
                @endif
         >

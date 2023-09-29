@@ -22,7 +22,7 @@ class UsersCustomersRequest extends FormRequest
     public function messages()
     {
         return [
-            'email.exists' => __('admin/config/roles.users_fr_role_selone'),
+            'email.exists' => __('web/customers.login_err_exists') ,
         ];
     }
 

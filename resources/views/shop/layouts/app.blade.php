@@ -31,7 +31,7 @@
     @if(thisCurrentLocale() == 'ar')
         <link rel="stylesheet" href="{{ defWebAssets('css/rtl-style.css') }}">
     @endif
-
+    <link rel="stylesheet" href="{{ defWebAssets('css/style_customer.css') }}">
     <link rel="stylesheet" href="{{ defWebAssets('css/custom_style.css') }}">
     <link rel="stylesheet" href="{{ defWebAssets('css/custom_'.thisCurrentLocale().'.css') }}">
     @livewireStyles

@@ -99,13 +99,18 @@
             {{ __('web/menu.footer_offer') }}
         </a>
     </div>
-    <div class="sticky-info">
-        <a href="#" class="sticky_a ">
-            <i class="fas fa-user"></i>
-            {{__('web/menu.footer_account')}}
 
-        </a>
+    <div class="sticky-info">
+        @if(Auth::guard('customer')->check())
+            <a href="{{route('Customer_Profile')}}" class="sticky_a @if($SinglePageView['SelMenu'] == 'CustomerProfile' ) active_footer @endif">
+                <i class="fas fa-user"></i>{{__('web/menu.footer_account')}}</a>
+        @else
+            <a href="{{route('Customer_login')}}" class="sticky_a @if($SinglePageView['SelMenu'] == 'CustomerProfile' ) active_footer @endif">
+                <i class="fas fa-user-lock"></i>{{__('web/menu.footer_account')}}</a>
+        @endif
     </div>
+
+
     <div class="sticky-info">
         <a href="{{ route('Shop_CartView') }}" class="sticky_a @if($SinglePageView['SelMenu'] == 'Shop_CartView' ) active_footer @endif ">
             <i class="fas fa-shopping-cart"></i>

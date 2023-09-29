@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CustomerSignUpRequest;
 use App\Http\Requests\UsersCustomersRequest;
 use App\Models\admin\Product;
 use App\Models\User;
@@ -19,7 +20,7 @@ class UsersCustomersController extends WebMainController
     )
     {
         parent::__construct();
-
+        Auth::viaRemember();
         $stopCash = 0 ;
         $ShopMenuCategory = self::getShopMenuCategory($stopCash);
         View::share('ShopMenuCategory', $ShopMenuCategory);
@@ -41,8 +42,48 @@ class UsersCustomersController extends WebMainController
         $this->SinglePageView = $SinglePageView ;
     }
 
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #
+#|||||||||||||||||||||||||||||||||||||| #     CustomerCreate
+    public function CustomerCreate(CustomerSignUpRequest $request)
+    {
+
+        $user = new UsersCustomers();
+//        $user->name = $request->input('name');
+//        $user->email =$request->input('email');
+//        $user->phone =$request->input('phone');
+//        $user->password = \Hash::make($request->password);
+//        $user->save();
+
+
+
+        $user->name = "hany";
+        //$user->email = rand(1000,50000)."name@email.com";
+        $user->email = "29038name@email.com";
+        $user->phone ="01221563252";
+        $user->password = \Hash::make("01221563252");
+
+
+        try {
+            $user->save();
+            Auth::guard('customer')->login($user);
+
+        } catch (\Exception $e) {
+            $err =  $e->getMessage();
+            return redirect()->back()->with('err',"dddddd");
+
+        }
+
+
+        return redirect()->route('Customer_Profile');
+
+
+
+    }
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| # CustomerLogin
     public function CustomerLogin()
     {
         $PageMeta = parent::getMeatByCatId('Shop_CartView');
@@ -50,27 +91,24 @@ class UsersCustomersController extends WebMainController
 
         $SinglePageView = $this->SinglePageView ;
         $SinglePageView['breadcrumb'] = "Customer_Login" ;
+        $SinglePageView['SelMenu'] = "CustomerProfile" ;
+
 
         return view('shop.cust_login',compact('SinglePageView','PageMeta'));
     }
 
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #
+#|||||||||||||||||||||||||||||||||||||| #CustomerLoginCheck
     public function CustomerLoginCheck(UsersCustomersRequest $request)
     {
+        $email = $request->input('email');
+        $password = $request->input('password');
 
-//        $credentials = $request->validate([
-//            'email' => ['required', 'email'],
-//            'password' => ['required'],
-//        ]);
-//
-//        /// dd($credentials);
-
+        $remember = ($request->input('remember')=='on')?true:false;
         $credentials  =$request->only('email',"password");
-
         if(Auth::guard('customer')->attempt($credentials)){
+            //  if(Auth::guard('customer')->attempt(['email' => $email, 'password' => $password], $remember)){
             return redirect()->route('Customer_Profile');
         }else{
             return  redirect()->route('Customer_login');
@@ -87,7 +125,8 @@ class UsersCustomersController extends WebMainController
         parent::printSeoMeta($PageMeta);
 
         $SinglePageView = $this->SinglePageView ;
-        $SinglePageView['breadcrumb'] = "Shop_Cart" ;
+        $SinglePageView['breadcrumb'] = "Customer_Register" ;
+        $SinglePageView['SelMenu'] = "CustomerProfile" ;
 
         return view('shop.cust_register',compact('SinglePageView','PageMeta'));
     }
@@ -101,22 +140,12 @@ class UsersCustomersController extends WebMainController
         parent::printSeoMeta($PageMeta);
 
         $SinglePageView = $this->SinglePageView ;
-        $SinglePageView['breadcrumb'] = "Shop_Cart" ;
+        $SinglePageView['breadcrumb'] = "Customer_Profile" ;
 
         return view('shop.cust_profile',compact('SinglePageView','PageMeta'));
     }
 
 
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     CustomerCreate
-    public function CustomerCreate(Request $request)
-    {
-        $user = new UsersCustomers();
-        $user->name = "hhhhhhh";
-        $user->email = $request->email;
-        $user->password = \Hash::make($request->password);
-        $save = $user->save();
-    }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| # CustomerLogout

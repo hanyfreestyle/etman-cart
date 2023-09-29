@@ -24,9 +24,12 @@
                    <div class="login_register_wrap section">
                        <div class="container">
                            <div class="row justify-content-center">
-                               <div class="col-xl-6 col-md-10">
-                                   <div class="login_wrap">
-                                       <div class="padding_eight_all bg-white">
+                               <div class="col-lg-4 d-none d-md-block">
+                                   <img src="{{getDefPhotoPath($DefPhotoList,'form_login')}}" alt="about_img"/>
+                               </div>
+                               <div class="col-xl-5 col-md-10 offset-md-1">
+                                   <div class="login_wrap border_top">
+                                       <div class="padding_eight_all bg-white ">
 
                                            <form method="post" action="{{route('Customer_loginCheck')}}">
                                                @csrf
@@ -38,9 +41,9 @@
 
                                                <div class="form-group mb-3">
                                                    <x-form-input label="{{__('admin/form.password')}}" name="password" :requiredSpan="true" colrow="col-lg-12"
-                                                                 value="hany.freestyle4u@gmail.com"   inputclass="dir_en"/>
+                                                                 value="hany.freestyle4u@gmail.com"  type="password"  :password-edit="false" inputclass="dir_en"/>
                                                </div>
-{{--                                               {{ old('user_password') }}--}}
+
                                                <div class="form-group mb-3">
                                                    <button type="submit" class="btn btn-fill-out btn-block" name="login">
                                                        {{ __('web/customers.login_but') }}
@@ -48,9 +51,11 @@
                                                </div>
                                            </form>
 
-                                           <div class="form-note text-center"> <a href="{{route('Customer_Register')}}">{{ __('web/customers.login_sign_up_now') }}</a>
-                                               {{__('web/customers.login_have_no')}}
-                                              </div>
+                                           <div class="form-note text-center">
+                                               <a href="{{route('Customer_Register')}}">{{ __('web/customers.login_sign_up_now') }}</a>
+                                               <span>{{__('web/customers.login_have_no')}}</span>
+                                           </div>
+
                                        </div>
                                    </div>
                                </div>
