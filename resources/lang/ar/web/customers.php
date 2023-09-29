@@ -2,12 +2,22 @@
 
 return
 [
+	'Profile_AccountDetails' => 'بيانات الحساب',
+	'Profile_Address' => 'العناوين',
+	'Profile_ChangePassword' => 'تغيير كلمة المرور',
+	'Profile_OrdersList' => 'الطلبات',
+	'Profile_form_city' => 'المحافظة',
+	'Profile_form_company_name' => 'الاسم التجارى',
+	'Profile_logout' => 'تسجيل خروج',
+	'Profile_whatsapp' => 'رقم الواتس اب',
+	'land_phone' => 'رقم التليفون الارضى',
 	'login_breadcrumb' => 'تسجيل دخول',
 	'login_but' => 'تسجيل دخول',
 	'login_err_email' => 'البريد المستخدم غير مسجل',
 	'login_err_exists' => 'البريد الالكترونى غير مسجل لدينا',
 	'login_have_no' => 'اذا كنت لا تملك حساب بالفعل',
 	'login_sign_up_now' => 'انشاء حساب جديد',
+	'profile_breadcrumb' => 'الملف الشخصي',
 	'reg_Already' => 'اذا كنت تمتلك حساب بالفعل',
 	'reg_Log_in' => 'تسجيل دخول',
 	'reg_breadcrumb' => 'تسجيل عضوية جديدة',
@@ -19,5 +29,5 @@ return
 	'reg_form_phone' => 'رقم الموبايل',
 	'reg_h1' => 'تسجيل عضوية جديدة',
 	'reg_terms' => 'اوافق على سياسية الاستخدام',
-	'profile_breadcrumb' => 'الملف الشخصي',
+	'Profile_form_city_sleoption' => 'برجاء تحديد المحافظة',
 ];

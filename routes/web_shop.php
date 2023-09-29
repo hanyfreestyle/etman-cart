@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UsersCustomersController;
+use App\Http\Controllers\UsersProfilesController;
 use App\Http\Controllers\web\ShopPageController;
 use Illuminate\Support\Facades\Route;
 
@@ -49,11 +50,23 @@ Route::group(['prefix' => 'EtmanShop'], function(){
 
 
     Route::middleware('auth:customer')->group(function (){
-            Route::get('/profile',
-                [UsersCustomersController::class, 'CustomerProfile'])->name('Customer_Profile');
 
         Route::post('/logout',
             [UsersCustomersController::class, 'CustomerLogout'])->name('Customer_logout');
+
+
+        Route::get('/profile',
+            [UsersProfilesController::class, 'CustomerProfile'])->name('Customer_Profile');
+
+        Route::get('/profile/order',
+            [UsersProfilesController::class, 'Profile_OrdersList'])->name('Profile_OrdersList');
+
+        Route::get('/profile/address',
+            [UsersProfilesController::class, 'Profile_Address'])->name('Profile_Address');
+
+        Route::get('/profile/password',
+            [UsersProfilesController::class, 'Profile_ChangePassword'])->name('Profile_ChangePassword');
+
 
 
     });

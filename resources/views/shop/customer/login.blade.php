@@ -5,17 +5,10 @@
         {{ Breadcrumbs::render($SinglePageView['breadcrumb']) }}
     </x-website.breadcrumb>
 @endsection
+
+
+
 @section('content')
-
-
-@section('content')
-
-   <x-html-section>
-
-
-
-   </x-html-section>
-
 
    <section class="div_data">
        <div class="container-fluid">
@@ -36,12 +29,12 @@
 
                                                <div class="form-group mb-3">
                                                    <x-form-input label="{{__('admin/config/roles.users_fr_email')}}" name="email" :requiredSpan="true" colrow="col-lg-12"
-                                                                 value="hany.freestyle4u@gmail.com" inputclass="dir_en"/>
+                                                                 value="29038name@email.com" inputclass="dir_en"/>
                                                </div>
 
                                                <div class="form-group mb-3">
                                                    <x-form-input label="{{__('admin/form.password')}}" name="password" :requiredSpan="true" colrow="col-lg-12"
-                                                                 value="hany.freestyle4u@gmail.com"  type="password"  :password-edit="false" inputclass="dir_en"/>
+                                                                 value="01221563252"  type="password"  :password-edit="false" inputclass="dir_en"/>
                                                </div>
 
                                                <div class="form-group mb-3">

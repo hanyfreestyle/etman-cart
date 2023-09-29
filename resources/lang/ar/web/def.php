@@ -16,6 +16,8 @@ return
 	'but_search' => 'بحث',
 	'lable_Category' => 'القسم :',
 	'lable_SKU' => 'المعرف :',
-	'read_more' => 'اقرأ المزيد',
 	'products' => 'المنتجات',
+	'read_more' => 'اقرأ المزيد',
+	'but_update' => 'تحديث',
+	'but_add' => 'اضافة',
 ];

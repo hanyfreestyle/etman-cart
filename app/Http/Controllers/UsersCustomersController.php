@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CustomerSignUpRequest;
 use App\Http\Requests\UsersCustomersRequest;
 use App\Models\admin\Product;
-use App\Models\User;
 use App\Models\UsersCustomers;
 
 use Illuminate\Http\Request;
@@ -94,7 +93,7 @@ class UsersCustomersController extends WebMainController
         $SinglePageView['SelMenu'] = "CustomerProfile" ;
 
 
-        return view('shop.cust_login',compact('SinglePageView','PageMeta'));
+        return view('shop.customer.login',compact('SinglePageView','PageMeta'));
     }
 
 
@@ -128,34 +127,15 @@ class UsersCustomersController extends WebMainController
         $SinglePageView['breadcrumb'] = "Customer_Register" ;
         $SinglePageView['SelMenu'] = "CustomerProfile" ;
 
-        return view('shop.cust_register',compact('SinglePageView','PageMeta'));
+        return view('shop.customer.register',compact('SinglePageView','PageMeta'));
     }
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #  CustomerProfile
-#
-    public function CustomerProfile()
-    {
-        $PageMeta = parent::getMeatByCatId('Shop_CartView');
-        parent::printSeoMeta($PageMeta);
-
-        $SinglePageView = $this->SinglePageView ;
-        $SinglePageView['breadcrumb'] = "Customer_Profile" ;
-
-        return view('shop.cust_profile',compact('SinglePageView','PageMeta'));
-    }
-
-
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| # CustomerLogout
-
     public function CustomerLogout()
     {
         Auth::guard('customer')->logout();
         return redirect()->route('Shop_HomePage');
-
     }
-
 
 }

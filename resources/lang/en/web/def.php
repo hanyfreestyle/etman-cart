@@ -16,6 +16,8 @@ return
 	'but_search' => 'Search',
 	'lable_Category' => 'Category :',
 	'lable_SKU' => 'SKU',
-	'read_more' => 'Read More',
 	'products' => 'Products',
+	'read_more' => 'Read More',
+	'but_update' => 'تحديث',
+	'but_add' => 'اضافة',
 ];

@@ -1,5 +1,5 @@
 .border_top{
-    border-top: 5px solid var(--red);
+    border-top: 5px solid var(--red)!important;
 }
 
 .padding_eight_all {
@@ -27,6 +27,26 @@
 .span_form_error{
     color: var(--red);
     font-size: 14px;
+}
+
+
+
+.profileCard h3{
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--red);
+    padding-top: 4px;
+    padding-bottom: 4px;
+
+
+}
+
+.profileCard .card_but button{
+    float: left;
+    margin-left:0px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+
 }
 
 
