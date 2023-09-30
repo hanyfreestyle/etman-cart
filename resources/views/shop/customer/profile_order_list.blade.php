@@ -28,35 +28,52 @@
                         <div class="container mt-3">
                             <div class="row">
                                 <div class="col-12">
-                                    <div class="table-responsive shop_cart_table">
-                                        <table class="table">
-                                            <thead>
-                                            <tr>
+                                    @if(count($orders) > 0 )
+                                        <div class="table-responsive shop_cart_table">
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <th class="product-price">{{__('web/orders.title_num')}}</th>
+                                                    <th class="product-quantity">{{__('web/orders.title_date')}}</th>
+                                                    <th class="product-subtotal">{{__('web/orders.title_status')}}</th>
+                                                    <th class="product-subtotal">{{__('web/orders.title_total')}}</th>
+                                                    <th class="product-remove">{{__('web/orders.title_view')}}</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
 
-                                                <th class="product-price">{{__('web/orders.title_num')}}</th>
-                                                <th class="product-quantity">{{__('web/orders.title_date')}}</th>
-                                                <th class="product-subtotal">{{__('web/orders.title_status')}}</th>
-                                                <th class="product-subtotal">{{__('web/orders.title_total')}}</th>
-                                                <th class="product-remove">{{__('web/orders.title_view')}}</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
+                                                @foreach($orders as $order)
+                                                    <tr class="tr_orders">
+                                                        <td class="product-price" data-title="{{__('web/orders.title_num')}}">
+                                                            {{ $order->id+1000 }}#
+                                                        </td>
+                                                        <td class="product-price" data-title="{{__('web/orders.title_date')}}">
+                                                            {{ $order->getFormatteDate() }}
+                                                        </td>
+                                                        <td class="product-subtotal" data-title="{{__('web/orders.title_status')}}">
+                                                            {!! \App\Helpers\AdminHelper::getOrderStatus($order->status,'but') !!}
+                                                        </td>
 
+                                                        <td class="product-subtotal" data-title="{{__('web/orders.title_total')}}">
+                                                            {{ $order->total }}  {{__('web/cart.EGP')}}
+                                                        </td>
+                                                        <td class="product-remove last_td" data-title="{{__('web/orders.title_view')}}">
+                                                            <a href="#"><i class="fas fa-search"></i></a></td>
+                                                    </tr>
+                                                @endforeach
 
-
-                                                <td class="product-price" data-title="{{__('web/orders.title_num')}}">$45.00</td>
-                                                <td class="product-price" data-title="{{__('web/orders.title_date')}}">$45.00</td>
-                                                <td class="product-subtotal" data-title="{{__('web/orders.title_status')}}">$90.00</td>
-                                                <td class="product-subtotal" data-title="{{__('web/orders.title_total')}}">$90.00</td>
-                                                <td class="product-remove" data-title="{{__('web/orders.title_view')}}"><a href="#"><i class="fas fa-search"></i></a></td>
-                                            </tr>
-
-
-                                            </tbody>
-
-                                        </table>
-                                    </div>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    @else
+                                        <div class="row mt-3">
+                                            <div class="col-lg-12">
+                                                <div class="alert alert-warning alert-dismissible">
+                                                     لا توجد طلبات متوفرة حتى الان
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>

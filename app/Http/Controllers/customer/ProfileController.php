@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\customer;
 
 use App\Http\Controllers\Controller;
+use App\Models\shopping\ShoppingOrder;
+use App\Models\shopping\ShoppingOrderAddress;
 use Illuminate\Http\Request;
 use App\Http\Controllers\WebMainController;
 use App\Http\Requests\customer\ProfileAddressAddRequest;
@@ -245,7 +247,7 @@ class ProfileController extends WebMainController
     public function Profile_ChangePasswordUpdate(ProfilePasswordUpdateRequest $request)
     {
         $UserProfile = Auth::guard('customer')->user();
-        $SessionKey = 'changeTry_'.$UserProfile->id ;
+
 
         $SinglePageView = $this->SinglePageView ;
         $SinglePageView['profileMenu'] = "ChangePassword" ;
@@ -273,11 +275,41 @@ class ProfileController extends WebMainController
     public function Profile_OrdersList()
     {
 
+//        $address = UsersCustomersAddress::with('city')->inRandomOrder()->first();
+//
+//
+//        $newAddress = new ShoppingOrderAddress ;
+//
+//        $newAddress->name = $address->name ;
+//        $newAddress->city = $address->city->name ;
+//        $newAddress->address = $address->address ;
+//        $newAddress->recipient_name = $address->recipient_name ;
+//        $newAddress->phone = $address->phone ;
+//        $newAddress->phone_option = $address->phone_option ;
+//        $newAddress->save();
+//
+//        $newOrder = new ShoppingOrder ;
+//        $newOrder->customer_id = 1 ;
+//        $newOrder->address_id = $newAddress->id ;
+//        $newOrder->uuid = Str::uuid()->toString() ;
+//        $newOrder->order_date = now() ;
+//        $newOrder->status = rand(1,5) ;
+//        $newOrder->total = rand(1000,10000);
+//        $newOrder->save();
+
+
+
         $SinglePageView = $this->SinglePageView ;
         $SinglePageView['profileMenu'] = "OrdersList" ;
 
         $UserProfile = Auth::guard('customer')->user();
-        return view('shop.customer.profile_order_list', compact('SinglePageView','UserProfile')
+
+        $orders = ShoppingOrder::query()
+            ->where('customer_id',$UserProfile->id)
+            ->orderBy('order_date')
+            ->paginate(12)
+        ;
+        return view('shop.customer.profile_order_list', compact('SinglePageView','UserProfile','orders')
         );
     }
 

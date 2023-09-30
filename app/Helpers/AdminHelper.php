@@ -554,4 +554,52 @@ class AdminHelper{
     }
 
 
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #  Table_Header_Style
+    static function getOrderStatus($status,$getVal="text",$sendArr=array())
+    {
+        switch ($status){
+            case "1":
+                $data = [
+                    'text' => 'قيد المراجعة',
+                    'but' => '<span class="order_status_but alert-warning">قيد المراجعة</span>',
+                ];
+                break;
+
+            case "2":
+                $data = [
+                    'text' => 'جارى تجهيز الطلب ',
+                    'but' => '<span class="order_status_but alert-info">جارى تجهيز الطلب </span>',
+                ];
+                break;
+
+            case "3":
+                $data = [
+                    'text' => 'تم التسليم',
+                    'but' => '<span class="order_status_but alert-success">تم التسليم</span>',
+                ];
+                break;
+
+            case "4":
+                $data = [
+                    'text' =>  'مرفوض',
+                    'but' => '<span class="order_status_but alert-danger">مرفوض</span>',
+                ];
+                break;
+
+            case "5":
+                $data = [
+                    'text' =>  'تم الالغاء ',
+                    'but' => '<span class="order_status_but alert-dark">تم الالغاء</span>',
+                ];
+                break;
+
+        }
+        return $data[$getVal] ;
+
+    }
+
+
+
 }
