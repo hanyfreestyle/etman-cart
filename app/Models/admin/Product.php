@@ -114,8 +114,8 @@ class Product extends Model implements TranslatableContract
 
     public function discount_price()
     {
-        if(intval($this->price) > 0 and intval($this->discount_price) <  intval($this->price) ){
-            return  '<del>'.number_format($this->discount_price).' <span class="currency">'.__('web/cart.EGP').'</span></del>' ;
+        if(intval($this->price) > 0 and intval($this->sale_price) <  intval($this->price) ){
+            return  '<del>'.number_format($this->sale_price).' <span class="currency">'.__('web/cart.EGP').'</span></del>' ;
         }
     }
 
@@ -124,9 +124,9 @@ class Product extends Model implements TranslatableContract
 
     public function CartPriceToAdd()
     {
-        if(intval($this->price) > 0 and intval($this->discount_price) != 0
-            and intval($this->discount_price) <  intval($this->price) ){
-            return $this->discount_price ;
+        if(intval($this->price) > 0 and intval($this->sale_price) != 0
+            and intval($this->sale_price) <  intval($this->price) ){
+            return $this->sale_price ;
         }else{
             return $this->price ;
         }

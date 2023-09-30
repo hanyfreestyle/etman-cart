@@ -18,8 +18,9 @@ return new class extends Migration
 
             $table->uuid()->unique();
             $table->dateTime('order_date');
-            $table->boolean("status")->default(0);
+            $table->boolean("status")->default(1);
             $table->float('total')->default(0);
+            $table->text('notes')->nullable();
 
             $table->softDeletes();
             $table->timestamps();

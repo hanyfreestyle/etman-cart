@@ -33,6 +33,7 @@ Route::group(['prefix' => 'EtmanShop'], function(){
         [ShopPageController::class, 'CartView'])->name('Shop_CartView');
 
 
+
     Route::middleware(['guest:customer'])->group(function (){
 
         Route::get('/login',
@@ -91,10 +92,11 @@ Route::group(['prefix' => 'EtmanShop'], function(){
             [ProfileController::class, 'Profile_OrdersList'])->name('Profile_OrdersList');
 
 
+        Route::get('/CartConfirm',
+            [ShopPageController::class, 'CartConfirm'])->name('Shop_CartConfirm');
 
-
-
-
+        Route::post('/CartOrderSave',
+            [ShopPageController::class, 'CartOrderSave'])->name('Shop_CartOrderSave');
 
 
     });

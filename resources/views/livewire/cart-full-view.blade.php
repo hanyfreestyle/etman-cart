@@ -99,20 +99,35 @@
                         </div>
 
 
-{{--                        @foreach($CartList as $ProductCart)--}}
-{{--                            --}}
-{{--                        @endforeach--}}
-
-{{--                        {!! nl2br($Mass) !!}--}}
                         <div class="row">
                             <div class="col-md-12 text-left Confirm_Order">
-                                <a href="#" class="btn btn-fill-out float-right ml-5"><i class="fas fa-shopping-cart"></i> {{__('web/cart.Confirm_Order')}}</a>
+                                @if(Auth::guard('customer')->check())
+                                    <span>
+                                    <a href="{{route('Shop_CartConfirm')}}" class="btn btn-fill-out float-right ml-5 mb-2 mt-2 mt-lg-3">
+                                        <i class="fas fa-shopping-cart"></i> {{__('web/cart.Confirm_Order')}}
+                                    </a>
+                                         </span>
 
-                                <a href="https://api.whatsapp.com/send?phone=201208256945&text={!! $Mass !!}" class="btn btn-whatsapp ml-5">
-                                    <i class="fab fa-whatsapp"></i> {{__('web/cart.Confirm_Order_whatsapp')}}</a>
+{{--                                    <span>--}}
+{{--                                    <a href="https://api.whatsapp.com/send?phone=201208256945&text={!! $Mass !!}" class="btn btn-whatsapp ml-5 mt-lg-3 mt-2">--}}
+{{--                                        <i class="fab fa-whatsapp"></i> {{__('web/cart.Confirm_Order_whatsapp')}}--}}
+{{--                                    </a>--}}
+{{--                                         </span>--}}
+                                @else
+                                    <span>
+                                        <a href="{{route('Customer_login')}}" class="btn btn-fill-out ml-5 mb-2 mt-2 mt-lg-3">
+                                            <i class="fas fa-lock"></i> {{__('web/cart.confirm_order_but_login')}}
+                                        </a>
+                                    </span>
+
+                                    <span>
+                                         <a href="{{route('Customer_Register')}}" class="btn btn-dark ml-5 mt-lg-3 mt-2">
+                                            <i class="fas fa-user-check"></i> {{__('web/cart.confirm_order_but_register')}}
+                                        </a>
+                                    </span>
+
+                                @endif
                             </div>
-
-
                         </div>
 
                     </div>

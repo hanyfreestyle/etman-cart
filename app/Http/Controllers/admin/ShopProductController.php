@@ -174,6 +174,7 @@ class ShopProductController extends AdminMainController
     public function storeUpdate(ShopProductRequest $request, $id=0)
     {
 
+
         $categories = $request->input('categories');
 
         $saveData =  Product::findOrNew($id);
@@ -184,6 +185,20 @@ class ShopProductController extends AdminMainController
 
         $saveData->pro_shop = $request->input('pro_shop');
         $saveData->pro_web = $request->input('pro_web');
+
+
+        $saveData->price = $request->input('price');
+        $saveData->sale_price = $request->input('sale_price');
+        $saveData->qty_left = $request->input('qty_left');
+        $saveData->qty_max = $request->input('qty_max');
+        $saveData->unit = $request->input('unit');
+
+
+
+
+
+
+
         $saveData->save();
         $saveData->ProductWithCategory()->sync($categories);
 
@@ -217,7 +232,9 @@ class ShopProductController extends AdminMainController
             }
 
         }else{
-            return redirect(route($this->PrefixRoute.'.index'))->with('Edit.Done',"");
+
+         //   return redirect()->back();
+             return redirect(route($this->PrefixRoute.'.index'))->with('Edit.Done',"");
         }
     }
 

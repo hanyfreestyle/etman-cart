@@ -49,7 +49,7 @@ class CartAddButton extends Component
                 'ref_code' => $Product->ref_code,
                 'ref_code_name' =>Str::limit($Product->name,10).$Product->ref_code,
             ]
-        );
+        )->associate('App\Models\admin\Product');
         $this->emit('cart_updated');
     }
 

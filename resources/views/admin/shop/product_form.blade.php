@@ -53,7 +53,67 @@
 
                 <hr>
                 <div class="row">
-                    <x-basic-name-with-slug :row-data="$Product" :page-data="$pageData" col="col-lg-6" />
+                    <div class="col-lg-6">
+                        <x-basic-name-with-slug :row-data="$Product" :page-data="$pageData" col="col-lg-12" />
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <x-form-input
+                                label="الوحدة"
+                                :required-span="false"
+                                colrow="col-lg-4"
+                                name="unit"
+                                value="{{old('unit',$Product->unit)}}"
+                            />
+
+                            <x-form-input
+                                label="اقصى كمية للطلب"
+                                :required-span="false"
+                                colrow="col-lg-4"
+                                name="qty_max"
+                                value="{{old('qty_max',$Product->qty_max)}}"
+                            />
+
+                            <x-form-input
+                                label="الكمية المتاحة"
+                                :required-span="false"
+                                colrow="col-lg-4"
+                                name="qty_left"
+                                value="{{old('qty_left',$Product->qty_left)}}"
+                            />
+                        </div>
+
+                        <div class="row">
+
+
+                            <x-form-input
+                                label="السعر"
+                                :required-span="false"
+                                colrow="col-lg-6"
+                                name="price"
+                                value="{{old('price',$Product->price)}}"
+                            />
+
+                            <x-form-input
+                                label="السعر فى حالة الخصم"
+                                :required-span="false"
+                                colrow="col-lg-6"
+                                name="sale_price"
+                                value="{{old('sale_price',$Product->sale_price)}}"
+                            />
+
+
+
+
+                        </div>
+
+
+
+
+                    </div>
+
+
                 </div>
 
 

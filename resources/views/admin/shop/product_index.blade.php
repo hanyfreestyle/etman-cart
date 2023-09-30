@@ -30,8 +30,9 @@
 
 
                             <th class="TD_50">{{ __('admin/shop.pro_price') }}</th>
-                            <th class="TD_50">{{ __('admin/shop.pro_discount_price') }}</th>
+                            <th class="TD_100">{{ __('admin/shop.pro_discount_price') }}</th>
                             <th class="TD_50">{{ __('admin/shop.pro_qty') }}</th>
+                            <th class="TD_100">{{ __('admin/shop.pro_qty_max') }}</th>
 
 
                             <th class="tbutaction TD_50"></th>
@@ -64,8 +65,9 @@
 
 
                                 <td class="tc">{{ $Product->price}}</td>
-                                <td class="tc">{{ $Product->discount_price}}</td>
-                                <td class="tc">{{$Product->qty}}</td>
+                                <td class="tc">{{ $Product->sale_price}}</td>
+                                <td class="tc">{{$Product->qty_left}}</td>
+                                <td class="tc">{{$Product->qty_max}}</td>
 
                                 <td class="tc" >{!! is_active($Product->is_active) !!}</td>
                                 @can($PrefixRole.'_edit')

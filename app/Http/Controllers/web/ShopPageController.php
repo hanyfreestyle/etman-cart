@@ -4,11 +4,14 @@ namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\WebMainController;
+use App\Http\Requests\shopping\ShoppingOrderSaveRequest;
 use App\Models\admin\Category;
 use App\Models\admin\FaqCategory;
 use App\Models\admin\Product;
+use App\Models\customer\UsersCustomersAddress;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 
@@ -323,19 +326,47 @@ class ShopPageController extends WebMainController
 
 
 
+
+
+
         $SinglePageView = $this->SinglePageView ;
         $SinglePageView['SelMenu'] = 'Shop_CartView' ;
-//        $SinglePageView['banner_id'] = $PageMeta->banner_id ;
-//        $SinglePageView['banner_count'] = $PageMeta->page_banner_count ;
-//        $SinglePageView['banner_list'] = $PageMeta->PageBanner ;
         $SinglePageView['breadcrumb'] = "Shop_Cart" ;
 
-        $FaqCategories = FaqCategory::defWeb()->paginate(12);
 
-        return view('shop.product.cart',compact('SinglePageView','PageMeta','FaqCategories'));
+
+        return view('shop.product.cart',compact('SinglePageView','PageMeta'));
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     CartConfirm
+    public function CartConfirm()
+    {
+        $PageMeta = parent::getMeatByCatId('Shop_CartView');
+        parent::printSeoMeta($PageMeta);
+
+        $UserProfile = Auth::guard('customer')->user();
+        $addresses = UsersCustomersAddress::where('customer_id',$UserProfile->id)->get();
+
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['SelMenu'] = 'Shop_CartView' ;
+        $SinglePageView['breadcrumb'] = "Shop_Cart" ;
+
+        $CartList =  Cart::content();
+        $subtotal =  Cart::subtotal();
+
+        return view('shop.product.cart_confirm',
+            compact('SinglePageView','PageMeta','addresses','CartList','subtotal'));
     }
 
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #
+    public function CartOrderSave(ShoppingOrderSaveRequest $request)
+    {
+        dd('hi');
+    }
 
 
 

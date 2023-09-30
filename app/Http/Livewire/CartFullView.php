@@ -12,12 +12,14 @@ class CartFullView extends Component
         $CartList =  Cart::content();
         $subtotal =  Cart::subtotal();
 
+       // dd($CartList);
+
         $Mass = "";
         $Brek = "%0a";
         ///$Brek = '<br/>';
 
         foreach ($CartList as $ProductCart){
-           // dd($ProductCart);
+           // dd($ProductCart->model->qty_left);
            /// $Mass .= $ProductCart->name.$Brek ;
             $Mass .= $ProductCart->options->ref_code_name.$Brek ;
             $Mass .= $ProductCart->price."x".$ProductCart->qty.$Brek ;

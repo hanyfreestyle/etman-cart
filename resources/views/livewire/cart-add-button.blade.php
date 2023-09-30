@@ -1,4 +1,5 @@
 <div>
+
     <div wire:loading>
         <div style="position: absolute; z-index: 999999; background: yellowgreen; display: block; top: 0; left: 0; width: 10px; height: 100%">
             Processing Payment...
@@ -9,14 +10,20 @@
     </div>
 
     @if($cart->where('id', $product->id)->count())
+
         <div class="update_Cart_wrap">
-            <div class="increaseProduct">
-                <form wire:submit.prevent="increaseProduct({{$product->id}})" method="post">
-                    <button type="submit" class="btn btn-sm btn-fill-out">+</button>
-                </form>
-            </div>
+            @if($cart->where('id', $product->id)->first()->qty < $product->qty_left )
+                @if($cart->where('id', $product->id)->first()->qty < $product->qty_max )
+                    <div class="increaseProduct">
+                        <form wire:submit.prevent="increaseProduct({{$product->id}})" method="post">
+                            <button type="submit" class="btn btn-sm btn-fill-out">+</button>
+                        </form>
+                    </div>
+                @endif
+            @endif
+
             <div class="product_qty">
-                 {{$cart->where('id', $product->id)->first()->qty}}
+                {{$cart->where('id', $product->id)->first()->qty}}
             </div>
 
             <div class="increaseProduct">

@@ -693,9 +693,21 @@
 }
 
 
-.Confirm_Order a{
-    float: left!important;
-    margin-right: 20px!important;
+.Confirm_Order a {
+    float: left !important;
+    margin-right: 20px !important;
+}
+
+@media only screen and (max-width: 767px) {
+
+    .Confirm_Order span {
+        text-align: center;
+        display: inline-block;
+        width: 100%;
+    }
+    .Confirm_Order a {
+        float: none !important;
+    }
 
 }
 
@@ -829,4 +841,31 @@
 
 .etman_sticky_navbar .sticky-info .active_footer i {
     color: #ffffff!important;
+}
+
+
+.section_confirm{
+    padding-right: 25px;
+    padding-left: 25px;
+
+}
+
+
+.confirm_product_qty{
+    font-family: 'Poppins', sans-serif!important; font-size:14px;
+
+
+
+}
+.confirm_name{
+    display: inline-block;
+    max-width: 90%!important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 14px;
+
+
+
+
 }
