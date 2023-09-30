@@ -32,22 +32,24 @@
                                         <table class="table">
                                             <thead>
                                             <tr>
-                                                <th class="product-name">Product</th>
-                                                <th class="product-price">Price</th>
-                                                <th class="product-quantity">Quantity</th>
-                                                <th class="product-subtotal">Total</th>
-                                                <th class="product-remove">Remove</th>
+
+                                                <th class="product-price">{{__('web/orders.title_num')}}</th>
+                                                <th class="product-quantity">{{__('web/orders.title_date')}}</th>
+                                                <th class="product-subtotal">{{__('web/orders.title_status')}}</th>
+                                                <th class="product-subtotal">{{__('web/orders.title_total')}}</th>
+                                                <th class="product-remove">{{__('web/orders.title_view')}}</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             <tr>
 
-                                                <td class="product-name" data-title="Product"><a href="#">Blue Dress For Woman</a></td>
-                                                <td class="product-price" data-title="Price">$45.00</td>
-                                                <td class="product-price" data-title="Price">$45.00</td>
 
-                                                <td class="product-subtotal" data-title="Total">$90.00</td>
-                                                <td class="product-remove" data-title="Remove"><a href="#"><i class="fas fa-search"></i></a></td>
+
+                                                <td class="product-price" data-title="{{__('web/orders.title_num')}}">$45.00</td>
+                                                <td class="product-price" data-title="{{__('web/orders.title_date')}}">$45.00</td>
+                                                <td class="product-subtotal" data-title="{{__('web/orders.title_status')}}">$90.00</td>
+                                                <td class="product-subtotal" data-title="{{__('web/orders.title_total')}}">$90.00</td>
+                                                <td class="product-remove" data-title="{{__('web/orders.title_view')}}"><a href="#"><i class="fas fa-search"></i></a></td>
                                             </tr>
 
 
@@ -59,37 +61,7 @@
                             </div>
                         </div>
 
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th>Order</th>
-                                        <th>Date</th>
-                                        <th>Status</th>
-                                        <th>Total</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>#1234</td>
-                                        <td>March 15, 2020</td>
-                                        <td>Processing</td>
-                                        <td>$78.00 for 1 item</td>
-                                        <td><a href="#" class="btn btn-fill-out btn-sm">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>#2366</td>
-                                        <td>June 20, 2020</td>
-                                        <td>Completed</td>
-                                        <td>$81.00 for 1 item</td>
-                                        <td><a href="#" class="btn btn-fill-out btn-sm">View</a></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+
 
 
                     </div>

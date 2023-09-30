@@ -30,6 +30,7 @@ return [
         '11'=> ['id'=> '11' , 'group'=>'web' , 'sub_dir'=> null , 'file_name'=> 'product','name'=>'Product' ],
         '12'=> ['id'=> '12' , 'group'=>'web' , 'sub_dir'=> null , 'file_name'=> 'customers','name'=>'Customers' ],
         '13'=> ['id'=> '13' , 'group'=>'web' , 'sub_dir'=> null , 'file_name'=> 'user_address','name'=>'Customer Address' ],
+        '14'=> ['id'=> '14' , 'group'=>'web' , 'sub_dir'=> null , 'file_name'=> 'orders','name'=>'Customer Orders' ],
 
     ],
 

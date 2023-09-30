@@ -268,11 +268,6 @@ class ProfileController extends WebMainController
 
     }
 
-
-
-
-
-
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     Profile_OrdersList
     public function Profile_OrdersList()
@@ -282,8 +277,7 @@ class ProfileController extends WebMainController
         $SinglePageView['profileMenu'] = "OrdersList" ;
 
         $UserProfile = Auth::guard('customer')->user();
-        return view('shop.customer.profile_order_list',
-            compact('SinglePageView','UserProfile')
+        return view('shop.customer.profile_order_list', compact('SinglePageView','UserProfile')
         );
     }
 
