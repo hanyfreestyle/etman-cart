@@ -33,4 +33,13 @@
 @endif
 
 
+@if(Session::has('Error'))
+    <div class="col-lg-12">
+        <div class="alert alert-danger alert-dismissible">
+            {{ Session('Error') }}
+        </div>
+    </div>
+@endif
+
+
 

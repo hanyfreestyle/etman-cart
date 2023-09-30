@@ -26,15 +26,18 @@
 
                                            <form method="post" action="{{route('Customer_loginCheck')}}">
                                                @csrf
+                                               <div class="row">
+                                                   <x-mass.confirm-massage/>
+                                               </div>
 
                                                <div class="form-group mb-3">
                                                    <x-form-input label="{{__('admin/config/roles.users_fr_email')}}" name="email" :requiredSpan="true" colrow="col-lg-12"
-                                                                 value="29038name@email.com" inputclass="dir_en"/>
+                                                                 value="etman@etman.com" inputclass="dir_en"/>
                                                </div>
 
                                                <div class="form-group mb-3">
                                                    <x-form-input label="{{__('admin/form.password')}}" name="password" :requiredSpan="true" colrow="col-lg-12"
-                                                                 value="01221563252"  type="password"  :password-edit="false" inputclass="dir_en"/>
+                                                                 value="12345678"  type="password"  :password-edit="false" inputclass="dir_en"/>
                                                </div>
 
                                                <div class="form-group mb-3">

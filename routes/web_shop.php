@@ -76,7 +76,7 @@ Route::group(['prefix' => 'EtmanShop'], function(){
         Route::post('/profile/address/save',
             [ProfileController::class, 'Profile_Address_Save'])->name('Profile_Address_Save');
 
-        Route::get('/profile/address/edit/{uuid}',
+        Route::get('/profile/address/edit/{uuid:uuid}',
             [ProfileController::class, 'Profile_Address_Edit'])->name('Profile_Address_Edit');
 
         Route::post('/profile/address/update/{uuid}',
@@ -88,9 +88,10 @@ Route::group(['prefix' => 'EtmanShop'], function(){
 
 
         Route::get('/profile/password',
-            [UsersProfilesController::class, 'Profile_ChangePassword'])->name('Profile_ChangePassword');
+            [ProfileController::class, 'Profile_ChangePassword'])->name('Profile_ChangePassword');
 
-
+        Route::post('/profile/password/update',
+            [ProfileController::class, 'Profile_ChangePasswordUpdate'])->name('Profile_ChangePasswordUpdate');
 
     });
 

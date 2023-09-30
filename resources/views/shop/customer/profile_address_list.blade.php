@@ -25,6 +25,9 @@
                                 </h3>
                             </div>
                         </div>
+                        <div class="row mt-3">
+                            <x-mass.confirm-massage/>
+                        </div>
                         <div class="row">
 
                             @if($customer->addresses_count > 0)

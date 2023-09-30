@@ -7,6 +7,7 @@ return
 	'Profile_ChangePassword' => '',
 	'Profile_OrdersList' => '',
 	'Profile_form_city' => '',
+	'Profile_form_city_sleoption' => '',
 	'Profile_form_company_name' => '',
 	'Profile_logout' => '',
 	'Profile_whatsapp' => '',
@@ -28,5 +29,6 @@ return
 	'reg_form_phone' => '',
 	'reg_h1' => 'تسجيل عضوية جديدة',
 	'reg_terms' => '',
-	'Profile_form_city_sleoption' => '',
+	'Profile_ChangePassword_fr_new' => '',
+	'Profile_ChangePassword_fr_old' => '',
 ];

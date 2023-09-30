@@ -7,6 +7,7 @@ return
 	'Profile_ChangePassword' => 'تغيير كلمة المرور',
 	'Profile_OrdersList' => 'الطلبات',
 	'Profile_form_city' => 'المحافظة',
+	'Profile_form_city_sleoption' => 'برجاء تحديد المحافظة',
 	'Profile_form_company_name' => 'الاسم التجارى',
 	'Profile_logout' => 'تسجيل خروج',
 	'Profile_whatsapp' => 'رقم الواتس اب',
@@ -29,5 +30,6 @@ return
 	'reg_form_phone' => 'رقم الموبايل',
 	'reg_h1' => 'تسجيل عضوية جديدة',
 	'reg_terms' => 'اوافق على سياسية الاستخدام',
-	'Profile_form_city_sleoption' => 'برجاء تحديد المحافظة',
+	'Profile_ChangePassword_fr_new' => 'كلمة المرور الجديدة',
+	'Profile_ChangePassword_fr_old' => 'كلمة المرور الحالية',
 ];

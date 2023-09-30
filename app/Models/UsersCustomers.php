@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\customer\UsersCustomersAddress;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -77,4 +78,8 @@ class UsersCustomers extends Authenticatable
             ->orderBy('is_default','desc');
     }
 
+    public function scopeDef(Builder $query): Builder
+    {
+        return $query->where('status',1)->where('is_active',1);
+    }
 }

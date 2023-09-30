@@ -58,7 +58,7 @@ class UsersCustomersController extends WebMainController
         return view('shop.customer.login',compact('SinglePageView','PageMeta'));
     }
 
-    
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     CustomerCreate
     public function CustomerCreate(CustomerSignUpRequest $request)
@@ -112,7 +112,7 @@ class UsersCustomersController extends WebMainController
             //  if(Auth::guard('customer')->attempt(['email' => $email, 'password' => $password], $remember)){
             return redirect()->route('Customer_Profile');
         }else{
-            return  redirect()->route('Customer_login');
+            return  redirect()->route('Customer_login')->with('Error',"البيانات غير صحيحة او عضويتك غير مفعله ");
         }
 
     }
