@@ -32,12 +32,12 @@
 
                                                <div class="form-group mb-3">
                                                    <x-form-input label="{{__('admin/config/roles.users_fr_email')}}" name="email" :requiredSpan="true" colrow="col-lg-12"
-                                                                 value="etman@etman.com" inputclass="dir_en"/>
+                                                                 value="etmano@hotmail.com" inputclass="dir_en"/>
                                                </div>
 
                                                <div class="form-group mb-3">
                                                    <x-form-input label="{{__('admin/form.password')}}" name="password" :requiredSpan="true" colrow="col-lg-12"
-                                                                 value="12345678"  type="password"  :password-edit="false" inputclass="dir_en"/>
+                                                                 value="01223129660"  type="password"  :password-edit="false" inputclass="dir_en"/>
                                                </div>
 
                                                <div class="form-group mb-3">

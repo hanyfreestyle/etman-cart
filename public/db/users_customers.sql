@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2023 at 11:19 PM
+-- Generation Time: Oct 01, 2023 at 02:52 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 --
 
 INSERT INTO `users_customers` (`id`, `name`, `company_name`, `email`, `phone`, `whatsapp`, `land_phone`, `city_id`, `status`, `is_active`, `photo`, `photo_thum_1`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'احمد عتمان', 'عتمان جروب', 'etman@etman.com', '01223129660', '01223129660', '4867311', 3, 1, 1, NULL, NULL, NULL, '$2y$10$wlM9fxcPtzdNrqXdnQuzL.D3TJawbRYpzx/yPnnmPIOLEBhC5easa', NULL, '2023-09-29 12:06:43', '2023-09-29 17:11:34', NULL);
+(1, 'احمد عتمان', 'عتمان جروب', 'etmano@hotmail.com', '01223129660', '01223129660', '4867311', 3, 1, 1, NULL, NULL, NULL, '$2y$10$sLfSr0tHo64x7IZKKpngeeaFOx21kJPqxZSRKRe6xKPD1y5kKGb7.', NULL, '2023-09-29 12:06:43', '2023-10-01 11:50:31', NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
