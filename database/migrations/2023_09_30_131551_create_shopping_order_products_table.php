@@ -20,7 +20,7 @@ return new class extends Migration
 
             $table->string("name");
             $table->float('price');
-            $table->float('discount_price')->nullable();
+            $table->float('sale_price')->nullable();
             $table->float('qty');
 
 

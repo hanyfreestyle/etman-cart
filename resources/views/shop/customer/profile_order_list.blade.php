@@ -58,7 +58,7 @@
                                                             {{ $order->total }}  {{__('web/cart.EGP')}}
                                                         </td>
                                                         <td class="product-remove last_td" data-title="{{__('web/orders.title_view')}}">
-                                                            <a href="#"><i class="fas fa-search"></i></a></td>
+                                                            <a href="{{route('Profile_OrderView', $order->uuid)}}"><i class="fas fa-search"></i></a></td>
                                                     </tr>
                                                 @endforeach
 

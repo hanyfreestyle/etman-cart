@@ -20,7 +20,7 @@ return new class extends Migration
             $table->dateTime('order_date');
             $table->boolean("status")->default(1);
             $table->float('total')->default(0);
-            $table->text('notes')->nullable();
+            $table->integer('units');
 
             $table->softDeletes();
             $table->timestamps();

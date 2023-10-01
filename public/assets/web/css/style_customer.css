@@ -188,3 +188,64 @@
 
 
 
+
+.section_confirm{
+    padding-right: 25px;
+    padding-left: 25px;
+
+}
+
+
+.confirm_product_qty{
+    font-family: 'Poppins', sans-serif!important; font-size:14px;
+
+
+
+}
+.confirm_name{
+
+    display: inline-block;
+    max-width: 100%!important;
+    /*text-overflow: ellipsis;*/
+    /*white-space: nowrap;*/
+    overflow: hidden;
+    height: 25px;
+
+
+    font-size: 14px;
+}
+
+
+@media only screen and (max-width:700px) {
+    .orderViewInfo .confirm_name{
+        width: 150px;
+    }
+
+    .orderViewInfo th{
+         width: 20px!important;
+    }
+
+
+    .dashboard_content .table tbody tr {
+        border-top: 1px solid currentColor;
+    }
+
+    .order_review{
+        max-width: 100%!important;
+    }
+}
+
+
+
+.preloader_cart {
+    background-color: #fff;
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+}
+

@@ -13,6 +13,12 @@ return
 	'cart_veiw_Totals' => 'تفاصيل الطلب',
 	'cart_view_Shipping' => 'تكلفة الشحن',
 	'cart_view_Shipping_free' => 'شحن مجانى',
+	'completed_h1' => 'استلمنا طلبك بنجاح',
+	'completed_text' => 'شكرا لثقتك فى عتمان جروب !
+طلبك الان قيد المعالجة وسيتم الانتهاء منه في غضون 3-6 ساعات.
+اثناء مواعيد العمل الرسمية 
+سوف تتلقى تأكيدًا على رقم الواتس اب المسجل لدينا  عند اكتمال طلبك 
+لذا نرجوا التأكد من اضافته بصورة صحيحة !!',
 	'confirm_order_but_login' => 'تسجيل دخول',
 	'confirm_order_but_register' => 'اذا كنت لا تملك حساب سجل الان',
 	'empty_but' => 'ابداء التسوق الان',
@@ -27,11 +33,12 @@ return
 	'review_Product' => 'المنتجات',
 	'review_Total' => 'الاجمالى',
 	'review_address' => 'عنوان الشحن',
+	'review_confirm_but' => 'تأكيد الطلب',
 	'review_notes' => 'ملاحظات',
 	't_Price' => 'السعر',
 	't_Product' => 'اسم المنتج',
 	't_Quantity' => 'الكمية',
 	't_Remove' => 'حذف',
 	't_Total' => 'الاجمالى',
-	'review_confirm_but' => 'تأكيد الطلب',
+	'completed_but' => 'عودة للصفحة الرئيسية',
 ];

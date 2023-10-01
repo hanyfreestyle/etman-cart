@@ -11,7 +11,7 @@
 
             <div class="row">
 
-                <div class="col-md-6">
+                <div class="col-md-6 mb-1">
                     <div class="heading_s1">
                         <h4>{{__('web/cart.cart_veiw_Totals')}}</h4>
                     </div>
@@ -30,10 +30,10 @@
                                     <tr>
                                         <td>
 
-                                            <span class="confirm_name">
+                                            <div class="confirm_name">
                                                 <span class="confirm_product_qty">x {{$ProductCart->qty}}</span>
                                                 {{$ProductCart->model->name}}
-                                            </span>
+                                            </div>
 
                                         </td>
                                         <td>{{ $ProductCart->price *  $ProductCart->qty }} {{__('web/cart.EGP')}}</td>
@@ -73,7 +73,7 @@
                                 <select class="form-control" name="address_id">
                                     <option value="">برجاء تحديد عنوان الشحن</option>
                                     @foreach($addresses as $address)
-                                        <option value="{{$address->id}}" @if($address->is_default) selected @endif >{{$address->name}}</option>
+                                        <option value="{{$address->uuid}}" @if($address->is_default) selected @endif >{{$address->name}}</option>
                                     @endforeach
 
                                 </select>
@@ -81,7 +81,7 @@
                         </div>
 
                         <div class="form-group">
-                            <textarea rows="5" class="form-control" placeholder="{{__('web/cart.review_notes')}}"></textarea>
+                            <textarea rows="5"  name="notes" class="form-control" placeholder="{{__('web/cart.review_notes')}}">{{old('notes')}}</textarea>
                         </div>
                         <div class="form-group mt-3">
                             <button class="btn btn-fill-out btn-block" type="submit">

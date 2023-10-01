@@ -306,7 +306,7 @@ class ProfileController extends WebMainController
 
         $orders = ShoppingOrder::query()
             ->where('customer_id',$UserProfile->id)
-            ->orderBy('order_date')
+            ->orderBy('order_date','desc')
             ->paginate(12)
         ;
         return view('shop.customer.profile_order_list', compact('SinglePageView','UserProfile','orders')
@@ -314,7 +314,32 @@ class ProfileController extends WebMainController
     }
 
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     Profile_Address_Update
+    public function Profile_OrderView($uuid){
 
+
+        //dd(now());
+        $isUuid = Str::isUuid($uuid);
+        if(!$isUuid){
+            Auth::guard('customer')->logout();
+            return redirect()->route('Customer_login');
+        }
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['profileMenu'] = "OrdersList" ;
+
+        $UserProfile = Auth::guard('customer')->user();
+
+        $order = ShoppingOrder::query()
+            ->where('uuid',$uuid)
+            ->where('customer_id',$UserProfile->id)
+            ->with('products')
+            ->firstOrFail();
+
+        return view('shop.customer.profile_order_view', compact('SinglePageView','UserProfile','order'));
+
+    }
 
 
 

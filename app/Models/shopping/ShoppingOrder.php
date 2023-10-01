@@ -5,6 +5,7 @@ namespace App\Models\shopping;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ShoppingOrder extends Model
 {
@@ -19,5 +20,11 @@ class ShoppingOrder extends Model
         return Carbon::parse($this->order_date)->locale(app()->getLocale())->translatedFormat('jS F Y') ;
 
     }
+
+    public function products(): HasMany
+    {
+        return $this->hasMany(ShoppingOrderProduct::class,'order_id','id');
+    }
+
 
 }

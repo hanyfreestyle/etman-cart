@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string("recipient_name");
             $table->string("phone");
             $table->string("phone_option")->nullable();
+            $table->text('notes')->nullable();
 
         });
     }

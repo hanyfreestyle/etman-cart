@@ -57,10 +57,7 @@
                         </div>
                         <hr />
                         <div class="cart_extra">
-                            <livewire:cart-add-button :product="$Product">
-
-
-
+                            <livewire:cart-add-button :product="$Product"/>
                         </div>
                         <hr />
                         <ul class="product-meta">

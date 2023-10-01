@@ -844,28 +844,3 @@
 }
 
 
-.section_confirm{
-    padding-right: 25px;
-    padding-left: 25px;
-
-}
-
-
-.confirm_product_qty{
-    font-family: 'Poppins', sans-serif!important; font-size:14px;
-
-
-
-}
-.confirm_name{
-    display: inline-block;
-    max-width: 90%!important;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    font-size: 14px;
-
-
-
-
-}

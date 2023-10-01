@@ -22,8 +22,8 @@ class PrintProductPrice extends Component
         $this->showAvr = $showAvr ;
 
         if($this->showAvr == true){
-            if(intval($product->discount_price) > 0 and $product->discount_price < $product->price){
-                $discount = $product->price - $product->discount_price   ;
+            if(intval($product->sale_price) > 0 and $product->sale_price < $product->price){
+                $discount = $product->price - $product->sale_price   ;
                 $this->printAvr = intval( ($discount /  $product->price ) * 100) ;
             }
         }else{

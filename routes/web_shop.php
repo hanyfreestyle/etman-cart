@@ -91,6 +91,9 @@ Route::group(['prefix' => 'EtmanShop'], function(){
         Route::get('/profile/order',
             [ProfileController::class, 'Profile_OrdersList'])->name('Profile_OrdersList');
 
+        Route::get('/profile/orderView/{uuid:uuid}',
+            [ProfileController::class, 'Profile_OrderView'])->name('Profile_OrderView');
+
 
         Route::get('/CartConfirm',
             [ShopPageController::class, 'CartConfirm'])->name('Shop_CartConfirm');
@@ -98,6 +101,8 @@ Route::group(['prefix' => 'EtmanShop'], function(){
         Route::post('/CartOrderSave',
             [ShopPageController::class, 'CartOrderSave'])->name('Shop_CartOrderSave');
 
+        Route::get('/CartOrderCompleted',
+            [ShopPageController::class, 'CartOrderCompleted'])->name('Shop_CartOrderCompleted');
 
     });
 

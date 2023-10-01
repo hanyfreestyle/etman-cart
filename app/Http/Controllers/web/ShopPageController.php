@@ -9,11 +9,15 @@ use App\Models\admin\Category;
 use App\Models\admin\FaqCategory;
 use App\Models\admin\Product;
 use App\Models\customer\UsersCustomersAddress;
+use App\Models\shopping\ShoppingOrder;
+use App\Models\shopping\ShoppingOrderAddress;
+use App\Models\shopping\ShoppingOrderProduct;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Str;
 
 class ShopPageController extends WebMainController
 {
@@ -356,8 +360,17 @@ class ShopPageController extends WebMainController
         $CartList =  Cart::content();
         $subtotal =  Cart::subtotal();
 
-        return view('shop.product.cart_confirm',
-            compact('SinglePageView','PageMeta','addresses','CartList','subtotal'));
+        #dd( );
+
+        if($CartList->count() > 0){
+            return view('shop.product.cart_confirm',
+                compact('SinglePageView','PageMeta','addresses','CartList','subtotal'));
+        }else{
+            return redirect()->route('Shop_CartView');
+        }
+
+
+
     }
 
 
@@ -365,9 +378,81 @@ class ShopPageController extends WebMainController
 #|||||||||||||||||||||||||||||||||||||| #
     public function CartOrderSave(ShoppingOrderSaveRequest $request)
     {
-        dd('hi');
+
+        $CartList =  Cart::content();
+        $subtotal =  Cart::subtotal();
+
+        if($CartList->count() > 0){
+            $UserProfile = Auth::guard('customer')->user();
+
+            $address = UsersCustomersAddress::with('city')
+                ->where('uuid',$request->input('address_id'))
+                ->firstOrFail();
+
+            $newAddress = new ShoppingOrderAddress ;
+
+            $newAddress->name = $address->name ;
+            $newAddress->city = $address->city->name ;
+            $newAddress->address = $address->address ;
+            $newAddress->recipient_name = $address->recipient_name ;
+            $newAddress->phone = $address->phone ;
+            $newAddress->phone_option = $address->phone_option ;
+            $newAddress->notes = $request->input('notes') ;
+            $newAddress->save();
+
+
+
+            $newOrder = new ShoppingOrder ;
+            $newOrder->customer_id = $UserProfile->id ;
+            $newOrder->address_id = $newAddress->id ;
+            $newOrder->uuid = Str::uuid()->toString() ;
+            $newOrder->order_date = now() ;
+            $newOrder->status = 1 ;
+            $newOrder->total = $subtotal;
+            $newOrder->units = $CartList->count();
+            $newOrder->save();
+
+            //dd($newOrder);
+
+
+            foreach ($CartList as $product ){
+                $addProduct = new ShoppingOrderProduct() ;
+                $addProduct->order_id = $newOrder->id ;
+                $addProduct->product_ref = $product->model->id ;
+                $addProduct->name = $product->model->name ;
+                $addProduct->price = $product->model->price ;
+                $addProduct->sale_price = $product->model->sale_price ;
+                $addProduct->qty = $product->qty ;
+                $addProduct->save() ;
+            }
+
+            Cart::destroy();
+            return redirect()->route('Shop_CartOrderCompleted');
+        }else{
+            return redirect()->route('Shop_CartView');
+        }
+
     }
 
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     CartView
+    public function CartOrderCompleted()
+    {
+        $PageMeta = parent::getMeatByCatId('Shop_CartView');
+        parent::printSeoMeta($PageMeta);
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['SelMenu'] = 'Shop_CartView' ;
+        $SinglePageView['breadcrumb'] = "Shop_Cart" ;
+
+        $CartList =  Cart::content();
+        if($CartList->count() > 0){
+            return redirect()->route('Shop_CartView');
+        }else{
+            return view('shop.cart.completed',compact('SinglePageView','PageMeta'));
+        }
+    }
 
 
     /*

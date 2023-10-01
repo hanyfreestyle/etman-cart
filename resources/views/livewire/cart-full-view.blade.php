@@ -1,4 +1,14 @@
 <div class="section">
+    <div wire:loading>
+        <div class="preloader_cart">
+            <div class="lds-ellipsis">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         @if(count($CartList) > 0 )
             <div class="row">

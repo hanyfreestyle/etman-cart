@@ -1,11 +1,19 @@
 <div>
 
     <div wire:loading>
-        <div style="position: absolute; z-index: 999999; background: yellowgreen; display: block; top: 0; left: 0; width: 10px; height: 100%">
-            Processing Payment...
-            @if( $readyToLoad)
-                wait
-            @endif
+{{--        <div style="position: absolute; z-index: 999999; background: yellowgreen; display: block; top: 0; left: 0; width: 10px; height: 100%">--}}
+{{--            Processing Payment...--}}
+{{--            @if( $readyToLoad)--}}
+{{--                wait--}}
+{{--            @endif--}}
+{{--        </div>--}}
+
+        <div class="preloader_cart">
+            <div class="lds-ellipsis">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </div>
 

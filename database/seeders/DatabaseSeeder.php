@@ -45,6 +45,9 @@ use Database\Seeders\config\SettingsTranslationsTableSeeder;
 use Database\Seeders\config\UploadFilterSeeder;
 use Database\Seeders\config\UploadFilterSizeSeeder;
 use Database\Seeders\config\UsersTableSeeder;
+use Database\Seeders\shopping\ShoppingOrderAddressSeeder;
+use Database\Seeders\shopping\ShoppingOrderProductSeeder;
+use Database\Seeders\shopping\ShoppingOrderSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -107,6 +110,11 @@ class DatabaseSeeder extends Seeder
         $this->call(DataCitySeeder::class);
         $this->call(UsersCustomersSeeder::class);
         $this->call(UsersCustomersAddressSeeder::class);
+
+        $this->call(ShoppingOrderAddressSeeder::class);
+        $this->call(ShoppingOrderSeeder::class);
+        $this->call(ShoppingOrderProductSeeder::class);
+
 
     }
 }

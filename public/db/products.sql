@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 30, 2023 at 10:04 PM
+-- Generation Time: Oct 01, 2023 at 01:21 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -59,11 +59,11 @@ INSERT INTO `products` (`id`, `ref_code`, `price`, `sale_price`, `qty_left`, `qt
 (52, 63421658, 551.00, 491.00, 25, NULL, NULL, 1, 1, 1, 'images/product/52/mr-foil-oven-SXzyUg37Pu.webp', 'images/product/52/mr-foil-oven-9GHCVHjBP5.webp', 1, 0, '2023-08-23 10:35:06', '2023-09-22 12:52:24'),
 (53, 60959804, 308.00, 253.00, 48, NULL, NULL, 1, 1, 1, 'images/product/53/aluminium-foil-king-qpIGRI3afb.webp', 'images/product/53/aluminium-foil-king-hW0yT2II1O.webp', 1, 0, '2023-08-23 10:35:06', '2023-09-22 12:52:24'),
 (55, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, 'images/product/55/jumbo-roll-avoY1LBh67.webp', 'images/product/55/jumbo-roll-Vsrz2ajWCS.webp', 1, 0, '2023-08-23 10:35:06', '2023-09-21 08:28:19'),
-(56, 43744223, 500.00, NULL, 10, NULL, NULL, 1, 0, 1, 'images/product/56/مسدس-شمع-بسلك-كهرباء-من-يوني-تي-موديل-eh430-27KFKArcIK.webp', 'images/product/56/مسدس-شمع-بسلك-كهرباء-من-يوني-تي-موديل-eh430-2PI1TFWSZe.webp', 1, 0, '2023-09-11 17:04:54', '2023-09-30 15:47:59'),
+(56, 43744223, 500.00, NULL, 10, 10, NULL, 1, 0, 1, 'images/product/56/مسدس-شمع-بسلك-كهرباء-من-يوني-تي-موديل-eh430-27KFKArcIK.webp', 'images/product/56/مسدس-شمع-بسلك-كهرباء-من-يوني-تي-موديل-eh430-2PI1TFWSZe.webp', 1, 0, '2023-09-11 17:04:54', '2023-09-30 19:01:03'),
 (57, 53492624, 200.00, 175.00, 10, NULL, NULL, 1, 0, 0, 'images/product/57/مسدس-شمع-st-03-20w-حجم-صغير-ازرق-RIJhHKr9RU.webp', 'images/product/57/مسدس-شمع-st-03-20w-حجم-صغير-ازرق-0BiTOSAKTw.webp', 1, 0, '2023-09-11 17:11:43', '2023-09-30 15:47:51'),
 (58, 35945023, 525.00, 450.00, 10, NULL, NULL, 1, 0, 0, 'images/product/58/مسدس-شمع-برو-جلو-من-ستانلي-gr100-1RhDP71AO3.webp', 'images/product/58/مسدس-شمع-برو-جلو-من-ستانلي-gr100-WGykuxK7pV.webp', 1, 0, '2023-09-11 17:13:31', '2023-09-30 15:47:34'),
 (59, 28262230, 300.00, 225.00, 10, NULL, NULL, 1, 1, 0, 'images/product/59/مسدس-شمع-من-عتمان-جروب-متعدد-الألوان-tRbKwi2gQE.webp', 'images/product/59/مسدس-شمع-من-عتمان-جروب-متعدد-الألوان-ttXSIKzJjo.webp', 1, 0, '2023-09-11 17:14:46', '2023-09-30 15:46:47'),
-(60, 23307506, 400.00, 350.00, 10, 2, 'كارتونة', 1, 1, 0, 'images/product/60/1694990299_zfbU0TI2Q3REyLO_.webp', 'images/product/60/1694990299_MMfnPgB0lkSxjGz_.webp', 1, 0, '2023-09-11 17:18:06', '2023-09-30 15:46:57');
+(60, 23307506, 400.00, 350.00, 10, 10, 'كارتونة', 1, 1, 0, 'images/product/60/1694990299_zfbU0TI2Q3REyLO_.webp', 'images/product/60/1694990299_MMfnPgB0lkSxjGz_.webp', 1, 0, '2023-09-11 17:18:06', '2023-09-30 19:00:36');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
