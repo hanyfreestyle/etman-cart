@@ -18,6 +18,25 @@
 .navbar .navbar-nav > li > .nav-link{font-size:15px}
 .setActive{background:var(--red)!important;color:#fff!important}
 
+@media only screen and (min-width: 992px) and (max-width: 1200px){
+    .banner_section.slide_medium .carousel-item {
+        height: 340px;
+
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 992px){
+
+    .banner_section.slide_medium {
+        height: 340px;
+
+    }
+
+    .banner_section.slide_medium .carousel-item {
+        height: 340px;
+
+    }
+}
 
 .mega-menu-col .sub_catName{
     overflow: hidden;

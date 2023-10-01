@@ -36,7 +36,7 @@
                                             </div>
 
                                         </td>
-                                        <td>{{ $ProductCart->price *  $ProductCart->qty }} {{__('web/cart.EGP')}}</td>
+                                        <td>{{ $ProductCart->price *  $ProductCart->qty }}</td>
                                     </tr>
 
                                 @endforeach
@@ -45,15 +45,15 @@
 
                                 <tr>
                                     <td class="cart_total_label">{{__('web/cart.Subtotal')}}</td>
-                                    <td class="cart_total_amount">{{$subtotal}} {{__('web/cart.EGP')}}</td>
+                                    <td class="cart_total_amount">{{$subtotal}}</td>
                                 </tr>
-                                <tr>
-                                    <td class="cart_total_label">{{__('web/cart.cart_view_Shipping')}}</td>
-                                    <td class="cart_total_amount">{{__('web/cart.cart_view_Shipping_free')}}</td>
-                                </tr>
+{{--                                <tr>--}}
+{{--                                    <td class="cart_total_label">{{__('web/cart.cart_view_Shipping')}}</td>--}}
+{{--                                    <td class="cart_total_amount">{{__('web/cart.cart_view_Shipping_free')}}</td>--}}
+{{--                                </tr>--}}
                                 <tr>
                                     <td class="cart_total_label">{{__('web/cart.cart_veiw_Total')}}</td>
-                                    <td class="cart_total_amount"><strong>  {{$subtotal}} {{__('web/cart.EGP')}}</strong></td>
+                                    <td class="cart_total_amount"><strong>  {{$subtotal}} </strong></td>
                                 </tr>
                                 </tfoot>
                             </table>

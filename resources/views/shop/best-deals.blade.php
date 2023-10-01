@@ -1,13 +1,11 @@
 @extends('shop.layouts.app')
 @section('breadcrumb')
-
     <x-website.breadcrumb>
         {{ Breadcrumbs::render($SinglePageView['breadcrumb']) }}
     </x-website.breadcrumb>
 @endsection
 
 @section('content')
-
 
     <div class="section background_bg" data-img-src="{{getDefPhotoPath($DefPhotoList,'offer-1')}}">
         <div class="container">
@@ -16,7 +14,7 @@
                     <div class="furniture_banner">
                         <h3 class="single_bn_title">عرض خاص</h3>
                         <h4 class="single_bn_title1 text_default">خصم 40% </h4>
-                        <div class="countdown_time countdown_style3 mb-4" data-time="2023/09/30 12:30:15"></div>
+                        <div class="countdown_time countdown_style3 mb-4" data-time="2023/10/30 12:30:15"></div>
                         <a href="#" class="btn btn-fill-out">اطلب العرض الان</a>
                         <div class="newsletter_form2 mt-5 pb-lg-4">
 
@@ -66,18 +64,14 @@
                                             <div class="progress-bar" role="progressbar" aria-valuenow="{{$avr}}" aria-valuemin="0" aria-valuemax="100" style="width:{{$avr}}%"> 46% </div>
                                         </div>
                                     </div>
-                                    <div class="countdown_time countdown_style4 mb-4" data-time="2023/09/30 12:30:15"></div>
+                                    <div class="countdown_time countdown_style4 mb-4" data-time="2023/10/15 12:30:15"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 @endforeach
-
-
-
             </div>
         </div>
     </div>
-
 @endsection
 

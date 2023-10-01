@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\customer\ProfileController;
+use App\Http\Controllers\shopping\ShoppingCartController;
 use App\Http\Controllers\UsersCustomersController;
 use App\Http\Controllers\web\ShopPageController;
 use Illuminate\Support\Facades\Route;
@@ -67,13 +68,13 @@ Route::group(['prefix' => 'EtmanShop'], function(){
 
 
         Route::get('/CartConfirm',
-            [ShopPageController::class, 'CartConfirm'])->name('Shop_CartConfirm');
+            [ShoppingCartController::class, 'CartConfirm'])->name('Shop_CartConfirm');
 
         Route::post('/CartOrderSave',
-            [ShopPageController::class, 'CartOrderSave'])->name('Shop_CartOrderSave');
+            [ShoppingCartController::class, 'CartOrderSave'])->name('Shop_CartOrderSave');
 
         Route::get('/CartOrderCompleted',
-            [ShopPageController::class, 'CartOrderCompleted'])->name('Shop_CartOrderCompleted');
+            [ShoppingCartController::class, 'CartOrderCompleted'])->name('Shop_CartOrderCompleted');
 
     });
 

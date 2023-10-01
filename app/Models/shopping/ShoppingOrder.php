@@ -21,6 +21,14 @@ class ShoppingOrder extends Model
 
     }
 
+    public function getFormatteDateOrderView()
+    {
+        return Carbon::parse($this->order_date)->locale(app()->getLocale())->translatedFormat('Y-m-d') ;
+
+    }
+
+
+
     public function products(): HasMany
     {
         return $this->hasMany(ShoppingOrderProduct::class,'order_id','id');

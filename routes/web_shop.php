@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\shopping\ShoppingCartController;
 use App\Http\Controllers\web\ShopPageController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,10 +25,14 @@ Route::group(['prefix' => 'EtmanShop'], function(){
         [ShopPageController::class, 'FaqList'])->name('Shop_FaqList');
     Route::get(LaravelLocalization::transRoute('routes.FaqCatView'),
         [ShopPageController::class, 'FaqCatView'])->name('Shop_FaqCatView');
-    Route::get('/CartEmpty',
-        [ShopPageController::class, 'CartEmpty'])->name('Shop_CartEmpty');
+
+
     Route::get('/CartView',
-        [ShopPageController::class, 'CartView'])->name('Shop_CartView');
+        [ShoppingCartController::class, 'CartView'])->name('Shop_CartView');
+
+    Route::get('/CartEmpty',
+        [ShoppingCartController::class, 'CartEmpty'])->name('Shop_CartEmpty');
+
 
 });
 

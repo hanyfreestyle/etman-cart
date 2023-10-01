@@ -16,7 +16,7 @@
                             <h2>{{__('web/menu.week_offer')}}</h2>
                         </div>
                         <div class="deal_timer">
-                            <div class="countdown_time countdown_style1" data-time="2023/09/30 13:22:15"></div>
+                            <div class="countdown_time countdown_style1" data-time="2023/10/15 13:22:15"></div>
                         </div>
                     </div>
                 </div>
@@ -26,19 +26,12 @@
             <div class="row shop_container shop_container_50  mt-lg-3">
                 @foreach($BestDeals as $Product )
                     <div class="col-lg-3 col-md-3 col-6">
-{{--                        <x-shop.block-list-pro-from-cat  :product="$Product"  :category="$Product->product_with_category->first()" />--}}
                         <x-shop.block-product :product="$Product" :category="$Product->product_with_category->first()"/>
                     </div>
                 @endforeach
             </div>
-
-
-
         </div>
     </div>
-
-
-
 
 @endsection
 

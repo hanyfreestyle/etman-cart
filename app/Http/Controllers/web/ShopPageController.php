@@ -13,9 +13,7 @@ use App\Models\shopping\ShoppingOrder;
 use App\Models\shopping\ShoppingOrderAddress;
 use App\Models\shopping\ShoppingOrderProduct;
 use Gloudemans\Shoppingcart\Facades\Cart;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 
@@ -51,16 +49,6 @@ class ShopPageController extends WebMainController
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     WebPro_Qview
-    public function Pro_Qview($slug){
-        $slug = \AdminHelper::Url_Slug($slug);
-
-        $Product  = Product::defWeb()
-            ->whereTranslation('slug', $slug)
-            ->firstOrFail();
-        return view('shop.product.Qview',compact('Product'));
-    }
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #    HomePage
     public function Shop_HomePage()
     {
@@ -82,11 +70,76 @@ class ShopPageController extends WebMainController
         return view('shop.index',compact('SinglePageView','MainCategoryPro'));
     }
 
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     Recently
+    public function Recently ()
+    {
+        $PageMeta = parent::getMeatByCatId('Shop_Recently');
+        parent::printSeoMeta($PageMeta);
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['SelMenu'] = 'Shop_Recently' ;
+        $SinglePageView['breadcrumb'] = "Shop_Recently" ;
+
+        $Recently = Product::Web_Shop_Def_Query()
+            ->with('product_with_category')
+            ->inRandomOrder()
+            ->limit(9)->get();
+
+
+        $Recently=Product::Web_Shop_Def_Query()
+            ->with('product_with_category')
+            ->whereHas('product_with_category',function($query){
+                $query->where('category_id',39);
+            })->get();
+
+        return view('shop.product.recently_arrived',compact('SinglePageView','PageMeta','Recently'));
+
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #    BestDeals
+    public function WeekOffers()
+    {
+        $PageMeta = parent::getMeatByCatId('Shop_WeekOffers');
+        parent::printSeoMeta($PageMeta);
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['SelMenu'] = 'Shop_WeekOffers' ;
+        $SinglePageView['breadcrumb'] = "Shop_WeekOffers" ;
+
+        $BestDeals=Product::Web_Shop_Def_Query()
+            ->with('product_with_category')
+            ->limit(12)
+            ->get();
+
+        return view('shop.product.week',compact('SinglePageView','BestDeals'));
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #    BestDeals
+    public function BestDeals()
+    {
+        $PageMeta = parent::getMeatByCatId('Shop_BestDeals');
+        parent::printSeoMeta($PageMeta);
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['SelMenu'] = 'Shop_BestDeals' ;
+        $SinglePageView['breadcrumb'] = "Shop_BestDeals" ;
+
+
+        $BestDeals = Product::Web_Shop_Def_Query()
+            ->with('product_with_category')
+            ->limit(6)->get();  #->inRandomOrder()
+
+        return view('shop.best-deals',compact('SinglePageView','BestDeals'));
+    }
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #    MainCategory
     public function MainCategory ()
     {
-
         $PageMeta = parent::getMeatByCatId('MainCategory');
         parent::printSeoMeta($PageMeta);
 
@@ -134,11 +187,10 @@ class ShopPageController extends WebMainController
 
     }
 
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     ShopProductView
     public function ShopProductView ($catid,$slug){
-
-
 
         $slug = \AdminHelper::Url_Slug($slug);
         $catid = intval($catid);
@@ -180,7 +232,7 @@ class ShopPageController extends WebMainController
         $SinglePageView['breadcrumb'] = "Shop_ProductView" ;
         $SinglePageView['slug'] = 'product/'.$Product->slug;
 
-       $trees = $Category->ancestorsAndSelf()->orderBy('depth','asc')->get() ;
+        $trees = $Category->ancestorsAndSelf()->orderBy('depth','asc')->get() ;
 
 
         return view('shop.product.product_view',
@@ -188,76 +240,6 @@ class ShopPageController extends WebMainController
 
     }
 
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     Recently
-    public function Recently ()
-    {
-        $PageMeta = parent::getMeatByCatId('Shop_Recently');
-        parent::printSeoMeta($PageMeta);
-
-        $SinglePageView = $this->SinglePageView ;
-        $SinglePageView['SelMenu'] = 'Shop_Recently' ;
-        $SinglePageView['breadcrumb'] = "Shop_Recently" ;
-
-        $Recently = Product::Web_Shop_Def_Query()
-            ->with('product_with_category')
-
-            ->limit(9)->get();
-
-        #->inRandomOrder()
-
-
-
-        $Recently=Product::Web_Shop_Def_Query()
-            ->with('product_with_category')
-            ->whereHas('product_with_category',function($query){
-                $query->where('category_id',39);
-            })->get();
-
-
-        $Category = ['id'=>__('routes.Recently')];
-
-        return view('shop.product.recently_arrived',compact('SinglePageView','PageMeta','Recently','Category'));
-
-    }
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #    BestDeals
-    public function BestDeals()
-    {
-        $PageMeta = parent::getMeatByCatId('Shop_BestDeals');
-        parent::printSeoMeta($PageMeta);
-
-        $SinglePageView = $this->SinglePageView ;
-        $SinglePageView['SelMenu'] = 'Shop_BestDeals' ;
-        $SinglePageView['breadcrumb'] = "Shop_BestDeals" ;
-
-
-        $BestDeals = Product::Web_Shop_Def_Query()
-            ->with('product_with_category')
-            ->limit(6)->get();  #->inRandomOrder()
-
-        return view('shop.best-deals',compact('SinglePageView','BestDeals'));
-    }
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #    BestDeals
-    public function WeekOffers()
-    {
-        $PageMeta = parent::getMeatByCatId('Shop_WeekOffers');
-        parent::printSeoMeta($PageMeta);
-
-        $SinglePageView = $this->SinglePageView ;
-        $SinglePageView['SelMenu'] = 'Shop_WeekOffers' ;
-        $SinglePageView['breadcrumb'] = "Shop_WeekOffers" ;
-
-        $BestDeals=Product::Web_Shop_Def_Query()
-            ->with('product_with_category')
-            ->limit(12)
-            ->get();
-
-        return view('shop.product.week',compact('SinglePageView','BestDeals'));
-    }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #    FaqList
@@ -278,6 +260,7 @@ class ShopPageController extends WebMainController
 
         return view('shop.faq_list',compact('SinglePageView','PageMeta','FaqCategories'));
     }
+
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     FaqCatView
@@ -311,148 +294,7 @@ class ShopPageController extends WebMainController
 
     }
 
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     CartEmpty
-    public function CartEmpty()
-    {
-        //Session::flush();
-        Cart::destroy();
-        return redirect()->back();
-    }
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     CartView
-    public function CartView()
-    {
-        $PageMeta = parent::getMeatByCatId('Shop_CartView');
-        parent::printSeoMeta($PageMeta);
-
-
-
-
-
-
-        $SinglePageView = $this->SinglePageView ;
-        $SinglePageView['SelMenu'] = 'Shop_CartView' ;
-        $SinglePageView['breadcrumb'] = "Shop_Cart" ;
-
-
-
-        return view('shop.product.cart',compact('SinglePageView','PageMeta'));
-    }
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     CartConfirm
-    public function CartConfirm()
-    {
-        $PageMeta = parent::getMeatByCatId('Shop_CartView');
-        parent::printSeoMeta($PageMeta);
-
-        $UserProfile = Auth::guard('customer')->user();
-        $addresses = UsersCustomersAddress::where('customer_id',$UserProfile->id)->get();
-
-
-        $SinglePageView = $this->SinglePageView ;
-        $SinglePageView['SelMenu'] = 'Shop_CartView' ;
-        $SinglePageView['breadcrumb'] = "Shop_Cart" ;
-
-        $CartList =  Cart::content();
-        $subtotal =  Cart::subtotal();
-
-        #dd( );
-
-        if($CartList->count() > 0){
-            return view('shop.product.cart_confirm',
-                compact('SinglePageView','PageMeta','addresses','CartList','subtotal'));
-        }else{
-            return redirect()->route('Shop_CartView');
-        }
-
-
-
-    }
-
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #
-    public function CartOrderSave(ShoppingOrderSaveRequest $request)
-    {
-
-        $CartList =  Cart::content();
-        $subtotal =  Cart::subtotal();
-
-        if($CartList->count() > 0){
-            $UserProfile = Auth::guard('customer')->user();
-
-            $address = UsersCustomersAddress::with('city')
-                ->where('uuid',$request->input('address_id'))
-                ->firstOrFail();
-
-            $newAddress = new ShoppingOrderAddress ;
-
-            $newAddress->name = $address->name ;
-            $newAddress->city = $address->city->name ;
-            $newAddress->address = $address->address ;
-            $newAddress->recipient_name = $address->recipient_name ;
-            $newAddress->phone = $address->phone ;
-            $newAddress->phone_option = $address->phone_option ;
-            $newAddress->notes = $request->input('notes') ;
-            $newAddress->save();
-
-
-
-            $newOrder = new ShoppingOrder ;
-            $newOrder->customer_id = $UserProfile->id ;
-            $newOrder->address_id = $newAddress->id ;
-            $newOrder->uuid = Str::uuid()->toString() ;
-            $newOrder->order_date = now() ;
-            $newOrder->status = 1 ;
-            $newOrder->total = $subtotal;
-            $newOrder->units = $CartList->count();
-            $newOrder->save();
-
-            //dd($newOrder);
-
-
-            foreach ($CartList as $product ){
-                $addProduct = new ShoppingOrderProduct() ;
-                $addProduct->order_id = $newOrder->id ;
-                $addProduct->product_ref = $product->model->id ;
-                $addProduct->name = $product->model->name ;
-                $addProduct->price = $product->model->price ;
-                $addProduct->sale_price = $product->model->sale_price ;
-                $addProduct->qty = $product->qty ;
-                $addProduct->save() ;
-            }
-
-            Cart::destroy();
-            return redirect()->route('Shop_CartOrderCompleted');
-        }else{
-            return redirect()->route('Shop_CartView');
-        }
-
-    }
-
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     CartView
-    public function CartOrderCompleted()
-    {
-        $PageMeta = parent::getMeatByCatId('Shop_CartView');
-        parent::printSeoMeta($PageMeta);
-
-        $SinglePageView = $this->SinglePageView ;
-        $SinglePageView['SelMenu'] = 'Shop_CartView' ;
-        $SinglePageView['breadcrumb'] = "Shop_Cart" ;
-
-        $CartList =  Cart::content();
-        if($CartList->count() > 0){
-            return redirect()->route('Shop_CartView');
-        }else{
-            return view('shop.cart.completed',compact('SinglePageView','PageMeta'));
-        }
-    }
+/*
 
 
     /*

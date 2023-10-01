@@ -49,8 +49,8 @@
                                                             </div>
 
                                                         </td>
-                                                        <td> {{ $ProductCart->CartPriceToAdd() }} {{__('web/cart.EGP')}}</td>
-                                                        <td> {{ $ProductCart->CartPriceToAdd() *  $ProductCart->qty }} {{__('web/cart.EGP')}}</td>
+                                                        <td> {{ $ProductCart->CartPriceToAdd() }}</td>
+                                                        <td> {{ $ProductCart->CartPriceToAdd() *  $ProductCart->qty }} </td>
                                                     </tr>
 
                                                 @endforeach
@@ -60,17 +60,17 @@
                                                 <tr>
                                                     <td class="cart_total_label">{{__('web/cart.Subtotal')}}</td>
                                                     <td class="cart_total_label"></td>
-                                                    <td class="cart_total_amount">{{$order->total }} {{__('web/cart.EGP')}}</td>
+                                                    <td class="cart_total_amount">{{$order->total }} </td>
                                                 </tr>
-                                                <tr>
-                                                    <td class="cart_total_label">{{__('web/cart.cart_view_Shipping')}}</td>
-                                                    <td class="cart_total_label"></td>
-                                                    <td class="cart_total_amount">{{__('web/cart.cart_view_Shipping_free')}}</td>
-                                                </tr>
+{{--                                                <tr>--}}
+{{--                                                    <td class="cart_total_label">{{__('web/cart.cart_view_Shipping')}}</td>--}}
+{{--                                                    <td class="cart_total_label"></td>--}}
+{{--                                                    <td class="cart_total_amount">{{__('web/cart.cart_view_Shipping_free')}}</td>--}}
+{{--                                                </tr>--}}
                                                 <tr>
                                                     <td class="cart_total_label">{{__('web/cart.cart_veiw_Total')}}</td>
                                                     <td class="cart_total_label"></td>
-                                                    <td class="cart_total_amount"><strong>  {{$order->total}} {{__('web/cart.EGP')}}</strong></td>
+                                                    <td class="cart_total_amount"><strong>  {{$order->total}}</strong></td>
                                                 </tr>
 
                                                 <tr>
@@ -82,13 +82,12 @@
                                                 <tr>
                                                     <td class="cart_total_label">{{__('web/orders.title_date')}}</td>
                                                     <td class="cart_total_label"></td>
-                                                    <td class="cart_total_amount"><strong> {{ $order->getFormatteDate() }} </strong></td>
+                                                    <td class="cart_total_amount"><strong> {{ $order->getFormatteDateOrderView() }} </strong></td>
                                                 </tr>
 
                                                 <tr>
-                                                    <td class="cart_total_label">{{__('web/orders.title_status')}}</td>
-                                                    <td class="cart_total_label"></td>
-                                                    <td class="cart_total_amount"><strong>  {!! \App\Helpers\AdminHelper::getOrderStatus($order->status,'but') !!} </strong></td>
+                                                    <td >{{__('web/orders.title_status')}}</td>
+                                                    <td colspan="2"> {!! \App\Helpers\AdminHelper::getOrderStatus($order->status,'but') !!}</td>
                                                 </tr>
 
                                                 </tfoot>
