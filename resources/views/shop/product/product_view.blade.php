@@ -88,26 +88,11 @@
                     </div>
 
                     <div class="col-12">
-                        @if($agent->isMobile())
-                            <div class="row align-items-center mb-4 pb-1">
-                                <div class="col-12">
-                                    <div class="product_header">
-                                        <div class="product_header_right">
-                                            <div class="products_view">
-                                                <a href="javascript:void(0);" class="shorting_icon grid active"><i class="ti-view-grid"></i></a>
-                                                <a href="javascript:void(0);" class="shorting_icon list"><i class="ti-layout-list-thumb"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-
+                        <x-website.block-list-grid/>
 
                         <div class="row shop_container shop_container_50  mt-lg-3">
                             @foreach($ReletedProducts as $Product )
                                 <div class="col-lg-3 col-md-4 col-6">
-{{--                                    <x-shop.block-list-pro-from-cat  :product="$Product" :category="$Category" />--}}
                                     <x-shop.block-product :product="$Product" :category="$Product->product_with_category->first()"/>
                                 </div>
                             @endforeach

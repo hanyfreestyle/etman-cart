@@ -843,4 +843,24 @@
     color: #ffffff!important;
 }
 
+.newsletter_text h3{
+    font-size: 25px;
 
+}
+.newsletter_text p{
+    font-size: 15px;
+
+}
+
+
+@media only screen and (max-width: 900px) {
+    .newsletter_text h3{
+        font-size: 20px;
+
+    }
+    .newsletter_text p{
+        font-size: 15px;
+
+    }
+
+}

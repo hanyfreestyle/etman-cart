@@ -13,7 +13,7 @@
                     </button>
                     <div class="collapse navbar-collapse mobile_side_menu" id="navbarSidetoggle">
                         <ul class="navbar-nav">
-                            <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'HomePage' ) setActive @endif" href="{{ route('Shop_HomePage') }}">{{__('web/menu.home_page')}} </a></li>
+                            <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'HomePage' ) setActive @endif" href="{{ route('Shop_HomePage') }}">{{__('web/menu.home')}} </a></li>
                             <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'MainCategory' ) setActive @endif" href="{{ route('Shop_MainCategory') }}">{{__('web/def.Main_Categories')}} </a></li>
                             <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'Shop_Recently' ) setActive @endif" href="{{ route('Shop_Recently') }}">{{ __('web/menu.recently_arrived')}} </a></li>
                             <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'Shop_WeekOffers' ) setActive @endif" href="{{ route('Shop_WeekOffers') }}">{{ __('web/menu.week_offer') }} </a></li>

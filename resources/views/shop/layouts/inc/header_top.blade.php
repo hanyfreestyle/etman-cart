@@ -1,7 +1,7 @@
 <div class="top-header d-none d-md-block">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-6 col-md-8">
+            <div class="col-lg-12 col-md-12">
                 <div class="header_topbar_info">
                     @if($WebConfig->top_offer)
                         <div class="header_offer">
@@ -27,12 +27,6 @@
                                 </ul>
                             </div>
                         @endif
-
-
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-4">
-                <div class="d-flex align-items-center justify-content-center justify-content-md-end">
 
 
                 </div>

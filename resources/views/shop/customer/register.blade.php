@@ -12,11 +12,11 @@
         <div class="container py-5">
             <div class="row justify-content-center">
 
-                <div class="col-lg-4 d-none d-md-block">
+                <div class="col-lg-4 d-none d-lg-block">
                     <img src="{{getDefPhotoPath($DefPhotoList,'form_sign_up')}}" alt="about_img"/>
                 </div>
 
-                <div class="col-xl-7 col-md-10">
+                <div class="col-lg-7 offset-md-1">
                     <div class="login_wrap border_top">
                         <div class="padding_eight_all bg-white">
 

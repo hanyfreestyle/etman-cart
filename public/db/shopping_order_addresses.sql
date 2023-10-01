@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 01, 2023 at 02:00 AM
+-- Generation Time: Oct 01, 2023 at 02:18 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -21,23 +21,6 @@ SET time_zone = "+00:00";
 -- Database: `a_etman`
 --
 
--- --------------------------------------------------------
-
---
--- Table structure for table `shopping_order_addresses`
---
-
-CREATE TABLE `shopping_order_addresses` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `city` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `recipient_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone_option` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `notes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 --
 -- Dumping data for table `shopping_order_addresses`
 --
@@ -49,26 +32,6 @@ INSERT INTO `shopping_order_addresses` (`id`, `name`, `city`, `address`, `recipi
 (4, 'المنزل', 'الاسكندرية', '598 طريق الحرية لوران الاسكندرية \r\nبرج الجوهرة \r\nالدرو الثامن', 'زين احمد عتمان', '01222279182', NULL, NULL),
 (5, 'المنزل', 'الاسكندرية', '598 طريق الحرية لوران الاسكندرية \r\nبرج الجوهرة \r\nالدرو الثامن', 'زين احمد عتمان', '01222279182', NULL, NULL),
 (6, 'المنزل', 'الاسكندرية', '598 طريق الحرية لوران الاسكندرية \r\nبرج الجوهرة \r\nالدرو الثامن', 'زين احمد عتمان', '01222279182', NULL, NULL);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `shopping_order_addresses`
---
-ALTER TABLE `shopping_order_addresses`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `shopping_order_addresses`
---
-ALTER TABLE `shopping_order_addresses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

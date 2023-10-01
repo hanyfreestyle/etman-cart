@@ -17,10 +17,10 @@
                    <div class="login_register_wrap section">
                        <div class="container">
                            <div class="row justify-content-center">
-                               <div class="col-lg-4 d-none d-md-block">
+                               <div class="col-lg-4 d-none d-lg-block">
                                    <img src="{{getDefPhotoPath($DefPhotoList,'form_login')}}" alt="about_img"/>
                                </div>
-                               <div class="col-xl-5 col-md-10 offset-md-1">
+                               <div class="col-lg-5 offset-lg-1">
                                    <div class="login_wrap border_top">
                                        <div class="padding_eight_all bg-white ">
 

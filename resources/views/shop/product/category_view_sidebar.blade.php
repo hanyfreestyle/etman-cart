@@ -1,4 +1,4 @@
-<div class="col-xl-3 col-lg-4">
+<div class="col-lg-3 d-none d-lg-block d-xl-block">
     <div class="sidebar">
         <div class="widget">
             <h3 class="widget_title def_h3">{{ __('web/def.Main_Categories') }}</h3>
