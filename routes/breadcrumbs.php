@@ -157,6 +157,22 @@ Breadcrumbs::for('Customer_Profile', function (BreadcrumbTrail $trail) {
     $trail->push( __('web/customers.profile_breadcrumb'), route('Customer_Profile'));
 });
 
+Breadcrumbs::for('Address', function (BreadcrumbTrail $trail) {
+    $trail->parent('Customer_Profile');
+    $trail->push( __('web/customers.Profile_Address') , route('Customer_Profile'));
+});
+
+Breadcrumbs::for('ChangePassword', function (BreadcrumbTrail $trail) {
+    $trail->parent('Customer_Profile');
+    $trail->push( __('web/customers.Profile_ChangePassword') , route('Customer_Profile'));
+});
+
+Breadcrumbs::for('OrdersList', function (BreadcrumbTrail $trail) {
+    $trail->parent('Customer_Profile');
+    $trail->push( __('web/customers.Profile_OrdersList') , route('Customer_Profile'));
+});
+
+
 
 
 

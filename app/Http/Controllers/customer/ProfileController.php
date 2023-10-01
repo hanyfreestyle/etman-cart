@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers\customer;
 
-use App\Http\Controllers\Controller;
+
 use App\Models\shopping\ShoppingOrder;
-use App\Models\shopping\ShoppingOrderAddress;
-use Illuminate\Http\Request;
 use App\Http\Controllers\WebMainController;
 use App\Http\Requests\customer\ProfileAddressAddRequest;
 use App\Http\Requests\customer\ProfilePasswordUpdateRequest;
@@ -15,7 +13,6 @@ use App\Models\data\DataCity;
 use App\Models\UsersCustomers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 
@@ -45,7 +42,7 @@ class ProfileController extends WebMainController
 
         $this->SinglePageView = $SinglePageView ;
 
-        $PageMeta = parent::getMeatByCatId('Shop_CartView');
+        $PageMeta = parent::getMeatByCatId('Shop_profiles_pages');
         parent::printSeoMeta($PageMeta);
 
     }
@@ -59,16 +56,13 @@ class ProfileController extends WebMainController
 
         $UserProfile = Auth::guard('customer')->user();
 
-        return view('shop.customer.profile', compact('SinglePageView','UserProfile')
-        );
+        return view('shop.customer.profile', compact('SinglePageView','UserProfile'));
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     ProfileUpdate
     public function ProfileUpdate(ProfileUpdateRequest $request)
     {
-        $SinglePageView = $this->SinglePageView ;
-        $SinglePageView['profileMenu'] = "profile" ;
 
         $UserProfile = Auth::guard('customer')->user();
         $customer = UsersCustomers::def()
@@ -81,8 +75,8 @@ class ProfileController extends WebMainController
         $customer->whatsapp = $request->input('whatsapp');
         $customer->land_phone = $request->input('land_phone');
         $customer->city_id = $request->input('city_id');
-
         $customer->save();
+
         return redirect()->route('Customer_Profile')->with('Update.Done',"");
 
     }
@@ -94,6 +88,7 @@ class ProfileController extends WebMainController
 
         $SinglePageView = $this->SinglePageView ;
         $SinglePageView['profileMenu'] = "Address" ;
+        $SinglePageView['breadcrumb'] = "Address" ;
         $UserProfile = Auth::guard('customer')->user();
 
         $customer = UsersCustomers::def()
@@ -102,15 +97,16 @@ class ProfileController extends WebMainController
             ->with('addresses')
             ->firstOrFail();
 
-        return view('shop.customer.profile_address_list', compact('SinglePageView','UserProfile','customer')
-        );
+        return view('shop.customer.profile_address_list', compact('SinglePageView','UserProfile','customer'));
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     Profile_Address_Add
     public function Profile_Address_Add(){
+
         $SinglePageView = $this->SinglePageView ;
         $SinglePageView['profileMenu'] = "Address" ;
+        $SinglePageView['breadcrumb'] = "Address" ;
         $UserProfile = Auth::guard('customer')->user();
 
         $customer = UsersCustomers::def()
@@ -119,14 +115,12 @@ class ProfileController extends WebMainController
             ->with('addresses')
             ->firstOrFail();
 
-        return view('shop.customer.profile_address_form', compact('SinglePageView','UserProfile','customer')
-        );
-
+        return view('shop.customer.profile_address_form', compact('SinglePageView','UserProfile','customer'));
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     Profile_Address_Save
-   public function Profile_Address_Save(ProfileAddressAddRequest $request)
+    public function Profile_Address_Save(ProfileAddressAddRequest $request)
     {
         $SinglePageView = $this->SinglePageView ;
         $SinglePageView['profileMenu'] = "profile" ;
@@ -169,14 +163,14 @@ class ProfileController extends WebMainController
 
         $SinglePageView = $this->SinglePageView ;
         $SinglePageView['profileMenu'] = "Address" ;
+        $SinglePageView['breadcrumb'] = "Address" ;
         $UserProfile = Auth::guard('customer')->user();
 
         $address = UsersCustomersAddress::query()
             ->where('uuid',$uuid)
             ->where('customer_id',$UserProfile->id)
             ->firstOrFail();
-        return view('shop.customer.profile_address_form_edit',compact('SinglePageView','UserProfile','address')
-        );
+        return view('shop.customer.profile_address_form_edit',compact('SinglePageView','UserProfile','address'));
 
     }
 
@@ -184,13 +178,12 @@ class ProfileController extends WebMainController
 #|||||||||||||||||||||||||||||||||||||| #     Profile_Address_Update
     public function Profile_Address_Update(ProfileAddressAddRequest $request,$uuid){
         $isUuid = Str::isUuid($uuid);
+
         if(!$isUuid){
             Auth::guard('customer')->logout();
             return redirect()->route('Customer_login');
         }
 
-        $SinglePageView = $this->SinglePageView ;
-        $SinglePageView['profileMenu'] = "Address" ;
 
         $UserProfile = Auth::guard('customer')->user();
         $address = UsersCustomersAddress::query()
@@ -239,6 +232,7 @@ class ProfileController extends WebMainController
     {
         $SinglePageView = $this->SinglePageView ;
         $SinglePageView['profileMenu'] = "ChangePassword" ;
+        $SinglePageView['breadcrumb'] = "ChangePassword" ;
         return view('shop.customer.profile_change_password', compact('SinglePageView'));
     }
 
@@ -246,8 +240,6 @@ class ProfileController extends WebMainController
 #|||||||||||||||||||||||||||||||||||||| #   Profile_ChangePasswordUpdate
     public function Profile_ChangePasswordUpdate(ProfilePasswordUpdateRequest $request)
     {
-        $UserProfile = Auth::guard('customer')->user();
-
 
         $SinglePageView = $this->SinglePageView ;
         $SinglePageView['profileMenu'] = "ChangePassword" ;
@@ -265,15 +257,55 @@ class ProfileController extends WebMainController
             Auth::guard('customer')->logout();
             return redirect()->route('Customer_login');
         }else{
-           return redirect()->back()->with('Error',"كلمة المرور التى ادخلتها غير مطابقة");
+            return redirect()->back()->with('Error',"كلمة المرور التى ادخلتها غير مطابقة");
         }
-
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     Profile_OrdersList
     public function Profile_OrdersList()
     {
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['profileMenu'] = "OrdersList" ;
+        $SinglePageView['breadcrumb'] = "OrdersList" ;
+
+        $UserProfile = Auth::guard('customer')->user();
+
+        $orders = ShoppingOrder::query()
+            ->where('customer_id',$UserProfile->id)
+            ->orderBy('order_date','desc')
+            ->paginate(12)
+        ;
+        return view('shop.customer.profile_order_list', compact('SinglePageView','UserProfile','orders')
+        );
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     Profile_Address_Update
+    public function Profile_OrderView($uuid){
+        $isUuid = Str::isUuid($uuid);
+        if(!$isUuid){
+            Auth::guard('customer')->logout();
+            return redirect()->route('Customer_login');
+        }
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['profileMenu'] = "OrdersList" ;
+        $SinglePageView['breadcrumb'] = "OrdersList" ;
+
+        $UserProfile = Auth::guard('customer')->user();
+        $order = ShoppingOrder::query()
+            ->where('uuid',$uuid)
+            ->where('customer_id',$UserProfile->id)
+            ->with('products')
+            ->firstOrFail();
+
+        return view('shop.customer.profile_order_view', compact('SinglePageView','UserProfile','order'));
+
+    }
+
+
+
 
 //        $address = UsersCustomersAddress::with('city')->inRandomOrder()->first();
 //
@@ -296,51 +328,6 @@ class ProfileController extends WebMainController
 //        $newOrder->status = rand(1,5) ;
 //        $newOrder->total = rand(1000,10000);
 //        $newOrder->save();
-
-
-
-        $SinglePageView = $this->SinglePageView ;
-        $SinglePageView['profileMenu'] = "OrdersList" ;
-
-        $UserProfile = Auth::guard('customer')->user();
-
-        $orders = ShoppingOrder::query()
-            ->where('customer_id',$UserProfile->id)
-            ->orderBy('order_date','desc')
-            ->paginate(12)
-        ;
-        return view('shop.customer.profile_order_list', compact('SinglePageView','UserProfile','orders')
-        );
-    }
-
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     Profile_Address_Update
-    public function Profile_OrderView($uuid){
-
-
-        //dd(now());
-        $isUuid = Str::isUuid($uuid);
-        if(!$isUuid){
-            Auth::guard('customer')->logout();
-            return redirect()->route('Customer_login');
-        }
-
-        $SinglePageView = $this->SinglePageView ;
-        $SinglePageView['profileMenu'] = "OrdersList" ;
-
-        $UserProfile = Auth::guard('customer')->user();
-
-        $order = ShoppingOrder::query()
-            ->where('uuid',$uuid)
-            ->where('customer_id',$UserProfile->id)
-            ->with('products')
-            ->firstOrFail();
-
-        return view('shop.customer.profile_order_view', compact('SinglePageView','UserProfile','order'));
-
-    }
-
 
 
 

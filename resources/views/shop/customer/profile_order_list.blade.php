@@ -11,10 +11,10 @@
     <div class="section pt-lg-5 ">
         <div class="container pb-lg-5">
             <div class="row">
-                <div class="col-lg-3 col-md-4">
+                <div class="col-lg-3 mb-5">
                     @include('shop.customer.profile_menu')
                 </div>
-                <div class="col-lg-9 col-md-8">
+                <div class="col-lg-9">
                     <div class="tab-content dashboard_content">
                         <div class="card profileCard">
                             <div class="card-header border_top">
@@ -23,8 +23,6 @@
                                 </h3>
                             </div>
                         </div>
-
-
                         <div class="container mt-3">
                             <div class="row">
                                 <div class="col-12">
@@ -69,7 +67,7 @@
                                         <div class="row mt-3">
                                             <div class="col-lg-12">
                                                 <div class="alert alert-warning alert-dismissible">
-                                                     لا توجد طلبات متوفرة حتى الان
+                                                    لا توجد طلبات متوفرة حتى الان
                                                 </div>
                                             </div>
                                         </div>
@@ -77,10 +75,6 @@
                                 </div>
                             </div>
                         </div>
-
-
-
-
                     </div>
                 </div>
             </div>

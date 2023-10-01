@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CustomerSignUpRequest;
 use App\Http\Requests\UsersCustomersRequest;
-use App\Models\admin\Product;
 use App\Models\UsersCustomers;
 
 use Illuminate\Http\Request;
@@ -19,19 +18,14 @@ class UsersCustomersController extends WebMainController
     )
     {
         parent::__construct();
-        Auth::viaRemember();
+
         $stopCash = 0 ;
         $ShopMenuCategory = self::getShopMenuCategory($stopCash);
         View::share('ShopMenuCategory', $ShopMenuCategory);
 
-        $CartList = Product::with('translation')->inRandomOrder()->limit(2)->get();
-        View::share('CartList', $CartList);
-
-        $RecentProduct = Product::with('translation')->inRandomOrder()->limit(4)->get();
-        View::share('RecentProduct', $RecentProduct);
 
         $SinglePageView = [
-            'SelMenu' => '',
+            'SelMenu' => 'CustomerProfile',
             'slug' => null,
             'banner_id' => null,
             'breadcrumb' => 'home',
@@ -39,6 +33,10 @@ class UsersCustomersController extends WebMainController
         ];
 
         $this->SinglePageView = $SinglePageView ;
+
+        $PageMeta = parent::getMeatByCatId('Shop_profiles_pages');
+        parent::printSeoMeta($PageMeta);
+
     }
 
 
@@ -47,17 +45,36 @@ class UsersCustomersController extends WebMainController
 #|||||||||||||||||||||||||||||||||||||| # CustomerLogin
     public function CustomerLogin()
     {
-        $PageMeta = parent::getMeatByCatId('Shop_CartView');
-        parent::printSeoMeta($PageMeta);
-
         $SinglePageView = $this->SinglePageView ;
         $SinglePageView['breadcrumb'] = "Customer_Login" ;
-        $SinglePageView['SelMenu'] = "CustomerProfile" ;
-
-
-        return view('shop.customer.login',compact('SinglePageView','PageMeta'));
+        return view('shop.customer.form_login',compact('SinglePageView'));
     }
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #CustomerLoginCheck
+    public function CustomerLoginCheck(UsersCustomersRequest $request)
+    {
+//        $email = $request->input('email');
+//        $password = $request->input('password');
+//        $remember = ($request->input('remember')=='on')?true:false;
+
+        $credentials  =$request->only('email',"password");
+        if(Auth::guard('customer')->attempt($credentials)){
+            return redirect()->route('Customer_Profile');
+        }else{
+            return  redirect()->route('Customer_login')->with('Error',"البيانات غير صحيحة او عضويتك غير مفعله ");
+        }
+
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| # CustomerSignUp
+    public function CustomerSignUp()
+    {
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['breadcrumb'] = "Customer_Register" ;
+        return view('shop.customer.form_register',compact('SinglePageView'));
+    }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     CustomerCreate
@@ -72,12 +89,6 @@ class UsersCustomersController extends WebMainController
         $user->password = \Hash::make($request->password);
         $user->save();
 
-//        $user->name = "hany";
-//        //$user->email = rand(1000,50000)."name@email.com";
-//        $user->email = "29038name@email.com";
-//        $user->phone ="01221563252";
-//        $user->password = \Hash::make("01221563252");
-
         try {
             $user->save();
             Auth::guard('customer')->login($user);
@@ -87,49 +98,8 @@ class UsersCustomersController extends WebMainController
             return redirect()->back()->with('err',"dddddd");
 
         }
-
-
         return redirect()->route('Customer_Profile');
 
-
-
-    }
-
-
-
-
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #CustomerLoginCheck
-    public function CustomerLoginCheck(UsersCustomersRequest $request)
-    {
-        $email = $request->input('email');
-        $password = $request->input('password');
-
-        $remember = ($request->input('remember')=='on')?true:false;
-        $credentials  =$request->only('email',"password");
-        if(Auth::guard('customer')->attempt($credentials)){
-            //  if(Auth::guard('customer')->attempt(['email' => $email, 'password' => $password], $remember)){
-            return redirect()->route('Customer_Profile');
-        }else{
-            return  redirect()->route('Customer_login')->with('Error',"البيانات غير صحيحة او عضويتك غير مفعله ");
-        }
-
-    }
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #
-#
-    public function CustomerSignUp()
-    {
-        $PageMeta = parent::getMeatByCatId('Shop_CartView');
-        parent::printSeoMeta($PageMeta);
-
-        $SinglePageView = $this->SinglePageView ;
-        $SinglePageView['breadcrumb'] = "Customer_Register" ;
-        $SinglePageView['SelMenu'] = "CustomerProfile" ;
-
-        return view('shop.customer.register',compact('SinglePageView','PageMeta'));
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
