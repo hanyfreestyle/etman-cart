@@ -13,6 +13,7 @@ return
 	'cart_veiw_Totals' => 'Cart Totals',
 	'cart_view_Shipping' => 'تكلفة الشحن',
 	'cart_view_Shipping_free' => 'Free Shipping',
+	'completed_but' => '',
 	'completed_h1' => '',
 	'completed_text' => '',
 	'confirm_order_but_login' => 'تسجيل دخول للحساب',
@@ -36,5 +37,5 @@ return
 	't_Quantity' => 'Quantity',
 	't_Remove' => 'Remove',
 	't_Total' => 'Total',
-	'completed_but' => '',
+	'err_update_need' => '',
 ];

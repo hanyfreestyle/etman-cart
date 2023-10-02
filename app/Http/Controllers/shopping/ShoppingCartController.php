@@ -45,6 +45,8 @@ class ShoppingCartController extends WebMainController
 #|||||||||||||||||||||||||||||||||||||| #     CartView
     public function CartView()
     {
+
+
         $PageMeta = parent::getMeatByCatId('Shop_CartView');
         parent::printSeoMeta($PageMeta);
 

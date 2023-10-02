@@ -3,18 +3,22 @@
         <ul class="cart_list">
             @foreach($CartList as $ProductCart)
 
-                <li>
-                    <form wire:submit.prevent="removeFromCart({{$ProductCart->id}})" method="post">
-                        <button type="submit" class="item_remove item_remove_but"><i class="ion-close"></i></button>
-                    </form>
-                    <a href="#">
-                        @if($showimg)
-                            <img class="cart_item_list_img"  src="{{getPhotoPath($ProductCart->options->photo,"blog")}}" alt="cart_thumb1">
-                        @endif
-                        <span class="cart_item_name">{{$ProductCart->name}}</span>
-                    </a>
-                    <span class="cart_quantity forcDir"> {{$ProductCart->qty}} x <span class="cart_amount"></span> {{$ProductCart->price}}</span>
-                </li>
+                @if($loop->index < 3)
+                    <li>
+                        <form wire:submit.prevent="removeFromCart({{$ProductCart->id}})" method="post">
+                            <button type="submit" class="item_remove item_remove_but"><i class="ion-close"></i></button>
+                        </form>
+                        <a href="#">
+                            @if($showimg)
+                                <img class="cart_item_list_img"  src="{{getPhotoPath($ProductCart->model->photo_thum_1,"blog")}}" alt="cart_thumb1">
+                            @endif
+                            <span class="cart_item_name">{{$ProductCart->name}}</span>
+                        </a>
+                        <span class="cart_quantity forcDir"> {{$ProductCart->qty}} x <span class="cart_amount"></span> {{$ProductCart->price}}</span>
+                    </li>
+                @endif
+
+
             @endforeach
         </ul>
         <div class="cart_footer">

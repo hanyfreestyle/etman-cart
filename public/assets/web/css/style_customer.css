@@ -249,3 +249,9 @@
     z-index: 9999;
 }
 
+
+.error_in_product{
+    background: rgba(248, 215, 218,.5);
+
+}
+

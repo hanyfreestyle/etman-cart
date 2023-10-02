@@ -233,8 +233,8 @@ class ShopProductController extends AdminMainController
 
         }else{
 
-         //   return redirect()->back();
-             return redirect(route($this->PrefixRoute.'.index'))->with('Edit.Done',"");
+             return redirect()->back();
+            // return redirect(route($this->PrefixRoute.'.index'))->with('Edit.Done',"");
         }
     }
 

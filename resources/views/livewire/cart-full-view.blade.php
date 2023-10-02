@@ -10,6 +10,8 @@
     </div>
 
     <div class="container">
+
+
         @if(count($CartList) > 0 )
             <div class="row">
                 <div class="col-12">
@@ -23,47 +25,82 @@
                                 <th class="product-quantity">{{__('web/cart.t_Quantity')}}</th>
                                 <th class="product-subtotal">{{__('web/cart.t_Total')}}</th>
                                 <th class="product-remove"></th>
+                                @if($PageErr != 0)
+                                    <th class="product-remove"> </th>
+                                @endif
                             </tr>
                             </thead>
                             <tbody>
                             @if(count($CartList) >0 )
                                 @foreach($CartList as $ProductCart)
-                                    <tr>
-                                        <td class="product-thumbnail"><a href="#"><img src="{{getPhotoPath($ProductCart->options->photo,"blog")}}" alt="product1"></a></td>
+
+                                    <tr class="@if($ProductCart->options->price_err == 1 or $ProductCart->options->qty_err ) error_in_product @endif">
+                                        <td class="product-thumbnail"><a href="#"><img src="{{getPhotoPath($ProductCart->model->photo_thum_1 ,"blog")}}" alt="product1"></a></td>
                                         <td class="product-name" data-title="{{__('web/cart.t_Product')}}">
                                             <a href="#">{{$ProductCart->name}}</a></td>
-                                        <td class="product-price" data-title="{{__('web/cart.t_Price')}}">{{$ProductCart->price}} {{__('web/cart.EGP')}}</td>
-                                        <td class="product-quantity" data-title="{{__('web/cart.t_Quantity')}}">
-                                            <div class="quantity">
 
-
-                                                <div class="increaseProduct">
-                                                    <form wire:submit.prevent="decreaseProduct({{$ProductCart->id}})" method="post">
-{{--                                                        @csrf--}}
-                                                        <button type="submit" class="btn btn-sm btn-fill-out">-</button>
-                                                    </form>
+                                        @if($ProductCart->options->qty_err == 1 and $ProductCart->options->qty_left == null)
+                                            <td colspan="3">
+                                                <div class="btn btn-dark rounded-0">
+                                                    المنتج غير متوفر حاليا
                                                 </div>
+                                            </td>
 
-                                                <input type="text" name="quantity" readonly value="{{$ProductCart->qty}}" title="Qty" class="qty" size="4">
+                                        @else
+                                            <td class="product-price" data-title="{{__('web/cart.t_Price')}}">{{$ProductCart->price}} {{__('web/cart.EGP')}}</td>
+                                            <td class="product-quantity" data-title="{{__('web/cart.t_Quantity')}}">
+                                                <div class="quantity">
+                                                    <div class="increaseProduct">
+                                                        <form wire:submit.prevent="decreaseProduct({{$ProductCart->id}})" method="post">
+                                                            <button type="submit" class="btn btn-sm btn-fill-out">-</button>
+                                                        </form>
+                                                    </div>
 
-                                                <div class="increaseProduct">
-                                                    <form wire:submit.prevent="increaseProduct({{$ProductCart->id}})" method="post">
-{{--                                                        @csrf--}}
-                                                        <button type="submit" class="btn btn-sm btn-fill-out">+</button>
-                                                    </form>
+                                                    <input type="text" name="quantity" readonly value="{{$ProductCart->qty}}" title="Qty" class="qty" size="4">
+
+                                                    @if($ProductCart->qty < $ProductCart->model->qty_left)
+                                                        <div class="increaseProduct">
+                                                            <form wire:submit.prevent="increaseProduct({{$ProductCart->id}})" method="post">
+                                                                <button type="submit" class="btn btn-sm btn-fill-out">+</button>
+                                                            </form>
+                                                        </div>
+                                                    @endif
+
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td class="product-subtotal" data-title="{{__('web/cart.t_Total')}}">{{ $ProductCart->price *  $ProductCart->qty }} {{__('web/cart.EGP')}}</td>
+                                            </td>
+                                            <td class="product-subtotal" data-title="{{__('web/cart.t_Total')}}">{{ $ProductCart->price *  $ProductCart->qty }} {{__('web/cart.EGP')}}</td>
+                                        @endif
+
                                         <td class="product-remove" data-title="">
                                             <form  wire:submit.prevent="removeFromCart({{$ProductCart->id}})" method="post">
-{{--                                                @csrf--}}
-
                                                 <div class="add_toCart_wrap">
                                                     <button type="submit" class="btn btn-sm btn-fill-out"> <i class="ti-close"></i>{{__('web/cart.t_Remove')}}</button>
                                                 </div>
                                             </form>
                                         </td>
+
+                                        @if($PageErr != 0)
+                                            <td class="product-remove" data-title="">
+
+                                                @if($ProductCart->options->price_err == 1)
+                                                    <form  wire:submit.prevent="updateProductPrice({{$ProductCart->id}})" method="post">
+                                                        <div class="add_toCart_wrap">
+                                                            <button type="submit" class="btn btn-sm btn-fill-out">تحديث السعر</button>
+                                                        </div>
+                                                    </form>
+                                                @endif
+
+                                                @if($ProductCart->options->qty_err == 1 and $ProductCart->options->qty_left != null)
+                                                    <form  wire:submit.prevent="updateProductQTY({{$ProductCart->id}})" method="post">
+                                                        <div class="add_toCart_wrap">
+                                                            <button type="submit" class="btn btn-sm btn-fill-out">تحديث الكمية</button>
+                                                        </div>
+                                                    </form>
+                                                @endif
+
+                                            </td>
+                                        @endif
+
                                     </tr>
                                 @endforeach
                             @endif
@@ -112,17 +149,25 @@
                         <div class="row">
                             <div class="col-md-12 text-left Confirm_Order">
                                 @if(Auth::guard('customer')->check())
-                                    <span>
+                                    @if($PageErr == 0)
+                                        <span>
                                     <a href="{{route('Shop_CartConfirm')}}" class="btn btn-fill-out float-right ml-5 mb-2 mt-2 mt-lg-3">
                                         <i class="fas fa-shopping-cart"></i> {{__('web/cart.Confirm_Order')}}
                                     </a>
                                          </span>
 
-{{--                                    <span>--}}
-{{--                                    <a href="https://api.whatsapp.com/send?phone=201208256945&text={!! $Mass !!}" class="btn btn-whatsapp ml-5 mt-lg-3 mt-2">--}}
-{{--                                        <i class="fab fa-whatsapp"></i> {{__('web/cart.Confirm_Order_whatsapp')}}--}}
-{{--                                    </a>--}}
-{{--                                         </span>--}}
+                                    @else
+                                        <div class="alert alert-danger text-center">
+                                           {!! (__('web/cart.err_update_need')) !!}
+                                        </div>
+                                    @endif
+
+
+                                    {{--                                    <span>--}}
+                                    {{--                                    <a href="https://api.whatsapp.com/send?phone=201208256945&text={!! $Mass !!}" class="btn btn-whatsapp ml-5 mt-lg-3 mt-2">--}}
+                                    {{--                                        <i class="fab fa-whatsapp"></i> {{__('web/cart.Confirm_Order_whatsapp')}}--}}
+                                    {{--                                    </a>--}}
+                                    {{--                                         </span>--}}
                                 @else
                                     <span>
                                         <a href="{{route('Customer_login')}}" class="btn btn-fill-out ml-5 mb-2 mt-2 mt-lg-3">
@@ -171,8 +216,4 @@
     </div>
 </div>
 
-<script>
-    document.addEventListener('livewire:load', () => {
-        setInterval(function(){ window.livewire.emit('cart-full-view.blade'); }, 1800000);
-    });
-</script>
+

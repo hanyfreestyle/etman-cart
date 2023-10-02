@@ -49,8 +49,4 @@
     @endif
 </div>
 
-<script>
-    document.addEventListener('livewire:load', () => {
-        setInterval(function(){ window.livewire.emit('cart-add-button.blade'); }, 1800000);
-    });
-</script>
+
