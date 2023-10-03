@@ -2,20 +2,11 @@
 
 namespace App\Http\Controllers\web;
 
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\WebMainController;
-use App\Http\Requests\shopping\ShoppingOrderSaveRequest;
 use App\Models\admin\Category;
 use App\Models\admin\FaqCategory;
 use App\Models\admin\Product;
-use App\Models\customer\UsersCustomersAddress;
-use App\Models\shopping\ShoppingOrder;
-use App\Models\shopping\ShoppingOrderAddress;
-use App\Models\shopping\ShoppingOrderProduct;
-use Gloudemans\Shoppingcart\Facades\Cart;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\Str;
 
 class ShopPageController extends WebMainController
 {

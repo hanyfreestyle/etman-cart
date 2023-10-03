@@ -36,7 +36,5 @@
 @endsection
 
 
-@section('AddScript')
 
-@endsection
 

@@ -50,23 +50,35 @@
                                             <td class="product-price" data-title="{{__('web/cart.t_Price')}}">{{$ProductCart->price}} {{__('web/cart.EGP')}}</td>
                                             <td class="product-quantity" data-title="{{__('web/cart.t_Quantity')}}">
                                                 <div class="quantity">
+
+
+                                                    @if( $ProductCart->qty < $ProductCart->model->qty_left and $ProductCart->qty < $ProductCart->model->qty_max )
+                                                        <div class="increaseProduct">
+                                                            <form wire:submit.prevent="increaseProduct({{$ProductCart->id}})" method="post">
+                                                                <button type="submit" class="btn btn-sm btn-fill-out">+</button>
+                                                            </form>
+                                                        </div>
+                                                    @else
+                                                        <div class="increaseProduct">
+                                                            <button wire:click="update({{$ProductCart->id}})" type="button" class="btn btn-sm btn-fill-out-dark">+</button>
+                                                        </div>
+                                                    @endif
+
+                                                    <input type="text" name="quantity" readonly value="{{$ProductCart->qty}}" title="Qty" class="qty" size="4">
+
                                                     <div class="increaseProduct">
                                                         <form wire:submit.prevent="decreaseProduct({{$ProductCart->id}})" method="post">
                                                             <button type="submit" class="btn btn-sm btn-fill-out">-</button>
                                                         </form>
                                                     </div>
 
-                                                    <input type="text" name="quantity" readonly value="{{$ProductCart->qty}}" title="Qty" class="qty" size="4">
-
-                                                    @if($ProductCart->qty < $ProductCart->model->qty_left)
-                                                        <div class="increaseProduct">
-                                                            <form wire:submit.prevent="increaseProduct({{$ProductCart->id}})" method="post">
-                                                                <button type="submit" class="btn btn-sm btn-fill-out">+</button>
-                                                            </form>
-                                                        </div>
-                                                    @endif
 
                                                 </div>
+                                                @if (session()->has('message_'.$ProductCart->id))
+                                                    <div class="no_more_qty">
+                                                        {{ session('message_'.$ProductCart->id) }}
+                                                    </div>
+                                                @endif
                                             </td>
                                             <td class="product-subtotal" data-title="{{__('web/cart.t_Total')}}">{{ $ProductCart->price *  $ProductCart->qty }} {{__('web/cart.EGP')}}</td>
                                         @endif

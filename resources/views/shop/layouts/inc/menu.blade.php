@@ -32,9 +32,8 @@
 
 
                         <li class="dropdown cart_dropdown">
-                            <a class="nav-link cart_trigger" href="#" data-bs-toggle="dropdown"><i class="linearicons-cart"></i>
-                                @livewire('cart-counter')</a></a>
-                            <livewire:cart-menu-product-list :showimg="true"/>
+                            <a href="{{route('Shop_CartView')}}" class="nav-link"><i class="linearicons-cart"></i>@livewire('cart-counter')</a>
+{{--                            <livewire:cart-menu-product-list :showimg="true"/>--}}
                         </li>
 
                     </ul>

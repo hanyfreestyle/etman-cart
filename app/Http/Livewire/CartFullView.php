@@ -126,4 +126,12 @@ class CartFullView extends Component
 
     }
 
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     update
+    public function update($id){
+        session()->flash('message_'.$id,__('web/cart.err_no_more_qty'));
+    }
+
+
 }

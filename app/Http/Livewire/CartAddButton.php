@@ -79,4 +79,10 @@ class CartAddButton extends Component
         $this->emit('cart_updated');
     }
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     update
+    public function update(){
+        session()->flash('message',__('web/cart.err_no_more_qty'));
+    }
+
 }
