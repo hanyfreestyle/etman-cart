@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\customer;
 
 
+use App\Http\Requests\customer\ProfileAddressEditRequest;
 use App\Models\shopping\ShoppingOrder;
 use App\Http\Controllers\WebMainController;
 use App\Http\Requests\customer\ProfileAddressAddRequest;
@@ -122,6 +123,7 @@ class ProfileController extends WebMainController
 #|||||||||||||||||||||||||||||||||||||| #     Profile_Address_Save
     public function Profile_Address_Save(ProfileAddressAddRequest $request)
     {
+
         $SinglePageView = $this->SinglePageView ;
         $SinglePageView['profileMenu'] = "profile" ;
 
@@ -135,11 +137,14 @@ class ProfileController extends WebMainController
 
         if($customer->addresses_count == 0){
             $saveAddress->is_default = true ;
+            $saveAddress->name = "العنوان الافتراضى";
+        }else{
+            $saveAddress->name = 'العنوان '. $customer->addresses_count+1;
         }
 
         $saveAddress->uuid = Str::uuid()->toString();
         $saveAddress->customer_id = $customer->id ;
-        $saveAddress->name = $request->input('name');
+
         $saveAddress->city_id = $request->input('city_id');
         $saveAddress->recipient_name = $request->input('recipient_name');
 
@@ -148,7 +153,14 @@ class ProfileController extends WebMainController
         $saveAddress->address = $request->input('address');
         $saveAddress->save();
 
-        return redirect()->route('Profile_Address')->with('Update.Done',"");
+
+
+
+        if($request->input('page_type') == 'orders'){
+            return redirect()->route('Shop_CartConfirm');
+        }else{
+            return redirect()->route('Profile_Address')->with('Update.Done',"");
+        }
 
     }
 
@@ -176,7 +188,7 @@ class ProfileController extends WebMainController
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     Profile_Address_Update
-    public function Profile_Address_Update(ProfileAddressAddRequest $request,$uuid){
+    public function Profile_Address_Update(ProfileAddressEditRequest $request,$uuid){
         $isUuid = Str::isUuid($uuid);
 
         if(!$isUuid){

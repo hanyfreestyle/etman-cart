@@ -4,7 +4,7 @@ namespace App\Http\Requests\customer;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProfileAddressAddRequest extends FormRequest
+class ProfileAddressEditRequest extends FormRequest
 {
 
     public function authorize(): bool
@@ -16,6 +16,7 @@ class ProfileAddressAddRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'name'=> "required|min:4|max:50",
             'recipient_name'=> "required|min:4|max:50",
             'city_id'=> "required",
             'phone'=> "numeric|min_digits:11|max_digits:11",
@@ -33,5 +34,6 @@ class ProfileAddressAddRequest extends FormRequest
             'phone_option.max_digits' => "برجاء اضافة رقم الهاتف بصورة صحيحه ",
         ];
     }
+
 
 }

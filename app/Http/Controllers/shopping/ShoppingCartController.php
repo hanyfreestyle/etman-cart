@@ -7,6 +7,7 @@ use App\Http\Controllers\WebMainController;
 use App\Http\Requests\shopping\ShoppingOrderSaveRequest;
 use App\Models\admin\Product;
 use App\Models\customer\UsersCustomersAddress;
+use App\Models\data\DataCity;
 use App\Models\shopping\ShoppingOrder;
 use App\Models\shopping\ShoppingOrderAddress;
 use App\Models\shopping\ShoppingOrderProduct;
@@ -38,6 +39,9 @@ class ShoppingCartController extends WebMainController
         ];
 
         $this->SinglePageView = $SinglePageView ;
+
+        $cities = DataCity::all();
+        View::share('cities', $cities);
     }
 
 
@@ -78,17 +82,23 @@ class ShoppingCartController extends WebMainController
         $subtotal =  Cart::subtotal();
 
         if($CartList->count() > 0){
-            return view('shop.cart.confirm',
-                compact('SinglePageView','PageMeta','addresses','CartList','subtotal'));
+            return view('shop.cart.confirm',compact('SinglePageView','PageMeta','addresses','CartList','subtotal','UserProfile'));
         }else{
             return redirect()->route('Shop_CartView');
         }
     }
 
+
+    public function PrintAddressAjax(Request $request){
+
+    }
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| # CartOrderSave
     public function CartOrderSave(ShoppingOrderSaveRequest $request)
     {
+
+
+        dd('hi');
 
         $CartList =  Cart::content();
         $subtotal =  Cart::subtotal();

@@ -70,6 +70,10 @@ Route::group(['prefix' => 'EtmanShop'], function(){
         Route::get('/CartConfirm',
             [ShoppingCartController::class, 'CartConfirm'])->name('Shop_CartConfirm');
 
+        Route::post('/PrintAddressAjax',
+            [ShoppingCartController::class, 'PrintAddressAjax'])->name('Shop_PrintAddressAjax');
+
+
         Route::post('/CartOrderSave',
             [ShoppingCartController::class, 'CartOrderSave'])->name('Shop_CartOrderSave');
 

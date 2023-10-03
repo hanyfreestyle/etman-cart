@@ -64,36 +64,110 @@
                     <div class="heading_s1">
                         <h4>{{__('web/cart.review_address')}}</h4>
                     </div>
-                    <form method="post" action="{{route('Shop_CartOrderSave')}}">
-                        @csrf
+
+                    @if(count($addresses) == 0)
+                       @include('shop.customer.profile_address_form_inc',['pageType' => 'orders'])
+                    @else
+                        <form method="post" action="{{route('Shop_CartOrderSave')}}">
+                            @csrf
+
+                            <livewire:show-address-block :addresses="$addresses" />
 
 
-                        <div class="form-group mb-3">
-                            <div class="custom_select">
-                                <select class="form-control" name="address_id">
-                                    <option value="">برجاء تحديد عنوان الشحن</option>
-                                    @foreach($addresses as $address)
-                                        <option value="{{$address->uuid}}" @if($address->is_default) selected @endif >{{$address->name}}</option>
-                                    @endforeach
 
-                                </select>
+
+{{--                            @if(count($addresses) == 1)--}}
+{{--                                <input type="hidden" name="address_id" value="{{$addresses[0]->uuid}}">--}}
+{{--                                <div class="dashboard_content mb-4">--}}
+{{--                                    @include('shop.customer.profile_address_block',['page_type'=> 'orders','address'=>$addresses[0]])--}}
+{{--                                </div>--}}
+{{--                            @else--}}
+{{--                                <div class="form-group mb-3">--}}
+{{--                                    <div class="custom_select">--}}
+{{--                                        <select class="form-control address_id" name="address_id" >--}}
+{{--                                            <option value="">برجاء تحديد عنوان الشحن</option>--}}
+{{--                                            @foreach($addresses as $address)--}}
+
+{{--                                                    <option value="{{$address->uuid}}" @if($address->is_default) selected @endif >{{$address->name}}</option>--}}
+
+{{--                                            @endforeach--}}
+{{--                                        </select>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+
+
+{{--                                @foreach($addresses as $address)--}}
+{{--                                    @if($address->is_default == true)--}}
+{{--                                        <div class="dashboard_content mb-4" id="address_id">--}}
+{{--                                            @include('shop.customer.profile_address_block',['page_type'=> 'orders','address'=>$address])--}}
+{{--                                        </div>--}}
+
+{{--                                    @endif--}}
+{{--                                @endforeach--}}
+
+{{--                            @endif--}}
+
+
+                            <x-form-textarea
+                                label=""
+                                name="notes"
+                                value="{{old('notes')}}"
+                                placeholder="{{__('web/cart.review_notes')}}"
+
+
+                            />
+
+
+                            <div class="form-group mt-3">
+                                <button class="btn btn-fill-out btn-block" type="submit">
+                                    {{__('web/cart.review_confirm_but')}}
+                                </button>
+
                             </div>
-                        </div>
+                        </form>
+                    @endif
 
-                        <div class="form-group">
-                            <textarea rows="5"  name="notes" class="form-control" placeholder="{{__('web/cart.review_notes')}}">{{old('notes')}}</textarea>
-                        </div>
-                        <div class="form-group mt-3">
-                            <button class="btn btn-fill-out btn-block" type="submit">
-                                {{__('web/cart.review_confirm_but')}}
-                            </button>
-
-                        </div>
-                    </form>
                 </div>
 
             </div>
         </div>
     </div>
+@endsection
+
+
+@section('AddScript')
+{{--    <script>--}}
+
+{{--        $('.address_id').on('change', function() {--}}
+{{--            var address_id = $('.address_id').val();--}}
+{{--            $("#address_id").empty();--}}
+
+{{--            $.ajaxSetup({--}}
+{{--                headers: {--}}
+{{--                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
+{{--                }--}}
+{{--            });--}}
+
+{{--            $.ajax({--}}
+{{--             ///   headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},--}}
+{{--                url: '{{route('Shop_PrintAddressAjax')}}',--}}
+{{--                type: 'POST',--}}
+{{--               // dataType: 'text',--}}
+{{--                // data: {--}}
+{{--                //     address_id: address_id,--}}
+{{--                // },--}}
+{{--                success: function (response) {--}}
+{{--                    console.log(response);--}}
+{{--                }--}}
+{{--            });--}}
+
+
+{{--        });--}}
+
+
+{{--   --}}
+{{--    </script>--}}
+
+
 @endsection
 
