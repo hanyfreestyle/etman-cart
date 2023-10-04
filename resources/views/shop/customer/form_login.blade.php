@@ -24,7 +24,7 @@
                                    <div class="login_wrap border_top">
                                        <div class="padding_eight_all bg-white ">
 
-                                           <form method="post" action="{{route('Customer_loginCheck')}}">
+                                           <form method="post" action="{{route('Customer_loginCheck',$cart)}}">
                                                @csrf
                                                <div class="row">
                                                    <x-mass.confirm-massage/>

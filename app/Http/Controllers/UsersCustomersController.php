@@ -43,24 +43,29 @@ class UsersCustomersController extends WebMainController
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| # CustomerLogin
-    public function CustomerLogin()
+    public function CustomerLogin($cart='')
     {
         $SinglePageView = $this->SinglePageView ;
         $SinglePageView['breadcrumb'] = "Customer_Login" ;
-        return view('shop.customer.form_login',compact('SinglePageView'));
+        return view('shop.customer.form_login',compact('SinglePageView','cart'));
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #CustomerLoginCheck
-    public function CustomerLoginCheck(UsersCustomersRequest $request)
+    public function CustomerLoginCheck(UsersCustomersRequest $request,$Cart='')
     {
 //        $email = $request->input('email');
 //        $password = $request->input('password');
 //        $remember = ($request->input('remember')=='on')?true:false;
 
+
         $credentials  =$request->only('email',"password");
         if(Auth::guard('customer')->attempt($credentials)){
-            return redirect()->route('Customer_Profile');
+            if($Cart == 'cart'){
+                return redirect()->route('Shop_CartView');
+            }else{
+                return redirect()->route('Customer_Profile');
+            }
         }else{
             return  redirect()->route('Customer_login')->with('Error',"البيانات غير صحيحة او عضويتك غير مفعله ");
         }

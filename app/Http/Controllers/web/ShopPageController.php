@@ -72,6 +72,14 @@ class ShopPageController extends WebMainController
 #|||||||||||||||||||||||||||||||||||||| #     Recently
     public function Recently ()
     {
+
+//        $updatePro = Product::all();
+//        foreach ($updatePro as $pro){
+//            $pro->qty_max = 5;
+//            $pro->qty_left = 10;
+//            $pro->save();
+//        }
+
         $PageMeta = parent::getMeatByCatId('Shop_Recently');
         parent::printSeoMeta($PageMeta);
 
@@ -89,7 +97,7 @@ class ShopPageController extends WebMainController
             ->with('product_with_category')
             ->whereHas('product_with_category',function($query){
                 $query->where('category_id',39);
-            })->get();
+            })->orderby('id','desc')->get();
 
         return view('shop.product.recently_arrived',compact('SinglePageView','PageMeta','Recently'));
 

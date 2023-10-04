@@ -10,10 +10,10 @@ Route::group(['prefix' => 'EtmanShop'], function(){
 
     Route::middleware(['guest:customer'])->group(function (){
 
-        Route::get('/login',
+        Route::get('/login/{cart?}',
             [UsersCustomersController::class, 'CustomerLogin'])->name('Customer_login');
 
-        Route::post('/loginCheck',
+        Route::post('/loginCheck/{cart?}',
             [UsersCustomersController::class, 'CustomerLoginCheck'])->name('Customer_loginCheck');
 
         Route::get('/sign-up',
