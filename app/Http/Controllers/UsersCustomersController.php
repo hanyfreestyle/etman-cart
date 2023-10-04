@@ -54,12 +54,8 @@ class UsersCustomersController extends WebMainController
 #|||||||||||||||||||||||||||||||||||||| #CustomerLoginCheck
     public function CustomerLoginCheck(UsersCustomersRequest $request,$Cart='')
     {
-//        $email = $request->input('email');
-//        $password = $request->input('password');
-//        $remember = ($request->input('remember')=='on')?true:false;
 
-
-        $credentials  =$request->only('email',"password");
+        $credentials  = $request->only('phone',"password");
         if(Auth::guard('customer')->attempt($credentials)){
             if($Cart == 'cart'){
                 return redirect()->route('Shop_CartView');

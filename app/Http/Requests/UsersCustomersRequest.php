@@ -14,7 +14,7 @@ class UsersCustomersRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email'=> "required|email|exists:users_customers",
+            'phone'=> "required|numeric|min_digits:11|max_digits:11|exists:users_customers",
             'password'=> "required|min:8",
         ];
     }
@@ -22,7 +22,9 @@ class UsersCustomersRequest extends FormRequest
     public function messages()
     {
         return [
-            'email.exists' => __('web/customers.login_err_exists') ,
+            'phone.exists' => __('web/customers.login_err_exists') ,
+            'phone.min_digits' => "برجاء اضافة رقم الهاتف بصورة صحيحه ",
+            'phone.max_digits' => "برجاء اضافة رقم الهاتف بصورة صحيحه ",
         ];
     }
 

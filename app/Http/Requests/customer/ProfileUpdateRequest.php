@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\customer;
 
+use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProfileUpdateRequest extends FormRequest
@@ -14,10 +15,15 @@ class ProfileUpdateRequest extends FormRequest
 
     public function rules(): array
     {
+        $id = Auth::guard('customer')->user()->id;
+
+
+
         return [
             'name'=> "required|min:4|max:50",
-            'phone'=> "numeric|min_digits:11|max_digits:11",
-            //'email'=> "required|email|unique:users_customers",
+            'email'=> "required|email|unique:users_customers,email,$id",
+            'whatsapp'=> "nullable|numeric|min_digits:11",
+            'land_phone'=> "nullable|numeric|min_digits:7",
             'city_id'=> "required",
         ];
 

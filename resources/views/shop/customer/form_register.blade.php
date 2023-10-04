@@ -36,11 +36,12 @@
                                                   colrow="col-lg-12" value="{{old('name')}}"   inputclass="dir_en"/>
                                 </div>
                                 <div class=" row form-group mb-3">
-                                    <x-form-input label="{{__('admin/config/roles.users_fr_email')}}" name="email" :requiredSpan="true" colrow="col-lg-6"
-                                                  value="{{old('email')}}" inputclass="dir_en"/>
-
                                     <x-form-input label="{{__('web/customers.reg_form_phone')}}" name="phone" :requiredSpan="true" colrow="col-lg-6"
                                                   value="{{old('phone')}}" inputclass="dir_en"/>
+
+                                    <x-form-input label="{{__('admin/config/roles.users_fr_email')}}" name="email" :requiredSpan="false" colrow="col-lg-6"
+                                                  value="{{old('email')}}" inputclass="dir_en"/>
+
                                 </div>
 
                                 <div class="row form-group mb-3">
@@ -51,19 +52,19 @@
                                                   value="{{old('password_confirmation')}}"  type="password"  :password-edit="false" inputclass="dir_en"/>
                                 </div>
 
-                                <div class="login_footer form-group mb-3">
-                                    <div class="chek-form">
-                                        <div class="custome-checkbox">
-                                            <input class="form-check-input" type="checkbox" name="reg_terms" @if(old('reg_terms') == 1) checked @endif id="exampleCheckbox2" value="1">
-                                            <label class="form-check-label" for="exampleCheckbox2"><span>{{__('web/customers.reg_terms')}}</span></label>
-                                        </div>
-                                        @if($errors->has('reg_terms'))
-                                            <span class="span_form_error">{{ $errors->first('reg_terms') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
+{{--                                <div class="login_footer form-group mb-3">--}}
+{{--                                    <div class="chek-form">--}}
+{{--                                        <div class="custome-checkbox">--}}
+{{--                                            <input class="form-check-input" type="checkbox" name="reg_terms" @if(old('reg_terms') == 1) checked @endif id="exampleCheckbox2" value="1">--}}
+{{--                                            <label class="form-check-label" for="exampleCheckbox2"><span>{{__('web/customers.reg_terms')}}</span></label>--}}
+{{--                                        </div>--}}
+{{--                                        @if($errors->has('reg_terms'))--}}
+{{--                                            <span class="span_form_error">{{ $errors->first('reg_terms') }}</span>--}}
+{{--                                        @endif--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 
-                                <div class="form-group mb-3">
+                                <div class="form-group mb-3 mt-4">
                                     <button type="submit" class="btn btn-fill-out btn-block" name="register">{{__('web/customers.reg_but')}}</button>
                                 </div>
 

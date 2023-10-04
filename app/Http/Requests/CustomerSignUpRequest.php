@@ -17,10 +17,10 @@ class CustomerSignUpRequest extends FormRequest
     {
         return [
             'name'=> "required|min:4|max:50",
-            'phone'=> "numeric|min_digits:11|max_digits:11",
-            'email'=> "required|email|unique:users_customers",
+            'phone'=> "required|numeric|min_digits:11|max_digits:11|unique:users_customers",
+            'email'=> "nullable|email|unique:users_customers",
             'password'=> "required|min:8|confirmed",
-            'reg_terms'=> "accepted",
+           // 'reg_terms'=> "accepted",
         ];
 
     }
@@ -29,9 +29,10 @@ class CustomerSignUpRequest extends FormRequest
     {
         return [
             'email.unique' => "البريد الالكترونى مسجل من قبل ",
+            'phone.unique' => "رقم الهاتف مسجل من قبل ",
             'phone.min_digits' => "برجاء اضافة رقم الهاتف بصورة صحيحه ",
             'phone.max_digits' => "برجاء اضافة رقم الهاتف بصورة صحيحه ",
-            'reg_terms' => "يجب الموافقة على سياسية الاستخدم ",
+           // 'reg_terms' => "يجب الموافقة على سياسية الاستخدم ",
         ];
     }
 

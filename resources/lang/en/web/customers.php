@@ -5,6 +5,8 @@ return
 	'Profile_AccountDetails' => '',
 	'Profile_Address' => '',
 	'Profile_ChangePassword' => '',
+	'Profile_ChangePassword_fr_new' => '',
+	'Profile_ChangePassword_fr_old' => '',
 	'Profile_OrdersList' => '',
 	'Profile_form_city' => '',
 	'Profile_form_city_sleoption' => '',
@@ -29,6 +31,4 @@ return
 	'reg_form_phone' => '',
 	'reg_h1' => 'تسجيل عضوية جديدة',
 	'reg_terms' => '',
-	'Profile_ChangePassword_fr_new' => '',
-	'Profile_ChangePassword_fr_old' => '',
 ];

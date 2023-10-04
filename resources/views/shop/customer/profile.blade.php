@@ -34,18 +34,6 @@
                                     <div class="row">
                                         @csrf
 
-                                        <div class="form-group col-md-5 mb-3">
-                                            <x-form-input
-                                                label="{{__('admin/config/roles.users_fr_email')}}"
-                                                name="email"
-                                                :disabled="true"
-                                                :requiredSpan="true"
-                                                colrow="col-lg-12"
-                                                value="{{old('email',$UserProfile->email)}}"
-                                                inputclass="dir_en"/>
-                                        </div>
-
-
                                         <div class="form-group col-md-7 mb-3">
                                             <x-form-input
                                                 label="{{ __('web/customers.reg_form_name') }}"
@@ -53,6 +41,17 @@
                                                 :requiredSpan="true"
                                                 colrow="col-lg-12"
                                                 value="{{old('name',$UserProfile->name)}}"
+                                                inputclass="dir_en"/>
+                                        </div>
+
+                                        <div class="form-group col-md-5 mb-3">
+                                            <x-form-input
+                                                label="{{ __('web/customers.reg_form_phone') }}"
+                                                name="phone"
+                                                :disabled="true"
+                                                :requiredSpan="true"
+                                                colrow="col-lg-12"
+                                                value="{{old('phone',$UserProfile->phone)}}"
                                                 inputclass="dir_en"/>
                                         </div>
 
@@ -79,11 +78,11 @@
                                         <div class="row">
                                             <div class="form-group col-md-6 mb-3">
                                                 <x-form-input
-                                                    label="{{ __('web/customers.reg_form_phone') }}"
-                                                    name="phone"
+                                                    label="{{__('admin/config/roles.users_fr_email')}}"
+                                                    name="email"
                                                     :requiredSpan="true"
                                                     colrow="col-lg-12"
-                                                    value="{{old('phone',$UserProfile->phone)}}"
+                                                    value="{{old('email',$UserProfile->email)}}"
                                                     inputclass="dir_en"/>
                                             </div>
                                         </div>

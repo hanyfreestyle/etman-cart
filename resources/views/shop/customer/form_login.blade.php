@@ -31,8 +31,8 @@
                                                </div>
 
                                                <div class="form-group mb-3">
-                                                   <x-form-input label="{{__('admin/config/roles.users_fr_email')}}" name="email" :requiredSpan="true" colrow="col-lg-12"
-                                                                 value="etmano@hotmail.com" inputclass="dir_en"/>
+                                                   <x-form-input label="{{__('web/customers.reg_form_phone')}}" name="phone" :requiredSpan="true" colrow="col-lg-12"
+                                                                 value="01223129660" inputclass="dir_en" />
                                                </div>
 
                                                <div class="form-group mb-3">

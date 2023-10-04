@@ -64,7 +64,6 @@ class ProfileController extends WebMainController
 #|||||||||||||||||||||||||||||||||||||| #     ProfileUpdate
     public function ProfileUpdate(ProfileUpdateRequest $request)
     {
-
         $UserProfile = Auth::guard('customer')->user();
         $customer = UsersCustomers::def()
             ->where('id',$UserProfile->id)
@@ -72,7 +71,7 @@ class ProfileController extends WebMainController
 
         $customer->name = $request->input('name');
         $customer->company_name = $request->input('company_name');
-        $customer->phone  = $request->input('phone');
+        $customer->email  = $request->input('email');
         $customer->whatsapp = $request->input('whatsapp');
         $customer->land_phone = $request->input('land_phone');
         $customer->city_id = $request->input('city_id');
