@@ -11,6 +11,13 @@
 
             <div class="row">
 
+                @if (session()->has('order_not_saved'))
+                    <div class="alert alert-danger text-center">
+                        {{ session('order_not_saved') }}
+                    </div>
+                @endif
+
+
                 <div class="col-md-6 mb-1">
                     <div class="heading_s1">
                         <h4>{{__('web/cart.cart_veiw_Totals')}}</h4>
@@ -70,51 +77,12 @@
                     @else
                         <form method="post" action="{{route('Shop_CartOrderSave')}}">
                             @csrf
-
                             <livewire:show-address-block :addresses="$addresses" />
-
-
-
-
-{{--                            @if(count($addresses) == 1)--}}
-{{--                                <input type="hidden" name="address_id" value="{{$addresses[0]->uuid}}">--}}
-{{--                                <div class="dashboard_content mb-4">--}}
-{{--                                    @include('shop.customer.profile_address_block',['page_type'=> 'orders','address'=>$addresses[0]])--}}
-{{--                                </div>--}}
-{{--                            @else--}}
-{{--                                <div class="form-group mb-3">--}}
-{{--                                    <div class="custom_select">--}}
-{{--                                        <select class="form-control address_id" name="address_id" >--}}
-{{--                                            <option value="">برجاء تحديد عنوان الشحن</option>--}}
-{{--                                            @foreach($addresses as $address)--}}
-
-{{--                                                    <option value="{{$address->uuid}}" @if($address->is_default) selected @endif >{{$address->name}}</option>--}}
-
-{{--                                            @endforeach--}}
-{{--                                        </select>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-
-{{--                                @foreach($addresses as $address)--}}
-{{--                                    @if($address->is_default == true)--}}
-{{--                                        <div class="dashboard_content mb-4" id="address_id">--}}
-{{--                                            @include('shop.customer.profile_address_block',['page_type'=> 'orders','address'=>$address])--}}
-{{--                                        </div>--}}
-
-{{--                                    @endif--}}
-{{--                                @endforeach--}}
-
-{{--                            @endif--}}
-
-
                             <x-form-textarea
                                 label=""
                                 name="notes"
                                 value="{{old('notes')}}"
                                 placeholder="{{__('web/cart.review_notes')}}"
-
-
                             />
 
 

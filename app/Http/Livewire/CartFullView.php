@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Controllers\shopping\ShoppingCartController;
 use App\Models\admin\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Livewire\Component;
@@ -13,11 +14,13 @@ class CartFullView extends Component
         $CartList =  Cart::content();
         $subtotal =  Cart::subtotal();
 
-        $products = Product::select('id','qty_left','price','sale_price')
-            ->whereIn('id',$CartList->pluck('id'))
-            ->get()->keyBy('id');
+//        $products = Product::select('id','qty_left','price','sale_price')
+//            ->whereIn('id',$CartList->pluck('id'))
+//            ->get()->keyBy('id');
 
+        $PageErr = ShoppingCartController::CheckCartProduct();
 
+        /*
         $PageErr = 0 ;
         foreach ($CartList as $ProductCart){
 
@@ -47,9 +50,7 @@ class CartFullView extends Component
                    ]
                ]);
         }
-
-
-       // dd(Cart::content());
+*/
 
 
 

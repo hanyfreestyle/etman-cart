@@ -42,7 +42,7 @@
                                         @if($ProductCart->options->qty_err == 1 and $ProductCart->options->qty_left == null)
                                             <td colspan="3">
                                                 <div class="btn btn-dark rounded-0">
-                                                    المنتج غير متوفر حاليا
+                                                   {{__('web/orders.err_sold_out')}}
                                                 </div>
                                             </td>
 
@@ -97,7 +97,7 @@
                                                 @if($ProductCart->options->price_err == 1)
                                                     <form  wire:submit.prevent="updateProductPrice({{$ProductCart->id}})" method="post">
                                                         <div class="add_toCart_wrap">
-                                                            <button type="submit" class="btn btn-sm btn-fill-out">تحديث السعر</button>
+                                                            <button type="submit" class="btn btn-sm btn-fill-out">{{__('web/orders.err_price_but')}}</button>
                                                         </div>
                                                     </form>
                                                 @endif
@@ -105,7 +105,7 @@
                                                 @if($ProductCart->options->qty_err == 1 and $ProductCart->options->qty_left != null)
                                                     <form  wire:submit.prevent="updateProductQTY({{$ProductCart->id}})" method="post">
                                                         <div class="add_toCart_wrap">
-                                                            <button type="submit" class="btn btn-sm btn-fill-out">تحديث الكمية</button>
+                                                            <button type="submit" class="btn btn-sm btn-fill-out">{{__('web/orders.err_qty_but')}}</button>
                                                         </div>
                                                     </form>
                                                 @endif

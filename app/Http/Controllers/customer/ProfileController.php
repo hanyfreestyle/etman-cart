@@ -31,7 +31,7 @@ class ProfileController extends WebMainController
         View::share('ShopMenuCategory', $ShopMenuCategory);
 
 
-        $cities = DataCity::all();
+        $cities =self::getDataCity() ;
         View::share('cities', $cities);
 
         $SinglePageView = [

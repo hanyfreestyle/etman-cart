@@ -11,6 +11,7 @@ use App\Models\admin\config\Setting;
 use App\Models\admin\Location;
 use App\Models\admin\Page;
 use App\Models\admin\Product;
+use App\Models\data\DataCity;
 use Cache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
@@ -228,8 +229,6 @@ class WebMainController extends Controller
                 ->withCount('web_shop_children')
                 ->with('web_shop_children')
                 ->with('recursive_product_shop')
-//                ->withCount('category_with_product_shop')
-//                ->with('category_with_product_shop')
                 ->orderBy('postion_shop','ASC')
                 ->get();
         }else{
@@ -238,8 +237,6 @@ class WebMainController extends Controller
                     ->withCount('web_shop_children')
                     ->with('web_shop_children')
                     ->with('recursive_product_shop')
-//                    ->with('category_with_product_shop')
-//                    ->withCount('category_with_product_shop')
                     ->orderBy('postion_shop','ASC')
                     ->get();
                 });
@@ -247,6 +244,24 @@ class WebMainController extends Controller
 
         return $MenuCategory ;
     }
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     getMenuCategory
+    static function getDataCity($stopCash=0){
+
+        if($stopCash){
+             $cities = DataCity::all();
+        }else{
+            $cities = Cache::remember('ShopDataCity_Cash_'.app()->getLocale(),config('app.def_24h_cash'),
+                function (){ return   DataCity::all();
+                });
+        }
+        return $cities ;
+    }
+
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     text
 
