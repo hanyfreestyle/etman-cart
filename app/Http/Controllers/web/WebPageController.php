@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\web;
 use App\Http\Controllers\WebMainController;
+use App\Http\Requests\data\NewsLetterRequest;
 use App\Models\admin\BlogPost;
 use App\Models\admin\Category;
 use App\Models\admin\config\WebPrivacy;
@@ -386,25 +387,6 @@ class WebPageController extends WebMainController
 
 
 
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     WebPro_Qview
-    public function WebPro_Qview($slug){
-        $slug = \AdminHelper::Url_Slug($slug);
-
-        $Product  = Product::defWeb()
-            ->whereTranslation('slug', $slug)
-            ->firstOrFail();
-
-
-
-
-
-        return view('web.web_product.Qview',compact('Product'));
-    }
-
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #    AboutUs
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #    AboutUs

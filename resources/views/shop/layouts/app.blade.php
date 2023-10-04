@@ -39,20 +39,23 @@
 {{--{!! htmlArDir() !!}--}}
 <body {!! htmlArDir() !!}>
 
+
 <x-website.html-loader/>
-
-<header class="header_wrap">
-    @include('shop.layouts.inc.header_top')
-    @include('shop.layouts.inc.header_middle')
-    @include('shop.layouts.inc.menu')
-</header>
-
-@if( $SinglePageView['banner_id']  and $SinglePageView['banner_count'] > 0)
-    @include('shop.layouts.inc.def_banner')
-@else
-    @yield('breadcrumb')
+@if(Session::get('mobileview') != 1)
+    <header class="header_wrap">
+        @include('shop.layouts.inc.header_top')
+        @include('shop.layouts.inc.header_middle')
+        @include('shop.layouts.inc.menu')
+    </header>
 @endif
 
+@if(Session::get('mobileview') != 1)
+    @if( $SinglePageView['banner_id']  and $SinglePageView['banner_count'] > 0)
+        @include('shop.layouts.inc.def_banner')
+    @else
+        @yield('breadcrumb')
+    @endif
+@endif
 
 
 
@@ -60,7 +63,13 @@
     @yield('content')
 </div>
 
-@include('shop.layouts.inc.footer')
+@if(Session::get('mobileview') != 1)
+    @include('shop.layouts.inc.footer')
+@endif
+
+@if(Session::get('mobileview') == 1)
+    @include('shop.layouts.inc.footer_mobile')
+@endif
 
 <!-- Latest jQuery -->
 <script src="{{ defWebAssets('js/jquery-3.6.0.min.js') }}"></script>

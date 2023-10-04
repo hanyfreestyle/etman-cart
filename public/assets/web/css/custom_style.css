@@ -141,6 +141,7 @@
 .webSiteFooter .card-header h6{font-size:16px;padding-bottom:0}
 
 
+
 .AboutUs p{font-size:16px;line-height:30px;margin-bottom:10px}
 .AboutUs img{background:#fff;padding:4px;border:1px solid #b0b0b0;vertical-align:text-top}
 
@@ -874,12 +875,58 @@
 
 @media only screen and (max-width: 900px) {
     .newsletter_text h3{
-        font-size: 20px;
+        font-size: 18px;
 
     }
     .newsletter_text p{
-        font-size: 15px;
+        font-size: 14px;
 
     }
 
+    .bottom_footer_mobile{
+        padding-bottom: 100px;
+
+    }
+
+    .scrollup{
+        bottom: 85px!important;
+    }
+
+
+
+}
+@media only screen and (min-width: 991px) {
+    .shopping_info {
+        border-top: 0!important;
+    }
+
+    .UpdateFoote_P{
+        padding-top: 0!important;
+    }
+}
+
+
+
+.newsletter_form2 span.error{
+    color: #ffffff;
+    display: inline-block;
+    padding-top: 8px;
+    font-size: 15px;
+}
+
+.newsletter_form span.error{
+    color: #ffffff;
+    /*display: inline-block;*/
+    padding-top: 8px;
+    font-size: 15px;
+}
+
+
+
+.newsletter_confirm{
+    width: 100%;
+    text-align: center;
+    color: #ffffff;
+    display: inline-block;
+    font-size: 17px;
 }

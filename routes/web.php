@@ -71,5 +71,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::get(LaravelLocalization::transRoute('routes.WebProductView'),
         [WebPageController::class, 'WebProductView'])->name('Page_WebProductView');
 
+
 });
 

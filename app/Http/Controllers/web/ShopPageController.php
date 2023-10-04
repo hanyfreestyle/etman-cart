@@ -7,6 +7,7 @@ use App\Models\admin\Category;
 use App\Models\admin\FaqCategory;
 use App\Models\admin\Product;
 use Illuminate\Support\Facades\View;
+use Session;
 
 class ShopPageController extends WebMainController
 {
@@ -56,6 +57,11 @@ class ShopPageController extends WebMainController
             ->with('recursive_product_shop')
             ->limit(4)
             ->get();
+
+
+        if(isset($_GET['mobile'])){
+            Session::put('mobileview',$_GET['mobile']);
+        }
 
 
         return view('shop.index',compact('SinglePageView','MainCategoryPro'));

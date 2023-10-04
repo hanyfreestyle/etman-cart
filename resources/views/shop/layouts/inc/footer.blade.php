@@ -1,9 +1,7 @@
 <x-website.footer-news-letter type="shop"/>
 
 <footer class="bg_gray webSiteFooter">
-
-
-    <div class="footer_top small_pt pb_20">
+    <div class="footer_top small_pt pb_20 UpdateFoote_P">
         <div class="container">
             <div class="row accordion accordion_style1" id="accordion"  >
 
@@ -42,7 +40,7 @@
 
     <x-website.footer-icons/>
 
-    <div class="bottom_footer border-top-tran">
+    <div class="bottom_footer border-top-tran bottom_footer_mobile">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
@@ -74,7 +72,7 @@
                 </div>
                 <div class="col-lg-4">
                     <ul class="footer_payment text-center text-lg-end">
-
+                        Powered By <a href="">Freestyle4u.com</a>
                     </ul>
                 </div>
             </div>
@@ -108,8 +106,6 @@
                 <i class="fas fa-user-lock"></i>{{__('web/menu.footer_account')}}</a>
         @endif
     </div>
-
-
     <div class="sticky-info">
         <a href="{{ route('Shop_CartView') }}" class="sticky_a @if($SinglePageView['SelMenu'] == 'Shop_CartView' ) active_footer @endif ">
             <i class="fas fa-shopping-cart"></i>
