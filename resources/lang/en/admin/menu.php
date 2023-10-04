@@ -19,6 +19,9 @@ return
 	'setting_model' => 'Model Settings',
 	'setting_photo' => 'Photo Settings',
 	'setting_web' => 'Web Settings',
+	'shop_customer' => 'Customer',
+	'shop_customer_list' => 'List Customer',
+	'shop_product_menu' => 'Shop',
 	'uploadFilter' => 'Upload Filters',
 	'webPrivacy' => 'Privacy',
 	'web_attribute_Table' => 'Attribute Table',
@@ -27,5 +30,6 @@ return
 	'web_pages' => 'Manage Pages',
 	'web_product' => 'Product',
 	'web_product_menu' => 'Web Product',
-	'shop_product_menu' => 'Shop',
+	'shop_orders' => 'Orders',
+	'shop_orders_list' => 'Orders List',
 ];

@@ -116,6 +116,19 @@ class PermissionSeeder extends Seeder
             ['cat_id'=> '17', 'name' => 'shopCategory_edit_slug','name_ar'=>'Edit Slug','name_en'=>'Edit Slug'],
 
 
+            ['cat_id'=> '18', 'name' => 'ShopCustomer_view','name_ar'=>'عرض','name_en'=>'View'],
+            ['cat_id'=> '18', 'name' => 'ShopCustomer_add','name_ar'=>'اضافة','name_en'=>'Add'],
+            ['cat_id'=> '18', 'name' => 'ShopCustomer_edit','name_ar'=>'تعديل','name_en'=>'Edit'],
+            ['cat_id'=> '18', 'name' => 'ShopCustomer_delete','name_ar'=>'حذف','name_en'=>'Delete'],
+            ['cat_id'=> '18', 'name' => 'ShopCustomer_restore','name_ar'=>'استعادة المحذوف','name_en'=>'Restore'],
+
+            ['cat_id'=> '19 ', 'name' => 'ShopOrders_view','name_ar'=>'عرض','name_en'=>'View'],
+            ['cat_id'=> '19 ', 'name' => 'ShopOrders_add','name_ar'=>'اضافة','name_en'=>'Add'],
+            ['cat_id'=> '19 ', 'name' => 'ShopOrders_edit','name_ar'=>'تعديل','name_en'=>'Edit'],
+            ['cat_id'=> '19 ', 'name' => 'ShopOrders_delete','name_ar'=>'حذف','name_en'=>'Delete'],
+            ['cat_id'=> '19 ', 'name' => 'ShopOrders_restore','name_ar'=>'استعادة المحذوف','name_en'=>'Restore'],
+
+
         ];
 
         $countData =  Permission::all()->count();

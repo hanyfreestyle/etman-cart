@@ -12,6 +12,8 @@ return [
        '8'=> ['id'=> '8' , 'group'=>'admin' , 'sub_dir'=> 'config' , 'file_name'=> 'roles','name'=>'الصلاحيات' ],
        '9'=> ['id'=> '9' , 'group'=>'admin' , 'sub_dir'=> 'config' , 'file_name'=> 'settings','name'=>'الاعدادات' ],
        '10'=> ['id'=> '10' , 'group'=>'admin' , 'sub_dir'=> null , 'file_name'=> 'shop','name'=>'Shop' ],
+       '11'=> ['id'=> '11' , 'group'=>'admin' , 'sub_dir'=> null , 'file_name'=> 'customer','name'=>'Customer' ],
+       '12'=> ['id'=> '12' , 'group'=>'admin' , 'sub_dir'=> null , 'file_name'=> 'order','name'=>'Orders' ],
 
 
     ],

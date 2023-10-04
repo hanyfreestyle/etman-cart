@@ -179,6 +179,48 @@
             ],
         ],
 
+        [
+            'view'=>true,
+            'sel_routs'=>'ShopCustomer',
+            'type'=>'many',
+            'text'=> 'admin/menu.shop_customer',
+            'icon'=>'fas fa-user-tie',
+            'roleView'=>'ShopCustomer_view',
+            'submenu'=>[
+                [
+                    'sel_routs'=> 'Customer',
+                    'url'=> 'ShopCustomer.Customer.index',
+                    'roleView'=>'ShopCustomer_view',
+                    'text'=> 'admin/menu.shop_customer_list',
+                    'icon'=>'fas fa-list'
+                ],
+
+            ],
+        ],
+
+
+
+        [
+            'view'=>true,
+            'sel_routs'=>'ShopOrders',
+            'type'=>'many',
+            'text'=> 'admin/menu.shop_orders',
+            'icon'=>'fas fa-money-check-alt',
+            'roleView'=>'ShopOrders_view',
+            'submenu'=>[
+                [
+                    'sel_routs'=> 'Orders',
+                    'url'=> 'ShopOrders.Orders.index',
+                    'roleView'=>'ShopOrders_view',
+                    'text'=> 'admin/menu.shop_orders_list',
+                    'icon'=>'fas fa-list'
+                ],
+
+            ],
+        ],
+
+
+
     ],
 
 ];

@@ -19,6 +19,9 @@ return
 	'setting_model' => 'اعدادات الاقسام',
 	'setting_photo' => 'اعدادات الصور',
 	'setting_web' => 'الاعدادات العامة',
+	'shop_customer' => 'العملاء',
+	'shop_customer_list' => 'عرض العملاء',
+	'shop_product_menu' => 'المتجر',
 	'uploadFilter' => 'فلاتر الصور',
 	'webPrivacy' => 'سياسية الاستخدام',
 	'web_attribute_Table' => 'جدول البيانات',
@@ -27,5 +30,6 @@ return
 	'web_pages' => 'ادارة الصفحات',
 	'web_product' => 'المنتجات',
 	'web_product_menu' => 'منتجات الموقع',
-	'shop_product_menu' => 'المتجر',
+	'shop_orders' => 'الطلبات',
+	'shop_orders_list' => 'عرض الطلبات',
 ];
