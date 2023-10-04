@@ -28,27 +28,23 @@ Route::get('/Customer',[CustomerController::class,'index'])->name('ShopCustomer.
 Route::get('/Customer/create',[CustomerController::class,'create'])->name('ShopCustomer.Customer.create');
 Route::get('/Customer/edit/{id}',[CustomerController::class,'edit'])->name('ShopCustomer.Customer.edit');
 Route::get('/Customer/destroy/{id}',[CustomerController::class,'destroy'])->name('ShopCustomer.Customer.destroy');
-Route::post('/Customer/update/{id}',[CustomerController::class,'storeUpdate'])->name('ShopCustomer.Customer.update');
+Route::post('/Customer/update/{id}',[CustomerController::class,'update'])->name('ShopCustomer.Customer.update');
+Route::post('/Customer/store',[CustomerController::class,'store'])->name('ShopCustomer.Customer.store');
 
 
-Route::get('/Customer/AddAddress/{id}',[CustomerController::class,'AddAddress'])->name('ShopCustomer.Customer.add_Address');
+Route::get('/Customer/Password/{id}',[CustomerController::class,'Password'])->name('ShopCustomer.Customer.Password');
+Route::post('/Customer/PassUpdate/{id}',[CustomerController::class,'Password_Update'])->name('ShopCustomer.Customer.Password_Update');
+Route::get('/Customer/SoftDelete/',[CustomerController::class,'SoftDeletes'])->name('ShopCustomer.Customer.SoftDelete');
+Route::get('/Customer/restore/{id}',[CustomerController::class,'restored'])->name('ShopCustomer.Customer.restore');
+Route::get('/Customer/force/{id}',[CustomerController::class,'ForceDeletes'])->name('ShopCustomer.Customer.force');
+Route::get('/Customer/Config',[CustomerController::class,'config'])->name('ShopCustomer.Customer.Config');
 
+Route::get('/Customer/Address/{id}',[CustomerController::class,'AddressList'])->name('ShopCustomer.Customer.Address');
+Route::post('/Customer/AddressStore/{id}',[CustomerController::class,'AddressStore'])->name('ShopCustomer.Customer.AddressStore');
 
-
-
-
-
-
-
-
-
-Route::get('/ShopCategory/emptyPhoto/{id}', [ShopCategoryController::class,'emptyPhoto'])->name('Shop.shopCategory.emptyPhoto');
-Route::get('/ShopCategory/emptyIcon/{id}', [ShopCategoryController::class,'emptyIcon'])->name('Shop.shopCategory.emptyIcon');
-Route::get('/ShopCategory/Config',[ShopCategoryController::class,'config'])->name('Shop.shopCategoryConfig.Config');
-
-Route::get('/ShopCategory/CatSort/{id}',[ShopCategoryController::class,'CategorySort'])->name('Shop.shopCategory.CatSort');
-Route::post('/ShopCategory/SaveSort',[ShopCategoryController::class,'CategorySaveSort'])->name('Shop.shopCategory.CategorySaveSort');
-
+Route::get('/Customer/AddressEdit/{id}',[CustomerController::class,'AddressEdit'])->name('ShopCustomer.Customer.AddressEdit');
+Route::post('/Customer/AddressUpdate/{id}',[CustomerController::class,'AddressUpdate'])->name('ShopCustomer.Customer.AddressUpdate');
+Route::get('/Customer/AddressDelete/{id}',[CustomerController::class,'AddressDelete'])->name('ShopCustomer.Customer.AddressDelete');
 
 
 Route::get('/Orders',[ShopCategoryController::class,'index'])->name('ShopOrders.Orders.index');

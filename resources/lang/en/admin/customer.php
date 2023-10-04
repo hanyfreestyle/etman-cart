@@ -2,9 +2,10 @@
 
 return
 [
-	'name' => '',
+	'city' => '',
 	'company_name' => '',
+	'name' => '',
 	'phone' => '',
 	'whatsapp' => '',
-	'city' => '',
+	'land_phone' => '',
 ];

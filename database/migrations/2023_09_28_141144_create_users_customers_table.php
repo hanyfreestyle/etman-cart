@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('company_name')->nullable();
-            $table->string('email')->unique();
+            $table->string('email')->nullable()->unique();
             $table->string('phone')->unique();
             $table->string('whatsapp')->nullable();
             $table->string('land_phone')->nullable();
@@ -31,6 +31,8 @@ return new class extends Migration
 
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('password_temp')->nullable();
+            //$table->string('password_temp')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

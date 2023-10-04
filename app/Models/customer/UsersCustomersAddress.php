@@ -3,6 +3,7 @@
 namespace App\Models\customer;
 
 use App\Models\data\DataCity;
+use App\Models\UsersCustomers;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -27,5 +28,9 @@ class UsersCustomersAddress extends Model
         return $this->belongsTo(DataCity::class, 'city_id');
     }
 
+    public function customer(): BelongsTo
+    {
+        return $this->belongsTo( UsersCustomers::class,'customer_id');
+    }
 
 }

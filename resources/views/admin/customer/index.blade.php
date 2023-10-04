@@ -23,13 +23,14 @@
                             <th class="TD_100">{{ __('admin/customer.city')  }}</th>
 
                             @if($pageData['ViewType'] == 'deleteList')
-                                <th>{{ __('admin/page.del_date') }}</th>
-                                <th></th>
-                                <th></th>
+                                <th class="tbutaction TD_100">{{ __('admin/page.del_date') }}</th>
+                                <th class="tbutaction TD_100"></th>
+                                <th class="tbutaction TD_100"></th>
                             @else
                                 <th class="tbutaction TD_50"></th>
-                                <th class="tbutaction TD_50"></th>
                                 @can($PrefixRole.'_edit')
+                                    <th class="tbutaction TD_50"></th>
+                                    <th class="tbutaction TD_50"></th>
                                     <th class="tbutaction TD_50"></th>
                                 @endcan
                                 @can($PrefixRole.'_delete')
@@ -56,7 +57,8 @@
                                 @else
                                     <td class="tc" >{!! is_active($customer->is_active) !!}</td>
                                     @can($PrefixRole.'_edit')
-                                        <td class="tc"><x-action-button url="{{route($PrefixRoute.'.add_Address',$customer->id)}}" print-lable="اضافة عنوان"  :tip="true" icon="fas fa-map-marker-alt" /></td>
+                                        <td class="tc"><x-action-button url="{{route($PrefixRoute.'.Password',$customer->id)}}" print-lable="Password" bg="dark"  :tip="true" icon="fas fa-lock" /></td>
+                                        <td class="tc"><x-action-button url="{{route($PrefixRoute.'.Address',$customer->id)}}" print-lable="العناوين"  :tip="true" icon="fas fa-map-marker-alt" /></td>
                                         <td class="tc"><x-action-button url="{{route($PrefixRoute.'.edit',$customer->id)}}" type="edit" :tip="true" /></td>
                                     @endcan
 
@@ -84,5 +86,7 @@
 @endsection
 
 @push('JsCode')
-
+    <x-sweet-delete-err/>
+    <x-sweet-delete-js-no-form/>
+    <x-data-table-plugins :jscode="true" :is-active="$viewDataTable" />
 @endpush
