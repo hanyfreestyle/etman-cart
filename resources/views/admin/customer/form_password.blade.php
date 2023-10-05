@@ -10,7 +10,7 @@
             <form  class="mainForm" action="{{route($PrefixRoute.'.Password_Update',$customer->id)}}" method="post">
                 @csrf
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="{{$qr['col']}}">
 
                         <div class="row">
                             <x-form-input label="{{__('admin/customer.name') }}" name="name" :requiredSpan="true" :disabled="true"
@@ -32,6 +32,15 @@
                         </div>
 
                     </div>
+
+
+                    @if($qr['photo'] != null)
+                        <div class="col-lg-4 text-center py-4">
+                            {!! $qr['photo'] !!}
+                        </div>
+
+                    @endif
+
 
                 </div>
 

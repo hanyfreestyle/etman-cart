@@ -48,7 +48,7 @@
                                 <td>{{$customer->company_name}}</td>
                                 <td>{{$customer->phone}}</td>
                                 <td>{{$customer->whatsapp}}</td>
-                                <td>{{$customer->city->name}}</td>
+                                <td>{{$customer->city->name ?? ''}}</td>
 
                                 @if($pageData['ViewType'] == 'deleteList')
                                     <td>{{$customer->deleted_at}}</td>

@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class CustomerController extends AdminMainController
 {
@@ -187,7 +188,23 @@ class CustomerController extends AdminMainController
         $pageData = $this->pageData;
         $pageData['ViewType'] = "Edit";
         $customer = Customer::findOrFail($id);
-        return view('admin.customer.form_password',compact('pageData','customer'));
+
+        if($customer->password_temp != null and  $customer->last_login == null){
+            $url = route('Customer_QrLogin')."?U=".$customer->phone."&P=".$customer->password_temp;
+//            dd($url);
+            $qr = [
+                'col'=> 'col-lg-8',
+                'photo'=> QrCode::size(300)->generate($url),
+            ];
+        }else{
+            $qr = [
+                'col'=> 'col-lg-12',
+                'photo'=> null,
+            ];
+        }
+
+
+        return view('admin.customer.form_password',compact('pageData','customer','qr'));
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -199,11 +216,16 @@ class CustomerController extends AdminMainController
         ]);
 
         $customer = Customer::findOrFail($id);
+
+        if($customer->password_temp != null and  $customer->last_login == null){
+            $customer->password_temp = $request->input('new_password');
+        }
+
         $customer->password = Hash::make($request->input('new_password'));
         $customer->save();
 
-        return redirect(route($this->PrefixRoute.'.index'))->with('Edit.Done',"");
-
+       // return redirect(route($this->PrefixRoute.'.index'))->with('Edit.Done',"");
+        return redirect()->back()->with('Edit.Done',"");
     }
 
 

@@ -16,6 +16,12 @@ Route::group(['prefix' => 'EtmanShop'], function(){
         Route::post('/loginCheck/{cart?}',
             [UsersCustomersController::class, 'CustomerLoginCheck'])->name('Customer_loginCheck');
 
+        Route::get('/loginqr',
+            [UsersCustomersController::class, 'CustomerQrLogin'])->name('Customer_QrLogin');
+
+        Route::post('/loginCheckQr',
+            [UsersCustomersController::class, 'CustomerLoginCheckQr'])->name('CustomerLoginCheckQr');
+
         Route::get('/sign-up',
             [UsersCustomersController::class, 'CustomerSignUp'])->name('Customer_Register');
 

@@ -244,7 +244,12 @@ class ProfileController extends WebMainController
         $SinglePageView = $this->SinglePageView ;
         $SinglePageView['profileMenu'] = "ChangePassword" ;
         $SinglePageView['breadcrumb'] = "ChangePassword" ;
-        return view('shop.customer.profile_change_password', compact('SinglePageView'));
+
+        $oldPass = null;
+        if(isset($_GET['old'])){
+            $oldPass = $_GET['old'];
+        }
+        return view('shop.customer.profile_change_password', compact('SinglePageView','oldPass'));
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -264,6 +269,7 @@ class ProfileController extends WebMainController
                 ->firstOrFail();
 
             $customer->password = Hash::make($request->input('password'));
+            $customer->password_temp = null;
             $customer->save();
             Auth::guard('customer')->logout();
             return redirect()->route('Customer_login');

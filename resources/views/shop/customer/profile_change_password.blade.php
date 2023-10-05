@@ -31,7 +31,7 @@
                                         <x-mass.confirm-massage/>
                                     </div>
 
-                                    {{Session('hany')}}
+
 
                                     <div class="row">
 
@@ -41,7 +41,7 @@
                                                           :requiredSpan="true"
                                                           colrow="col-lg-12"
                                                           type="password"
-                                                          value=""
+                                                          value="{{$oldPass}}"
                                                           :password-edit="false"
                                                           inputclass="dir_en"/>
                                         </div>

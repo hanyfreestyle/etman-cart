@@ -50,13 +50,54 @@ class UsersCustomersController extends WebMainController
         return view('shop.customer.form_login',compact('SinglePageView','cart'));
     }
 
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| # CustomerQrLogin
+    public function CustomerQrLogin($cart='')
+    {
+        $user = null;
+        $password = null;
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['breadcrumb'] = "Customer_Login" ;
+        if(isset($_GET['U'])){
+            $user = $_GET['U'];
+        }
+        if(isset($_GET['P'])){
+            $password = $_GET['P'];
+        }
+
+        return view('shop.customer.form_login_qr',compact('SinglePageView','cart','user','password'));
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #CustomerLoginCheckQr
+    public function CustomerLoginCheckQr(UsersCustomersRequest $request)
+    {
+       // $credentials  = $request->only('phone',"password");
+        $credentials  = array_merge( $request->only('phone',"password"), ['is_active' => 1 ]);
+        if(Auth::guard('customer')->attempt($credentials)){
+            $user = UsersCustomers::find(Auth::guard('customer')->user()->id);
+            $user->last_login = now();
+            $user->save();
+            return redirect()->route('Profile_ChangePassword','old='.$user->password_temp);
+        }else{
+            return  redirect()->route('Customer_login')->with('Error',"البيانات غير صحيحة او عضويتك غير مفعله ");
+        }
+
+    }
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #CustomerLoginCheck
     public function CustomerLoginCheck(UsersCustomersRequest $request,$Cart='')
     {
 
-        $credentials  = $request->only('phone',"password");
+       // $credentials  = $request->only('phone',"password");
+        $credentials  = array_merge( $request->only('phone',"password"), ['is_active' => 1 ]);
         if(Auth::guard('customer')->attempt($credentials)){
+            $user = UsersCustomers::find(Auth::guard('customer')->user()->id);
+            $user->last_login = now();
+            $user->save();
+
             if($Cart == 'cart'){
                 return redirect()->route('Shop_CartView');
             }else{
@@ -88,6 +129,7 @@ class UsersCustomersController extends WebMainController
         $user->email =$request->input('email');
         $user->phone =$request->input('phone');
         $user->password = \Hash::make($request->password);
+        $user->last_login = now();
         $user->save();
 
         try {
