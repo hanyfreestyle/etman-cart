@@ -39,6 +39,11 @@
                             {!! $qr['photo'] !!}
                         </div>
 
+                        @if(Auth::user()->id == 1)
+                            <a href="{{$qr['url']}}" target="_blank"> Url</a>
+                        @endif
+
+
                     @endif
 
 

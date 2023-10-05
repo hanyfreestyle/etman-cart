@@ -30,6 +30,7 @@ class ShopPageController extends WebMainController
 
         $SinglePageView = [
             'SelMenu' => '',
+            'profileMenu' => '',
             'slug' => null,
             'banner_id' => null,
             'breadcrumb' => 'home',

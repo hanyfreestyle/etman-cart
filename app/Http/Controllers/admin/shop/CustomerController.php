@@ -194,15 +194,17 @@ class CustomerController extends AdminMainController
 
         if($customer->password_temp != null and  $customer->last_login == null){
             $url = route('Customer_QrLogin')."?U=".$customer->phone."&P=".$customer->password_temp;
-//            dd($url);
+
             $qr = [
                 'col'=> 'col-lg-8',
+                'url'=> $url,
                 'photo'=> QrCode::size(300)->generate($url),
             ];
         }else{
             $qr = [
                 'col'=> 'col-lg-12',
                 'photo'=> null,
+                'url'=> null,
             ];
         }
 

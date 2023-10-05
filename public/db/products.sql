@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 04, 2023 at 07:30 AM
+-- Generation Time: Oct 05, 2023 at 10:32 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -26,18 +26,18 @@ SET time_zone = "+00:00";
 --
 
 INSERT INTO `products` (`id`, `ref_code`, `price`, `sale_price`, `qty_left`, `qty_max`, `unit`, `pro_shop`, `pro_web`, `pro_web_data`, `photo`, `photo_thum_1`, `is_active`, `is_archived`, `created_at`, `updated_at`) VALUES
-(1, 12590966, 200.00, 100.00, 10, 5, NULL, 1, 1, 1, 'images/product/1/packaging-tape-nar-tape-pK1ZZAx1Bt.webp', 'images/product/1/packaging-tape-nar-tape-LFzfDCr9rp.webp', 1, 0, '2023-08-23 10:35:05', '2023-10-04 04:28:12'),
-(2, 91103331, 500.00, NULL, 10, 5, NULL, 1, 1, 1, 'images/product/2/packaging-tape-the-best-tape-8zgUD7Hfkp.webp', 'images/product/2/packaging-tape-the-best-tape-hjyO94ihAN.webp', 1, 0, '2023-08-23 10:35:05', '2023-10-04 04:28:12'),
-(3, 42512152, 243.00, 150.00, 10, 5, NULL, 1, 1, 1, 'images/product/3/packaging-tape-crystal-tape-ljwDFxKIPu.webp', 'images/product/3/packaging-tape-crystal-tape-TkKyhiYvz8.webp', 1, 0, '2023-08-23 10:35:05', '2023-10-04 04:28:12'),
-(4, 73625246, 236.00, 175.00, 10, 5, NULL, 1, 1, 1, 'images/product/4/packaging-tape-green-tape-ilUbH2ePnE.webp', 'images/product/4/packaging-tape-green-tape-yPLuJXhgFL.webp', 1, 0, '2023-08-23 10:35:05', '2023-10-04 04:28:12'),
-(7, 73571010, 513.00, 450.00, 10, 5, NULL, 1, 1, 1, 'images/product/7/stationary-tape-the-best-7FWnIfoPlI.webp', 'images/product/7/stationary-tape-the-best-IbCNlBm4Uj.webp', 1, 0, '2023-08-23 10:35:05', '2023-10-04 04:28:12'),
-(9, 77297683, 569.00, 476.00, 10, 5, NULL, 1, 1, 1, 'images/product/9/self-adhesive-tape-green-masking-tape-NCfPjsHDXS.webp', 'images/product/9/self-adhesive-tape-green-masking-tape-yzuVu0CJw8.webp', 1, 0, '2023-08-23 10:35:05', '2023-10-04 04:28:12'),
-(10, 58919463, 450.00, 370.00, 10, 5, NULL, 1, 1, 1, 'images/product/10/self-adhesive-tape-et-masking-tape-fQdOqUmjb1.webp', 'images/product/10/self-adhesive-tape-et-masking-tape-cWTN4GKJrF.webp', 1, 0, '2023-08-23 10:35:05', '2023-10-04 04:28:12'),
-(12, 93203908, 407.00, 314.00, 10, 5, NULL, 1, 1, 1, 'images/product/12/printed-self-adhesive-tape-fresh-UZumeqD8dU.webp', 'images/product/12/printed-self-adhesive-tape-fresh-2Lj9QYtvse.webp', 1, 0, '2023-08-23 10:35:05', '2023-10-04 04:28:12'),
-(13, 99892834, 549.00, 449.00, 10, 5, NULL, 1, 1, 1, 'images/product/13/fragile-printed-tape-R6ecWKxeWV.webp', 'images/product/13/fragile-printed-tape-ymdW2WWcxP.webp', 1, 0, '2023-08-23 10:35:05', '2023-10-04 04:28:12'),
-(14, 46035437, 299.00, 232.00, 10, 5, NULL, 1, 1, 1, 'images/product/14/self-adhesive-tape-electrical-insulating-tape-ZOxQuBhQU7.webp', 'images/product/14/self-adhesive-tape-electrical-insulating-tape-mqmIDu7ihj.webp', 1, 0, '2023-08-23 10:35:05', '2023-10-04 04:28:12'),
-(15, 27112927, 528.00, 461.00, 10, 5, NULL, 1, 1, 1, 'images/product/15/aluminium-foil-mr-foil-50gm-7uaB5YjzrQ.webp', 'images/product/15/aluminium-foil-mr-foil-50gm-PWjJh3vB0C.webp', 1, 0, '2023-08-23 10:35:05', '2023-10-04 04:28:12'),
-(16, 64039482, 259.00, 196.00, 10, 5, NULL, 1, 1, 1, 'images/product/16/gift-accessories-05-cm-pp-ribbon-zwyM4puoK9.webp', 'images/product/16/gift-accessories-05-cm-pp-ribbon-QIZM2YAPgZ.webp', 1, 0, '2023-08-23 10:35:05', '2023-10-04 04:28:12'),
+(1, 12590966, 200.00, 100.00, 8, 5, NULL, 1, 1, 1, 'images/product/1/packaging-tape-nar-tape-pK1ZZAx1Bt.webp', 'images/product/1/packaging-tape-nar-tape-LFzfDCr9rp.webp', 1, 0, '2023-08-23 10:35:05', '2023-10-05 16:59:11'),
+(2, 91103331, 500.00, NULL, 8, 5, NULL, 1, 1, 1, 'images/product/2/packaging-tape-the-best-tape-8zgUD7Hfkp.webp', 'images/product/2/packaging-tape-the-best-tape-hjyO94ihAN.webp', 1, 0, '2023-08-23 10:35:05', '2023-10-05 16:59:11'),
+(3, 42512152, 243.00, 150.00, 8, 5, NULL, 1, 1, 1, 'images/product/3/packaging-tape-crystal-tape-ljwDFxKIPu.webp', 'images/product/3/packaging-tape-crystal-tape-TkKyhiYvz8.webp', 1, 0, '2023-08-23 10:35:05', '2023-10-05 16:59:11'),
+(4, 73625246, 236.00, 175.00, 7, 5, NULL, 1, 1, 1, 'images/product/4/packaging-tape-green-tape-ilUbH2ePnE.webp', 'images/product/4/packaging-tape-green-tape-yPLuJXhgFL.webp', 1, 0, '2023-08-23 10:35:05', '2023-10-05 16:59:11'),
+(7, 73571010, 513.00, 450.00, 8, 5, NULL, 1, 1, 1, 'images/product/7/stationary-tape-the-best-7FWnIfoPlI.webp', 'images/product/7/stationary-tape-the-best-IbCNlBm4Uj.webp', 1, 0, '2023-08-23 10:35:05', '2023-10-05 16:59:11'),
+(9, 77297683, 569.00, 476.00, 9, 5, NULL, 1, 1, 1, 'images/product/9/self-adhesive-tape-green-masking-tape-NCfPjsHDXS.webp', 'images/product/9/self-adhesive-tape-green-masking-tape-yzuVu0CJw8.webp', 1, 0, '2023-08-23 10:35:05', '2023-10-05 16:59:11'),
+(10, 58919463, 450.00, 370.00, 9, 5, NULL, 1, 1, 1, 'images/product/10/self-adhesive-tape-et-masking-tape-fQdOqUmjb1.webp', 'images/product/10/self-adhesive-tape-et-masking-tape-cWTN4GKJrF.webp', 1, 0, '2023-08-23 10:35:05', '2023-10-05 16:59:11'),
+(12, 93203908, 407.00, 314.00, 9, 5, NULL, 1, 1, 1, 'images/product/12/printed-self-adhesive-tape-fresh-UZumeqD8dU.webp', 'images/product/12/printed-self-adhesive-tape-fresh-2Lj9QYtvse.webp', 1, 0, '2023-08-23 10:35:05', '2023-10-05 16:59:11'),
+(13, 99892834, 549.00, 449.00, 9, 5, NULL, 1, 1, 1, 'images/product/13/fragile-printed-tape-R6ecWKxeWV.webp', 'images/product/13/fragile-printed-tape-ymdW2WWcxP.webp', 1, 0, '2023-08-23 10:35:05', '2023-10-05 16:59:11'),
+(14, 46035437, 299.00, 232.00, 9, 5, NULL, 1, 1, 1, 'images/product/14/self-adhesive-tape-electrical-insulating-tape-ZOxQuBhQU7.webp', 'images/product/14/self-adhesive-tape-electrical-insulating-tape-mqmIDu7ihj.webp', 1, 0, '2023-08-23 10:35:05', '2023-10-05 16:59:11'),
+(15, 27112927, 528.00, 461.00, 9, 5, NULL, 1, 1, 1, 'images/product/15/aluminium-foil-mr-foil-50gm-7uaB5YjzrQ.webp', 'images/product/15/aluminium-foil-mr-foil-50gm-PWjJh3vB0C.webp', 1, 0, '2023-08-23 10:35:05', '2023-10-05 16:59:11'),
+(16, 64039482, 259.00, 196.00, 8, 5, NULL, 1, 1, 1, 'images/product/16/gift-accessories-05-cm-pp-ribbon-zwyM4puoK9.webp', 'images/product/16/gift-accessories-05-cm-pp-ribbon-QIZM2YAPgZ.webp', 1, 0, '2023-08-23 10:35:05', '2023-10-05 16:59:11'),
 (17, 90065104, 410.00, 353.00, 10, 5, NULL, 1, 1, 1, 'images/product/17/gift-accessories-5-cm-pp-ribbon-xviMPSkCuh.webp', 'images/product/17/gift-accessories-5-cm-pp-ribbon-iOyYTkC9nd.webp', 1, 0, '2023-08-23 10:35:05', '2023-10-04 04:28:12'),
 (18, 93851078, 464.00, 396.00, 10, 5, NULL, 1, 1, 1, 'images/product/18/gift-accessories-metallic-pp-ribbon-NuJVioSBPr.webp', 'images/product/18/gift-accessories-metallic-pp-ribbon-PApwOGHEnJ.webp', 1, 0, '2023-08-23 10:35:05', '2023-10-04 04:28:12'),
 (19, 32158449, 507.00, 454.00, 10, 5, NULL, 1, 1, 1, 'images/product/19/gift-accessories-metallic-paper-eNuol9MjIF.webp', 'images/product/19/gift-accessories-metallic-paper-5y0avc0CU4.webp', 1, 0, '2023-08-23 10:35:05', '2023-10-04 04:28:12'),
@@ -59,11 +59,11 @@ INSERT INTO `products` (`id`, `ref_code`, `price`, `sale_price`, `qty_left`, `qt
 (52, 63421658, 551.00, 491.00, 10, 5, NULL, 1, 1, 1, 'images/product/52/mr-foil-oven-SXzyUg37Pu.webp', 'images/product/52/mr-foil-oven-9GHCVHjBP5.webp', 1, 0, '2023-08-23 10:35:06', '2023-10-04 04:28:13'),
 (53, 60959804, 308.00, 253.00, 10, 5, NULL, 1, 1, 1, 'images/product/53/aluminium-foil-king-qpIGRI3afb.webp', 'images/product/53/aluminium-foil-king-hW0yT2II1O.webp', 1, 0, '2023-08-23 10:35:06', '2023-10-04 04:28:13'),
 (55, NULL, NULL, NULL, 10, 5, NULL, 0, 1, 1, 'images/product/55/jumbo-roll-avoY1LBh67.webp', 'images/product/55/jumbo-roll-Vsrz2ajWCS.webp', 1, 0, '2023-08-23 10:35:06', '2023-10-04 04:28:13'),
-(56, 43744223, 500.00, NULL, 10, 5, NULL, 1, 0, 1, 'images/product/56/مسدس-شمع-بسلك-كهرباء-من-يوني-تي-موديل-eh430-27KFKArcIK.webp', 'images/product/56/مسدس-شمع-بسلك-كهرباء-من-يوني-تي-موديل-eh430-2PI1TFWSZe.webp', 1, 0, '2023-09-11 17:04:54', '2023-10-04 04:28:13'),
-(57, 53492624, 200.00, NULL, 10, 5, NULL, 1, 0, 0, 'images/product/57/مسدس-شمع-st-03-20w-حجم-صغير-ازرق-RIJhHKr9RU.webp', 'images/product/57/مسدس-شمع-st-03-20w-حجم-صغير-ازرق-0BiTOSAKTw.webp', 1, 0, '2023-09-11 17:11:43', '2023-10-04 04:28:13'),
-(58, 35945023, 525.00, 450.00, 10, 5, NULL, 1, 0, 0, 'images/product/58/مسدس-شمع-برو-جلو-من-ستانلي-gr100-1RhDP71AO3.webp', 'images/product/58/مسدس-شمع-برو-جلو-من-ستانلي-gr100-WGykuxK7pV.webp', 1, 0, '2023-09-11 17:13:31', '2023-10-04 04:28:13'),
-(59, 28262230, 150.00, NULL, 10, 5, NULL, 1, 1, 0, 'images/product/59/مسدس-شمع-من-عتمان-جروب-متعدد-الألوان-tRbKwi2gQE.webp', 'images/product/59/مسدس-شمع-من-عتمان-جروب-متعدد-الألوان-ttXSIKzJjo.webp', 1, 0, '2023-09-11 17:14:46', '2023-10-04 04:28:45'),
-(60, 23307506, 400.00, 350.00, 10, 5, 'كارتونة', 1, 1, 0, 'images/product/60/1694990299_zfbU0TI2Q3REyLO_.webp', 'images/product/60/1694990299_MMfnPgB0lkSxjGz_.webp', 1, 0, '2023-09-11 17:18:06', '2023-10-04 04:28:13');
+(56, 43744223, 500.00, NULL, 20, 5, NULL, 1, 0, 1, 'images/product/56/مسدس-شمع-بسلك-كهرباء-من-يوني-تي-موديل-eh430-27KFKArcIK.webp', 'images/product/56/مسدس-شمع-بسلك-كهرباء-من-يوني-تي-موديل-eh430-2PI1TFWSZe.webp', 1, 0, '2023-09-11 17:04:54', '2023-10-05 19:31:51'),
+(57, 53492624, 200.00, NULL, 20, 5, NULL, 1, 0, 0, 'images/product/57/مسدس-شمع-st-03-20w-حجم-صغير-ازرق-RIJhHKr9RU.webp', 'images/product/57/مسدس-شمع-st-03-20w-حجم-صغير-ازرق-0BiTOSAKTw.webp', 1, 0, '2023-09-11 17:11:43', '2023-10-05 19:31:38'),
+(58, 35945023, 525.00, 450.00, 20, 5, NULL, 1, 0, 0, 'images/product/58/مسدس-شمع-برو-جلو-من-ستانلي-gr100-1RhDP71AO3.webp', 'images/product/58/مسدس-شمع-برو-جلو-من-ستانلي-gr100-WGykuxK7pV.webp', 1, 0, '2023-09-11 17:13:31', '2023-10-05 19:31:24'),
+(59, 28262230, 150.00, NULL, 20, 5, NULL, 1, 1, 0, 'images/product/59/مسدس-شمع-من-عتمان-جروب-متعدد-الألوان-tRbKwi2gQE.webp', 'images/product/59/مسدس-شمع-من-عتمان-جروب-متعدد-الألوان-ttXSIKzJjo.webp', 1, 0, '2023-09-11 17:14:46', '2023-10-05 19:31:02'),
+(60, 23307506, 400.00, 350.00, 20, 5, 'كارتونة', 1, 1, 0, 'images/product/60/1694990299_zfbU0TI2Q3REyLO_.webp', 'images/product/60/1694990299_MMfnPgB0lkSxjGz_.webp', 1, 0, '2023-09-11 17:18:06', '2023-10-05 19:31:13');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

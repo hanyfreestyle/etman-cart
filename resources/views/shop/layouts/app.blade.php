@@ -50,11 +50,25 @@
 @endif
 
 @if(Session::get('mobileview') != 1)
-    @if( $SinglePageView['banner_id']  and $SinglePageView['banner_count'] > 0)
-        @include('shop.layouts.inc.def_banner')
+
+    @if($agent->isDesktop() or $agent->isTablet())
+        @if( $SinglePageView['banner_id']  and $SinglePageView['banner_count'] > 0)
+            @include('shop.layouts.inc.def_banner')
+        @else
+            @yield('breadcrumb')
+        @endif
     @else
-        @yield('breadcrumb')
+        @if(Auth::guard('customer')->check() == false)
+            @if( $SinglePageView['banner_id']  and $SinglePageView['banner_count'] > 0)
+                @include('shop.layouts.inc.def_banner')
+            @else
+                @yield('breadcrumb')
+            @endif
+        @endif
     @endif
+
+
+
 @endif
 
 
@@ -64,7 +78,19 @@
 </div>
 
 @if(Session::get('mobileview') != 1)
-    @include('shop.layouts.inc.footer')
+
+    @if($agent->isDesktop() or $agent->isTablet())
+            @include('shop.layouts.inc.footer')
+    @else
+        @if(Auth::guard('customer')->check() == false)
+            @include('shop.layouts.inc.footer')
+        @else
+            @include('shop.layouts.inc.footer_mobile')
+        @endif
+    @endif
+
+
+
 @endif
 
 @if(Session::get('mobileview') == 1)

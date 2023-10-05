@@ -1,3 +1,10 @@
+@php
+if($agent->isMobile() == true and $agent->isTablet() == false){
+$stopLoop = 80;
+}else{
+$stopLoop = 8;
+}
+@endphp
 <div class="categories_wrap">
     <button type="button" data-bs-toggle="collapse" data-bs-target="#navCatContent" aria-expanded="false" class="categories_btn">
         <i class="linearicons-menu"></i><span> {{__('web/menu.All_Categories')}} </span>
@@ -7,7 +14,7 @@
          class="@if($SinglePageView['banner_id']  and $SinglePageView['banner_count'] > 0) nav_cat @endif navbar collapse">
         <ul>
             @foreach($ShopMenuCategory as $MainCategory)
-                @if($loop->index < 8)
+                @if($loop->index < $stopLoop )
                     @if($MainCategory->web_shop_children_count <= 0 )
                         <li><a class="dropdown-item nav-link nav_item main_nav" href="{{route('Shop_CategoryView',$MainCategory->slug)}}">
                                 <span class="cat_icon_span"><img class="cat_icon" width="30" src="{{getPhotoPath($MainCategory->icon ,"faq-icon")}}"></span>
@@ -26,14 +33,13 @@
                                             <li class="mega-menu-col col-lg-4 mega_h ">
                                                 <ul>
                                                     @foreach($MainCategory->web_shop_children  as $SubCategory)
-                                                        @if($loop->index <7)
+                                                        @if($loop->index < 7 )
                                                             <li class="dropdown-header Product_name"><a href="{{route('Shop_CategoryView',$SubCategory->slug)}}">{{$SubCategory->name}}</a></li>
                                                         @endif
                                                     @endforeach
                                                     @if($MainCategory->web_shop_children_count > 6 )
                                                         <li class="dropdown-header view_all"> <a href="{{route('Shop_CategoryView',$MainCategory->slug)}}">{{__('web/def.View_All')}}</a></li>
                                                     @endif
-
                                                 </ul>
                                             </li>
 
@@ -52,9 +58,8 @@
                                                 <ul>
                                                     <li class="dropdown-header sub_catName">{{__('web/menu.best_seller')}}</li>
                                                     @foreach($MainCategory->recursive_product_shop  as $product)
-                                                        @if($loop->index <7)
+                                                        @if($loop->index < 7 )
                                                             <li class="dropdown-header Product_name"><a href="#">{{$product->name}}</a></li>
-{{--                                                            <li class="dropdown-header Product_name"><a href="{{route('Shop_ProductView',$product->slug)}}">{{$product->name}}</a></li>--}}
                                                         @endif
                                                     @endforeach
                                                 </ul>
@@ -70,9 +75,9 @@
 
             <li>
                 <ul class="more_slide_open">
-                    @if(count($ShopMenuCategory) > 8)
+                    @if(count($ShopMenuCategory) > $stopLoop )
                         @foreach($ShopMenuCategory as $MainCategory)
-                            @if($loop->index > 8)
+                            @if($loop->index > $stopLoop)
                                 <li><a class="dropdown-item nav-link nav_item" href="{{route('Shop_CategoryView',$MainCategory->slug)}}">
                                         <span class="cat_icon_span"><img class="cat_icon" width="30" src="{{getPhotoPath($MainCategory->icon ,"faq-icon")}}"></span>
                                         <span>{{$MainCategory->name}}</span></a></li>
@@ -82,7 +87,7 @@
                 </ul>
             </li>
         </ul>
-        @if(count($ShopMenuCategory) > 9)
+        @if(count($ShopMenuCategory) > $stopLoop)
             <div class="more_categories">{{__('web/menu.More_Categories')}}</div>
         @endif
 

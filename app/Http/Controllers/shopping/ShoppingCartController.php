@@ -14,6 +14,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 
@@ -30,8 +31,9 @@ class ShoppingCartController extends WebMainController
         $ShopMenuCategory = self::getShopMenuCategory($stopCash);
         View::share('ShopMenuCategory', $ShopMenuCategory);
 
-       $SinglePageView = [
+        $SinglePageView = [
             'SelMenu' => '',
+            'profileMenu' => '',
             'slug' => null,
             'banner_id' => null,
             'breadcrumb' => 'home',
@@ -107,7 +109,7 @@ class ShoppingCartController extends WebMainController
         if($CartList->count() > 0){
             try{
 
-                DB::transaction(function () use ($request){
+                $getData =  DB::transaction(function () use ($request){
 
                     $CartList =  Cart::content();
                     $subtotal =  Cart::subtotal();
@@ -152,13 +154,45 @@ class ShoppingCartController extends WebMainController
                         Product::find($product->model->id)->decrement('qty_left',$product->qty);
                     }
 
-                    Cart::destroy();
+                     Cart::destroy();
+
+
+                    return $data = [
+                        'order_id'=> $newOrder->id,
+                        'cust_name'=> $UserProfile->name,
+                        'order_total'=>$subtotal,
+                        'order_units'=>  $CartList->count(),
+                        'order_date'=> $newOrder->getFormatteDateOrderView() ,
+                    ] ;
+
+
                 });
 
             }catch (\Exception $exception){
                 return redirect()->back()->with('order_not_saved',__('web/orders.err_order_not_saved'));
             }
 
+
+           // dd($getData);
+
+
+            $Mass = "";
+            $Brek = "%0a";
+            //$Brek = '<br/>';
+            $Mass .= "تم اضافة طلب جديد".$Brek ;
+            $Mass .= '---------------------'.$Brek ;
+            $Mass .= "رقم الطلب " . " ".($getData['order_id']+1000).$Brek;
+            $Mass .= "اسم العميل : ".$getData['cust_name'].$Brek;
+            $Mass .= "الاجمالى : ".$getData['order_total'].$Brek;
+            $Mass .= "عدد الاصناف ".$getData['order_units'].$Brek;
+            $Mass .= "".$getData['order_date'].$Brek;
+
+           // $Mass = str_replace(" ","%20",$Mass);
+            $url = 'https://api.telegram.org/bot6313317483:AAEooBTEFel1ej1uaDpXcZzCrbX_ID3aYEw/sendMessage?chat_id=-4077460274&text=';
+
+            $sendrequest = Http::post($url.$Mass);
+//            echobr($Mass);
+//            dd('hi');
             return redirect()->route('Shop_CartOrderCompleted');
         }else{
             return redirect()->route('Shop_CartView');

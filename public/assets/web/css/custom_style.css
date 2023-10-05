@@ -80,11 +80,19 @@
 
 
     .main_nav{
-        font-size: 15px!important;
-        /*font-weight: bold!important;*/
+        font-size: 17px!important;
+        font-weight: bold!important;
+        color: rgba(0,0,0,.5);
     }
     .mega-menu-col .Product_name {
-        font-weight: normal!important;
+
+        font-weight: bold!important;
+        color: rgba(0,0,0,.5)!important;
+    }
+
+    .mega-menu-col .Product_name a {
+        color: rgba(0,0,0,.5)!important;
+        font-size: 15px!important;
     }
 
 
@@ -929,4 +937,24 @@
     color: #ffffff;
     display: inline-block;
     font-size: 17px;
+}
+
+
+.mobileCart{
+    width: 100%;
+    text-align: center;
+    padding-bottom: 15px;
+    margin-top: 10px;
+
+    border-bottom: 1px solid #242527;
+}
+
+.mobileCart i{
+    display: inline-block;
+    font-size: 40px;
+
+    width: 100%;
+
+
+
 }

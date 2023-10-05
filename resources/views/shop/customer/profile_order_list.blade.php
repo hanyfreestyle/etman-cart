@@ -11,8 +11,12 @@
     <div class="section pt-lg-5 ">
         <div class="container pb-lg-5">
             <div class="row">
-                <div class="col-lg-3 mb-5">
-                    @include('shop.customer.profile_menu')
+                <div class="col-lg-3">
+                    @if($agent->isDesktop() or $agent->isTablet())
+                        @include('shop.customer.profile_menu')
+                    @else
+                        @include('shop.customer.profile_menu_mobile')
+                    @endif
                 </div>
                 <div class="col-lg-9">
                     <div class="tab-content dashboard_content">
