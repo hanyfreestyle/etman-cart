@@ -72,5 +72,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
         [WebPageController::class, 'WebProductView'])->name('Page_WebProductView');
 
 
+
+
 });
 
