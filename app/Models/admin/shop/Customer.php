@@ -20,13 +20,15 @@ class Customer extends Model
     protected $table = "users_customers";
     protected $primaryKey = 'id';
 
-
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     city
     public function city (): BelongsTo
     {
         return $this->belongsTo(DataCity::class,'city_id','id');
     }
 
-
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     addresses
     public function addresses(): HasMany
     {
         return $this->hasMany(UsersCustomersAddress::class,'customer_id')
@@ -34,6 +36,8 @@ class Customer extends Model
             ->orderBy('is_default','desc');
     }
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     addresses_def
     public function addresses_def(): HasMany
     {
         return $this->hasMany(UsersCustomersAddress::class,'customer_id')

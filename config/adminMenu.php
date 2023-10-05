@@ -3,6 +3,65 @@
  return [
     'menu' => [
 
+
+        [
+            'view'=>true,
+            'sel_routs'=>'ShopOrders',
+            'type'=>'many',
+            'text'=> 'admin/menu.shop_orders',
+            'icon'=>'fas fa-money-check-alt',
+            'roleView'=>'ShopOrders_view',
+            'submenu'=>[
+                [
+                    'sel_routs'=> 'New',
+                    'url'=> 'ShopOrders.New.index',
+                    'roleView'=>'ShopOrders_view',
+                    'text'=> 'admin/order.status_1',
+                    'icon'=>'fas fa-list'
+                ],
+                [
+                    'sel_routs'=> 'Pending',
+                    'url'=> 'ShopOrders.Pending.index',
+                    'roleView'=>'ShopOrders_view',
+                    'text'=> 'admin/order.status_2',
+                    'icon'=>'fas fa-list'
+                ],
+                [
+                    'sel_routs'=> 'Recipient',
+                    'url'=> 'ShopOrders.Recipient.index',
+                    'roleView'=>'ShopOrders_view',
+                    'text'=> 'admin/order.status_3',
+                    'icon'=>'fas fa-list'
+                ],
+
+                [
+                    'sel_routs'=> 'Rejected',
+                    'url'=> 'ShopOrders.Rejected.index',
+                    'roleView'=>'ShopOrders_view',
+                    'text'=> 'admin/order.status_4',
+                    'icon'=>'fas fa-list'
+                ],
+                [
+                    'sel_routs'=> 'Canceled',
+                    'url'=> 'ShopOrders.Canceled.index',
+                    'roleView'=>'ShopOrders_view',
+                    'text'=> 'admin/order.status_5',
+                    'icon'=>'fas fa-list'
+                ],
+
+                [
+                    'sel_routs'=> 'OrderConfig',
+                    'url'=> 'ShopOrders.OrderConfig.Config',
+                    'roleView'=>'ShopOrders_view',
+                    'text'=> 'admin/menu.setting',
+                    'icon'=>'fas fa-cogs'
+                ],
+
+            ],
+        ],
+
+
+
         [
             'view'=>true,
             'sel_routs'=>'config',
@@ -207,25 +266,6 @@
 
 
 
-        [
-            'view'=>true,
-            'sel_routs'=>'ShopOrders',
-            'type'=>'many',
-            'text'=> 'admin/menu.shop_orders',
-            'icon'=>'fas fa-money-check-alt',
-            'roleView'=>'ShopOrders_view',
-            'submenu'=>[
-                [
-                    'sel_routs'=> 'Orders',
-                    'url'=> 'ShopOrders.Orders.index',
-                    'roleView'=>'ShopOrders_view',
-                    'text'=> 'admin/menu.shop_orders_list',
-                    'icon'=>'fas fa-list'
-                ],
-
-
-            ],
-        ],
 
 
 

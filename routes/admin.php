@@ -17,12 +17,10 @@ use App\Http\Controllers\admin\ProductTableController;
 use App\Http\Controllers\admin\ShopCategoryController;
 use App\Http\Controllers\admin\ShopProductController;
 use App\Http\Controllers\AdminMainController;
+use App\Http\Controllers\HomeController;
 
 
-
-
-
-Route::get('/',[AdminMainController::class,'Home'])->name('admin.Dashboard');
+Route::get('/',[HomeController::class,'Dashboard'])->name('admin.Dashboard');
 
 Route::get('/OurClient',[OurClientController::class,'index'])->name('OurClient.index');
 Route::get('/OurClient/create',[OurClientController::class,'create'])->name('OurClient.create');

@@ -18,6 +18,7 @@ return new class extends Migration
 
             $table->uuid()->unique();
             $table->dateTime('order_date');
+            $table->string('invoice_number')->nullable();
             $table->boolean("status")->default(1);
             $table->float('total')->default(0);
             $table->integer('units');

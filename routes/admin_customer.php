@@ -1,6 +1,7 @@
 <?php
 use App\Helpers\AdminHelper;
 use App\Http\Controllers\admin\shop\CustomerController;
+use App\Http\Controllers\admin\shop\OrderController;
 use App\Http\Controllers\admin\ShopCategoryController;
 
 
@@ -30,4 +31,16 @@ Route::get('/Customer/ExportLogin',[CustomerController::class,'ExportLogin'])->n
 
 
 
-Route::get('/Orders',[ShopCategoryController::class,'index'])->name('ShopOrders.Orders.index');
+Route::get('/Orders',[OrderController::class,'index'])->name('ShopOrders.Orders.index');
+Route::get('/Orders/New',[OrderController::class,'index'])->name('ShopOrders.New.index');
+Route::get('/Orders/Pending',[OrderController::class,'index'])->name('ShopOrders.Pending.index');
+Route::get('/Orders/Recipient',[OrderController::class,'index'])->name('ShopOrders.Recipient.index');
+Route::get('/Orders/Rejected',[OrderController::class,'index'])->name('ShopOrders.Rejected.index');
+Route::get('/Orders/Canceled',[OrderController::class,'index'])->name('ShopOrders.Canceled.index');
+Route::get('/Orders/view/{uuid}',[OrderController::class,'OrderView'])->name('ShopOrders.OrderView');
+Route::get('/Orders/Config',[OrderController::class,'config'])->name('ShopOrders.OrderConfig.Config');
+
+Route::post('/Orders/ConfirmNew/{uuid}',[OrderController::class,'ConfirmNew'])->name('ShopOrders.ConfirmNew');
+Route::post('/Orders/ConfirmPending/{uuid}',[OrderController::class,'ConfirmPending'])->name('ShopOrders.ConfirmPending');
+
+Route::get('/Orders/create',[CustomerController::class,'create'])->name('ShopOrders.Orders.create');

@@ -17,6 +17,10 @@
             @elseif($selectType == 'selActive')
                 <option value="0" @if ($sendvalue == 0 ) selected @endif>{{__('admin/def.status_unactive')}}</option>
                 <option value="1" @if ($sendvalue == 1) selected @endif>{{__('admin/def.status_active')}}</option>
+
+            @elseif($selectType == 'order_state')
+                <option value="1" @if ($sendvalue == 1 ) selected @endif>قبول الطلب</option>
+                <option value="2" @if ($sendvalue == 2) selected @endif>رفض الطلب</option>
             @elseif($selectType == 'file')
                 @foreach($sendArr as $file)
                     <option value="{{$file}}" @if ($file == $sendvalue) selected @endif>{{pathinfo($file, PATHINFO_BASENAME)}}</option>

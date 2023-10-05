@@ -11,26 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('shopping_order_products', function (Blueprint $table) {
-
+        Schema::create('shopping_order_logs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('order_id');
+            $table->unsignedBigInteger('user_id');
+            $table->dateTime('add_date');
+            $table->text('notes')->nullable();
 
-            $table->integer("product_ref");
-            $table->string('sku')->nullable();
-
-
-            $table->string("name");
-            $table->float('price');
-            $table->float('sale_price')->nullable();
-            $table->float('qty');
-
-
-
-//
             $table->foreign('order_id')->references('id')->on('shopping_orders')->onDelete('cascade');
-
         });
+
     }
 
     /**
@@ -38,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('shopping_order_products');
+        Schema::dropIfExists('shopping_order_logs');
     }
 };

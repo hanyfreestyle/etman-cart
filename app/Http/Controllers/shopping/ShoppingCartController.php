@@ -142,6 +142,7 @@ class ShoppingCartController extends WebMainController
                     foreach ($CartList as $product ){
                         $addProduct = new ShoppingOrderProduct() ;
                         $addProduct->order_id = $newOrder->id ;
+                        $addProduct->sku = $product->model->ref_code ;
                         $addProduct->product_ref = $product->model->id ;
                         $addProduct->name = $product->model->name ;
                         $addProduct->price = $product->model->price ;
