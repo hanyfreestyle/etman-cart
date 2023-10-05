@@ -181,3 +181,24 @@ div.dataTables_wrapper div.dataTables_filter input {
     border-radius: 0.2rem;
 
 }
+
+
+.Qr_Div{
+    background: #FFFFFF!important;
+    margin-top: 20px;
+    padding: 30px;
+}
+
+.Qr_row{
+    margin:10px;
+    padding: 20px;
+
+
+    border: 1px solid rgba(0,0,0,.2);
+}
+
+.Qr_row h1{
+    font-size: 30px;
+
+}
+

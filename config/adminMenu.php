@@ -194,6 +194,13 @@
                     'text'=> 'admin/menu.shop_customer_list',
                     'icon'=>'fas fa-list'
                 ],
+                [
+                    'sel_routs'=> 'Export',
+                    'url'=> 'ShopCustomer.Export.ExportLogin',
+                    'roleView'=>'ShopOrders_view',
+                    'text'=> 'تصدير كلمة المرور',
+                    'icon'=>'fas fa-lock'
+                ],
 
             ],
         ],
@@ -215,6 +222,7 @@
                     'text'=> 'admin/menu.shop_orders_list',
                     'icon'=>'fas fa-list'
                 ],
+
 
             ],
         ],

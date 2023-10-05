@@ -34,5 +34,12 @@ class Customer extends Model
             ->orderBy('is_default','desc');
     }
 
+    public function addresses_def(): HasMany
+    {
+        return $this->hasMany(UsersCustomersAddress::class,'customer_id')
+            ->with('city')
+            ->where('is_default',true)
+            ->orderBy('is_default','desc');
+    }
 
 }

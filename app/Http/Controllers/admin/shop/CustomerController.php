@@ -13,8 +13,11 @@ use App\Models\admin\Page;
 use App\Models\admin\shop\Customer;
 use App\Models\customer\UsersCustomersAddress;
 use App\Models\UsersCustomers;
+
+use Barryvdh\DomPDF\Facade\Pdf;
 use Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
@@ -348,6 +351,37 @@ class CustomerController extends AdminMainController
         $pageData['TitlePage'] = __('admin/def.model_config');
         $pageData['ViewType'] = "List";
         return view('admin.customer.config',compact('pageData'));
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     ExportLogin
+    public function ExportLogin()
+    {
+        $pageData = $this->pageData;
+        $pageData['TitlePage'] = __('admin/def.model_config');
+        $pageData['ViewType'] = "List";
+
+        $customers = Customer::query()
+            ->where('password_temp','!=',null)
+            ->where('last_login',null)
+            ->with('addresses_def')
+            ->get();
+
+
+       // dd($customers);
+
+
+
+//        $pdf = App::make('dompdf.wrapper');
+//        $pdf->loadHTML( "dddd");
+//        return $pdf->stream();
+
+//        $pdf =  Pdf::loadView('admin.customer.export_login',compact('customers'));
+//        return $pdf->download();
+
+
+
+        return view('admin.customer.export_login',compact('pageData', 'customers'));
     }
 
 }
