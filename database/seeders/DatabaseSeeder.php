@@ -37,6 +37,10 @@ use Database\Seeders\customer\UsersCustomersAddressSeeder;
 use Database\Seeders\customer\UsersCustomersSeeder;
 use Database\Seeders\data\DataCitySeeder;
 use Database\Seeders\roles\AdminUserSeeder;
+use Database\Seeders\roles\DBModelHasRolesSeeder;
+use Database\Seeders\roles\DBRoleHasPermissionsSeeder;
+use Database\Seeders\roles\DBRoleSeeder;
+use Database\Seeders\roles\DBUsersSeeder;
 use Database\Seeders\roles\PermissionSeeder;
 use Database\Seeders\roles\RoleSeeder;
 use Database\Seeders\config\DefPhotoSeeder;
@@ -57,9 +61,16 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call(PermissionSeeder::class);
-        $this->call(AdminUserSeeder::class);
-        $this->call(RoleSeeder::class);
-        $this->call(UsersTableSeeder::class);
+        $this->call(DBUsersSeeder::class);
+        $this->call(DBRoleSeeder::class);
+        $this->call(DBModelHasRolesSeeder::class);
+        $this->call(DBRoleHasPermissionsSeeder::class);
+
+//        $this->call(AdminUserSeeder::class);
+//        $this->call(RoleSeeder::class);
+//        $this->call(UsersTableSeeder::class);
+
+
 
         $this->call(SettingsTableSeeder::class);
         $this->call(SettingsTranslationsTableSeeder::class);
