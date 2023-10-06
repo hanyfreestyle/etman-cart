@@ -35,12 +35,13 @@ class ShopProductRequest extends FormRequest
             'categories'  => 'required|array|min:1',
             'pro_shop'=> "required",
             'pro_web'=> "required",
+            'unit'=> "required",
 
-            'price'=> "nullable|numeric",
+            'price'=> "required|numeric",
             'sale_price'=> "nullable|numeric|lt:price",
 
-            'qty_left'=> "nullable|integer",
-            'qty_max'=> "nullable|integer",
+            'qty_left'=> "required|integer",
+            'qty_max'=> "required|integer",
 
         ];
 

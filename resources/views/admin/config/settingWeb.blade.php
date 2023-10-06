@@ -162,6 +162,34 @@
                     </x-ui-card>
                 </div>
 
+                <div class="col-lg-6">
+                    <x-ui-card title="Telegram" :add-form-error="false">
+                        <div class="row">
+
+                            <x-form-input label="Whatsapp Key" name="whatsapp_key" :requiredSpan="true" colrow="col-lg-12"
+                                          value="{{old('whatsapp_key',$setting->whatsapp_key)}}" inputclass="dir_en"/>
+
+                            <x-form-input label="Send To" name="whatsapp_send_to" :requiredSpan="true" colrow="col-lg-12"
+                                          value="{{old('whatsapp_send_to',$setting->whatsapp_send_to)}}" inputclass="dir_en"/>
+
+                        </div>
+                    </x-ui-card>
+                </div>
+
+                <div class="col-lg-12">
+                    <x-ui-card title="Notes" :add-form-error="false">
+                        <div class="row">
+                            <x-form-textarea
+                                label="Notes"
+                                name="notes"
+                                topclass="col-lg-12 dir_en"
+
+                                value="{{old('notes', $setting->notes)}}"
+                            />
+
+                        </div>
+                    </x-ui-card>
+                </div>
 
             </div>
         </div>

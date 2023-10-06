@@ -14,6 +14,7 @@ class Setting extends Model implements TranslatableContract
         'facebook','twitter','youtube','instagram','linkedin','def_url','google_api','web_status',
         'phone_num','whatsapp_num','phone_text','whatsapp_text',
         'apple','android','windows','telegram_key','telegram_group','telegram_phone',
+        'whatsapp_key','whatsapp_send_to','notes'
     ];
     protected $table = "config_settings";
     protected $primaryKey = 'id';

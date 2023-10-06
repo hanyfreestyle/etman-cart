@@ -44,6 +44,11 @@ return new class extends Migration
             $table->string('telegram_group')->nullable();
             $table->string('telegram_phone')->nullable();
 
+            $table->string('whatsapp_key')->nullable();
+            $table->string('whatsapp_send_to')->nullable();
+            $table->text('notes')->nullable();
+
+
             $table->timestamps();
         });
     }

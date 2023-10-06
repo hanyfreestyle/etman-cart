@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 05, 2023 at 10:29 PM
+-- Generation Time: Oct 06, 2023 at 10:37 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -32,7 +32,12 @@ INSERT INTO `shopping_order_logs` (`id`, `order_id`, `user_id`, `add_date`, `not
 (4, 3, 1, '2023-10-05 14:21:13', 'رصيد العميل لا يسمح'),
 (5, 6, 1, '2023-10-05 14:21:37', NULL),
 (6, 7, 1, '2023-10-05 14:23:18', NULL),
-(7, 6, 1, '2023-10-05 14:27:54', NULL);
+(7, 6, 1, '2023-10-05 14:27:54', NULL),
+(8, 12, 4, '2023-10-06 19:43:25', NULL),
+(9, 11, 4, '2023-10-06 19:43:34', NULL),
+(10, 10, 4, '2023-10-06 19:43:41', NULL),
+(11, 12, 1, '2023-10-06 22:35:51', NULL),
+(12, 9, 1, '2023-10-06 22:36:17', NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

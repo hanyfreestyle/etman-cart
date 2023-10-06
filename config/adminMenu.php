@@ -15,38 +15,36 @@
                     'url'=> 'ShopOrders.New.index',
                     'roleView'=>'ShopOrders_view',
                     'text'=> 'admin/order.status_1',
-                    'icon'=>'fas fa-list'
+                    'icon'=>'fas fa-bolt'
                 ],
                 [
                     'sel_routs'=> 'Pending',
                     'url'=> 'ShopOrders.Pending.index',
                     'roleView'=>'ShopOrders_view',
                     'text'=> 'admin/order.status_2',
-                    'icon'=>'fas fa-list'
+                    'icon'=>'fas fa-wrench'
                 ],
                 [
                     'sel_routs'=> 'Recipient',
                     'url'=> 'ShopOrders.Recipient.index',
                     'roleView'=>'ShopOrders_view',
                     'text'=> 'admin/order.status_3',
-                    'icon'=>'fas fa-list'
+                    'icon'=>'fas fa-thumbs-up'
                 ],
-
                 [
                     'sel_routs'=> 'Rejected',
                     'url'=> 'ShopOrders.Rejected.index',
                     'roleView'=>'ShopOrders_view',
                     'text'=> 'admin/order.status_4',
-                    'icon'=>'fas fa-list'
+                    'icon'=>'fas fa-times-circle'
                 ],
                 [
                     'sel_routs'=> 'Canceled',
                     'url'=> 'ShopOrders.Canceled.index',
                     'roleView'=>'ShopOrders_view',
                     'text'=> 'admin/order.status_5',
-                    'icon'=>'fas fa-list'
+                    'icon'=>'fas fa-power-off'
                 ],
-
                 [
                     'sel_routs'=> 'OrderConfig',
                     'url'=> 'ShopOrders.OrderConfig.Config',

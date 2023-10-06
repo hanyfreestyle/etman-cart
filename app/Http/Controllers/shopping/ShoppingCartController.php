@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\shopping;
 
+use App\Helpers\AdminHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\WebMainController;
 use App\Http\Requests\shopping\ShoppingOrderSaveRequest;
@@ -99,6 +100,8 @@ class ShoppingCartController extends WebMainController
     public function CartOrderSave(ShoppingOrderSaveRequest $request)
     {
 
+
+
         $PageErr = self::CheckCartProduct() ;
         if($PageErr > 0 ){
             return redirect()->route('Shop_CartView');
@@ -110,6 +113,8 @@ class ShoppingCartController extends WebMainController
             try{
 
                 $getData =  DB::transaction(function () use ($request){
+
+                    $saveOrderData = true ;
 
                     $CartList =  Cart::content();
                     $subtotal =  Cart::subtotal();
@@ -129,7 +134,11 @@ class ShoppingCartController extends WebMainController
                     $newAddress->phone = $address->phone ;
                     $newAddress->phone_option = $address->phone_option ;
                     $newAddress->notes = $request->input('notes') ;
-                    $newAddress->save();
+
+                    if($saveOrderData == true){
+                        $newAddress->save();
+                    }
+
 
                     $newOrder = new ShoppingOrder ;
                     $newOrder->customer_id = $UserProfile->id ;
@@ -139,7 +148,11 @@ class ShoppingCartController extends WebMainController
                     $newOrder->status = 1 ;
                     $newOrder->total = $subtotal;
                     $newOrder->units = $CartList->count();
-                    $newOrder->save();
+
+                    if($saveOrderData == true){
+                        $newOrder->save();
+                    }
+
 
                     foreach ($CartList as $product ){
                         $addProduct = new ShoppingOrderProduct() ;
@@ -150,12 +163,17 @@ class ShoppingCartController extends WebMainController
                         $addProduct->price = $product->model->price ;
                         $addProduct->sale_price = $product->model->sale_price ;
                         $addProduct->qty = $product->qty ;
-                        $addProduct->save() ;
-                        Product::find($product->model->id)->decrement('qty_left',$product->qty);
+
+                        if($saveOrderData == true){
+                            $addProduct->save() ;
+                            Product::find($product->model->id)->decrement('qty_left',$product->qty);
+                        }
+
                     }
 
-                     Cart::destroy();
-
+                    if($saveOrderData == true){
+                        Cart::destroy();
+                    }
 
                     return $data = [
                         'order_id'=> $newOrder->id,
@@ -172,25 +190,23 @@ class ShoppingCartController extends WebMainController
                 return redirect()->back()->with('order_not_saved',__('web/orders.err_order_not_saved'));
             }
 
+            //$Brek = '<br/>';
+            $Mass = "";
+            $Brek = "%0a";
+            $Mass .= "تم اضافة طلب جديد".$Brek ;
+            $Mass .= '---------------------'.$Brek ;
+            $Mass .= "رقم الطلب " . " ".($getData['order_id']+1000).$Brek;
+            $Mass .= "اسم العميل : ".$getData['cust_name'].$Brek;
+            $Mass .= "الاجمالى : ".$getData['order_total'].$Brek;
+            $Mass .= "عدد الاصناف ".$getData['order_units'].$Brek;
+            $Mass .= "".$getData['order_date'].$Brek;
+
 
             if($this->WebConfig->telegram_key != null){
 
                 $KEY = $this->WebConfig->telegram_key ;
                 $PhoneID = $this->WebConfig->telegram_phone ;
                 $GroupID = $this->WebConfig->telegram_group ;
-
-
-                $Mass = "";
-                $Brek = "%0a";
-                //$Brek = '<br/>';
-                $Mass .= "تم اضافة طلب جديد".$Brek ;
-                $Mass .= '---------------------'.$Brek ;
-                $Mass .= "رقم الطلب " . " ".($getData['order_id']+1000).$Brek;
-                $Mass .= "اسم العميل : ".$getData['cust_name'].$Brek;
-                $Mass .= "الاجمالى : ".$getData['order_total'].$Brek;
-                $Mass .= "عدد الاصناف ".$getData['order_units'].$Brek;
-                $Mass .= "".$getData['order_date'].$Brek;
-
 
                 if($this->WebConfig->telegram_phone != null){
                     $url = "https://api.telegram.org/bot$KEY/sendMessage?chat_id=$PhoneID&text=".$Mass;
@@ -203,9 +219,16 @@ class ShoppingCartController extends WebMainController
 
             }
 
-//           // $Mass = str_replace(" ","%20",$Mass);
-//            $url = 'https://api.telegram.org/bot6313317483:AAEooBTEFel1ej1uaDpXcZzCrbX_ID3aYEw/sendMessage?chat_id=-4077460274&text=';
-//            $sendrequest = Http::post($url.$Mass);
+            $Mass = "";
+            $Brek ='\n';
+            $Mass .= "تم اضافة طلب جديد".$Brek ;
+            $Mass .= '---------------------'.$Brek ;
+            $Mass .= "رقم الطلب " . " ".($getData['order_id']+1000).$Brek;
+            $Mass .= "اسم العميل : ".$getData['cust_name'].$Brek;
+            $Mass .= "الاجمالى : ".$getData['order_total'].$Brek;
+            $Mass .= "عدد الاصناف ".$getData['order_units'].$Brek;
+            $Mass .= "".$getData['order_date'].$Brek;
+            AdminHelper::SendWhatsapp($this->WebConfig->whatsapp_send_to,$Mass);
 
             return redirect()->route('Shop_CartOrderCompleted');
         }else{
