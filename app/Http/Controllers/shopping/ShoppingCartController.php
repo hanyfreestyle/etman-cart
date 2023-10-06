@@ -173,26 +173,40 @@ class ShoppingCartController extends WebMainController
             }
 
 
-           // dd($getData);
+            if($this->WebConfig->telegram_key != null){
+
+                $KEY = $this->WebConfig->telegram_key ;
+                $PhoneID = $this->WebConfig->telegram_phone ;
+                $GroupID = $this->WebConfig->telegram_group ;
 
 
-            $Mass = "";
-            $Brek = "%0a";
-            //$Brek = '<br/>';
-            $Mass .= "تم اضافة طلب جديد".$Brek ;
-            $Mass .= '---------------------'.$Brek ;
-            $Mass .= "رقم الطلب " . " ".($getData['order_id']+1000).$Brek;
-            $Mass .= "اسم العميل : ".$getData['cust_name'].$Brek;
-            $Mass .= "الاجمالى : ".$getData['order_total'].$Brek;
-            $Mass .= "عدد الاصناف ".$getData['order_units'].$Brek;
-            $Mass .= "".$getData['order_date'].$Brek;
+                $Mass = "";
+                $Brek = "%0a";
+                //$Brek = '<br/>';
+                $Mass .= "تم اضافة طلب جديد".$Brek ;
+                $Mass .= '---------------------'.$Brek ;
+                $Mass .= "رقم الطلب " . " ".($getData['order_id']+1000).$Brek;
+                $Mass .= "اسم العميل : ".$getData['cust_name'].$Brek;
+                $Mass .= "الاجمالى : ".$getData['order_total'].$Brek;
+                $Mass .= "عدد الاصناف ".$getData['order_units'].$Brek;
+                $Mass .= "".$getData['order_date'].$Brek;
 
-           // $Mass = str_replace(" ","%20",$Mass);
-            $url = 'https://api.telegram.org/bot6313317483:AAEooBTEFel1ej1uaDpXcZzCrbX_ID3aYEw/sendMessage?chat_id=-4077460274&text=';
 
-            $sendrequest = Http::post($url.$Mass);
-//            echobr($Mass);
-//            dd('hi');
+                if($this->WebConfig->telegram_phone != null){
+                    $url = "https://api.telegram.org/bot$KEY/sendMessage?chat_id=$PhoneID&text=".$Mass;
+                    $sendrequest = Http::post($url);
+                }
+                if($this->WebConfig->telegram_group != null){
+                    $url = "https://api.telegram.org/bot$KEY/sendMessage?chat_id=$GroupID&text=".$Mass;
+                    $sendrequest = Http::post($url);
+                }
+
+            }
+
+//           // $Mass = str_replace(" ","%20",$Mass);
+//            $url = 'https://api.telegram.org/bot6313317483:AAEooBTEFel1ej1uaDpXcZzCrbX_ID3aYEw/sendMessage?chat_id=-4077460274&text=';
+//            $sendrequest = Http::post($url.$Mass);
+
             return redirect()->route('Shop_CartOrderCompleted');
         }else{
             return redirect()->route('Shop_CartView');

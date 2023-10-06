@@ -39,6 +39,11 @@ return new class extends Migration
             $table->string('android')->nullable();
             $table->string('windows')->nullable();
 
+
+            $table->string('telegram_key')->nullable();
+            $table->string('telegram_group')->nullable();
+            $table->string('telegram_phone')->nullable();
+
             $table->timestamps();
         });
     }

@@ -25,6 +25,7 @@ use Artesaos\SEOTools\Facades\JsonLd;
 class WebMainController extends Controller
 {
 
+    public $WebConfig;
     public function __construct(
 
     )
@@ -34,8 +35,8 @@ class WebMainController extends Controller
         $agent = new Agent();
         View::share('agent', $agent);
 
-        $WebConfig = self::getWebConfig($stopCash);
-        View::share('WebConfig', $WebConfig);
+        $this->WebConfig = self::getWebConfig($stopCash);
+        View::share('WebConfig', $this->WebConfig);
 
         $DefPhotoList = self::getDefPhotoList($stopCash);
         View::share('DefPhotoList', $DefPhotoList);
