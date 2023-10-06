@@ -1,8 +1,6 @@
 <?php
 namespace App\Http\Controllers;
 
-
-
 use App\Models\admin\Post;
 use App\Models\admin\shop\Order;
 

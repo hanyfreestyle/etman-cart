@@ -18,23 +18,13 @@ Route::get('/weblang',[LangFileWebController::class,'index'])->name('weblang.ind
 Route::post('/weblang/updateFile',[LangFileWebController::class,'updateFile'])->name('weblang.updateFile');
 
 
+
 Route::get('/config/webConfig', [SettingsController::class, 'webConfigEdit'])->name('config.web.index');
-Route::get('/config/model', [SettingsController::class, 'webConfigModel'])->name('config.model.index');
+//Route::get('/config/model', [SettingsController::class, 'webConfigModel'])->name('config.model.index');
 Route::post('/config/model/update', [SettingsController::class, 'webConfigModelUpdate'])->name('config.model.update');
 
 Route::post('/config/webConfigUpdate', [SettingsController::class, 'webConfigUpdate'])->name('admin.webConfigUpdate');
 Route::get('/config/show', [SettingsController::class,'defIconShow'])->name('config.defIcon.show');
-
-//Route::get('/metaTags', [MetaTagController::class,'index'])->name('config.meta.index');
-//Route::get('/metaTags/create', [MetaTagController::class,'create'])->name('config.meta.create');
-//Route::get('/metaTags/edit/{id}', [MetaTagController::class,'edit'])->name('config.meta.edit');
-//Route::post('/metaTags/Update/{id}', [MetaTagController::class,'storeUpdate'])->name('config.meta.update');
-//Route::get('/metaTags/delete/{id}', [MetaTagController::class,'delete'])->name('config.meta.destroy');
-//Route::get('/metaTags/config', [MetaTagController::class,'config'])->name('config.meta.config');
-//Route::get('/metaTags/SoftDelete/',[MetaTagController::class,'SoftDeletes'])->name('config.meta.SoftDelete');
-//Route::get('/metaTags/restore/{id}',[MetaTagController::class,'restored'])->name('config.meta.restore');
-//Route::get('/metaTags/force/{id}',[MetaTagController::class,'ForceDeletes'])->name('config.meta.force');
-//Route::get('/metaTags/emptyPhoto/{id}', [MetaTagController::class,'emptyPhoto'])->name('config.meta.emptyPhoto');
 
 Route::get('/webPrivacy', [WebPrivacyController::class,'index'])->name('config.webPrivacy.index');
 Route::get('/webPrivacy/create', [WebPrivacyController::class,'create'])->name('config.webPrivacy.create');
@@ -43,7 +33,6 @@ Route::post('/webPrivacy/Update/{id}', [WebPrivacyController::class,'storeUpdate
 Route::get('/webPrivacy/delete/{id}', [WebPrivacyController::class,'delete'])->name('config.webPrivacy.destroy');
 Route::get('/webPrivacy/Sort',[WebPrivacyController::class,'Sort'])->name('config.webPrivacy.Sort');
 Route::post('/webPrivacy/SaveSort', [WebPrivacyController::class,'SaveSort'])->name('config.webPrivacy.SaveSort');
-
 
 
 Route::get('/defPhotos', [DefPhotoController::class,'index'])->name('config.defPhoto.index');

@@ -129,10 +129,13 @@ class PageController extends AdminMainController
         $saveData->cat_id = $request->input('cat_id');
         $saveData->banner_id = $request->input('banner_id');
 
-        $saveData->is_active = intval((bool) $request->input( 'is_active'));
-        $saveData->menu_main = intval((bool) $request->input( 'menu_main'));
-        $saveData->menu_footer = intval((bool) $request->input( 'menu_footer'));
+//        $saveData->is_active = intval((bool) $request->input( 'is_active'));
+//        $saveData->menu_main = intval((bool) $request->input( 'menu_main'));
+//        $saveData->menu_footer = intval((bool) $request->input( 'menu_footer'));
 
+        $saveData->is_active = 1;
+        $saveData->menu_main = 1;
+        $saveData->menu_footer = 1;
 
         $saveData->save();
 

@@ -34,7 +34,7 @@ class OrderController extends AdminMainController
     function __construct(
         $selMenu = 'ShopOrders.',
         $controllerName = 'Orders',
-        $PrefixRole = 'ShopCustomer',
+        $PrefixRole = 'ShopOrders',
         $PrefixRoute = '#',
         $pageData = array(),
     )
@@ -49,9 +49,9 @@ class OrderController extends AdminMainController
 
         $this->PageTitle = __('admin/menu.shop_orders');
 
-        $this->middleware('permission:'.$PrefixRole.'_view', ['only' => ['index']]);
-        $this->middleware('permission:'.$PrefixRole.'_add', ['only' => ['create']]);
-        $this->middleware('permission:'.$PrefixRole.'_edit', ['only' => ['edit']]);
+        $this->middleware('permission:'.$PrefixRole.'_view', ['only' => ['index','OrderView']]);
+       // $this->middleware('permission:'.$PrefixRole.'_add', ['only' => ['create']]);
+        $this->middleware('permission:'.$PrefixRole.'_edit', ['only' => ['ConfirmNew','ConfirmPending']]);
         $this->middleware('permission:'.$PrefixRole.'_delete', ['only' => ['destroy']]);
 
 

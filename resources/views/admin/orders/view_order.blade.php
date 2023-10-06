@@ -7,26 +7,17 @@
     <x-breadcrumb-def :pageData="$pageData"  />
 
     <x-html-section>
-
-
         <section class="content mb-5">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-8">
-
-
-
-
-
                         <div class="invoice p-3 mb-3">
-
                             <div class="row">
                                 <div class="col-12">
                                     <h4>#{{$order->id+1000}}
                                         <small class="float-right">{{$order->orderDate()}}</small>
                                     </h4>
                                 </div>
-
                             </div>
 
                             <div class="row invoice-info">
@@ -59,9 +50,6 @@
 
                             </div>
 
-
-
-
                             <div class="row">
                                 <div class="col-12 table-responsive">
                                     <table class="table table-striped">
@@ -80,19 +68,13 @@
                                                 <td>{{$product->qty}}</td>
                                                 <td>{{$product->sku}}</td>
                                                 <td>{{$product->name}}</td>
-
-
                                                 <td>{{ number_format($product->CartPriceToAdd()) }}</td>
                                                 <td>{{ number_format($product->CartPriceToAdd() * $product->qty) }}</td>
                                             </tr>
                                         @endforeach
-
-
-
                                         </tbody>
                                     </table>
                                 </div>
-
                             </div>
 
                             <div class="row">
@@ -123,41 +105,42 @@
 
                     </div>
 
-                    <div class="col-lg-4">
-
-                        @if($order->status == 1)
-                            @include('admin.orders.form_confrim_new')
-                        @elseif($order->status == 2)
-                            @include('admin.orders.form_confrim_pending')
-                        @elseif($order->status == 3)
-                            <div class="callout callout-success reject_mass">
-                                <h5><i class="fas fa-info"></i> تم تسليم الطلب</h5>
-                                <hr>
-                                <h5>رقم الفاتورة : {{ $order->invoice_number }}</h5>
-                                <hr>
-                                @foreach($order->orderlog as $log)
-                                    <p>{{$log->add_date}}</p>
-                                    <p>{{$log->user->name}}</p>
-                                    <p>{{$log->notes}}</p>
+                    @can('ShopOrders_edit')
+                        <div class="col-lg-4">
+                            @if($order->status == 1)
+                                @include('admin.orders.form_confrim_new')
+                            @elseif($order->status == 2)
+                                @include('admin.orders.form_confrim_pending')
+                            @elseif($order->status == 3)
+                                <div class="callout callout-success reject_mass">
+                                    <h5><i class="fas fa-info"></i> تم تسليم الطلب</h5>
                                     <hr>
-                                @endforeach
-                            </div>
+                                    <h5>رقم الفاتورة : {{ $order->invoice_number }}</h5>
+                                    <hr>
+                                    @foreach($order->orderlog as $log)
+                                        <p>{{$log->add_date}}</p>
+                                        <p>{{$log->user->name}}</p>
+                                        <p>{{$log->notes}}</p>
+                                        <hr>
+                                    @endforeach
+                                </div>
 
-                        @elseif($order->status == 4)
-                            <div class="callout callout-danger reject_mass">
-                                <h5><i class="fas fa-info"></i> تم رفض الطلب </h5>
-                                @foreach($order->orderlog as $log)
-                                    <p>{{$log->add_date}}</p>
-                                    <p>{{$log->user->name}}</p>
-                                    <p>{{$log->notes}}</p>
-                                @endforeach
-                            </div>
-                        @endif
+                            @elseif($order->status == 4)
+                                <div class="callout callout-danger reject_mass">
+                                    <h5><i class="fas fa-info"></i> تم رفض الطلب </h5>
+                                    @foreach($order->orderlog as $log)
+                                        <p>{{$log->add_date}}</p>
+                                        <p>{{$log->user->name}}</p>
+                                        <p>{{$log->notes}}</p>
+                                    @endforeach
+                                </div>
+                            @endif
 
 
 
 
-                    </div>
+                        </div>
+                    @endcan
                 </div>
             </div>
         </section>

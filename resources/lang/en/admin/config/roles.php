@@ -33,4 +33,5 @@ return
 	'users_fr_status' => 'User Status',
 	'users_list' => 'Users List',
 	'users_title' => 'Users',
+	'model_19' => 'Manage Orders',
 ];

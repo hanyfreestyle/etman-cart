@@ -54,7 +54,6 @@
                                         @foreach(config('app.lang_file') as $langkey=>$lang )
                                             <div class="col-4">
                                                 <textarea  name="{{$langkey}}[]" class="form-control @if($langkey == 'en') dir_en @endif">{!! AdminHelper::arrIsset($allData[$langkey],$key,"") !!}</textarea>
-{{--                                                <input type="text" class="form-control @if($langkey == 'en') dir_en @endif" value="{!! AdminHelper::arrIsset($allData[$langkey],$key,"") !!}" name="{{$langkey}}[]" >--}}
                                             </div>
                                         @endforeach
 

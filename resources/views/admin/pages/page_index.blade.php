@@ -35,10 +35,9 @@
                                 <th></th>
                             @else
                                 <th class="tbutaction TD_250">{{__('admin/form.meta_g_title_'.thisCurrentLocale())}}</th>
-{{--                                <th class="tbutaction TD_350">{{__('admin/form.meta_g_des_'.thisCurrentLocale())}}</th>--}}
-                                <th class="tbutaction TD_50">Active</th>
-                                <th class="tbutaction TD_50">Menu</th>
-                                <th class="tbutaction TD_50">Footer</th>
+                                <th class="tbutaction TD_50"></th>
+{{--                                <th class="tbutaction TD_50">Menu</th>--}}
+{{--                                <th class="tbutaction TD_50">Footer</th>--}}
 
                                 @can($PrefixRole.'_edit')
                                     <th class="tbutaction TD_50"></th>
@@ -65,11 +64,10 @@
                                     <td class="tc"><x-action-button url="#" id="{{route($PrefixRoute.'.force',$Page->id)}}" type="deleteSweet"/></td>
                                 @else
                                     <td>{{$Page->translate(thisCurrentLocale())->g_title}}</td>
-{{--                                    <td>{{ Str::limit($Page->translate(thisCurrentLocale())->g_des,200) }}</td>--}}
 
                                     <td class="tc" >{!! is_active($Page->is_active) !!}</td>
-                                    <td class="tc" >{!! is_active($Page->menu_main) !!}</td>
-                                    <td class="tc" >{!! is_active($Page->menu_footer) !!}</td>
+{{--                                    <td class="tc" >{!! is_active($Page->menu_main) !!}</td>--}}
+{{--                                    <td class="tc" >{!! is_active($Page->menu_footer) !!}</td>--}}
                                     @can($PrefixRole.'_edit')
                                         <td class="tc"><x-action-button url="{{route($PrefixRoute.'.edit',$Page->id)}}" type="edit" :tip="true" /></td>
                                     @endcan

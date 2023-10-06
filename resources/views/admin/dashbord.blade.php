@@ -2,65 +2,49 @@
 
 @section('content')
 
+    <x-html-section>
+        <div class="row py-3"></div>
+    </x-html-section>
 
-
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0"></h1>
-                    </div><!-- /.col -->
+    @can('ShopOrders_view')
+        <x-html-section>
+            <div class="row">
+                <div class="col-xl-4 col-lg-6 col-md-6">
+                    <x-dashboard-orders
+                        title="{{__('admin/order.status_1')}}"
+                        :orders="$newOrder"
+                        :url="route('ShopOrders.New.index')"
+                    />
                 </div>
-            </div>
-        </div>
 
+                <div class="col-xl-4 col-lg-6 col-md-6">
+                    <x-dashboard-orders
+                        title="{{__('admin/order.status_2')}}"
+                        :orders="$pendingOrder"
+                        :url="route('ShopOrders.Pending.index')"
+                    />
+                </div>
 
-
-        <div class="content">
-            <div class="container-fluid">
-                <x-html-section>
-                    <div class="row">
-                        <div class="col-4">
-                            <x-dashboard-orders
-                                title="{{__('admin/order.status_1')}}"
-                                :orders="$newOrder"
-                                :url="route('ShopOrders.New.index')"
-                            />
-                        </div>
-
-                        <div class="col-4">
-                            <x-dashboard-orders
-                                title="{{__('admin/order.status_2')}}"
-                                :orders="$pendingOrder"
-                                :url="route('ShopOrders.Pending.index')"
-                            />
-                        </div>
-
-                        <div class="col-4">
-                            <x-dashboard-orders
-                                title="{{__('admin/order.status_3')}}"
-                                :orders="$recipientOrder"
-                                :url="route('ShopOrders.Recipient.index')"
-                            />
-                        </div>
-
-                    </div>
-
-                </x-html-section>
-
-
+                <div class="col-xl-4 col-lg-6 col-md-6">
+                    <x-dashboard-orders
+                        title="{{__('admin/order.status_3')}}"
+                        :orders="$recipientOrder"
+                        :url="route('ShopOrders.Recipient.index')"
+                    />
+                </div>
 
             </div>
-        </div>
+
+        </x-html-section>
+    @endcan
+
+
+
 
 
 @endsection
 
 @push('JsCode')
-    <!-- OPTIONAL SCRIPTS -->
-    <script src="{{defAdminAssets('plugins/chart.js/Chart.min.js')}}"></script>
-
-
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="{{defAdminAssets('js/pages/dashboard3.js')}}"></script>
+{{--    <script src="{{defAdminAssets('plugins/chart.js/Chart.min.js')}}"></script>--}}
+{{--    <script src="{{defAdminAssets('js/pages/dashboard3.js')}}"></script>--}}
 @endpush

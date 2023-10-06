@@ -76,7 +76,7 @@
                 [
                     'sel_routs'=> 'Export',
                     'url'=> 'ShopCustomer.Export.ExportLogin',
-                    'roleView'=>'ShopOrders_view',
+                    'roleView'=>'ShopCustomer_edit',
                     'text'=> 'تصدير كلمة المرور',
                     'icon'=>'fas fa-lock'
                 ],
@@ -116,16 +116,6 @@
 
             ],
         ], #Shop Product
-
-        [
-            'view'=>true,
-            'sel_routs'=>'OurClient',
-            'type'=>'one',
-            'text'=> 'admin/menu.OurClient',
-            'url'=> 'OurClient.index',
-            'icon'=>'fas fa-users',
-            'roleView'=>'OurClient_view',
-        ], #Our Client
 
         [
             'view'=>true,
@@ -169,6 +159,16 @@
 
         [
             'view'=>true,
+            'sel_routs'=>'FAQ',
+            'type'=>'one',
+            'text'=> 'admin/menu.faq',
+            'url'=> 'FAQ.FaqList.index',
+            'icon'=>'fas fa-question',
+            'roleView'=>'Faq_view',
+        ],#FAQ
+
+        [
+            'view'=>true,
             'sel_routs'=>'BlogPost',
             'type'=>'one',
             'text'=> 'admin/menu.blog',
@@ -179,6 +179,16 @@
 
         [
             'view'=>true,
+            'sel_routs'=>'OurClient',
+            'type'=>'one',
+            'text'=> 'admin/menu.OurClient',
+            'url'=> 'OurClient.index',
+            'icon'=>'fas fa-users',
+            'roleView'=>'OurClient_view',
+        ], #Our Client
+
+        [
+            'view'=>true,
             'sel_routs'=>'Banners',
             'type'=>'one',
             'text'=> 'admin/menu.web_banner',
@@ -186,16 +196,6 @@
             'icon'=>'fas fa-images',
             'roleView'=>'Banner_view',
         ], #Banners
-
-        [
-            'view'=>true,
-            'sel_routs'=>'FAQ',
-            'type'=>'one',
-            'text'=> 'admin/menu.faq',
-            'url'=> 'FAQ.FaqList.index',
-            'icon'=>'fas fa-question',
-            'roleView'=>'Faq_view',
-        ],#FAQ
 
         [
             'view'=>true,
@@ -235,12 +235,15 @@
             'icon'=>'fas fa-cogs',
             'roleView'=>'config_section',
             'submenu'=>[
+
                 ['roleView'=>'website_config','text'=> 'admin/menu.setting_web','url'=> 'config.web.index','sel_routs'=> 'web','icon'=>'fas fa-cog'],
-                ['roleView'=>'website_config','text'=> 'admin/menu.setting_model','url'=> 'config.model.index','sel_routs'=> 'model', 'icon'=>'fas fa-cog'],
-                ['roleView'=>'website_config','text'=> 'admin/menu.webPrivacy','url'=> 'config.webPrivacy.index','sel_routs'=> 'webPrivacy', 'icon'=>'fas fa-file-invoice'],
+//                ['roleView'=>'website_config','text'=> 'admin/menu.setting_model','url'=> 'config.model.index','sel_routs'=> 'model', 'icon'=>'fas fa-cog'],
+                ['roleView'=>'webPrivacy_view','text'=> 'admin/menu.webPrivacy','url'=> 'config.webPrivacy.index','sel_routs'=> 'webPrivacy', 'icon'=>'fas fa-file-invoice'],
                 ['roleView'=>'defPhoto_view','text'=> 'admin/menu.setting_def_photo','url'=> 'config.defPhoto.index','sel_routs'=> 'defPhoto','icon'=>'fas fa-image'],
                 ['roleView'=>'upFilter_view','text'=> 'admin/menu.uploadFilter','url'=> 'config.upFilter.index','sel_routs'=> 'upFilter','icon'=>'fas fa-filter'],
-                ['roleView'=>'config_section','text'=> 'admin/menu.setting_icon','url'=> 'config.defIcon.show','sel_routs'=> 'defIcon','icon'=>'fab fa-fonticons'],
+
+
+//                ['roleView'=>'config_section','text'=> 'admin/menu.setting_icon','url'=> 'config.defIcon.show','sel_routs'=> 'defIcon','icon'=>'fab fa-fonticons'],
             ],
         ], #Setting
 

@@ -7,12 +7,18 @@
         <x-mass.confirm-massage />
         <form action="{{route('config.defPhoto.storeUpdate',intval($rowData->id))}}" method="post" enctype="multipart/form-data">
             @csrf
-            <x-form-input label="# CatId" name="cat_id" :requiredSpan="true" colrow="col-lg-3"
-                          value="{{old('cat_id',$rowData->cat_id)}}" inputclass="dir_en"/>
+
+            @if(config('app.development'))
+                <x-form-input label="# CatId" name="cat_id" :requiredSpan="true" colrow="col-lg-3"
+                              value="{{old('cat_id',$rowData->cat_id)}}" inputclass="dir_en"/>
+            @else
+                <input type="hidden" value="{{$rowData->cat_id}}" name="cat_id">
+               <h1> {{$rowData->cat_id}}</h1>
+            @endif
 
 
             <hr>
-            <x-form-upload-file view-type="{{$pageData['ViewType']}}" :row-data="$rowData" :multiple="false" />
+            <x-form-upload-file view-type="{{$pageData['ViewType']}}" fild-name="photo" :row-data="$rowData" :multiple="false" />
 
             <div class="container-fluid mb-5 mt-2">
                 <x-form-submit text="{{$pageData['ViewType']}}" />

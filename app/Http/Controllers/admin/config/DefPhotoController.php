@@ -9,9 +9,6 @@ use App\Models\admin\config\DefPhoto;
 use Illuminate\Http\Request;
 use Cache ;
 
-
-
-
 class DefPhotoController extends AdminMainController
 {
 

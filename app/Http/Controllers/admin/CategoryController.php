@@ -154,7 +154,8 @@ class CategoryController extends AdminMainController
         if($request->input('parent_id') != 0 and $request->input('parent_id') != $saveData->id){
             $saveData->parent_id = $request->input('parent_id');
         }
-        $saveData->setActive((bool) request('is_active', false));
+       // $saveData->setActive((bool) request('is_active', false));
+        $saveData->is_active = intval((bool) $request->input( 'is_active'));
         $saveData->cat_shop = $request->input('cat_shop');
         $saveData->cat_web = $request->input('cat_web');
         $saveData->cat_web_data =1;
