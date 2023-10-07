@@ -22,8 +22,6 @@
                                 @if($agent->isMobile() == true and $agent->isTablet() == false)
                                     <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'FaqList' ) setActive @endif" href="{{ route('Page_FaqList') }}"><i class="fas fa-question"></i> {{ __('web/menu.Faq') }}</a></li>
                                 @endif
-
-                                <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'ContactUs' ) setActive @endif" href="{{ route('Customer_login') }}"><i class="linearicons-user d-sm-none"></i> {{__('web/menu.footer_account')}}</a></li>
                                 <li><a class="nav-link nav_item @if($SinglePageView['SelMenu'] == 'ContactUs' ) setActive @endif" href="{{ route('Page_ContactUs') }}"><i class="fas fa-headset d-sm-none"></i> {{ __('web/menu.contatc_us')}}</a></li>
                             @endif
 

@@ -50,7 +50,6 @@
 @endif
 
 @if(Session::get('mobileview') != 1)
-
     @if($agent->isDesktop() or $agent->isTablet())
         @if( $SinglePageView['banner_id']  and $SinglePageView['banner_count'] > 0)
             @include('shop.layouts.inc.def_banner')
