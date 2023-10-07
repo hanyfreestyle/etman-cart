@@ -7,13 +7,17 @@
 .changeLangMobile img{width:20px;height:20px}
 .lang_icon{float:left}
 .lang_icon img{width:16px;height:16px;margin-top:-5px;margin-left:5px;margin-right:5px}
-.header_logo{max-height:45px;margin-right:20px;width:auto}
+.header_logo{max-height:45px;width:auto}
 .banner_section.slide_medium,.banner_section.slide_medium .carousel-item,.banner_section.slide_medium .banner_content_wrap,.banner_section.slide_medium .banner_content_wrap .carousel-item,.banner_section.shop_el_slider,.banner_section.shop_el_slider .carousel-item,.banner_section.shop_el_slider .banner_content_wrap,.banner_section.shop_el_slider .banner_content_wrap .carousel-item{height:205px}
 @media only screen and (min-width: 991px) {
-    .header_logo{max-height:55px;margin-right:50px;width:auto}
+    .header_logo{max-height:55px;width:auto}
     .banner_section.slide_medium,.banner_section.slide_medium .carousel-item,.banner_section.slide_medium .banner_content_wrap,.banner_section.slide_medium .banner_content_wrap .carousel-item,.banner_section.shop_el_slider,.banner_section.shop_el_slider .carousel-item,.banner_section.shop_el_slider .banner_content_wrap,.banner_section.shop_el_slider .banner_content_wrap .carousel-item{height:410px}
     .changeLangMobile{display:none!important}
 }
+@media only screen and (max-width:600px) {
+    .header_logo{margin-right: 25px}
+}
+
 .header_phone_number{font-family:'Poppins',sans-serif!important;font-size:15px;font-weight:700;letter-spacing:1px}
 .navbar .navbar-nav > li > .nav-link{font-size:15px}
 .setActive{background:var(--red)!important;color:#fff!important}
@@ -337,11 +341,10 @@
     margin-right: 2px;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 991px) {
     .web_site_navbar_nav {
         padding: 10px 10px !important;
         background-color: #1D1E20!important;
-
     }
 
     .web_site_navbar_nav i {
@@ -957,4 +960,36 @@
 
 
 
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .AboutUs_text_home {
+        font-size: 15px !important;
+        line-height: 25px !important;
+    }
+}
+
+.product_Catimage{
+    text-align: center;
+    width: 100%;
+    min-height: 200px;
+
+}
+
+.product_Catimage img{
+    width: 100%;
+    max-width: 300px;
+}
+
+.other_faq{
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    list-style: none;
+
+}
+
+.other_faq li{
+    list-style: none;
+    margin-bottom: 10px;
 }

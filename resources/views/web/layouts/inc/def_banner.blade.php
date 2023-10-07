@@ -1,8 +1,8 @@
 <div class="banner_section  slide_medium shop_banner_slider staggered-animation-wrap">
     <div class="container">
         <div class="row">
-            @if($agent->isMobile() == false)
-                <div class="col-lg-3 col-12 order-2 sub_banner">
+            @if($agent->isDesktop() == true or $agent->isTablet() == true)
+                <div class="col-lg-3 col-12 order-2 sub_banner  d-none d-lg-block">
                     <div class="row">
                         <div class="col-lg-12 col-6">
                             <img class="rounded" src=" {{getDefPhotoPath($DefPhotoList,'banner_1')}}" alt="logo" />

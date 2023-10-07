@@ -5,14 +5,11 @@
     </x-website.breadcrumb>
 @endsection
 @section('content')
-
-
     <div class="section AboutUs">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="def_h1 def_border" >{{$PageMeta->body_h1}}</h1>
-
                 </div>
             </div>
 
@@ -23,11 +20,10 @@
                     <p>{!! __('web/about.text_3') !!}</p>
                 </div>
 
-                <div class="col-lg-5">
+                <div class="col-lg-5 d-md-none d-lg-block">
                     <div class="about_img scene mt-2 mb-4 mb-lg-0">
                         <img src="{{getDefPhotoPath($DefPhotoList,'about-1')}}" alt="about_img"/>
                     </div>
-
                 </div>
 
             </div>
@@ -35,7 +31,7 @@
 
         <div class="container mt-lg-5 mt-2">
             <div class="row">
-                <div class="col-lg-5 order-lg-1 order-2">
+                <div class="col-lg-5 order-lg-1 order-2 d-md-none d-lg-block">
                     <div class="about_img scene mt-2 mb-4 mb-lg-0">
                         <img src="{{getDefPhotoPath($DefPhotoList,'about-2')}}" alt="about_img"/>
                     </div>
@@ -46,15 +42,12 @@
                     <p>{!! __('web/about.text_5') !!}</p>
                     <p>{!! __('web/about.text_6') !!}</p>
                 </div>
-
-
-
             </div>
         </div>
 
         <div class="container mt-lg-5 mt-2">
             <div class="row">
-                <div class="col-lg-12 order-lg-1 order-2">
+                <div class="col-lg-12 order-lg-1 order-2 ">
                     <p>{!! __('web/about.text_7') !!}</p>
                 </div>
             </div>

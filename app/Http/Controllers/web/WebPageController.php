@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\web;
 use App\Http\Controllers\WebMainController;
+use App\Http\Requests\data\ContactUsFormRequest;
 use App\Http\Requests\data\NewsLetterRequest;
 use App\Models\admin\BlogPost;
 use App\Models\admin\Category;
@@ -9,6 +10,7 @@ use App\Models\admin\config\WebPrivacy;
 use App\Models\admin\FaqCategory;
 use App\Models\admin\OurClient;
 use App\Models\admin\Product;
+use App\Models\data\ContactUsForm;
 use App\Models\User;
 use Illuminate\Support\Facades\View;
 
@@ -24,6 +26,8 @@ class WebPageController extends WebMainController
         $stopCash =0;
         $MenuCategory = self::getMenuCategory($stopCash);
         View::share('MenuCategory', $MenuCategory);
+
+       // dd($MenuCategory);
 
 
         $SinglePageView = [
@@ -50,12 +54,7 @@ class WebPageController extends WebMainController
         $SinglePageView['banner_id'] = $PageMeta->banner_id ;
         $SinglePageView['banner_count'] = $PageMeta->page_banner_count ;
         $SinglePageView['banner_list'] = $PageMeta->PageBanner ;
-
-
-
         $BlogPosts =  BlogPost::defWeb()->limit(3)->get();
-
-
         return view('web.index',compact('SinglePageView','BlogPosts'));
     }
 
@@ -112,6 +111,39 @@ class WebPageController extends WebMainController
         $FaqCategories = FaqCategory::defWeb()
             ->get();
         return view('web.page_contact_us',compact('SinglePageView','PageMeta','FaqCategories'));
+    }
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #    ContactUsThanks
+    public function ContactUsThanks ()
+    {
+        $PageMeta = parent::getMeatByCatId('ContactUs');
+        parent::printSeoMeta($PageMeta);
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['SelMenu'] = 'ContactUs' ;
+        $SinglePageView['banner_id'] = $PageMeta->banner_id ;
+        $SinglePageView['banner_count'] = $PageMeta->page_banner_count ;
+        $SinglePageView['banner_list'] = $PageMeta->PageBanner ;
+        $SinglePageView['breadcrumb'] = "ContactUs" ;
+
+
+        return view('web.page_contact_us_confirm',compact('SinglePageView','PageMeta'));
+    }
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     ContactSend
+    public function ContactSend(ContactUsFormRequest $request)
+    {
+        $saveContactUs = new ContactUsForm();
+        $saveContactUs->name = $request->input('name');
+        $saveContactUs->email = $request->input('email');
+        $saveContactUs->phone = $request->input('phone');
+        $saveContactUs->subject = $request->input('subject');
+        $saveContactUs->message = $request->input('message');
+        $saveContactUs->save();
+        return redirect()->route('Page_ContactUsThanks');
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -349,60 +381,6 @@ class WebPageController extends WebMainController
 
         return view('web.web_product.product_view',compact('SinglePageView','PageMeta','Product','trees','ReletedProducts','Category'));
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #    AboutUs
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #    AboutUs
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #    AboutUs
-
-
-
-
-
-
-
 
 
 

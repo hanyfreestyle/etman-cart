@@ -6,10 +6,10 @@
 @endsection
 
 @section('content')
-    <div class="section CategoryViewPage pt-lg-5 pt-3">
+    <div class="sectionX CategoryViewPage pt-lg-5 pt-3">
         <div class="container">
             <div class="row">
-                <div class="col-xl-12 col-lg-12 set_borderX">
+                <div class="col-xl-12 col-lg-12">
                     <div class="row">
                         <div class="col-lg-12">
                             <h1 class="product_title">{{$Category->name}}</h1>
@@ -20,28 +20,24 @@
                             <div class="pr_detail">
                                 <div class="product_description">
                                     <div class="pro_des">
-                                        <p class="addReadMore showlesscontent">{{$Category->des}}</p>
+                                        <p class="addReadMoreX showlesscontentX">{{$Category->des}}</p>
                                     </div>
                                 </div>
-                                @if($agent->isMobile() == false)
-                                    <x-website.block-category-icon-info/>
-                                    <x-website.block-share-icons />
-                                @endif
                             </div>
                             @if($Category->table_data_count > 0)
                                 <x-website.block-additional-table :row-data="$Category->table_data" />
                             @endif
                         </div>
-                        <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-                            <div class="product-image mb-3">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="product_Catimage">
                                 <div class="img_box_c">
                                     <img  src='{{getPhotoPath($Category->photo,'categorie')}}' alt="product_img1" />
                                 </div>
                             </div>
 
                             @if($agent->isMobile())
-                                <x-website.block-category-icon-info/>
-                                <x-website.block-share-icons />
+{{--                                <x-website.block-category-icon-info/>--}}
+{{--                                <x-website.block-share-icons />--}}
                             @endif
                         </div>
                     </div>

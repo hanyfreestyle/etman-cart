@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Sep 06, 2023 at 11:56 PM
--- Server version: 8.0.32-cll-lve
--- PHP Version: 8.1.16
+-- Host: 127.0.0.1
+-- Generation Time: Oct 07, 2023 at 04:24 PM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `freestulau_etman`
+-- Database: `a_etman`
 --
 
 --
@@ -39,9 +39,7 @@ INSERT INTO `faq_category_translations` (`id`, `category_id`, `locale`, `slug`, 
 (15, 8, 'ar', 'طلبات-التصنيع-الخاصة', 'طلبات التصنيع الخاصة', 'يمكن العثور على إجابات على الأسئلة حول طلبات المنتجات المخصصة هنا. يمكننا تحديد مواصفات منتجك وفقا لاحتياجاتك ونحن على استعداد لتنفيذ ذلك بكفاءة', 'طلبات التصنيع الخاص | إجابات حول طلبات المنتجات المخصصة', 'يمكن العثور على إجابات على الأسئلة حول طلبات المنتجات المخصصة هنا. يمكننا تحديد مواصفات منتجك وفقا لاحتياجاتك ونحن على استعداد لتنفيذ ذلك بكفاءة'),
 (16, 8, 'en', 'special-requests', 'Special requests', 'Answers to questions about custom product requests can be found here. We can customize your product specifications according to your needs and are ready to execute it efficiently.', 'Special requests | Answers about custom product requests.', 'Answers about product requests can be found here. We can customize your product specifications according to your needs and are ready to execute it efficiently.'),
 (17, 9, 'ar', 'خدمات-التصدير', 'خدمات التصدير', 'نحن هنا لمساعدتك في توصيل منتجاتنا إلى موقعك الدولي. يضمن فريقنا ذو الخبرة سهولة عملية التصدير، حيث يتولى التعامل مع الأوراق الجمركية والتغليف وشؤون الشحن.', 'خدمات التصدير | نحن هنا لمساعدتك في توصيل منتجاتنا خارج مصر', 'نحن هنا لمساعدتك في توصيل منتجاتنا إلى موقعك الدولي. يضمن فريقنا ذو الخبرة سهولة عملية التصدير، حيث يتولى التعامل مع الأوراق الجمركية والتغليف وشؤون الشحن.'),
-(18, 9, 'en', 'export-services', 'Export services', 'We are here to assist you in delivering our products to your international location. Our experienced team ensures a smooth export process, handling customs documentation, packaging, and shipping logistics.', 'Export services | We are here to help ship our products.', 'We are here to assist you in delivering our products to your international location, handling customs documentation, packaging, and shipping logistics.'),
-(19, 10, 'ar', 'مجموعة-فارغة', 'مجموعة فارغة', 'مجموعة فارغة', 'مجموعة فارغة', 'مجموعة فارغة'),
-(20, 10, 'en', 'empty-category', 'Empty Category', 'Empty Category', 'Empty Category', 'Empty Category');
+(18, 9, 'en', 'export-services', 'Export services', 'We are here to assist you in delivering our products to your international location. Our experienced team ensures a smooth export process, handling customs documentation, packaging, and shipping logistics.', 'Export services | We are here to help ship our products.', 'We are here to assist you in delivering our products to your international location, handling customs documentation, packaging, and shipping logistics.');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -105,26 +105,52 @@
                     <h2 class="def_h2">{{__('web/contact_form.title')}}</h2>
 
                     <p class="leads"> {!! __('web/contact_form.des') !!}</p>
-                    <div class="field_form">
-                        <form method="post" name="">
+                    <div class="">
+                        <form method="post" action="{{route('Page_ContactSend')}}">
+                            @csrf
                             <div class="row">
                                 <div class="form-group col-md-6 mb-3">
-                                    <input required placeholder="{{__('web/contact_form.name')}}" id="first-name" class="form-control" name="name" type="text">
+                                    <x-form-input
+                                        name="name"
+                                        label="{{__('web/contact_form.name')}}"
+                                        value="{{old('name')}}"
+                                    />
                                 </div>
                                 <div class="form-group col-md-6 mb-3">
-                                    <input required placeholder="{{__('web/contact_form.email')}}" id="email" class="form-control" name="email" type="email">
+                                    <x-form-input
+                                        name="email"
+                                        label="{{__('web/contact_form.email')}}"
+                                        value="{{old('email')}}"
+                                    />
                                 </div>
+
                                 <div class="form-group col-md-6 mb-3">
-                                    <input required placeholder="{{__('web/contact_form.Phone')}}" id="phone" class="form-control" name="phone">
+                                    <x-form-input
+                                        name="phone"
+                                        label="{{__('web/contact_form.Phone')}}"
+                                        value="{{old('phone')}}"
+                                    />
                                 </div>
+
+
                                 <div class="form-group col-md-6 mb-3">
-                                    <input placeholder="{{__('web/contact_form.subject')}}" id="subject" class="form-control" name="subject">
+                                    <x-form-input
+                                        name="subject"
+                                        label="{{__('web/contact_form.subject')}}"
+                                        value="{{old('subject')}}"
+                                    />
+
+
                                 </div>
                                 <div class="form-group col-md-12 mb-3">
-                                    <textarea required placeholder="{{__('web/contact_form.Message')}}" id="description" class="form-control" name="message" rows="4"></textarea>
+                                    <x-form-textarea
+                                        label="{{__('web/contact_form.Message')}}"
+                                        name="message"
+                                        value="{{old('message')}}"
+                                    />
                                 </div>
                                 <div class="col-md-12 mb-3">
-                                    <button type="submit" title="{{__('web/contact_form.Submit')}}" class="btn btn-fill-out" id="submitButton" name="submit" value="Submit">{{__('web/contact_form.Submit')}}</button>
+                                    <button type="submit" title="{{__('web/contact_form.Submit')}}" class="btn btn-fill-out" name="submit" value="Submit">{{__('web/contact_form.Submit')}}</button>
                                 </div>
 
                             </div>

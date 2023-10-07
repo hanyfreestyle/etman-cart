@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 16, 2023 at 05:37 PM
+-- Generation Time: Oct 07, 2023 at 04:24 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -26,14 +26,9 @@ SET time_zone = "+00:00";
 --
 
 INSERT INTO `faqcategory_faq` (`id`, `category_id`, `faq_id`, `postion`) VALUES
-(1, 4, 1, 1),
-(2, 5, 1, 0),
-(3, 6, 1, 0),
-(4, 4, 2, 2),
-(7, 10, 3, 1),
-(8, 4, 3, 3),
-(9, 10, 2, 3),
-(10, 10, 1, 2);
+(11, 3, 1, 2),
+(12, 3, 2, 1),
+(13, 3, 3, 3);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

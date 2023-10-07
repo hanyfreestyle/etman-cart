@@ -171,53 +171,56 @@
     }
 
 }
-/*
 
 
 
+.shop_banner{
+    max-height: 65px;
+    max-width: 95%;
+}
 
-@media only screen and (max-width: 480px) {
-    .shop_container_new.list .product .rating_wrap,.shop_container_new.list .product_price {
-        float: none;
-    }
-    .shop_container_new.list .product .rating_wrap {
-        margin-bottom: 5px;
-    }
-    .shop_container_new.list .product .product_title {
-        font-size: 16px;
-        margin-bottom: 10px;
-    }
-
-    .shop_container_new.list .pr_desc {
-        min-height: 50px;
-        max-height: 50px;
-    }
-    .shop_container_new.list .pr_action_btn li.add-to-cart a {
-        padding: 12px 20px;
-    }
-    .tab-style3 .nav-tabs {
-        display: block;
-    }
-    .shop_container_new .col-6 {
-        max-width: 50%;
-        -ms-flex: 0 0 50%;
-        flex: 0 0 50%;
-    }
-    .shop_container_new.list .list_product_action_box .pr_action_btn li.add-to-cart a {
-        padding: 10px 17px;
-        font-size: 14px;
-    }
-    .shop_container_new.list .list_product_action_box .pr_action_btn li a {
-        width: 27px;
-        height: 27px;
-    }
-    .shop_container_new.list .pr_action_btn li a i {
-        line-height: 27px;
-        font-size: 16px;
+@media only screen and (min-width: 700px) and (max-width: 992px) {
+    .contact_phone i {
+        display: none!important;
     }
 }
-*/
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .navbar .navbar-nav > li > .nav-link {
+        font-weight: 500;
+        padding: 22px 8px;
+        text-transform: capitalize;
+        font-size: 14px;
+    }
+}
 
 
+.footer_about_more{width:100%}
+.footer_about_more a{color: var(--red);float:left;margin-left:10px}
 
 
+.widget_archive li.main_cat {
+    border-bottom: 0px solid rgba(0,0,0,.1);
+    margin-top: 20px;
+}
+
+.widget_archive li.main_cat a {
+
+    font-weight: bold;
+}
+
+.widget_archive li.sub_cat a::before {
+    content: ""!important;
+}
+
+.widget_archive li.sub_cat {
+    border-bottom:1px solid rgba(0,0,0,.1);
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+}
+
+.widget_archive li.sub_cat a {
+    font-size: 15px;
+
+
+}

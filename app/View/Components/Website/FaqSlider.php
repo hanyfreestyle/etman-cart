@@ -10,14 +10,17 @@ class FaqSlider extends Component
 {
     public $prefix ;
     public $title ;
+    public $loop ;
 
     public function __construct(
         $prefix = 'prefix',
-        $title = ''
+        $title = '',
+        $loop = ''
     )
     {
        $this->prefix = $prefix ;
        $this->title = $title ;
+       $this->loop = $loop ;
 
     }
 

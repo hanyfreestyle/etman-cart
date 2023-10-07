@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Sep 06, 2023 at 11:56 PM
--- Server version: 8.0.32-cll-lve
--- PHP Version: 8.1.16
+-- Host: 127.0.0.1
+-- Generation Time: Oct 07, 2023 at 04:23 PM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `freestulau_etman`
+-- Database: `a_etman`
 --
 
 --
@@ -32,8 +32,7 @@ INSERT INTO `faq_categories` (`id`, `photo`, `photo_thum_1`, `is_active`, `delet
 (6, 'images/faq/6/shipping-services-to-governorates-N1nNSGhs3y.webp', 'images/faq/6/shipping-services-to-governorates-C0V2L8U3x8.webp', 1, NULL, '2023-09-04 17:32:24', '2023-09-04 17:37:38'),
 (7, 'images/faq/7/return-policy-RehZSdRBQc.webp', 'images/faq/7/return-policy-T52ZJYpPeG.webp', 1, NULL, '2023-09-04 17:40:47', '2023-09-04 18:00:57'),
 (8, 'images/faq/8/special-requests-Q7daV2qDjO.webp', 'images/faq/8/special-requests-SxtYreiw8X.webp', 1, NULL, '2023-09-04 17:42:50', '2023-09-04 17:47:30'),
-(9, 'images/faq/9/export-services-0683Y1LNcz.webp', 'images/faq/9/export-services-Kl51UaGbET.webp', 1, NULL, '2023-09-04 17:48:53', '2023-09-04 17:54:44'),
-(10, NULL, NULL, 1, NULL, '2023-09-04 18:02:07', '2023-09-04 18:02:07');
+(9, 'images/faq/9/export-services-0683Y1LNcz.webp', 'images/faq/9/export-services-Kl51UaGbET.webp', 1, NULL, '2023-09-04 17:48:53', '2023-09-04 17:54:44');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

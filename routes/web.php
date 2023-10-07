@@ -44,6 +44,13 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::get(LaravelLocalization::transRoute('routes.ContactUs'),
         [WebPageController::class, 'ContactUs'])->name('Page_ContactUs');
 
+    Route::post('ContactSend',
+        [WebPageController::class, 'ContactSend'])->name('Page_ContactSend');
+
+    Route::get('/thanks',
+        [WebPageController::class, 'ContactUsThanks'])->name('Page_ContactUsThanks');
+
+
     Route::get(LaravelLocalization::transRoute('routes.TermsConditions'),
         [WebPageController::class, 'TermsConditions'])->name('Page_TermsConditions');
 

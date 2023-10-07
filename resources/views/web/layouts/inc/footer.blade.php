@@ -7,7 +7,7 @@
         <div class="container">
             <div class="row accordion accordion_style1" id="accordion"  >
 
-                <div class="col-lg-3 col-md-12 col-sm-12">
+                <div class="col-lg-3 col-md-12">
                     <div class="widget">
                         <div class="footer_logo text-center">
                             <a href="{{route('Page_HomePage')}}"><img src="{{getDefPhotoPath($DefPhotoList,'dark-logo')}}" alt="logo"/></a>
@@ -20,7 +20,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-12 col-sm-12">
+                <div class="col-lg-3 col-md-4">
                     <x-website.footer-col-row title="{{ __('web/address.ad1_title') }}" prefix="Two" >
                         <ul class="contact_info">
                             <li>
@@ -59,8 +59,6 @@
                         </ul>
                     </x-website.footer-col-row>
                 </div>
-
-
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <x-website.footer-col-row title="{{__('web/footer.menu_Categories')}}" prefix="Four" >
                         <ul class="widget_links">
@@ -93,7 +91,7 @@
             </div>
         </div>
     </div>
-    <hr>
+
 
 
     <div class="bottom_footer border-top-tran">

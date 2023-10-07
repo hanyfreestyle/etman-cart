@@ -1,5 +1,5 @@
 
-@if($agent->isMobile())
+@if($agent->isMobile() and $agent->isTablet() == false)
     <div class="card">
         <div class="card-header" id="heading{{$prefix}}">
             <h6 class="mb-0"> <a class="collapsed" data-bs-toggle="collapse" href="#collapse{{$prefix}}" aria-expanded="false" aria-controls="collapse{{$prefix}}">{{ $title }}</a> </h6>
