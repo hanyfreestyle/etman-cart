@@ -43,8 +43,6 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/web_shop_profile.php'));
 
-
-
             Route::group(['middleware' => ['auth','status']], function() {
                 Route::group(['prefix' => LaravelLocalization::setLocale()], function(){
                     Route::group(['prefix'=>'admin'],function(){
