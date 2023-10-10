@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 06, 2023 at 05:12 PM
+-- Generation Time: Oct 10, 2023 at 01:39 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -49,9 +49,7 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (18, 1),
 (19, 1),
 (20, 1),
-(20, 2),
 (21, 1),
-(21, 2),
 (22, 1),
 (22, 2),
 (23, 1),
@@ -67,7 +65,6 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (30, 1),
 (31, 1),
 (32, 1),
-(32, 2),
 (33, 1),
 (34, 1),
 (34, 2),

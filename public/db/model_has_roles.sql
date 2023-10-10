@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 06, 2023 at 05:11 PM
+-- Generation Time: Oct 10, 2023 at 01:39 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -28,9 +28,12 @@ SET time_zone = "+00:00";
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (1, 'App\\Models\\User', 1),
 (2, 'App\\Models\\User', 2),
+(3, 'App\\Models\\User', 2),
 (3, 'App\\Models\\User', 3),
+(4, 'App\\Models\\User', 2),
 (4, 'App\\Models\\User', 3),
 (4, 'App\\Models\\User', 4),
+(7, 'App\\Models\\User', 2),
 (7, 'App\\Models\\User', 3),
 (7, 'App\\Models\\User', 4);
 COMMIT;
