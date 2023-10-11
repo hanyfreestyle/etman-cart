@@ -185,7 +185,7 @@ class ShopPageController extends WebMainController
         $SinglePageView = $this->SinglePageView ;
         $SinglePageView['SelMenu'] = 'MainCategory' ;
         $SinglePageView['breadcrumb'] = "Shop_CategoryView" ;
-        $SinglePageView['slug'] = 'category/'.$Category->translate(webChangeLocale())->slug;
+        ///$SinglePageView['slug'] = 'category/'.$Category->translate(webChangeLocale())->slug;
 
         $trees = Category::find($Category->id)->ancestorsAndSelf()->orderBy('depth','asc')->get() ;
 

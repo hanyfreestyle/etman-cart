@@ -117,7 +117,7 @@ class CategoryController extends AdminMainController
         $pageData = $this->pageData;
         $pageData['ViewType'] = "List";
         $pageData['SubView'] = true;
-        $Categories = self::getSelectQuery(Category::defSitequery()->where('parent_id',$id)->where('cat_web',true)->where('cat_web_data',true));
+        $Categories = self::getSelectQuery(Category::Admin_Def_Web_Query()->where('parent_id',$id)->where('cat_web',true)->where('cat_web_data',true));
         $trees = Category::find($id)->ancestorsAndSelf()->orderBy('depth','asc')->get() ;
         return view('admin.product.category_index',compact('pageData','Categories','trees'));
     }
