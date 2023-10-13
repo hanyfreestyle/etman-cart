@@ -26,6 +26,7 @@ class WebMainController extends Controller
 {
 
     public $WebConfig;
+    public $agent;
     public function __construct(
 
     )
@@ -33,6 +34,7 @@ class WebMainController extends Controller
 
         $stopCash = 0 ;
         $agent = new Agent();
+        $this->agent = $agent ;
         View::share('agent', $agent);
 
         $this->WebConfig = self::getWebConfig($stopCash);

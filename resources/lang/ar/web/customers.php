@@ -32,4 +32,6 @@ return
 	'reg_form_phone' => 'رقم الموبايل',
 	'reg_h1' => 'تسجيل عضوية جديدة',
 	'reg_terms' => 'اوافق على سياسية الاستخدام',
+	'Profile_cart' => 'سلة المشتريات',
+	'Profile_my_product' => 'منتجاتى',
 ];

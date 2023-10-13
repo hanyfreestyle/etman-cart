@@ -9,12 +9,27 @@
             {{ __('web/menu.footer_home') }}
         </a>
     </div>
+{{--    <div class="sticky-info">--}}
+{{--        <a href="{{ route('Shop_Recently') }}" class="sticky_a @if($SinglePageView['SelMenu'] == 'Shop_Recently' ) active_footer @endif">--}}
+{{--            <i class="fas fa-gift"></i>--}}
+{{--            {{ __('web/menu.footer_offer') }}--}}
+{{--        </a>--}}
+{{--    </div>--}}
+
     <div class="sticky-info">
-        <a href="{{ route('Shop_Recently') }}" class="sticky_a @if($SinglePageView['SelMenu'] == 'Shop_Recently' ) active_footer @endif">
-            <i class="fas fa-gift"></i>
-            {{ __('web/menu.footer_offer') }}
-        </a>
+        @if(Auth::guard('customer')->check())
+            <a href="{{ route('Profile_MyProduct') }}" class="sticky_a @if($SinglePageView['SelMenu'] == 'ProfileMyProduct' ) active_footer @endif">
+                <i class="fas fa-star"></i>
+                {{__('web/customers.Profile_my_product') }}
+            </a>
+        @else
+            <a href="{{ route('Shop_Recently') }}" class="sticky_a @if($SinglePageView['SelMenu'] == 'Shop_Recently' ) active_footer @endif">
+                <i class="fas fa-gift"></i>
+                {{ __('web/menu.footer_offer') }}
+            </a>
+        @endif
     </div>
+
 
     <div class="sticky-info">
         @if(Auth::guard('customer')->check())

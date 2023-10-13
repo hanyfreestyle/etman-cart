@@ -1,17 +1,16 @@
 <?php
 
 namespace App\Http\Controllers\customer;
-
-
 use App\Http\Requests\customer\ProfileAddressEditRequest;
+use App\Models\admin\Product;
 use App\Models\shopping\ShoppingOrder;
 use App\Http\Controllers\WebMainController;
 use App\Http\Requests\customer\ProfileAddressAddRequest;
 use App\Http\Requests\customer\ProfilePasswordUpdateRequest;
 use App\Http\Requests\customer\ProfileUpdateRequest;
 use App\Models\customer\UsersCustomersAddress;
-use App\Models\data\DataCity;
 use App\Models\UsersCustomers;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
@@ -33,6 +32,11 @@ class ProfileController extends WebMainController
 
         $cities =self::getDataCity() ;
         View::share('cities', $cities);
+
+
+        $CartContent =  Cart::content();
+        View::share('CartContent', $CartContent);
+
 
         $SinglePageView = [
             'slug' => null,
@@ -296,6 +300,38 @@ class ProfileController extends WebMainController
         return view('shop.customer.profile_order_list', compact('SinglePageView','UserProfile','orders')
         );
     }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     Profile_MyProduct
+    public function Profile_MyProduct()
+    {
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['profileMenu'] = "ProfileMyProduct" ;
+        $SinglePageView['breadcrumb'] = "ProfileMyProduct" ;
+        $SinglePageView['SelMenu'] = "ProfileMyProduct" ;
+
+        $UserProfile = Auth::guard('customer')->user();
+
+        $Recently=Product::Web_Shop_Def_Query()
+            ->with('product_with_category')
+            ->whereHas('product_with_category',function($query){
+                $query->where('category_id',39);
+            })->orderby('id','desc')->get();
+
+        if($this->agent->isMobile() == true and $this->agent->isTablet() == false){
+            $proViewList = 'list';
+        }else{
+            $proViewList = '';
+        }
+
+
+        return view('shop.customer.profile_my_product',
+            compact('SinglePageView','UserProfile','Recently','proViewList')
+        );
+    }
+
+
+
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     Profile_Address_Update

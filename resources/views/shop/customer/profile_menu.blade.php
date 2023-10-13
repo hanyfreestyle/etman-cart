@@ -1,13 +1,29 @@
 <div class="dashboard_menu">
     <ul class="nav nav-tabs flex-column" role="tablist">
+
+
+        @if(count($CartContent) > 0)
+            <li class="nav-item">
+                <a href="{{route('Shop_CartView')}}" class="nav-link @if($SinglePageView['profileMenu'] == 'ProfileCart' ) active @endif">
+                    <i class="fas fa-shopping-cart"></i> {{__('web/customers.Profile_cart')}}
+                </a>
+            </li>
+        @endif
+
         <li class="nav-item">
-            <a href="{{route('Customer_Profile')}}" class="nav-link @if($SinglePageView['profileMenu'] == 'profile' ) active @endif">
-                <i class="fas fa-id-card"></i> {{__('web/customers.Profile_AccountDetails')}}
+            <a href="{{route('Profile_MyProduct')}}" class="nav-link @if($SinglePageView['profileMenu'] == 'ProfileMyProduct' ) active @endif">
+                <i class="fas fa-star"></i>{{__('web/customers.Profile_my_product')}}
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="{{route('Profile_OrdersList')}}" class="nav-link @if($SinglePageView['profileMenu'] == 'OrdersList' ) active @endif">
+                <i class="fas fa-folder-open"></i>{{__('web/customers.Profile_OrdersList')}}
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{route('Profile_OrdersList')}}" class="nav-link @if($SinglePageView['profileMenu'] == 'OrdersList' ) active @endif">
-                <i class="fas fa-shopping-cart"></i> {{__('web/customers.Profile_OrdersList')}}
+            <a href="{{route('Customer_Profile')}}" class="nav-link @if($SinglePageView['profileMenu'] == 'profile' ) active @endif">
+                <i class="fas fa-id-card"></i> {{__('web/customers.Profile_AccountDetails')}}
             </a>
         </li>
         <li class="nav-item">

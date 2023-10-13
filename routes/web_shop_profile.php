@@ -86,6 +86,10 @@ Route::group(['prefix' => 'EtmanShop'], function(){
         Route::get('/CartOrderCompleted',
             [ShoppingCartController::class, 'CartOrderCompleted'])->name('Shop_CartOrderCompleted');
 
+        Route::get('/profile/MyProduct',
+            [ProfileController::class, 'Profile_MyProduct'])->name('Profile_MyProduct');
+
+
     });
 
 

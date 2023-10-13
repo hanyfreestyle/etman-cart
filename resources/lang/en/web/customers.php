@@ -31,4 +31,6 @@ return
 	'reg_form_phone' => '',
 	'reg_h1' => 'تسجيل عضوية جديدة',
 	'reg_terms' => '',
+	'Profile_cart' => '',
+	'Profile_my_product' => '',
 ];

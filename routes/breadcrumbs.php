@@ -172,6 +172,10 @@ Breadcrumbs::for('OrdersList', function (BreadcrumbTrail $trail) {
     $trail->push( __('web/customers.Profile_OrdersList') , route('Customer_Profile'));
 });
 
+Breadcrumbs::for('ProfileMyProduct', function (BreadcrumbTrail $trail) {
+    $trail->parent('Customer_Profile');
+    $trail->push( __('web/customers.Profile_my_product') , route('Profile_MyProduct'));
+});
 
 
 
