@@ -2,10 +2,7 @@
 use App\Helpers\AdminHelper;
 use App\Http\Controllers\admin\shop\CustomerController;
 use App\Http\Controllers\admin\shop\OrderController;
-use App\Http\Controllers\admin\ShopCategoryController;
-
-
-
+use App\Http\Controllers\customer\UserCustomersProductController;
 
 
 Route::get('/Customer',[CustomerController::class,'index'])->name('ShopCustomer.Customer.index');
@@ -27,6 +24,13 @@ Route::post('/Customer/AddressUpdate/{id}',[CustomerController::class,'AddressUp
 Route::get('/Customer/AddressDelete/{id}',[CustomerController::class,'AddressDelete'])->name('ShopCustomer.Customer.AddressDelete');
 Route::get('/Customer/AddressDelete/{id}',[CustomerController::class,'AddressDelete'])->name('ShopCustomer.Customer.AddressDelete');
 Route::get('/Customer/ExportLogin',[CustomerController::class,'ExportLogin'])->name('ShopCustomer.Export.ExportLogin');
+
+Route::get('/Customer/FavList/{id}',[UserCustomersProductController::class,'FavList'])->name('ShopCustomer.Customer.FavList');
+Route::post('/Customer/FavProductsListAjax',[UserCustomersProductController::class,'FavListProductsAjax'])->name('FavListProductsAjax');
+Route::post('/Customer/AddFavorite',[UserCustomersProductController::class,'AddFavorite'])->name('ShopCustomer.Customer.AddFavorite');
+
+Route::get('/Customer/FavListRemove/{id}',[UserCustomersProductController::class,'FavListRemove'])->name('ShopCustomer.Customer.FavListRemove');
+Route::post('/Customer/RemoveFavorite',[UserCustomersProductController::class,'RemoveFavorite'])->name('ShopCustomer.Customer.RemoveFavorite');
 
 
 

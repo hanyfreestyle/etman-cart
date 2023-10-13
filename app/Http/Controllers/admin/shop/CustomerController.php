@@ -9,16 +9,13 @@ use App\Http\Requests\admin\shop\CustomerStoreRequest;
 use App\Http\Requests\admin\shop\CustomerUpdateRequest;
 use App\Http\Requests\customer\ProfileAddressAddRequest;
 use App\Http\Requests\customer\ProfileAddressEditRequest;
-use App\Models\admin\Page;
+use App\Models\admin\Category;
+use App\Models\admin\Product;
 use App\Models\admin\shop\Customer;
+use App\Models\customer\UserCustomersProduct;
 use App\Models\customer\UsersCustomersAddress;
-use App\Models\UsersCustomers;
-
-use Barryvdh\DomPDF\Facade\Pdf;
 use Hash;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -369,21 +366,112 @@ class CustomerController extends AdminMainController
             ->with('addresses_def')
             ->get();
 
-
-       // dd($customers);
-
-
-
-//        $pdf = App::make('dompdf.wrapper');
-//        $pdf->loadHTML( "dddd");
-//        return $pdf->stream();
-
-//        $pdf =  Pdf::loadView('admin.customer.export_login',compact('customers'));
-//        return $pdf->download();
-
-
-
         return view('admin.customer.export_login',compact('pageData', 'customers'));
     }
 
+
+
+
+
+
+
+
+
+
+
+//#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//#|||||||||||||||||||||||||||||||||||||| #     FavProductsListAjax
+//    public function FavProductsListAjaxXX(Request $request){
+//        $categoryid = $request->categoryid;
+//        $category = Category::where('id',$categoryid)->first();
+//
+//
+//        return response()->json(
+//            [
+//                'product_id'=>$categoryid,
+//
+//            ]
+//        );
+//
+//
+////        $products = Product::query()
+////            ->where('pro_shop',true)
+////            ->with('product_with_category')
+////            ->whereHas('product_with_category',function($query){
+////                $query->where('category_id',39);
+////            })
+////            //->whereIn('id',$customersProduct)
+////            ->whereNotIn('id',$customersProduct)
+////            ->orderby('id','desc')->get();
+//
+//        /*
+//
+//
+//
+//
+//
+//                $products=Product::Web_Shop_Def_Query()
+//                    ->with('product_with_category')
+//                    ->whereHas('product_with_category',function($query) use ($categoryid){
+//                        $query->where('category_id',$categoryid);
+//                    })->orderby('id','desc')->get();
+//
+//
+//        */
+//        $products = Product::where('id','!=','5')->get();
+//
+//        return view('admin.customer.products_list_ajex',
+//            compact('category','products','categoryid'));
+//    }
+
+
+//#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//#|||||||||||||||||||||||||||||||||||||| #FavProductsAdd
+//    public function FavProductsAddXX(Request $request, $id)
+//    {
+//
+//        $pageData = $this->pageData;
+//        $pageData['ViewType'] = "Edit";
+//        $customer = Customer::findOrFail($id);
+//
+//
+//
+//
+//
+//
+//        $customersProduct  = UserCustomersProduct::select('product_id')
+//            ->where('customer_id',$id)
+//            ->pluck('product_id');
+//
+//
+//
+//
+//
+//
+//        $products = Product::query()
+//            ->where('pro_shop',true)
+//            ->with('product_with_category')
+//            ->whereHas('product_with_category',function($query){
+//                $query->where('category_id',39);
+//            })
+//            //->whereIn('id',$customersProduct)
+//            ->whereNotIn('id',$customersProduct)
+//            ->orderby('id','desc')->get();
+//
+//
+//
+////        $categories = Category::query()
+////            ->where('is_active',true)
+////            ->where('cat_shop',true)
+////            ->get();
+////
+////
+////
+////
+////
+////        $categories = Category::tree()->with('translation')->get()->toTree();
+//
+//
+//        return view('admin.customer.products_list',compact('pageData','customer','products','customersProduct'));
+//    }
 }

@@ -33,6 +33,7 @@ use Database\Seeders\admin\ProductTableTranslationSeeder;
 use Database\Seeders\admin\ProductTranslationSeeder;
 use Database\Seeders\config\WebPrivacySeeder;
 use Database\Seeders\config\WebPrivacyTranslationSeeder;
+use Database\Seeders\customer\UserCustomersProductSeeder;
 use Database\Seeders\customer\UsersCustomersAddressSeeder;
 use Database\Seeders\customer\UsersCustomersSeeder;
 use Database\Seeders\data\DataCitySeeder;
@@ -69,8 +70,6 @@ class DatabaseSeeder extends Seeder
 //        $this->call(AdminUserSeeder::class);
 //        $this->call(RoleSeeder::class);
 //        $this->call(UsersTableSeeder::class);
-
-
 
         $this->call(SettingsTableSeeder::class);
         $this->call(SettingsTranslationsTableSeeder::class);
@@ -122,12 +121,12 @@ class DatabaseSeeder extends Seeder
         $this->call(DataCitySeeder::class);
         $this->call(UsersCustomersSeeder::class);
         $this->call(UsersCustomersAddressSeeder::class);
+        $this->call(UserCustomersProductSeeder::class);
 
         $this->call(ShoppingOrderAddressSeeder::class);
         $this->call(ShoppingOrderSeeder::class);
         $this->call(ShoppingOrderProductSeeder::class);
         $this->call(ShoppingOrderLogSeeder::class);
-
 
     }
 }

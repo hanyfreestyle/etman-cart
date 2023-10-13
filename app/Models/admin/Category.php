@@ -17,12 +17,13 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 class Category extends Model implements TranslatableContract
 {
     use HasFactory;
+
     //use SoftDeletes;
     use Translatable;
     use HasRecursiveRelationships;
 
-    public $translatedAttributes = ['name','slug','des','g_title','g_des','body_h1','breadcrumb'];
-    protected $fillable = ['parent_id','photo','photo_thum_1','is_active'];
+    public $translatedAttributes = ['name', 'slug', 'des', 'g_title', 'g_des', 'body_h1', 'breadcrumb'];
+    protected $fillable = ['parent_id', 'photo', 'photo_thum_1', 'is_active'];
     protected $table = "categories";
     protected $primaryKey = 'id';
     protected $translationForeignKey = 'category_id';
@@ -40,22 +41,22 @@ class Category extends Model implements TranslatableContract
     public function scopeWeb_Shop_Def_Query(Builder $query): Builder
     {
         return $query
-            ->where('cat_shop',true)
-            ->where('is_active',true)
+            ->where('cat_shop', true)
+            ->where('is_active', true)
             ->with('translations');
 
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     children
-    public function web_shop_children():hasMany
+    public function web_shop_children(): hasMany
     {
-        return $this->hasMany(Category::class , 'parent_id', 'id' )
-            ->where('cat_shop',true)
-            ->where('is_active',true)
+        return $this->hasMany(Category::class, 'parent_id', 'id')
+            ->where('cat_shop', true)
+            ->where('is_active', true)
             ->with('category_with_product_shop')
             ->withCount('category_with_product_shop')
-            ->orderBy('postion_shop','ASC')
+            ->orderBy('postion_shop', 'ASC')
             ->with('translations');
     }
 
@@ -63,12 +64,11 @@ class Category extends Model implements TranslatableContract
     #|||||||||||||||||||||||||||||||||||||| #  category_with_product_shop
     public function category_with_product_shop()
     {
-        return $this->belongsToMany(Product::class,'product_category','category_id','product_id')
-            ->where('is_active',true)
-            ->where('is_archived',false)
-            ->where('pro_shop',true)
-            ->with('translation')
-            ;
+        return $this->belongsToMany(Product::class, 'product_category', 'category_id', 'product_id')
+            ->where('is_active', true)
+            ->where('is_archived', false)
+            ->where('pro_shop', true)
+            ->with('translation');
     }
 
 
@@ -79,9 +79,9 @@ class Category extends Model implements TranslatableContract
         return $this->belongsToManyOfDescendantsAndSelf(Product::class, 'product_category')
             ->with('translation')
             ->with('product_with_category')
-            ->where('pro_shop',true)
-            ->where('is_active',true)
-            ->where('is_archived',false);
+            ->where('pro_shop', true)
+            ->where('is_active', true)
+            ->where('is_archived', false);
     }
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -89,9 +89,9 @@ class Category extends Model implements TranslatableContract
     public function scopeWebSite_Def_Query(Builder $query): Builder
     {
         return $query
-            ->where('cat_web',true)
-            ->where('cat_web_data',true)
-            ->where('is_active',true)
+            ->where('cat_web', true)
+            ->where('cat_web_data', true)
+            ->where('is_active', true)
             ->with('translations');
 
     }
@@ -99,15 +99,15 @@ class Category extends Model implements TranslatableContract
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     children
-    public function website_children():hasMany
+    public function website_children(): hasMany
     {
-        return $this->hasMany(Category::class , 'parent_id', 'id' )
-            ->where('cat_web',true)
-            ->where('cat_web_data',true)
-            ->where('is_active',true)
+        return $this->hasMany(Category::class, 'parent_id', 'id')
+            ->where('cat_web', true)
+            ->where('cat_web_data', true)
+            ->where('is_active', true)
             ->with('category_with_product_website')
             ->withCount('category_with_product_website')
-            ->orderBy('postion_web','ASC')
+            ->orderBy('postion_web', 'ASC')
             ->with('translations');
     }
 
@@ -116,21 +116,20 @@ class Category extends Model implements TranslatableContract
     #|||||||||||||||||||||||||||||||||||||| #  category_with_product_website
     public function category_with_product_website()
     {
-        return $this->belongsToMany(Product::class,'product_category','category_id','product_id')
-            ->where('is_active',true)
-            ->where('is_archived',false)
-            ->where('pro_web',true)
-            ->where('pro_web_data',true)
-            ->with('translation')
-            ;
+        return $this->belongsToMany(Product::class, 'product_category', 'category_id', 'product_id')
+            ->where('is_active', true)
+            ->where('is_archived', false)
+            ->where('pro_web', true)
+            ->where('pro_web_data', true)
+            ->with('translation');
     }
 
     #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     #|||||||||||||||||||||||||||||||||||||| #     table_data
-    public function table_data():hasMany
+    public function table_data(): hasMany
     {
-        return $this->hasMany(CategoryTable::class , 'category_id', 'id' )
-            ->where('is_active',true)
+        return $this->hasMany(CategoryTable::class, 'category_id', 'id')
+            ->where('is_active', true)
             ->with('translation')
             ->with('attributeName')
             ->orderBy('postion');
@@ -150,10 +149,10 @@ class Category extends Model implements TranslatableContract
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     children
-    public function admin_children_shop():hasMany
+    public function admin_children_shop(): hasMany
     {
-        return $this->hasMany(Category::class , 'parent_id', 'id' )
-            ->where('cat_shop',true)
+        return $this->hasMany(Category::class, 'parent_id', 'id')
+            ->where('cat_shop', true)
             ->with('translations');
     }
 
@@ -171,18 +170,28 @@ class Category extends Model implements TranslatableContract
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #|||||||||||||||||||||||||||||||||||||| #     children
-    public function admin_children_web():hasMany
+    public function admin_children_web(): hasMany
     {
-        return $this->hasMany(Category::class , 'parent_id', 'id' )
-            ->where('cat_web',true)
-            ->where('cat_web_data',true)
+        return $this->hasMany(Category::class, 'parent_id', 'id')
+            ->where('cat_web', true)
+            ->where('cat_web_data', true)
             ->with('translations');
     }
 
 
 
-}
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #  category_with_product_website
+    public function product_shop_admin()
+    {
+        return $this->belongsToMany(Product::class, 'product_category', 'category_id', 'product_id')
+            ->where('is_active', true)
+            ->where('pro_shop', true)
+            ->where('is_archived', false)
+            ->with('translation');
+    }
 
+}
 
 /*
 

@@ -2,6 +2,7 @@
 
 namespace App\Models\admin;
 
+use App\Models\customer\UserCustomersProduct;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Builder;
@@ -132,5 +133,24 @@ class Product extends Model implements TranslatableContract
         }
     }
 
+//#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//#|||||||||||||||||||||||||||||||||||||| #  favoritePro
+//    public function favoritePro()
+//    {
+//        return $this->belongsToMany(UserCustomersProduct::class,'user_customers_products','product_id','customer_id');
+//
+//    }
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #  ProductWithCategory
+    public function category()
+    {
+        return $this->belongsToMany(Category::class,'product_category','product_id','category_id')
+           ;
+
+
+    }
 
 }

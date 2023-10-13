@@ -32,6 +32,7 @@
                                     <th class="tbutaction TD_50"></th>
                                     <th class="tbutaction TD_50"></th>
                                     <th class="tbutaction TD_50"></th>
+                                    <th class="tbutaction TD_50"></th>
                                 @endcan
                                 @can($PrefixRole.'_delete')
                                     <th class="tbutaction TD_50"></th>
@@ -57,6 +58,7 @@
                                 @else
                                     <td class="tc" >{!! is_active($customer->is_active) !!}</td>
                                     @can($PrefixRole.'_edit')
+                                        <td class="tc"><x-action-button url="{{route($PrefixRoute.'.FavList',$customer->id)}}" print-lable="منتجات العميل" bg="d"  :tip="true" icon="fas fa-star" /></td>
                                         <td class="tc"><x-action-button url="{{route($PrefixRoute.'.Password',$customer->id)}}" print-lable="Password" bg="dark"  :tip="true" icon="fas fa-lock" /></td>
                                         <td class="tc"><x-action-button url="{{route($PrefixRoute.'.Address',$customer->id)}}" print-lable="العناوين"  :tip="true" icon="fas fa-map-marker-alt" /></td>
                                         <td class="tc"><x-action-button url="{{route($PrefixRoute.'.edit',$customer->id)}}" type="edit" :tip="true" /></td>

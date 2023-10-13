@@ -38,6 +38,7 @@
     @elseif( thisCurrentLocale() == 'en')
         <link rel="stylesheet" href="{{ defAdminAssets('css/custom_en.css') }}">
     @endif
+    @livewireStyles
 </head>
 
 <body class="hold-transition {{ mainBodyStyle() }}">
@@ -270,8 +271,14 @@
 
 
     display_c7();
-
 </script>
 
+@livewireScripts
+@stack('scriptlivewire')
+<script>
+    document.addEventListener('livewire:load', () => {
+        Livewire.onPageExpired((response, message) => {})
+    })
+</script>
 </body>
 </html>
