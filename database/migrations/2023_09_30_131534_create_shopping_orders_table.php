@@ -23,6 +23,9 @@ return new class extends Migration
             $table->float('total')->default(0);
             $table->integer('units');
 
+            $table->dateTime('cancellation_date')->nullable();
+            $table->text('cancellation_notes')->nullable();
+
             $table->softDeletes();
             $table->timestamps();
 

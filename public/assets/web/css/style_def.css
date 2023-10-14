@@ -147,7 +147,7 @@
 }
 
 .profile_mobile_icon i{
-    font-size: 40px;
+    font-size: 25px;
     color: var(--red);
 }
 
@@ -155,25 +155,47 @@
     font-size: 15px;
 }
 
-
-
-.nav_style20 .item{
-
-    /*border: 1px solid rgba(0,0,0,.2);*/
-    /*padding: 10px 15px;*/
-    /*min-height: 100px;*/
-}
-
 .nav_style20 .owl-prev{
     position: absolute;
     right: -30px!important;
     top: 0!important;
 
+    width: 40px!important;
+    height: 40px!important;
+    line-height: 45px!important;
 }
 
 .nav_style20 .owl-next{
     position: absolute;
     left: -30px!important;
     top: 0!important;
+
+    width: 40px!important;
+    height: 40px!important;
+    line-height: 45px!important;
 }
 
+
+.nav_style20 .owl-prev:hover,.nav_style20 .owl-next:hover{
+    background:none!important;
+    color: #222!important;
+
+}
+
+
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: var(--red);
+    border-color: var(--red);
+}
+.pagination .page-item a {
+    color: var(--red);
+
+}
+
+.page-link-icon{
+    font-weight: bold;
+    font-size: 20px!important;
+}

@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\customer;
+use App\Http\Requests\customer\CancellationConfirmRequest;
 use App\Http\Requests\customer\ProfileAddressEditRequest;
 use App\Models\admin\Product;
+use App\Models\customer\UserCustomersProduct;
 use App\Models\shopping\ShoppingOrder;
 use App\Http\Controllers\WebMainController;
 use App\Http\Requests\customer\ProfileAddressAddRequest;
@@ -89,7 +91,6 @@ class ProfileController extends WebMainController
 #|||||||||||||||||||||||||||||||||||||| #   Profile_Address_List
     public function Profile_Address_List()
     {
-
         $SinglePageView = $this->SinglePageView ;
         $SinglePageView['profileMenu'] = "Address" ;
         $SinglePageView['breadcrumb'] = "Address" ;
@@ -126,7 +127,6 @@ class ProfileController extends WebMainController
 #|||||||||||||||||||||||||||||||||||||| #     Profile_Address_Save
     public function Profile_Address_Save(ProfileAddressAddRequest $request)
     {
-
         $SinglePageView = $this->SinglePageView ;
         $SinglePageView['profileMenu'] = "profile" ;
 
@@ -312,29 +312,43 @@ class ProfileController extends WebMainController
 
         $UserProfile = Auth::guard('customer')->user();
 
-        $Recently=Product::Web_Shop_Def_Query()
-            ->with('product_with_category')
-            ->whereHas('product_with_category',function($query){
-                $query->where('category_id',39);
-            })->orderby('id','desc')->get();
-
         if($this->agent->isMobile() == true and $this->agent->isTablet() == false){
             $proViewList = 'list';
         }else{
             $proViewList = '';
         }
 
+        $customersProduct  = UserCustomersProduct::select('product_id')
+            ->where('customer_id',$UserProfile->id)
+            ->pluck('product_id');
+
+//        $FavProducts = Product::query()
+//            ->where('is_active',true)
+//            ->where('is_archived',false)
+//            ->where('pro_shop',true)
+//            ->whereIn('id',$customersProduct)
+//            ->with('category')
+//            ->get()
+//            ->groupBy('category.*.name')
+//
+//        ;
+        $FavProducts = Product::query()
+            ->where('is_active',true)
+            ->where('is_archived',false)
+            ->where('pro_shop',true)
+            ->whereIn('id',$customersProduct)
+            ->withAggregate('category','category_id')
+            ->orderBy('category_category_id')
+            ->paginate(12)
+        ;
 
         return view('shop.customer.profile_my_product',
-            compact('SinglePageView','UserProfile','Recently','proViewList')
+            compact('SinglePageView','UserProfile','FavProducts','proViewList')
         );
     }
 
-
-
-
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#|||||||||||||||||||||||||||||||||||||| #     Profile_Address_Update
+#|||||||||||||||||||||||||||||||||||||| #     Profile_OrderView
     public function Profile_OrderView($uuid){
         $isUuid = Str::isUuid($uuid);
         if(!$isUuid){
@@ -351,36 +365,69 @@ class ProfileController extends WebMainController
             ->where('uuid',$uuid)
             ->where('customer_id',$UserProfile->id)
             ->with('products')
+            ->with('log')
             ->firstOrFail();
-
         return view('shop.customer.profile_order_view', compact('SinglePageView','UserProfile','order'));
 
     }
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     Profile_OrderCancellation
+    public function Profile_OrderCancellation($uuid){
+        $isUuid = Str::isUuid($uuid);
+        if(!$isUuid){
+            Auth::guard('customer')->logout();
+            return redirect()->route('Customer_login');
+        }
+
+        $SinglePageView = $this->SinglePageView ;
+        $SinglePageView['profileMenu'] = "OrdersList" ;
+        $SinglePageView['breadcrumb'] = "OrdersList" ;
+
+        $UserProfile = Auth::guard('customer')->user();
+        $order = ShoppingOrder::query()
+            ->where('uuid',$uuid)
+            ->where('status',1)
+            ->where('customer_id',$UserProfile->id)
+            ->with('products')
+            ->with('log')
+            ->firstOrFail();
+
+        return view('shop.customer.profile_order_cancellation', compact('SinglePageView','UserProfile','order'));
+
+    }
 
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| # Profile_CancellationConfirm
 
-//        $address = UsersCustomersAddress::with('city')->inRandomOrder()->first();
-//
-//
-//        $newAddress = new ShoppingOrderAddress ;
-//
-//        $newAddress->name = $address->name ;
-//        $newAddress->city = $address->city->name ;
-//        $newAddress->address = $address->address ;
-//        $newAddress->recipient_name = $address->recipient_name ;
-//        $newAddress->phone = $address->phone ;
-//        $newAddress->phone_option = $address->phone_option ;
-//        $newAddress->save();
-//
-//        $newOrder = new ShoppingOrder ;
-//        $newOrder->customer_id = 1 ;
-//        $newOrder->address_id = $newAddress->id ;
-//        $newOrder->uuid = Str::uuid()->toString() ;
-//        $newOrder->order_date = now() ;
-//        $newOrder->status = rand(1,5) ;
-//        $newOrder->total = rand(1000,10000);
-//        $newOrder->save();
+    public function Profile_CancellationConfirm(CancellationConfirmRequest $request, $uuid)
+    {
+        $isUuid = Str::isUuid($uuid);
+        if(!$isUuid){
+            Auth::guard('customer')->logout();
+            return redirect()->route('Customer_login');
+        }
+
+        $UserProfile = Auth::guard('customer')->user();
+        $order = ShoppingOrder::query()
+            ->where('uuid',$uuid)
+            ->where('status',1)
+            ->where('customer_id',$UserProfile->id)
+            ->with('products')
+            ->with('log')
+            ->firstOrFail();
+
+        $order->cancellation_date = now();
+        $order->cancellation_notes = $request->input('notes');
+        $order->status = 5;
+        $order->save();
+
+        return  redirect()->route('Profile_OrdersList');
+
+    }
+
+
 
 
 

@@ -3,7 +3,7 @@
 
         <div class="row">
             <div class="col-12">
-                <div class="client_logo carousel_slider owl-carousel owl-theme nav_style20" data-dots="false" data-nav="true" data-margin="10" data-loop="true" data-autoplay="false" data-responsive='{"0":{"items": "3"}, "480":{"items": "3"}, "767":{"items": "4"}, "991":{"items": "6"}}'>
+                <div class="client_logo carousel_slider owl-carousel owl-theme nav_style20" data-dots="false" data-nav="true" data-margin="5" data-loop="true" data-autoplay="false" data-responsive='{"0":{"items": "3"}, "480":{"items": "3"}, "767":{"items": "4"}, "991":{"items": "3"}}'>
 
                     @if(count($CartContent) > 0)
                         <a href="{{route('Shop_CartView')}}">
@@ -20,7 +20,7 @@
                     <a href="{{route('Profile_MyProduct')}}">
                         <div class="item">
                             <div class="profile_mobile_icon">
-                                <i class="fas fa-star"></i>
+                                <i class="fas fa-tasks"></i>
                             </div>
                             <h3 class="profile_mobile_h3 text-center mt-1">  {{__('web/customers.Profile_my_product')}}</h3>
                         </div>

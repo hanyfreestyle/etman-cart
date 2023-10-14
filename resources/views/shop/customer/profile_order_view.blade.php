@@ -62,11 +62,11 @@
                                                     <td class="cart_total_label"></td>
                                                     <td class="cart_total_amount">{{$order->total }} </td>
                                                 </tr>
-{{--                                                <tr>--}}
-{{--                                                    <td class="cart_total_label">{{__('web/cart.cart_view_Shipping')}}</td>--}}
-{{--                                                    <td class="cart_total_label"></td>--}}
-{{--                                                    <td class="cart_total_amount">{{__('web/cart.cart_view_Shipping_free')}}</td>--}}
-{{--                                                </tr>--}}
+                                                {{--                                                <tr>--}}
+                                                {{--                                                    <td class="cart_total_label">{{__('web/cart.cart_view_Shipping')}}</td>--}}
+                                                {{--                                                    <td class="cart_total_label"></td>--}}
+                                                {{--                                                    <td class="cart_total_amount">{{__('web/cart.cart_view_Shipping_free')}}</td>--}}
+                                                {{--                                                </tr>--}}
                                                 <tr>
                                                     <td class="cart_total_label">{{__('web/cart.cart_veiw_Total')}}</td>
                                                     <td class="cart_total_label"></td>
@@ -90,6 +90,27 @@
                                                     <td colspan="2"> {!! \App\Helpers\AdminHelper::getOrderStatus($order->status,'but') !!}</td>
                                                 </tr>
 
+                                                @if($order->status == 4)
+                                                    @foreach($order->log as $log)
+                                                        <tr>
+                                                            <td ></td>
+                                                            <td colspan="2"> {!!  nl2br($log->notes) !!}</td>
+                                                        </tr>
+                                                    @endforeach
+                                                @endif
+
+
+                                                @if($order->status == 5)
+
+                                                    <tr>
+                                                        <td>{{__('web/customers.Profile_cancellation_notes')}}</td>
+                                                        <td colspan="2"> {!!  nl2br($order->cancellation_notes) !!}</td>
+                                                    </tr>
+
+                                                @endif
+
+
+
                                                 </tfoot>
                                             </table>
                                         </div>
@@ -103,6 +124,14 @@
                                         <i class="fas fa-shopping-cart"></i>
                                         {{__('web/customers.Profile_OrdersList')}}
                                     </a>
+
+                                    @if($order->status == 1)
+                                        <a href="{{route('Profile_OrderCancellation',$order->uuid)}}" class="btn btn-fill-out">
+                                            <i class="fas fa-window-close"></i>
+                                             {{__('web/customers.Profile_cancellation_but')}}
+                                        </a>
+                                    @endif
+
                                 </div>
                             </div>
 

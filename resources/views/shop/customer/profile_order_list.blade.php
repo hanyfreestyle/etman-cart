@@ -77,6 +77,9 @@
                                         </div>
                                     @endif
                                 </div>
+                                <div class="d-flex justify-content-center mt-5">
+                                    {{ $orders->links('web.layouts.inc.pagination') }}
+                                </div>
                             </div>
                         </div>
                     </div>

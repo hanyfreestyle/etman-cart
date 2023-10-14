@@ -12,7 +12,7 @@
 
         <li class="nav-item">
             <a href="{{route('Profile_MyProduct')}}" class="nav-link @if($SinglePageView['profileMenu'] == 'ProfileMyProduct' ) active @endif">
-                <i class="fas fa-star"></i>{{__('web/customers.Profile_my_product')}}
+                <i class="fas fa-tasks"></i>{{__('web/customers.Profile_my_product')}}
             </a>
         </li>
 

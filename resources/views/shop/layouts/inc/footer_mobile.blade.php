@@ -19,7 +19,7 @@
     <div class="sticky-info">
         @if(Auth::guard('customer')->check())
             <a href="{{ route('Profile_MyProduct') }}" class="sticky_a @if($SinglePageView['SelMenu'] == 'ProfileMyProduct' ) active_footer @endif">
-                <i class="fas fa-star"></i>
+                <i class="fas fa-tasks"></i>
                 {{__('web/customers.Profile_my_product') }}
             </a>
         @else

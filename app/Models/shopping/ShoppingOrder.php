@@ -34,5 +34,10 @@ class ShoppingOrder extends Model
         return $this->hasMany(ShoppingOrderProduct::class,'order_id','id');
     }
 
+    public function log(): HasMany
+    {
+        return $this->hasMany(ShoppingOrderLog::class,'order_id');
+    }
+
 
 }

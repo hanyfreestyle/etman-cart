@@ -23,31 +23,39 @@
                         <div class="card profileCard">
                             <div class="card-header border_top">
                                 <h3>
-                                    <i class="fas fa-star"></i> {{__('web/customers.Profile_my_product')}}
+                                    <i class="fas fa-tasks"></i> {{__('web/customers.Profile_my_product')}}
                                 </h3>
                             </div>
                         </div>
                         <div class="containerX mt-3">
                             <div class="row">
                                 <div class="col-lg-12">
-
-
-{{--                                    <x-website.block-list-grid/>--}}
-
                                     <div class="row shop_container shop_container_50 {{$proViewList}} mt-3">
-                                        @foreach($Recently as $Product )
-                                            <div class="col-lg-4 col-md-4 col-6">
-                                                <x-shop.block-product :product="$Product" :category="$Product->product_with_category->first()"/>
-                                            </div>
+{{--                                        @foreach($FavProducts as  $x => $val )--}}
+{{--                                            @foreach($val as $product)--}}
+{{--                                                <div class="col-lg-4 col-md-4 col-6">--}}
+{{--                                                    <x-shop.block-product :product="$product" :category="$product->product_with_category->first()"/>--}}
+{{--                                                </div>--}}
+{{--                                            @endforeach--}}
+{{--                                        @endforeach--}}
+
+
+                                        @foreach($FavProducts as $product )
+
+                                                <div class="col-lg-4 col-md-4 col-6">
+                                                    <x-shop.block-product :product="$product" :category="$product->product_with_category->first()"/>
+                                                </div>
+
                                         @endforeach
+
                                     </div>
-
                                 </div>
-
-
-
                             </div>
                         </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center mt-5">
+                        {{ $FavProducts->links('web.layouts.inc.pagination') }}
                     </div>
                 </div>
             </div>

@@ -27,8 +27,6 @@
                                     <p>{{$order->customer->company_name}}</p>
                                     <p>{{$order->customer->phone}}</p>
                                     <p>{{$order->customer->whatsapp}}</p>
-
-
                                 </div>
 
                                 <div class="col-sm-4 invoice-col">
@@ -43,7 +41,6 @@
                                 <div class="col-sm-4 invoice-col">
                                     <h2>{{__('admin/order.inv_cust_notes')}}</h2>
                                     <p>{!! $order->address->notes !!}</p>
-
                                 </div>
 
 
@@ -89,18 +86,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            {{--                            <div class="row no-print">--}}
-                            {{--                                <div class="col-12">--}}
-                            {{--                                    <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>--}}
-                            {{--                                    <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit--}}
-                            {{--                                        Payment--}}
-                            {{--                                    </button>--}}
-                            {{--                                    <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">--}}
-                            {{--                                        <i class="fas fa-download"></i> Generate PDF--}}
-                            {{--                                    </button>--}}
-                            {{--                                </div>--}}
-                            {{--                            </div>--}}
                         </div>
 
                     </div>
@@ -134,11 +119,13 @@
                                         <p>{{$log->notes}}</p>
                                     @endforeach
                                 </div>
+                            @elseif($order->status == 5)
+                                <div class="callout callout-danger reject_mass">
+                                    <h5><i class="fas fa-info"></i> تم الغاء الطلب</h5>
+                                    <p>{{$order->cancellation_date }}</p>
+                                    <p>{{$order->cancellation_notes}}</p>
+                                </div>
                             @endif
-
-
-
-
                         </div>
                     @endcan
                 </div>

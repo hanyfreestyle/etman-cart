@@ -72,6 +72,11 @@ Route::group(['prefix' => 'EtmanShop'], function(){
         Route::get('/profile/orderView/{uuid:uuid}',
             [ProfileController::class, 'Profile_OrderView'])->name('Profile_OrderView');
 
+        Route::get('/profile/Cancellation/{uuid:uuid}',
+            [ProfileController::class, 'Profile_OrderCancellation'])->name('Profile_OrderCancellation');
+
+        Route::post('/profile/CancellationConfirm/{uuid:uuid}',
+            [ProfileController::class, 'Profile_CancellationConfirm'])->name('Profile_CancellationConfirm');
 
         Route::get('/CartConfirm',
             [ShoppingCartController::class, 'CartConfirm'])->name('Shop_CartConfirm');
