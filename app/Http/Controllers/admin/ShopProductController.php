@@ -79,9 +79,11 @@ class ShopProductController extends AdminMainController
     {
 
 
+
+
 //        $Products = Product::defquery()->where('pro_shop',true)->get();
 //        foreach ($Products as $Product){
-//            $Product->qty =  rand(0,50);
+//            $Product->unit =  'كارتونة';
 //            $Product->save();
 //        }
 
