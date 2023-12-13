@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\admin;
+use App\Models\admin\Product;
 use Cache;
 use Illuminate\Support\Facades\View;
 use App\Helpers\AdminHelper;
@@ -86,14 +87,16 @@ class CategoryController extends AdminMainController
                 ->where('parent_id',null)
                 ->where('cat_web',true)
                 ->where('cat_web_data',true)
+                ->with('category_with_product_website')
             );
         }else{
             $Categories = self::getSelectQuery(Category::Admin_Def_Web_Query()
                 ->where('cat_web',true)
-                ->where('cat_web_data',true));
+                ->where('cat_web_data',true)
+                ->with('category_with_product_website')
+            );
         }
 
-       // dd($Categories);
          return view('admin.product.category_index',compact('pageData','Categories'));
     }
 
@@ -287,6 +290,42 @@ class CategoryController extends AdminMainController
             $id = $position[0];
             $newPosition = $position[1];
             $saveData =  Category::findOrFail($id) ;
+            $saveData->postion_web = $newPosition;
+            $saveData->save();
+        }
+        self::ClearCash();
+        return response()->json(['success'=>$positions]);
+    }
+
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     CategorySort
+    public function ProductSort($id)
+    {
+        $sendArr = ['TitlePage' => $this->PageTitle ,'selMenu'=> $this->selMenu  ];
+        $pageData = AdminHelper::returnPageDate($this->controllerName,$sendArr);
+        $pageData['ViewType'] = "List";
+
+        $Category =  Category::where('id',$id)
+            ->where('cat_web', true)
+            ->where('cat_web_data', true)
+            ->with('category_with_product_website')
+
+            ->firstOrFail();
+
+       return view('admin.product.product_sort',compact('pageData','Category'));
+    }
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#|||||||||||||||||||||||||||||||||||||| #     TableSortSave
+    public function ProductSaveSort(Request $request){
+        $positions = $request->positions;
+        foreach($positions as $position) {
+            $id = $position[0];
+            $newPosition = $position[1];
+            $saveData =  Product::findOrFail($id) ;
             $saveData->postion_web = $newPosition;
             $saveData->save();
         }

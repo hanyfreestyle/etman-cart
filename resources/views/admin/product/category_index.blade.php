@@ -39,6 +39,7 @@
                         <tr>
                             <th class="TD_20">#</th>
                             <th class="TD_20"></th>
+                            <th class="TD_20"></th>
                             <th>{{__('admin/def.form_name_ar')}}</th>
                             <th>{{__('admin/def.form_name_en')}}</th>
 
@@ -58,6 +59,12 @@
                         @foreach($Categories as $Category)
                             <tr>
                                 <td>{{$Category->id}}</td>
+                                @if(count($Category->category_with_product_website) > 1)
+                                    <td><x-action-button url="{{route('webPro.category.ProSort',$Category->id)}}" :tip="true" print-lable="ترتيب المنتجات"  icon="fas fa-sort-amount-up"    /></td>
+                                @else
+                                    <td></td>
+                                @endif
+
                                 <td class="tc">{!!  \App\Helpers\AdminHelper::printTableImage($Category,'photo_thum_1') !!} </td>
                                 <td>{!! \App\Helpers\AdminHelper::print_count_name('ar',$Category,$PrefixRoute.".SubCategory") !!}</td>
                                 <td>{!!  \App\Helpers\AdminHelper::print_count_name('en',$Category,$PrefixRoute.".SubCategory") !!}</td>

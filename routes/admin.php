@@ -48,6 +48,8 @@ Route::get('/Category/Config',[CategoryController::class,'config'])->name('webPr
 Route::get('/Category/CatSort/{id}',[CategoryController::class,'CategorySort'])->name('webPro.category.CatSort');
 Route::post('/Category/SaveSort',[CategoryController::class,'CategorySaveSort'])->name('webPro.category.CategorySaveSort');
 
+Route::get('/Category/ProSort/{id}',[CategoryController::class,'ProductSort'])->name('webPro.category.ProSort');
+Route::post('/Category/ProSaveSort',[CategoryController::class,'ProductSaveSort'])->name('webPro.category.ProductSaveSort');
 
 
 Route::get('/Category/TableList/{id}',[CategoryTableController::class,'TableList'])->name('webPro.category.Table_list');

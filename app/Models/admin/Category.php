@@ -121,7 +121,9 @@ class Category extends Model implements TranslatableContract
             ->where('is_archived', false)
             ->where('pro_web', true)
             ->where('pro_web_data', true)
+            ->orderBy('postion_web')
             ->with('translation');
+
     }
 
     #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
