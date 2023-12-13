@@ -92,6 +92,8 @@ class CategoryController extends AdminMainController
                 ->where('cat_web',true)
                 ->where('cat_web_data',true));
         }
+
+       // dd($Categories);
          return view('admin.product.category_index',compact('pageData','Categories'));
     }
 

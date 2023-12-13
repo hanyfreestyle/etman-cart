@@ -2,7 +2,7 @@
     <div class="container">
         <div class="nav_block">
             <a class="navbar-brand" href="{{route('Page_HomePage')}}">
-                <img class="logo_dark header_logo" src=" {{getDefPhotoPath($DefPhotoList,'dark-logo')}}" alt="logo" />
+                <img class="logo_dark header_logo" src="{{getDefPhotoPath($DefPhotoList,'dark-logo')}}" alt="logo" />
             </a>
             @if(env('ETMAN_SHOP'))
                 <div class="d-none d-md-block">
